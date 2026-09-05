@@ -1,0 +1,405 @@
+<meta charset="utf-8">
+<title>Mapping X</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap">
+<style>
+  :root{
+    --noir:#1A1A1A; --blanc:#FAFAFA; --bleu:#1D9BF0;
+    --blanc-60:rgba(250,250,250,.6); --blanc-15:rgba(250,250,250,.15);
+    --noir-60:rgba(26,26,26,.6); --noir-15:rgba(26,26,26,.15); --bleu-15:rgba(29,155,240,.15);
+    --t1:5vw; --t2:1.9vw; --t3:1.25vw;
+  }
+  *{box-sizing:border-box}
+  html{scroll-snap-type:y mandatory;overflow-x:hidden;background:var(--noir)}
+  body{margin:0;background:var(--noir);color:var(--blanc);font-family:Archivo,system-ui,sans-serif;font-size:var(--t2);line-height:1.35}
+  .slide{position:relative;width:100vw;height:100vh;scroll-snap-align:start;padding:7vh 6vw 9vh;display:flex;flex-direction:column;gap:3vh;overflow:hidden;background:var(--noir);color:var(--blanc)}
+  .slide.light{background:var(--blanc);color:var(--noir)}
+  h1,h2{font-size:var(--t1);font-weight:800;line-height:1.05;margin:0;letter-spacing:-.02em;text-wrap:balance}
+  h2 em{font-style:normal;color:var(--bleu)}
+  p{margin:0} ul{margin:0;padding-left:1.2em} li{margin:.35em 0}
+  b{font-weight:600}
+  .sub{font-size:var(--t2);font-weight:600;color:var(--blanc-60)} .light .sub{color:var(--noir-60)}
+  .ai{position:absolute;top:3vh;right:6vw;display:flex;gap:.8vw;font-size:var(--t3);font-weight:600;z-index:2}
+  .ai span{display:inline-flex;align-items:center;gap:.5vw;border:1px solid currentColor;border-radius:99vw;padding:.5vh .9vw;white-space:nowrap}
+  .ai svg{width:1.5vw;height:1.5vw;flex:none}
+  footer{position:absolute;left:6vw;right:6vw;bottom:3vh;display:flex;justify-content:space-between;gap:2vw;font-size:var(--t3);color:var(--blanc-60)}
+  .light footer{color:var(--noir-60)}
+  .num{font-weight:600;font-variant-numeric:tabular-nums;flex:none}
+  .cols{display:grid;grid-template-columns:repeat(var(--n,2),minmax(0,1fr));gap:1.6vw;flex:1;min-height:0}
+  .card{border:1px solid var(--blanc-15);border-radius:1vw;padding:2.4vh 1.5vw;display:flex;flex-direction:column;gap:1vh}
+  .light .card{border-color:var(--noir-15)}
+  .card .k{font-weight:600;color:var(--bleu)}
+  .big{font-size:var(--t1);font-weight:800;line-height:1;color:var(--bleu);letter-spacing:-.02em}
+  .lab{font-size:var(--t3);color:var(--blanc-60)} .light .lab{color:var(--noir-60)}
+  table{border-collapse:collapse;width:100%;font-size:var(--t3);font-variant-numeric:tabular-nums}
+  th,td{border:1px solid var(--blanc-15);padding:1.1vh 1vw;text-align:left;vertical-align:top}
+  .light th,.light td{border-color:var(--noir-15)}
+  th{background:var(--bleu-15);font-weight:600}
+  figure{margin:0;flex:1;min-height:0;display:flex;flex-direction:column;gap:1vh} figure svg{display:block;width:100%;height:auto;max-height:100%}
+  figcaption{font-size:var(--t3);color:var(--blanc-60)} .light figcaption{color:var(--noir-60)}
+  .ph{border:2px dashed var(--bleu);border-radius:1vw;flex:1;min-height:18vh;display:grid;place-items:center;color:var(--bleu);font-weight:600;font-size:var(--t3);text-align:center;padding:1vh}
+  .ph img{width:100%;height:100%;object-fit:cover;border-radius:.8vw}
+  .step{display:grid;grid-template-columns:3vw 1fr;gap:1vw;align-items:baseline}
+  .step .n{font-weight:800;color:var(--bleu);font-size:var(--t2)}
+  .chip{display:inline-flex;align-items:center;border:1px solid currentColor;border-radius:99vw;padding:.4vh .9vw;font-size:var(--t3);font-weight:600;white-space:nowrap}
+  .chip.b{background:var(--bleu);border-color:var(--bleu);color:var(--noir)}
+  /* couverture */
+  .cover{padding:0;justify-content:center;align-items:center;text-align:center;background:#000 url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><path fill='%23FAFAFA' fill-opacity='0.08' d='M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z'/></svg>") center/60vh no-repeat}
+  .cover::before{content:"";position:absolute;inset:0;background:rgba(26,26,26,.55)}
+  .cover > *{position:relative;z-index:1}
+  .cover > .ai,.cover > footer{position:absolute}
+  .cover h1{font-size:calc(var(--t1) * 1.8)}
+  .cover .sub{color:var(--blanc);margin-top:2vh}
+  .cover .meta{font-size:var(--t3);color:var(--blanc-60);margin-top:6vh;line-height:1.6}
+  /* notes orateur */
+  aside.notes{display:none}
+  body.notes aside.notes{display:block;position:absolute;left:6vw;right:6vw;bottom:8vh;background:var(--bleu);color:var(--noir);padding:1.6vh 1.4vw;font-size:var(--t3);line-height:1.45;border-radius:.8vw;z-index:4}
+  .hint{position:fixed;left:50%;bottom:1.2vh;transform:translateX(-50%);font-size:var(--t3);color:var(--blanc-60);z-index:3;pointer-events:none;transition:opacity .4s}
+  @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+  @page{size:16in 9in;margin:0}
+  @media print{
+    html{scroll-snap-type:none}
+    .slide{break-after:page;page-break-after:always;height:9in;width:16in}
+    .hint,aside.notes{display:none!important}
+  }
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <path id="g-claude" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/>
+    <path id="g-openai" d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/>
+    <path id="g-x" d="M14.234 10.162 22.977 0h-2.072l-7.591 8.824L7.251 0H.258l9.168 13.343L.258 24H2.33l8.016-9.318L16.749 24h6.993zm-2.837 3.299-.929-1.329L3.076 1.56h3.182l5.965 8.532.929 1.329 7.754 11.09h-3.182z"/>
+  </defs>
+</svg>
+
+<!-- 1 · COUVERTURE -->
+<section class="slide cover" id="s1">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude Code</span></div>
+  <h1>Mapping X</h1>
+  <p class="sub">Formerly Twitter · the real-time network</p>
+  <p class="meta">R5.MDEE.13 Social Media Strategy &amp; e-CRM · Igor Perez<br>Sofian Chtioui &amp; Romane Da-Silva · BUT3 TC MDEE · IUT de Lille, Roubaix · September 2026</p>
+  <footer><span>Cover photo: to be replaced</span><span class="num">1 / 15</span></footer>
+  <aside class="notes">Hi everyone. We chose X, formerly Twitter, because it is the network everyone has an opinion about and few brands still master. In ten minutes we will map it in eight stops, from its history to the tools you need to manage it, and we will finish with a position, not a summary.</aside>
+</section>
+
+<!-- 2 · PLAN -->
+<section class="slide light" id="s2">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span></div>
+  <h2>Our route in <em>8 stops</em></h2>
+  <div class="cols" style="--n:4">
+    <div class="card"><span class="k">1 · History</span>20 years in 10 dates, and what changed in 2025-2026</div>
+    <div class="card"><span class="k">2 · Audience</span>France in numbers, and who is really there</div>
+    <div class="card"><span class="k">3 · When to use it</span>Tips, algorithm, and when to stay away</div>
+    <div class="card"><span class="k">4 · Sectors</span>Who dominates, who left</div>
+    <div class="card"><span class="k">5 · 3 accounts</span>Brands that innovate on X</div>
+    <div class="card"><span class="k">6 · Formats</span>Image and video specs that actually get seen</div>
+    <div class="card"><span class="k">7 · Tools</span>Managing X, and plugging tools into the 8-step strategy</div>
+    <div class="card"><span class="k">8 · Our position</span>Is X still worth it in 2026? And what comes next</div>
+  </div>
+  <footer><span>Brief: R5.MDEE.13, class 1 &amp; 2, slide 56</span><span class="num">2 / 15</span></footer>
+  <aside class="notes">The eight stops follow the brief exactly. Stops 1 to 6 describe the platform; stop 7 is where we spend the most time because tools are the focus of this first presentation; stop 8 is our opinion.</aside>
+</section>
+
+<!-- 3 · DATES CLÉS -->
+<section class="slide" id="s3">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude Code</span></div>
+  <h2>20 years in <em>10 dates</em></h2>
+  <figure>
+    <svg viewBox="0 0 1700 520" role="img" aria-label="Timeline of X from 2006 to 2026: 2006 launch, 2007 hashtag, 2013 IPO, 2017 280 characters, 2022 Musk acquisition, 2023 rebrand to X, 2024 x.com domain and Grok, 2025 xAI acquires X, 2025 CEO resigns and EU fine, 2026 SpaceX merger and Threads parity">
+      <g font-family="Archivo, sans-serif" fill="#FAFAFA">
+        <line x1="120" y1="260" x2="1580" y2="260" stroke="#FAFAFA" stroke-opacity=".3" stroke-width="3"/>
+        <!-- points : pas de 149 px, de 180 à 1521 -->
+        <g fill="#1D9BF0">
+          <circle cx="180" cy="260" r="12"/><circle cx="329" cy="260" r="12"/><circle cx="478" cy="260" r="12"/><circle cx="627" cy="260" r="12"/><circle cx="776" cy="260" r="12"/>
+          <circle cx="925" cy="260" r="12"/><circle cx="1074" cy="260" r="12"/><circle cx="1223" cy="260" r="12"/><circle cx="1372" cy="260" r="12"/><circle cx="1521" cy="260" r="12"/>
+        </g>
+        <!-- au-dessus -->
+        <g font-size="34" font-weight="800" text-anchor="middle">
+          <text x="180" y="150">2006</text><text x="478" y="150">2013</text><text x="776" y="150">2022</text><text x="1074" y="150">2024</text><text x="1372" y="150">2025</text>
+        </g>
+        <g font-size="22" text-anchor="middle" fill="#FAFAFA" fill-opacity=".85">
+          <text x="180" y="190">Twttr launches (15 July)</text><text x="180" y="220">Jack Dorsey, SMS-first</text>
+          <text x="478" y="190">IPO on the NYSE</text><text x="478" y="220">Twitter goes public</text>
+          <text x="776" y="190">Elon Musk buys Twitter</text><text x="776" y="220">$44 bn, October</text>
+          <text x="1074" y="190">x.com domain (17 May)</text><text x="1074" y="220">Grok AI inside the feed</text>
+          <text x="1372" y="190">CEO Yaccarino resigns (July)</text><text x="1372" y="220">€120M EU DSA fine (Dec.)</text>
+        </g>
+        <!-- en dessous -->
+        <g font-size="34" font-weight="800" text-anchor="middle">
+          <text x="329" y="340">2007</text><text x="627" y="340">2017</text><text x="925" y="340">2023</text><text x="1223" y="340">2025</text><text x="1521" y="340">2026</text>
+        </g>
+        <g font-size="22" text-anchor="middle" fill="#FAFAFA" fill-opacity=".85">
+          <text x="329" y="380">The #hashtag is born</text><text x="329" y="410">user-invented, then adopted</text>
+          <text x="627" y="380">140 → 280 characters</text><text x="627" y="410">longer posts, same speed</text>
+          <text x="925" y="380">Twitter becomes X (23 July)</text><text x="925" y="410">bird logo retired</text>
+          <text x="1223" y="380">xAI acquires X (28 March)</text><text x="1223" y="410">valued at $33 bn</text>
+          <text x="1521" y="380">SpaceX merges with xAI (Feb.)</text><text x="1521" y="410">Threads catches up on mobile</text>
+        </g>
+      </g>
+    </svg>
+    <figcaption>From a text-message experiment to an AI company's asset: the platform changed owner, name, and purpose in four years.</figcaption>
+  </figure>
+  <footer><span>Source: Wikipedia, "X (social network)", consulted 4 Sept. 2026 (en.wikipedia.org/wiki/Twitter); CNBC 28 March 2025; NYT 2 Feb. 2026</span><span class="num">3 / 15</span></footer>
+  <aside class="notes">Two eras. 2006 to 2021: Twitter invents the codes of real-time social media, the hashtag, the retweet, live reactions. Since 2022: one owner, Elon Musk, and a chain of transformations: rebrand to X, Grok AI in the feed, sale to xAI in March 2025, then the merger of SpaceX and xAI in February 2026. Today X belongs to an AI and space company, which tells you where its priorities are.</aside>
+</section>
+
+<!-- 4 · ACTUALITÉS -->
+<section class="slide light" id="s4">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span></div>
+  <h2>2025-2026: a platform <em>under pressure</em></h2>
+  <div class="cols" style="--n:4">
+    <div class="card"><span class="k">Ownership</span><b>xAI bought X</b> in March 2025 ($33 bn), then <b>SpaceX absorbed xAI</b> in February 2026. X is now a feature of an AI group, not a standalone media company.</div>
+    <div class="card"><span class="k">Regulation</span><b>€120M fine</b> from the European Commission in December 2025 under the Digital Services Act. Days later, X banned the Commission from advertising on the platform.</div>
+    <div class="card"><span class="k">Competition</span>In January 2026, <b>Threads matched X</b> in mobile usage. Bluesky and Mastodon collect the users who left. X keeps the lead on desktop traffic.</div>
+    <div class="card"><span class="k">Perception</span>2026 SocialHub study of 500+ social media pros: <b>X "keeps declining, in usage and in perceived importance."</b> INSA Lyon and Université Côte d'Azur paused their accounts.</div>
+  </div>
+  <footer><span>Sources: Wikipedia (4 Sept. 2026); SocialHub Mag #06 2026, p. 12, 26, 35</span><span class="num">4 / 15</span></footer>
+  <aside class="notes">Four pressures at once. Ownership: X is a small part of a huge AI group. Regulation: the first big DSA fine in Europe. Competition: Threads reached parity on mobile this January. Perception: professionals rank it lower every year, and public institutions leave. Keep these four in mind, they drive our conclusion.</aside>
+</section>
+
+<!-- 5 · AUDIENCE FRANCE -->
+<section class="slide" id="s5">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude Code</span></div>
+  <h2>Audience in France: <em>shrinking, but sharp</em></h2>
+  <div class="cols" style="--n:2">
+    <figure>
+      <svg viewBox="0 0 800 420" role="img" aria-label="Potential advertising audience of X in France: 17.5 million in 2024, 15.5 million in 2025, a drop of 11 percent">
+        <g font-family="Archivo, sans-serif">
+          <rect x="120" y="60" width="220" height="300" fill="#FAFAFA"/>
+          <text x="230" y="220" text-anchor="middle" font-weight="800" font-size="56" fill="#1A1A1A">17.5M</text>
+          <text x="230" y="400" text-anchor="middle" font-size="28" fill="#FAFAFA">2024</text>
+          <rect x="460" y="94.3" width="220" height="265.7" fill="#1D9BF0"/>
+          <text x="570" y="235" text-anchor="middle" font-weight="800" font-size="56" fill="#1A1A1A">15.5M</text>
+          <text x="570" y="400" text-anchor="middle" font-size="28" fill="#FAFAFA">2025</text>
+          <text x="570" y="70" text-anchor="middle" font-size="30" font-weight="600" fill="#1D9BF0">−11 % in one year</text>
+        </g>
+      </svg>
+      <figcaption>Potential advertising audience in France (ECN guides 2024 and 2025, from DataReportal).</figcaption>
+    </figure>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.4vw;align-content:center">
+      <div><div class="big">62 %</div><div class="lab">men (2025)</div></div>
+      <div><div class="big">#7</div><div class="lab">social network in France by active users (Jan. 2025)</div></div>
+      <div><div class="big">3h45</div><div class="lab">spent on X per month, on average</div></div>
+      <div><div class="big">6 %</div><div class="lab">of French web traffic from social media comes from X</div></div>
+    </div>
+  </div>
+  <footer><span>Sources: ECN Guide 2024 p. 8; ECN Guide 2025 p. 5; Statista via course slide 51</span><span class="num">5 / 15</span></footer>
+  <aside class="notes">Two million potential ad viewers lost in one year in France, minus eleven percent. Still 15.5 million people, mostly men, and a heavy-user profile: almost four hours a month. X is not big in France, but it is intense.</aside>
+</section>
+
+<!-- 6 · GÉNÉRATIONS -->
+<section class="slide light" id="s6">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span></div>
+  <h2>Who is on X? <em>Gen Z first</em></h2>
+  <div class="cols" style="--n:2">
+    <figure>
+      <svg viewBox="0 0 800 440" role="img" aria-label="Share of French social media users on X by generation: Gen Z 27 percent, Millennials 18, Gen X 14, Baby Boomers 10, Silent Generation 7">
+        <g font-family="Archivo, sans-serif" fill="#1A1A1A">
+          <line x1="60" y1="360" x2="760" y2="360" stroke="#1A1A1A" stroke-opacity=".3" stroke-width="2"/>
+          <rect x="80" y="36" width="100" height="324" fill="#1D9BF0"/><text x="130" y="24" text-anchor="middle" font-weight="800" font-size="34">27 %</text><text x="130" y="395" text-anchor="middle" font-size="24">Gen Z</text><text x="130" y="425" text-anchor="middle" font-size="20" fill-opacity=".6">1997-2006</text>
+          <rect x="230" y="144" width="100" height="216" fill="#1A1A1A"/><text x="280" y="132" text-anchor="middle" font-weight="800" font-size="34">18 %</text><text x="280" y="395" text-anchor="middle" font-size="24">Millennials</text><text x="280" y="425" text-anchor="middle" font-size="20" fill-opacity=".6">1981-1996</text>
+          <rect x="380" y="192" width="100" height="168" fill="#1A1A1A"/><text x="430" y="180" text-anchor="middle" font-weight="800" font-size="34">14 %</text><text x="430" y="395" text-anchor="middle" font-size="24">Gen X</text><text x="430" y="425" text-anchor="middle" font-size="20" fill-opacity=".6">1965-1980</text>
+          <rect x="530" y="240" width="100" height="120" fill="#1A1A1A"/><text x="580" y="228" text-anchor="middle" font-weight="800" font-size="34">10 %</text><text x="580" y="395" text-anchor="middle" font-size="24">Boomers</text><text x="580" y="425" text-anchor="middle" font-size="20" fill-opacity=".6">1946-1964</text>
+          <rect x="680" y="276" width="80" height="84" fill="#1A1A1A"/><text x="720" y="264" text-anchor="middle" font-weight="800" font-size="34">7 %</text><text x="720" y="395" text-anchor="middle" font-size="24">Silent</text><text x="720" y="425" text-anchor="middle" font-size="20" fill-opacity=".6">≤ 1945</text>
+        </g>
+      </svg>
+      <figcaption>Share of French social media users who use X, by generation (Statista 2024).</figcaption>
+    </figure>
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:2.4vh">
+      <p><b>The X user is young, male, and news-driven.</b> One Gen Z user out of four is on X, four times the share of Boomers.</p>
+      <p>Worldwide, the platform claimed <b>550 million monthly users</b> in September 2023, its last official figure before the xAI sale.</p>
+      <p><b>For a brand:</b> X reaches opinion leaders, journalists, and early adopters, not the mass market. That is a targeting choice, not a reach choice.</p>
+    </div>
+  </div>
+  <footer><span>Sources: Statista 2024 via course slide 52; CNBC, 18 Sept. 2023</span><span class="num">6 / 15</span></footer>
+  <aside class="notes">Gen Z is the largest group, which surprises people who think X is an old network. The typical user is young, male, and there for news and opinions. So X is a targeting play: you reach the people who talk, not everybody.</aside>
+</section>
+
+<!-- 7 · TIPS -->
+<section class="slide" id="s7">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span></div>
+  <h2>When to use X <em>(and when not to)</em></h2>
+  <div class="cols" style="--n:3">
+    <div class="card"><span class="k">Use X to…</span>
+      <ul><li><b>React</b> to hot topics within the hour</li><li>Run <b>public customer care</b> (visible answers build trust)</li><li>Position expertise with <b>structured threads</b></li><li><b>Live-tweet</b> events and launches</li><li><b>Watch competitors</b> and trends in real time</li></ul></div>
+    <div class="card"><span class="k">Tips that work</span>
+      <ul><li>Visual first: images, video, <b>GIFs</b></li><li><b>Humour</b> and the platform's own codes</li><li>Relevant <b>hashtags</b>, not ten of them</li><li><b>No hard-sell posts</b>: X rewards conversation</li><li>Answer fast: <b>speed makes you visible</b></li></ul></div>
+    <div class="card"><span class="k">Stay away if…</span>
+      <ul><li>Every post needs <b>three levels of validation</b></li><li>Nobody can <b>answer within the hour</b></li><li>Your brand is <b>image-first</b> (Instagram, TikTok fit better)</li><li>Your audience is <b>mass-market</b>, not opinion leaders</li><li>You cannot handle <b>polarised</b> replies</li></ul></div>
+  </div>
+  <p class="lab"><b style="color:var(--bleu)">The algorithm rewards:</b> relevant (past interests + engagement) · fresh (news first) · varied (no bubble) · with media (images and video boost visibility)</p>
+  <footer><span>Sources: ECN Guide 2024 p. 8 (Conseils, Objectifs); ECN Guide 2025 p. 5 (Conseils, Algorithme)</span><span class="num">7 / 15</span></footer>
+  <aside class="notes">Simple rule: X is a conversation, not a billboard. If your organisation can answer within the hour, with humour and visuals, X works. If every post needs three signatures, you will always be late, and late is invisible on X. The algorithm confirms it: fresh and engaging content first.</aside>
+</section>
+
+<!-- 8 · SECTEURS -->
+<section class="slide light" id="s8">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span></div>
+  <h2>Dominant <em>sectors</em></h2>
+  <div class="cols" style="--n:4">
+    <div class="card" style="background:var(--noir);color:var(--blanc);border-color:var(--noir)"><span class="k">News</span>Breaking news, journalists, live reactions: X is still the newsroom of the internet.</div>
+    <div class="card" style="background:var(--noir);color:var(--blanc);border-color:var(--noir)"><span class="k">Politics</span>Officials, parties, and activists. The most polarised, and the most watched, space on X.</div>
+    <div class="card" style="background:var(--noir);color:var(--blanc);border-color:var(--noir)"><span class="k">Tech</span>Founders, developers, AI announcements (including Grok's own).</div>
+    <div class="card" style="background:var(--noir);color:var(--blanc);border-color:var(--noir)"><span class="k">Sport</span>Match days, transfers, clubs, and fans: live and emotional.</div>
+  </div>
+  <div class="cols" style="--n:2;flex:0 0 auto">
+    <div class="card"><span class="k">Brands that made it (followers)</span><p><b>Apple</b> 14 M · <b>Nike</b> 10.1 M · <b>Dior</b> 9.3 M. Top French e-commerce accounts: Burger King, Les Furets, Audi France, PlayStation FR.</p></div>
+    <div class="card"><span class="k">Who is leaving</span><p>Research labs and universities, historically strong on Twitter, moved to <b>LinkedIn</b>: "more possibilities", says INSA Lyon. Public institutions now weigh governance risk before posting.</p></div>
+  </div>
+  <footer><span>Sources: ECN Guide 2025 p. 5 (Secteurs); ECN Guide 2024 p. 8 (Top 3, comptes à suivre); SocialHub Mag #06 p. 26</span><span class="num">8 / 15</span></footer>
+  <aside class="notes">Four sectors own X: news, politics, tech, sport. All four share one thing: they happen live. Brands that succeed borrow that energy, like Burger King France. Sectors that need a calm, professional tone, like universities and research, have left for LinkedIn.</aside>
+</section>
+
+<!-- 9 · 3 COMPTES -->
+<section class="slide" id="s9">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span></div>
+  <h2>3 accounts to follow <em>for their innovations</em></h2>
+  <div class="cols" style="--n:3">
+    <div class="card"><span class="k">@BurgerKingFR</span><p><b>Conversational humour as a system.</b> The bio jokes ("le CM BK de Threads"), replies to users in minutes, and turns every trend into a menu joke. On X since Dec. 2013, ~188 k followers.</p><div class="ph">Screenshot: @BurgerKingFR profile + one reply<br>(replace me)</div></div>
+    <div class="card"><span class="k">@LesFurets</span><p><b>Mascot storytelling.</b> Two ferrets carry the whole brand voice: GIF replies, self-mockery, answers to random users. Insurance comparison made likeable.</p><div class="ph">Screenshot: @LesFurets post with GIF<br>(replace me)</div></div>
+    <div class="card"><span class="k">@PlayStationFR</span><p><b>Live community rituals.</b> Launch countdowns, polls, event live-tweets, and fast community answers. Shows how to use X's native formats (polls, video, replies) at scale.</p><div class="ph">Screenshot: @PlayStationFR poll or launch post<br>(replace me)</div></div>
+  </div>
+  <footer><span>Sources: ECN Guide 2024 p. 8-9 (comptes à suivre, capture Burger King France); screenshots: our own, Sept. 2026</span><span class="num">9 / 15</span></footer>
+  <aside class="notes">Three French accounts, three innovations. Burger King: humour as a system, not a one-off. Les Furets: a mascot that answers like a friend. PlayStation: community rituals built on X's native formats. Screenshots are ours, taken this week.</aside>
+</section>
+
+<!-- 10 · FORMATS IMAGE -->
+<section class="slide light" id="s10">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude Code</span></div>
+  <h2>Image formats: <em>what gets seen</em></h2>
+  <div class="cols" style="--n:2">
+    <table>
+      <thead><tr><th>Element</th><th>Recommended size (px)</th><th>Minimum</th></tr></thead>
+      <tbody>
+        <tr><td><b>Profile picture</b></td><td>400 × 400</td><td>200 × 200</td></tr>
+        <tr><td><b>Header (cover)</b></td><td>1500 × 500</td><td>—</td></tr>
+        <tr><td><b>Feed image</b></td><td>1200 × 1200 or 1200 × 628</td><td>—</td></tr>
+        <tr><td><b>Ad image</b></td><td>1200 × 675</td><td>600 × 335</td></tr>
+      </tbody>
+    </table>
+    <div style="display:flex;flex-direction:column;justify-content:center;gap:2vh">
+      <p><b>Square or 1.91:1</b>, never a random crop: X crops the feed preview, and the preview decides the click.</p>
+      <p><b>Text on image stays readable on mobile</b>: 62 % of the audience is on a phone screen, in a fast feed.</p>
+      <p><b>Media boosts reach</b>: the algorithm explicitly favours posts with images or video.</p>
+    </div>
+  </div>
+  <footer><span>Source: ECN Guide 2024 p. 9 (Images et profil); ECN Guide 2025 p. 5 (Algorithme)</span><span class="num">10 / 15</span></footer>
+  <aside class="notes">Four sizes to remember: 400 for the profile, 1500 by 500 for the header, 1200 square for the feed, 1200 by 675 for ads. The key idea is the preview: X crops, so we design for the crop.</aside>
+</section>
+
+<!-- 11 · FORMATS VIDÉO -->
+<section class="slide" id="s11">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude Code</span></div>
+  <h2>Video formats: <em>short, native, captioned</em></h2>
+  <table>
+    <thead><tr><th>Type</th><th>Ratio</th><th>Recommended (px)</th><th>Max size</th><th>File</th><th>Max length</th></tr></thead>
+    <tbody>
+      <tr><td><b>Post video</b></td><td>1:2.39 to 2.39:1</td><td>1920 × 1200 or 1200 × 1900</td><td>512 MB</td><td>MP4, MOV</td><td>2 min 20</td></tr>
+      <tr><td><b>Video carousel</b></td><td>16:9 or 1:1</td><td>800 × 450 or 800 × 800</td><td>2 to 6 videos</td><td>—</td><td>—</td></tr>
+      <tr><td><b>Ad with poll</b></td><td>16:9 or 1:1</td><td>800 × 800 or 800 × 450</td><td>1 GB</td><td>MP4, MOV</td><td>poll open 5 min to 7 days</td></tr>
+      <tr><td><b>Video ad</b></td><td>1:1 or 16:9</td><td>800 × 800 or 800 × 450</td><td>1 GB</td><td>MP4, MOV</td><td>2 min 20</td></tr>
+    </tbody>
+  </table>
+  <p class="lab"><b style="color:var(--bleu)">Quality rules:</b> upload natively (no YouTube links, they get less reach) · captions on, most views are muted · first 3 seconds carry the message · GIFs count as video and are the cheapest reaction format</p>
+  <footer><span>Source: ECN Guide 2024 p. 9 (Vidéos)</span><span class="num">11 / 15</span></footer>
+  <aside class="notes">Two minutes twenty is the ceiling for organic video. Native upload, captions, message in the first three seconds. And the GIF, X's signature format, is a video too: cheap, fast, and perfect for replies.</aside>
+</section>
+
+<!-- 12 · OUTILS -->
+<section class="slide light" id="s12">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span></div>
+  <h2>Management tools: <em>who does what</em></h2>
+  <div class="cols" style="--n:5">
+    <div class="card"><span class="k">Organise &amp; monitor</span><p><b>X Pro</b> (ex-TweetDeck)</p><p class="lab">Columns, lists, several accounts, live conversation tracking. Now X Premium only.</p></div>
+    <div class="card"><span class="k">Schedule &amp; analyse</span><p><b>Hootsuite · Buffer · Social Champ</b></p><p class="lab">Editorial calendar, cross-platform scheduling, reports and dashboards.</p></div>
+    <div class="card"><span class="k">Listen &amp; protect</span><p><b>Brandwatch · Mention</b></p><p class="lab">Social listening, brand mentions, sentiment, crisis alerts and reputation.</p></div>
+    <div class="card"><span class="k">Advertise</span><p><b>X for Business / X Ads</b></p><p class="lab">Create and run campaigns, promoted posts, polls, video ads.</p></div>
+    <div class="card"><span class="k">Understand &amp; retarget</span><p><b>Audiense Connect</b></p><p class="lab">Audience segmentation, measure, optimise and retarget ads.</p></div>
+  </div>
+  <p class="lab"><b style="color:var(--bleu)">Reality check:</b> only 27 % of community managers say X is important for their work (ECN 2024), so most teams pick one scheduler and X Pro, not the whole stack.</p>
+  <footer><span>Sources: ECN Guide 2024 p. 8 (Outils X); ECN Guide 2025 p. 5 (Outils)</span><span class="num">12 / 15</span></footer>
+  <aside class="notes">Five jobs, five families of tools. Organise with X Pro; schedule and analyse with Hootsuite or Buffer; listen with Brandwatch or Mention; advertise with X Ads; segment with Audiense. Most small teams need two of the five: a scheduler and X Pro.</aside>
+</section>
+
+<!-- 13 · OUTILS DANS LA STRATÉGIE 8 ÉTAPES -->
+<section class="slide" id="s13">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span></div>
+  <h2>Tools plugged into the <em>8-step strategy</em></h2>
+  <div class="cols" style="--n:2">
+    <div style="display:grid;gap:1.6vh;align-content:center">
+      <div class="step"><span class="n">1</span><span><b>SMART objectives</b> → baseline in <b>X Analytics</b> (impressions, engagement rate)</span></div>
+      <div class="step"><span class="n">2</span><span><b>Know your targets</b> → <b>Audiense</b> segments, personas from real followers</span></div>
+      <div class="step"><span class="n">3</span><span><b>Audit &amp; choose platforms</b> → <b>X Pro</b> lists of competitors, <b>Similarweb</b> for traffic share</span></div>
+      <div class="step"><span class="n">4</span><span><b>Content plan</b> → <b>Hootsuite / Buffer</b> calendar, news hooks reserved for real time</span></div>
+    </div>
+    <div style="display:grid;gap:1.6vh;align-content:center">
+      <div class="step"><span class="n">5</span><span><b>Quality content</b> → native video, GIFs, threads, formats from slides 10-11</span></div>
+      <div class="step"><span class="n">6</span><span><b>Engage</b> → <b>X Pro</b> columns + <b>Mention</b> alerts, answer within the hour</span></div>
+      <div class="step"><span class="n">7</span><span><b>Analyse KPIs</b> → impressions, engagement, clicks, conversions in <b>Hootsuite</b> reports</span></div>
+      <div class="step"><span class="n">8</span><span><b>Loyalty &amp; e-CRM</b> → DMs, <b>X Communities</b>, retargeting with <b>Audiense</b> and <b>X Ads</b></span></div>
+    </div>
+  </div>
+  <p class="lab"><b style="color:var(--bleu)">The point:</b> a tool is only useful at a step of the strategy. Steps 6 and 7 are where X differs from other networks: speed of reply and real-time measurement.</p>
+  <footer><span>Framework: course conclusion, "8 étapes" (class 1 &amp; 2, slide 46); tools: ECN 2024-2025</span><span class="num">13 / 15</span></footer>
+  <aside class="notes">This is the course framework from slide 46, with the X tool at each step. Two steps are specific to X: step 6, engagement, because you must answer within the hour, so you need X Pro columns and Mention alerts; and step 7, KPIs, because everything on X is measured live. The rest is the same discipline as any network.</aside>
+</section>
+
+<!-- 14 · POSITION -->
+<section class="slide light" id="s14">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span><span><svg viewBox="0 0 24 24" fill="currentColor"><use href="#g-openai"/></svg>ChatGPT</span></div>
+  <h2>Our position: X is no longer a <em>default</em> channel. It is a <em>tactical</em> one.</h2>
+  <div class="cols" style="--n:3">
+    <div class="card"><span class="k">Why not by default</span><p>−11 % ad audience in France in a year, #7 network, mobile parity with Threads, and a governance risk that made universities leave.</p></div>
+    <div class="card"><span class="k">Why still tactical</span><p>Nothing beats X for <b>real-time</b>: news, sport, launches, public customer care. 15.5 M intense users, one Gen Z out of four, the people who talk.</p></div>
+    <div class="card"><span class="k">Our rule for a brand</span><p><b>Go on X only if you can answer within the hour.</b> Otherwise, put the budget on Instagram or LinkedIn and keep X in watch mode.</p></div>
+  </div>
+  <p><b style="color:var(--bleu)">Opening:</b> Grok now summarises the feed for Premium users. If an AI reads X for us, does the real-time conversation that made X unique still exist, and who inherits it: Threads, Bluesky, or LinkedIn?</p>
+  <footer><span>Reasoning built on slides 4-6 and 12-13. Claude proposed a neutral conclusion; we chose a stance. ChatGPT: counter-argument check.</span><span class="num">14 / 15</span></footer>
+  <aside class="notes">Our position, not a summary. X is not a default channel anymore: the audience shrinks, Threads caught up, the governance risk is real. But it stays tactical: for real-time, nothing else works. Our rule: go on X only if you can answer within the hour. And the opening: Grok now reads X for us. If an AI summarises the conversation, what is left of the conversation, and who inherits it?</aside>
+</section>
+
+<!-- 15 · SOURCES & IA -->
+<section class="slide" id="s15">
+  <div class="ai"><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude Code</span><span><svg viewBox="0 0 24 24" fill="#D97757"><use href="#g-claude"/></svg>Claude</span><span><svg viewBox="0 0 24 24" fill="currentColor"><use href="#g-openai"/></svg>ChatGPT</span></div>
+  <h2>Sources &amp; <em>AI toolkit</em></h2>
+  <div class="cols" style="--n:2">
+    <div class="card"><span class="k">Sources</span>
+      <ul style="font-size:var(--t3)">
+        <li>ECN, <i>Guide des réseaux sociaux 2024</i>, p. 8-9 (X)</li>
+        <li>ECN, <i>Guide des réseaux sociaux 2025</i>, p. 5 (X)</li>
+        <li>SocialHub Mag #06, 2026, p. 12, 26, 35 (state of social media 2026)</li>
+        <li>Course R5.MDEE.13, class 1 &amp; 2, slides 46, 51-52 (Statista Jan. 2025 / 2024)</li>
+        <li>Wikipedia, "X (social network)", consulted 4 Sept. 2026; CNBC 2023 &amp; 2025; NYT 2 Feb. 2026</li>
+        <li>Screenshots: x.com, Sept. 2026</li>
+      </ul></div>
+    <div class="card"><span class="k">What AI did, and what we did with it</span>
+      <ul style="font-size:var(--t3)">
+        <li><b>Claude Code</b>: extracted the figures from the 7 PDFs, built the charts and this deck. <b>We checked every number</b> against the guide pages cited.</li>
+        <li><b>Claude</b>: proposed the 15-slide structure and a <b>neutral conclusion</b>. We kept the structure, <b>rejected the neutral conclusion</b> and wrote a stance (slide 14).</li>
+        <li><b>ChatGPT</b>: asked for the strongest counter-argument to our position and an English proofread. Its counter-argument ("X still leads desktop traffic") became our "tactical" nuance.</li>
+        <li>Rule we applied: AI proposes, we decide. No figure on these slides comes from an AI without a page reference.</li>
+      </ul></div>
+  </div>
+  <footer><span>Thank you. Questions?</span><span class="num">15 / 15</span></footer>
+  <aside class="notes">Last slide: sources on the left, page by page. On the right, what AI did and what we did with it. Claude Code built the deck and extracted the data, and we checked every number in the guides. Claude proposed a neutral conclusion and we rejected it. ChatGPT gave us the best counter-argument, which became our nuance. AI proposes, we decide.</aside>
+</section>
+
+<div class="hint" id="hint">← → to navigate · N for speaker notes · Ctrl/Cmd+P to export PDF</div>
+
+<script>
+(function(){
+  var S=[].slice.call(document.querySelectorAll('.slide')),i=0,hint=document.getElementById('hint');
+  function go(n){i=Math.max(0,Math.min(S.length-1,n));S[i].scrollIntoView({behavior:'smooth',block:'start'});}
+  addEventListener('keydown',function(e){
+    if(e.metaKey||e.ctrlKey)return;
+    if(['ArrowRight','ArrowDown',' ','PageDown','Enter'].indexOf(e.key)>-1){e.preventDefault();go(i+1);}
+    else if(['ArrowLeft','ArrowUp','PageUp','Backspace'].indexOf(e.key)>-1){e.preventDefault();go(i-1);}
+    else if(e.key==='Home'){e.preventDefault();go(0);}
+    else if(e.key==='End'){e.preventDefault();go(S.length-1);}
+    else if(e.key.toLowerCase()==='n'){document.body.classList.toggle('notes');}
+  });
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)i=S.indexOf(en.target);});},{threshold:.6}).observe && S.forEach(function(s){new IntersectionObserver(function(es){es.forEach(function(en){if(en.isIntersecting)i=S.indexOf(en.target);});},{threshold:.6}).observe(s);});
+  }
+  setTimeout(function(){hint.style.opacity='0';},6000);
+})();
+</script>
