@@ -1,0 +1,1144 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../img/logo-x.svg">
+<title>Mapping of X — Romane Da-Silva &amp; Sofian Chtioui</title>
+<meta name="description" content="Mapping of X: from social network to real-time news terminal. R5.MDEE.13, IUT de Roubaix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+<style>
+/* Design System : .claude/skills/slides-design/ds.html — copie locale dans ds.html */
+:root{
+  --encre:#0a0a0a; --fond:#f5f5f5; --carte:#fff; --filet:#e4e4e2;
+  --bleu:#1d9bf0; --vert:#008000; --rouge:#ff0000;
+  --sourdine:rgba(10,10,10,.55); --tenu:rgba(10,10,10,.38);
+  --fs-titre:clamp(1.9rem,3.9vw,3.3rem);
+  --fs-chiffre:clamp(22px,2.34vw,2.1rem);
+  --fs-md:clamp(14px,1.09vw,1.05rem);
+  --fs-sm:clamp(11px,.94vw,.84rem);
+  --sans:"Plus Jakarta Sans",system-ui,sans-serif;
+  --r:20px; --rail:5.2vh;
+  --ombre:0 1px 2px rgba(10,10,10,.04),0 8px 24px rgba(10,10,10,.06);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);font-size:var(--fs-md);font-weight:400;line-height:1.5;
+  color:var(--encre);background:var(--fond);scroll-snap-type:y mandatory;overflow-x:hidden}
+
+/* rail de sommaire */
+.rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);background:var(--carte);
+  border-right:1px solid var(--filet);display:flex;flex-direction:column;align-items:center;
+  padding:1.4vh 0;gap:.6vh;z-index:50}
+.rail .mark{width:2.4vh;height:2.4vh;margin-bottom:1.2vh;flex:0 0 auto}
+.rail a{width:2.6vh;height:2.1vh;display:grid;place-items:center;border-radius:0;
+  font-size:var(--fs-sm);font-weight:600;color:var(--tenu);text-decoration:none;transition:.18s}
+.rail a:hover{background:rgba(10,10,10,.12);color:var(--encre)}
+.rail a.on{color:var(--carte);background:var(--encre)}
+.rail .bar{margin-top:auto;width:.8vh;height:9vh;background:var(--filet);border-radius:2px;overflow:hidden}
+.rail .bar i{display:block;width:100%;background:var(--bleu);height:0}
+
+/* slides */
+section{min-height:100vh;min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;
+  padding:3.4vh 2.6vw 3.4vh calc(var(--rail) + 2.6vw);display:flex;flex-direction:column;
+  justify-content:center;border-top:1px solid var(--filet);position:relative}
+
+section:first-of-type{border-top:0}
+.wrap{width:100%;max-width:1500px;margin:0 auto}
+.num{position:absolute;bottom:2.6vh;right:2.6vw;font-size:var(--fs-sm);font-weight:600;
+  letter-spacing:.16em;color:var(--tenu)}
+h1,h2{font-size:var(--fs-titre);font-weight:600;letter-spacing:-.035em;line-height:1.04;margin:0 0 .55em}
+.sub{color:var(--sourdine);margin:0 0 1.4em;max-width:74ch}
+strong{font-weight:600}
+.hl{color:var(--bleu);font-weight:600}
+.hl-v{color:var(--vert);font-weight:600}
+.hl-r{color:var(--rouge);font-weight:600}
+.badge{display:inline-flex;align-self:flex-start;align-items:center;border-radius:999px;padding:.4em .8em;
+  font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  white-space:nowrap;flex:none}
+.badge-bleu{background:rgba(29,155,240,.1);color:var(--bleu)}
+.badge-vert{background:rgba(0,128,0,.1);color:var(--vert)}
+.badge-rouge{background:rgba(255,0,0,.08);color:var(--rouge)}
+.signe{list-style:none;padding-left:1.25em;margin:.6em 0 0}
+.signe li{position:relative;margin:.6em 0}
+.sg{position:absolute;font-size:var(--fs-chiffre);font-weight:500;line-height:1;width:1em;text-align:center;cursor:default}
+.signe.plus .sg{left:calc(-1.2em + var(--sgp-dx,0px));top:calc(-.16em + var(--sgp-dy,0px));color:var(--vert)}
+.signe.moins .sg{left:calc(-1.2em + var(--sgm-dx,0px));top:calc(-.16em + var(--sgm-dy,0px));color:var(--rouge)}
+.pilule{display:inline-flex;gap:2px;padding:3px;border-radius:999px;border:1px solid var(--filet);
+  background:rgba(10,10,10,.05);cursor:pointer;user-select:none}
+.pilule span{padding:.5em 1.1em;border-radius:999px;font-size:var(--fs-sm);font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--sourdine);transition:.18s;white-space:nowrap}
+.pilule .actif{background:var(--carte);color:var(--encre);box-shadow:0 1px 5px rgba(10,10,10,.18)}
+/* fiche persona */
+.persona{display:grid;grid-template-columns:auto 1fr;gap:1.4vw;align-items:start}
+.persona .vign{width:9vh;height:9vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);background:var(--fond)}
+.persona .nom{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin:.35em 0 0}
+.attrs{margin:.7em 0 0}
+.attrs td{padding:.28em .6em .28em 0;border-bottom:1px solid var(--filet)}
+.attrs td:first-child{color:var(--sourdine);width:7.5em}
+.attrs tr:last-child td{border-bottom:0}
+.bl{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine);margin:1em 0 .35em}
+.jauge{display:grid;grid-template-columns:1fr auto;gap:.6em;align-items:center;margin:.3em 0}
+.jauge span{font-size:var(--fs-sm)}
+.pts{display:flex;gap:.4vh}
+.pts i{width:.95vh;height:.95vh;border-radius:50%;background:var(--filet);display:block}
+.pts i.on{background:var(--bleu)}
+.carte-sombre{background:#000!important;border-color:#000!important}
+/* tableau geant de la slide 11 */
+.col{display:flex;flex-direction:column}
+/* slide 12 : chaque famille d'elements se regle par des variables de section */
+section h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
+section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
+#s11 .vue-bloc{position:relative;left:var(--c-dx,0);top:var(--c-dy,0)}
+#s11 .col .tete img{width:var(--pp,4vh);height:var(--pp,4vh);position:relative;left:var(--pp-dx,0);top:var(--pp-dy,0)}
+#s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
+#s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
+#s11 .col .ab{font-size:var(--ab,var(--fs-chiffre));position:relative;left:var(--ab-dx,0);top:var(--ab-dy,0)}
+#s11 .col .shot{width:auto;max-width:100%;align-self:center;height:min(var(--img,34vh),calc(100vh - 404px));object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
+#s11 .col .lg{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
+.col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
+.col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
+.col .nm{font-weight:600;line-height:1.15;font-size:var(--fs-md)}
+.col .ps{padding:0;margin:.1em 0 0}
+.col .ab{padding:.4em 0 .6em;font-size:var(--fs-chiffre);font-weight:500;line-height:1;text-align:center}
+.col .shot{width:100%;height:auto;border-radius:var(--r);display:block;margin-top:.3em}
+.col .lg{padding:.7em 0 0;font-weight:600;line-height:1.25}
+/* formats de la slide 13 */
+.forme{border:2px solid var(--bleu);border-radius:var(--r);background:rgba(29,155,240,.06);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.5em}
+.forme b{font-size:var(--fs-md);font-weight:600}
+.forme span{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin-top:.2em}
+/* bloc audience, modèle de la fiche Ecommerce Nation */
+.bloc-gris{background:rgba(10,10,10,.05);border-radius:20px;padding:1.1em 1.3em}
+.jauge-barre{height:1.6vh;border-radius:999px;background:rgba(10,10,10,.12);overflow:hidden;margin-top:.6em}
+.jauge-barre i{display:block;height:100%;background:var(--encre)}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:.42em 1em;font-size:var(--fs-sm);
+  font-weight:600;white-space:nowrap}
+.tag-plein{background:var(--encre);color:#fff}
+.tag-vide{border:1px solid var(--encre);color:var(--encre)}
+.tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
+.etale > div{display:flex;flex-direction:column;justify-content:space-between}
+/* slide 7 : titre et pilules des secteurs, réglables */
+#s6 .usg{position:relative;left:var(--usg-dx,0);top:var(--usg-dy,0)}
+#s6 .gen{position:relative;left:var(--gen-dx,0);top:var(--gen-dy,0)}
+/* slide 3 : le cadre garde sa place, l'image grandit dedans par --gr */
+#s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
+#s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
+#s6 .secteurs{position:relative;left:var(--sec-dx,0);top:var(--sec-dy,0)}
+#s6 .sect-t{font-size:var(--sct,var(--fs-md))}
+#s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
+/* anneau de répartition */
+.anneau{width:13vh;height:13vh;border-radius:50%;flex:0 0 auto;
+  background:conic-gradient(var(--encre) 0 calc(var(--p,50)*1%), #d7dbdd 0);
+  display:grid;place-items:center}
+.anneau i{width:64%;height:64%;border-radius:50%;background:var(--carte);display:grid;place-items:center;
+  font-size:var(--fs-md);font-weight:600;font-style:normal;white-space:nowrap}
+.pays{list-style:none;padding:0;margin:.6em 0 0}
+.pays li{display:flex;justify-content:space-between;gap:1em;padding:.32em 0;border-bottom:1px solid var(--filet)}
+.pays li:last-child{border-bottom:0}
+.ast{font-size:12px;font-weight:300;color:var(--sourdine);margin:.9em 0 0}
+/* classement numéroté, modèle du top 10 Ecommerce Nation */
+.classement{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:5.5vh;margin-top:3vh}
+.rang{display:grid;grid-template-columns:auto 1fr;gap:1.1vw;align-items:center}
+.pastille{width:4vh;height:4vh;border-radius:50%;background:var(--encre);color:#fff;
+  display:grid;place-items:center;font-size:var(--fs-md);font-weight:600;flex:0 0 auto}
+.rang b{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.02em;line-height:1.1;display:block}
+.rang p{margin:.15em 0 0}
+/* signes réglables de la slide 11 */
+
+.formes{display:grid;gap:14px;align-items:end}
+.geant{table-layout:fixed}
+.geant th,.geant td{padding:.4vh .8vw;vertical-align:middle}
+.geant td.ph{width:5vh} .geant td.ph .face{width:4.4vh;height:4.4vh;margin:0}
+.geant td.nm{font-weight:600;width:24%}
+.geant td.detail{width:16%}
+.geant td.n{width:12%;font-size:var(--fs-md)}
+.geant td.pf{width:34%}
+.geant td.pf img{height:11vh;width:100%;object-fit:contain;border-radius:var(--r)}
+.persona-b .pts i.on{background:var(--bleu)}
+.carte-sombre{background:#000!important;border-color:#000!important}
+/* tableau geant de la slide 11 */
+.col{display:flex;flex-direction:column}
+/* slide 12 : chaque famille d'elements se regle par des variables de section */
+section h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
+section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
+#s11 .vue-bloc{position:relative;left:var(--c-dx,0);top:var(--c-dy,0)}
+#s11 .col .tete img{width:var(--pp,4vh);height:var(--pp,4vh);position:relative;left:var(--pp-dx,0);top:var(--pp-dy,0)}
+#s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
+#s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
+#s11 .col .ab{font-size:var(--ab,var(--fs-chiffre));position:relative;left:var(--ab-dx,0);top:var(--ab-dy,0)}
+#s11 .col .shot{width:auto;max-width:100%;align-self:center;height:min(var(--img,34vh),calc(100vh - 404px));object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
+#s11 .col .lg{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
+.col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
+.col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
+.col .nm{font-weight:600;line-height:1.15;font-size:var(--fs-md)}
+.col .ps{padding:0;margin:.1em 0 0}
+.col .ab{padding:.4em 0 .6em;font-size:var(--fs-chiffre);font-weight:500;line-height:1;text-align:center}
+.col .shot{width:100%;height:auto;border-radius:var(--r);display:block;margin-top:.3em}
+.col .lg{padding:.7em 0 0;font-weight:600;line-height:1.25}
+/* formats de la slide 13 */
+.forme{border:2px solid var(--bleu);border-radius:var(--r);background:rgba(29,155,240,.06);
+  display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.5em}
+.forme b{font-size:var(--fs-md);font-weight:600}
+.forme span{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin-top:.2em}
+/* bloc audience, modèle de la fiche Ecommerce Nation */
+.bloc-gris{background:rgba(10,10,10,.05);border-radius:20px;padding:1.1em 1.3em}
+.jauge-barre{height:1.6vh;border-radius:999px;background:rgba(10,10,10,.12);overflow:hidden;margin-top:.6em}
+.jauge-barre i{display:block;height:100%;background:var(--encre)}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:.42em 1em;font-size:var(--fs-sm);
+  font-weight:600;white-space:nowrap}
+.tag-plein{background:var(--encre);color:#fff}
+.tag-vide{border:1px solid var(--encre);color:var(--encre)}
+.tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
+.etale > div{display:flex;flex-direction:column;justify-content:space-between}
+/* slide 7 : titre et pilules des secteurs, réglables */
+#s6 .usg{position:relative;left:var(--usg-dx,0);top:var(--usg-dy,0)}
+#s6 .gen{position:relative;left:var(--gen-dx,0);top:var(--gen-dy,0)}
+/* slide 3 : le cadre garde sa place, l'image grandit dedans par --gr */
+#s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
+#s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
+#s6 .secteurs{position:relative;left:var(--sec-dx,0);top:var(--sec-dy,0)}
+#s6 .sect-t{font-size:var(--sct,var(--fs-md))}
+#s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
+/* anneau de répartition */
+.anneau{width:13vh;height:13vh;border-radius:50%;flex:0 0 auto;
+  background:conic-gradient(var(--encre) 0 calc(var(--p,50)*1%), #d7dbdd 0);
+  display:grid;place-items:center}
+.anneau i{width:64%;height:64%;border-radius:50%;background:var(--carte);display:grid;place-items:center;
+  font-size:var(--fs-md);font-weight:600;font-style:normal;white-space:nowrap}
+.pays{list-style:none;padding:0;margin:.6em 0 0}
+.pays li{display:flex;justify-content:space-between;gap:1em;padding:.32em 0;border-bottom:1px solid var(--filet)}
+.pays li:last-child{border-bottom:0}
+.ast{font-size:12px;font-weight:300;color:var(--sourdine);margin:.9em 0 0}
+/* classement numéroté, modèle du top 10 Ecommerce Nation */
+.classement{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:5.5vh;margin-top:3vh}
+.rang{display:grid;grid-template-columns:auto 1fr;gap:1.1vw;align-items:center}
+.pastille{width:4vh;height:4vh;border-radius:50%;background:var(--encre);color:#fff;
+  display:grid;place-items:center;font-size:var(--fs-md);font-weight:600;flex:0 0 auto}
+.rang b{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.02em;line-height:1.1;display:block}
+.rang p{margin:.15em 0 0}
+/* signes réglables de la slide 11 */
+
+.formes{display:grid;gap:14px;align-items:end}
+.geant{table-layout:fixed}
+.geant th,.geant td{padding:.4vh .8vw;vertical-align:middle}
+.geant td.ph{width:5vh} .geant td.ph .face{width:4.4vh;height:4.4vh;margin:0}
+.geant td.nm{font-weight:600;width:24%}
+.geant td.detail{width:16%}
+.geant td.n{width:12%;font-size:var(--fs-md)}
+.geant td.pf{width:34%}
+.geant td.pf img{height:11vh;width:100%;object-fit:contain;border-radius:var(--r)}
+.persona-a .pts i.on{background:var(--encre)}
+.entete{display:flex;align-items:flex-start;justify-content:space-between;gap:1.4em;margin-bottom:.6em}
+.entete .t{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine)}
+
+/* pied de slide : source à gauche, outil d'IA à droite, jamais superposés */
+.pied{margin-top:1.4em;padding-right:6em}
+.src{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin:0}
+
+
+/* briques */
+.carte{background:var(--carte);border:1px solid var(--filet);border-radius:var(--r);
+  box-shadow:var(--ombre);padding:1em 1.15em}
+.carte-bleu{border-color:var(--bleu)}
+#s3 .carte{transition:border-color .18s,box-shadow .18s}
+#s3 .carte:hover{border-color:var(--bleu);box-shadow:0 0 0 1px var(--bleu),var(--ombre)}
+#s3 .carte:hover .chiffre{color:var(--bleu)}
+.grille{display:grid;gap:12px}
+
+/* sommaire : lignes numerotees, sans carte */
+.etapes{display:grid;grid-template-columns:1fr 1fr;column-gap:3.5vw;row-gap:2.4vh}
+.etape{display:grid;grid-template-columns:auto 1fr;column-gap:1.1vw;align-items:baseline;
+  padding-top:1.4vh;border-top:1px solid var(--filet)}
+.etape .n{font-size:var(--fs-chiffre);font-weight:500;color:var(--bleu);line-height:1;min-width:1.2em}
+.etape h3{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin:0}
+.etape p{margin:.2em 0 0}
+/* conseils : trois colonnes numerotees, sans carte */
+.conseils{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:3vw;row-gap:1.6vh}
+.bulle{position:relative;background:var(--carte);border:1px solid var(--filet);border-radius:20px;
+  padding:1em 1.2em;box-shadow:var(--ombre)}
+.bulle::after{content:"";position:absolute;bottom:-9px;width:18px;height:18px;background:var(--carte);
+  border-right:1px solid var(--filet);border-bottom:1px solid var(--filet);transform:rotate(45deg)}
+.bulle::after{left:50%;margin-left:-9px}
+.bulle.fin::after{display:none}
+.bulle h3{font-size:var(--fs-md);font-weight:600;line-height:1.25;margin:0}
+.bulle p{margin:.3em 0 0}
+
+/* schemas sans phrase : X -> alimente -> Grok, Thread + Veille */
+.flux,.duo{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1.1vw;margin-top:.9em}
+.flux img{height:3.4vh;width:auto}
+.mot{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1;color:var(--sourdine)}
+.mot.fort{color:var(--encre)}
+.fl{font-size:var(--fs-chiffre);font-weight:500;line-height:1;color:var(--tenu)}
+.fl.gros{color:var(--bleu)}
+.duo{gap:2.2vw;margin-top:.6em}
+.conseils .d{margin-left:12%} .conseils .g{margin-right:12%}
+.carte{display:flex;flex-direction:column}
+/* titre de carte : meme niveau typographique que le chiffre */
+.t-carte{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.12;margin:.3em 0 0}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.chiffre{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.035em;line-height:1;display:block;white-space:nowrap}
+.chiffre.bas{color:var(--rouge)} .chiffre.haut{color:var(--vert)}
+.unite{display:block;margin-top:.5em;font-size:var(--fs-sm);font-weight:600;color:var(--sourdine)}
+.corps{font-size:var(--fs-sm);color:var(--sourdine);margin:.4em 0 0;line-height:1.45}
+.detail{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine)}
+ul{margin:.35em 0;padding-left:1.05em} li{margin:.28em 0}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:.4em .6em;border-bottom:1px solid var(--filet);vertical-align:middle}
+th{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine);font-weight:600}
+td.n{font-weight:600;text-align:right;white-space:nowrap}
+.face{width:2.9vh;height:2.9vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);
+  vertical-align:middle;margin-right:.5em;background:var(--fond)}
+section img{border-radius:var(--r)}
+.face{border-radius:50%!important}
+.rail .mark,.src .ico{border-radius:0}
+.vue{width:100%;border:1px solid var(--filet);border-radius:var(--r);display:block;background:var(--carte)}
+.vue.profil{width:100%;height:auto;aspect-ratio:640/340;object-fit:cover;object-position:top center}
+.vue.post{height:26vh;object-fit:contain;background:var(--encre);border-color:var(--encre)}
+.vue.large{max-height:34vh;object-fit:contain;object-position:left top}
+/* schema de propriete : cercles emboites */
+.orbites{position:relative;width:min(52vh,100%);aspect-ratio:1;margin:0 auto}
+.orbite{position:absolute;border-radius:50%;display:flex;flex-direction:column;align-items:center}
+.orbite .lab{margin-top:.9em;font-size:var(--fs-sm);font-weight:600;text-align:center;line-height:1.2;white-space:nowrap}
+.o1{inset:0;border:1px solid var(--filet);background:var(--carte)}
+.o2{inset:15%;border:1px solid var(--bleu);background:rgba(29,155,240,.07)}
+.o2 .lab{color:var(--bleu)}
+.o3{inset:33%;background:var(--encre);color:#fff;justify-content:center}
+.o3 img{width:22%;filter:invert(1)}
+.o3 .lab{color:rgba(255,255,255,.75);font-weight:300;margin-top:.6em}
+.legende{margin-top:1.6vh}
+.etiq{font-size:var(--fs-sm);font-weight:600;text-align:center}
+.legende div{display:grid;grid-template-columns:auto 1fr;gap:.7em;align-items:baseline;padding:.5em 0;border-top:1px solid var(--filet)}
+.legende b{font-weight:600}
+.legende i{width:.9vh;height:.9vh;border-radius:50%;display:block;margin-top:.5em}
+
+/* couverture : image plein écran, voile sombre, titre centré */
+#s1{background:var(--encre);color:#fff;border-top:0;
+  background-image:linear-gradient(rgba(10,10,10,.30) 0%,rgba(10,10,10,.42) 42%,rgba(10,10,10,.88) 100%),url("../img/cover.jpg");
+  background-size:cover;background-position:center}
+/* chaque bloc de texte de la couverture est place par --x / --y / --l (largeur) */
+.tw{position:absolute;left:var(--x);top:var(--y);width:var(--l,86%);
+  transform:translate(-50%,-50%);margin:0;z-index:2}
+#s1 .tw{text-align:center}
+.twr{position:relative;left:var(--dx,0%);top:var(--dy,0%)}
+img.twr{width:var(--l,100%);height:auto}
+img.twr.hh{height:var(--l,52vh);width:auto;max-width:100%;object-fit:contain;align-self:center}
+img.twr.h,#s11 .col .shot.twr.h{width:100%;height:var(--l,30vh);object-fit:var(--fit,cover);
+  object-position:var(--ox,50%) var(--oy,50%);left:var(--dx,0);top:var(--dy,0)}
+#s1 .mention{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:#7fcbff}
+#s1 h1{font-size:clamp(3rem,9.6vw,7.4rem);font-weight:600;letter-spacing:-.05em;line-height:1}
+#s1 .sub{color:#e4e9eb}
+#s1 .meta{font-size:var(--fs-sm);font-weight:300;color:rgba(255,255,255,.62);letter-spacing:.06em;text-transform:uppercase}
+#s1 .num{color:rgba(255,255,255,.5)}
+#s1 .logo{background:rgba(255,255,255,.92);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);
+  border-radius:var(--r);padding:.85em 1.1em;box-shadow:0 8px 30px rgba(0,0,0,.35)}
+#s1 .logo img{width:100%;display:block}
+
+/* ---------- mode reglage : touche T ---------- */
+body.reglage [data-tw]{outline:1px dashed rgba(255,255,255,.45);cursor:grab}
+body.reglage [data-tw]:hover{outline-color:var(--bleu)}
+body.reglage [data-tw].vise{outline:2px solid var(--bleu)}
+body.reglage [data-edit]{outline:1px dashed var(--bleu);cursor:text}
+.panneau{display:none;position:fixed;right:16px;top:16px;z-index:80;
+  background:var(--encre);color:#e4e9eb;border:1px solid rgba(255,255,255,.18);border-radius:20px;
+  padding:12px 16px;font-size:12px;font-weight:300;line-height:1.7;min-width:280px}
+body.reglage .panneau{display:block}
+.panneau b{font-weight:600;color:#fff}
+.panneau .l{display:flex;justify-content:space-between;gap:18px;font-family:ui-monospace,Menlo,monospace}
+.panneau .l.vise{color:#7fcbff}
+.panneau .aide{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6)}
+
+/* notes orateur, touche N */
+.notes{display:none;position:fixed;left:var(--rail);right:0;bottom:0;background:var(--encre);
+  color:#e4e9eb;padding:1em 2.6vw;font-size:var(--fs-sm);font-weight:300;line-height:1.55;
+  z-index:60;border-top:2px solid var(--bleu)}
+body.notesvues section.ici .notes{display:block}
+
+/* impression : une slide par page */
+@media print{
+  @page{size:1280px 720px;margin:0}
+  html,body{background:#fff;scroll-snap-type:none}
+  .rail,.notes,.panneau{display:none!important}
+  [data-tw]{outline:0!important}
+  section{height:100vh;min-height:0;display:flex;flex-direction:column;justify-content:center;
+    padding:26px 34px;border-top:0;break-after:page;page-break-after:always;break-inside:avoid;overflow:hidden}
+  section:last-of-type{break-after:auto;page-break-after:auto}
+  .wrap{max-width:none}
+  .num{position:static;display:block;text-align:right;margin-bottom:-14px}
+  #s15 .num{position:absolute;bottom:26px;right:34px;margin:0}
+  .pied{padding-right:0}
+  .carte{box-shadow:none}
+  .vue.profil{height:auto;aspect-ratio:640/340} .vue.post{height:190px} .vue.large{max-height:230px}
+  h1,h2{font-size:32px} .chiffre{font-size:24px}
+  body{font-size:14px} .src,.corps,.unite,.detail,th,.ai,.num{font-size:11px}
+  .face{width:22px;height:22px}
+  #s1{min-height:0;display:flex;justify-content:center;background-attachment:scroll} #s1 h1{font-size:70px}
+  #s1 .mention,#s1 .meta{font-size:11px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+@media screen and (max-width:900px){
+  .g5,.g4{grid-template-columns:repeat(2,1fr)}
+  .g3,.g2{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<nav class="rail" aria-label="Contents">
+  <img class="mark" src="../img/logo-x.svg" alt="X">
+  <a href="#s1" class="on">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5b">5</a>
+  <a href="#s5">6</a><a href="#s6">7</a><a href="#s7">8</a><a href="#s8">9</a><a href="#s9">10</a>
+  <a href="#s10">11</a><a href="#s11">12</a><a href="#s12">13</a><a href="#s13">14</a><a href="#s14">15</a><a href="#s15">16</a>
+  <a href="#s16">+</a>
+  <div class="bar"><i></i></div>
+</nav>
+
+<!-- 1 · COUVERTURE -->
+<section id="s1">
+  <span class="num">01 / 16</span>
+  <div class="logo tw" data-tw="logo" style="--x:90%;--y:10%;--l:13%"><img src="../img/logo-iut.png" alt="IUT de Lille, Roubaix campus"></div>
+  <p class="mention tw" data-tw="mention" style="--x:50%;--y:90.5%;--l:86%">R5.MDEE.13 · Social Media Strategy &amp; e-CRM · Mr Igor Perez</p>
+  <h1 class="tw" data-tw="titre" style="--x:50%;--y:45.5%;--l:92%">Mapping of X</h1>
+  <p class="sub tw" data-tw="sous-titre" style="--x:50%;--y:57.6%;--l:62%">A shrinking social network that is becoming a major player in real-time news.</p>
+  <p class="meta tw" data-tw="auteurs" style="--x:50%;--y:95.5%;--l:86%">Romane Da-Silva &amp; Sofian Chtioui · BUT3 TC MDEE · IUT de Roubaix · 8 September 2026</p>
+  <div class="notes">Opening: "Everyone here has an opinion about X. Almost no one has the figures. We went and got them, on the platform itself, in the company register and in the traffic tools." State the thesis straight away: X is losing audience and gaining intensity. 40 seconds.</div>
+</section>
+
+<!-- 2 · ITINÉRAIRE -->
+<section id="s2">
+  <span class="num">02 / 16</span>
+  <div class="wrap">
+    <h2>Contents</h2>
+    <div class="etapes">
+      <div class="etape"><span class="n">1</span><div><h3>Key dates and news</h3><p class="corps">Twenty years back.</p></div></div>
+      <div class="etape"><span class="n">5</span><div><h3>Accounts to follow</h3><p class="corps">Three highly innovative accounts.</p></div></div>
+      <div class="etape"><span class="n">2</span><div><h3>Audience</h3><p class="corps">The world, and France.</p></div></div>
+      <div class="etape"><span class="n">6</span><div><h3>Photo and video quality</h3><p class="corps">The formats that fit the feed.</p></div></div>
+      <div class="etape"><span class="n">3</span><div><h3>Tips and use cases</h3><p class="corps">How to start, and when to stay away.</p></div></div>
+      <div class="etape"><span class="n">7</span><div><h3>Management tools</h3><p class="corps">Who does what, and at what price.</p></div></div>
+      <div class="etape"><span class="n">4</span><div><h3>Leading sectors</h3><p class="corps">The fields where X is still essential.</p></div></div>
+      <div class="etape"><span class="n">8</span><div><h3>Conclusion</h3><p class="corps">Our stance, and an open question.</p></div></div>
+    </div>
+  </div>
+  <div class="notes">Do not read the eight lines. Say: "These eight points are the ones set by the brief. We added two things it did not ask for: the personas, and the legal identity of X in France. That is where our two surprises are." 30 seconds.</div>
+</section>
+
+<!-- 3 · DATES -->
+<section id="s3">
+  <span class="num">03 / 16</span>
+  <div class="wrap">
+    <h2 style="margin-bottom:.3em">Twenty years in ten dates</h2>
+    <div class="grille g2" style="grid-template-columns:1fr auto;align-items:start;gap:2.4vw;margin-bottom:4vh">
+      <p class="corps" style="margin:0;white-space:nowrap"><strong>Jack Dorsey, Biz Stone, Evan Williams and Dick Costolo</strong> at the 2013 stock market listing.</p>
+      <div class="ph3 twr" data-tw="photo" style="--dx:0%;--dy:-29.6%;--l:40.5vw"><img src="../img/fondateurs.png" alt="The founders of Twitter at the stock market listing"></div>
+    </div>
+    <div class="grille g5" style="grid-auto-rows:17vh">
+      <div class="carte"><span class="chiffre">2006</span><p class="corps"><strong>Launched</strong> on 15 July. First message on 21 March: <em>just setting up my twttr</em>.</p></div>
+      <div class="carte"><span class="chiffre">2007</span><p class="corps">The <strong>hashtag</strong> is invented by a user, to gather messages on the same topic.</p></div>
+      <div class="carte"><span class="chiffre">2013</span><p class="corps"><strong>Stock market listing</strong> in New York.</p></div>
+      <div class="carte"><span class="chiffre">2017</span><p class="corps">The limit moves to <strong>280 characters</strong>.</p></div>
+      <div class="carte"><span class="chiffre">2022</span><p class="corps">E. Musk buys Twitter for <strong>$44bn</strong> and takes it private.</p></div>
+      <div class="carte"><span class="chiffre">2023</span><p class="corps">23 July: the bird becomes <strong>X</strong>. The Twitter name is dropped.</p></div>
+      <div class="carte"><span class="chiffre">2024</span><p class="corps">17 May: twitter.com finally redirects to <strong>x.com</strong>.</p></div>
+      <div class="carte"><span class="chiffre">2025</span><p class="corps">March: <strong>xAI</strong>, Elon Musk's artificial intelligence company, buys X for $33bn.</p></div>
+      <div class="carte"><span class="chiffre">2025</span><p class="corps">December: <strong>&euro;120m European fine</strong> for breaching the Digital Services Act.</p></div>
+      <div class="carte"><span class="chiffre">2026</span><p class="corps">January: <strong>the feed algorithm is released as open source</strong>. February: xAI merges with SpaceX.</p></div>
+    </div>
+  </div>
+  <div class="notes">Keep only three of them out loud. 2006: the service was born inside Odeo, a struggling podcast company looking for a second product, so Twitter was a plan B. 2007: the hashtag was proposed by a user, Chris Messina, to gather messages on one topic into a single thread; the company adopted it afterwards. 2017: the limit doubled, and X is the only network ever to have changed its unit of writing. 2023: the rebranding gave up one of the best known names in the world, and the verb "to tweet" that came with it; the platform kept its users but has to rebuild its reputation on a single letter. 2025: xAI, Elon Musk's artificial intelligence company that builds Grok, buys X; the network becomes a source of data and audience to train and distribute models. If asked about the fine: in its decision of 5 December 2025, the European Commission concluded that the blue tick misled users, since it can be bought and proves no identity, and that the platform failed its transparency obligations under the Digital Services Act, the European law of 2022. X is appealing, but in the meantime it no longer speaks of "verified" accounts in Europe, only "Premium" accounts. If asked about 2026: xAI merged with SpaceX, Musk's rocket company, so X now sits inside a group whose business is space and artificial intelligence, not social networking. 60 seconds.</div>
+</section>
+
+<!-- 4 · PROPRIÉTÉ -->
+<section id="s4">
+  <span class="num">04 / 16</span>
+  <div class="wrap">
+    <h2>Who owns X</h2>
+    <div class="grille g2" style="align-items:start;grid-template-columns:1fr 1fr;gap:2.4vw">
+      <div>
+        <div class="orbites">
+          <div class="o1 orbite"><span class="lab twr" data-tw="titre-groupe" style="--dx:-0.3%;--dy:4.5%">SpaceX and xAI group</span></div>
+          <div class="o2 orbite"><span class="lab twr" data-tw="titre-xai" style="--dx:-0.9%;--dy:7.9%">xAI</span></div>
+          <div class="o3 orbite"><img src="../img/logo-x.svg" alt="X"></div>
+        </div>
+        <div class="legende twr" data-tw="legende">
+          <div><i style="background:var(--encre)"></i><span><b>X</b>, the social network, bought by Musk in 2022 for $44bn.</span></div>
+          <div><i style="background:var(--bleu)"></i><span><b>xAI</b>, his artificial intelligence company, buys X in March 2025 for $33bn.</span></div>
+          <div><i style="background:#AAB8C2"></i><span><b>SpaceX and xAI</b> merge in February 2026. X is no longer the group's main business.</span></div>
+        </div>
+      </div>
+      <div>
+        <div class="carte">
+          <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">In France, the company is still called Twitter</span>
+          <img class="vue twr" data-tw="pappers" src="../img/pappers.png" alt="Company register record for Twitter France SAS" style="margin:.6em 0;border-radius:var(--r);max-height:var(--pap,20vh);object-fit:cover;object-position:50% 0;width:100%">
+          <div class="grille g3" style="gap:10px">
+            <div><span class="chiffre">&euro;12.9m</span><span class="unite">in revenue</span></div>
+            <div><span class="chiffre">20 to 49</span><span class="unite">employees</span></div>
+            <div><span class="chiffre">&euro;678k</span><span class="unite">net profit</span></div>
+          </div>
+          <div class="flux" style="margin-top:2.2vh">
+            <img src="../img/logo-x.svg" alt="X"><span class="fl">→</span><span class="mot">feeds</span><span class="fl">→</span><span class="mot fort">Grok</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pied">
+      <p class="src">Sources: Pappers (accessed 06/09/2026), TWITTER FRANCE SAS record · CNBC · The New York Times · Wikipedia (accessed 06/09/2026), Grok article. Company register searched with Claude.</p>
+    </div>
+  </div>
+  <div class="notes">Two ideas, one per column. On the left: X is no longer a company, it is a nesting doll. The network has belonged to xAI since March 2025, and xAI merged with SpaceX in February 2026. Musk's strategy is not to keep a social network alive, it is to feed an artificial intelligence with the only real-time stream of global conversation he owns. On the right, the surprise: the French entity is still called TWITTER FRANCE SAS, invoices &euro;12.9m and declares itself a public relations firm. It is not the one selling advertising, that is billed from Ireland. Drop the line: "The name never changed because the name was never the product." 80 seconds.</div>
+</section>
+
+<!-- 5 · IDENTITÉ ET PRODUIT -->
+<section id="s5b" style="--t-dy:-26px;--src-dy:34px">
+  <span class="num">05 / 16</span>
+  <div class="wrap">
+    <h2>What X changed about its identity and its product</h2>
+    <div class="grille g2" style="align-items:start;gap:2.6vw">
+      <div>
+        <img class="vue" src="../img/r/composer.png" alt="Composer with the character counter" style="width:100%;height:auto;border:0;border-radius:var(--r);display:block">
+        <p class="corps"><strong>Writing on X.</strong> From 140 to 280 characters, plus the indicators.</p>
+        <img class="vue" src="../img/r/hashtag.png" alt="A post with hashtags" style="width:100%;height:auto;border:0;border-radius:var(--r);display:block;margin-top:1.2vh">
+        <p class="corps"><strong>The hashtag is still how the network sorts itself.</strong></p>
+      </div>
+      <div>
+        <div class="grille g2" style="align-items:start;gap:1.4vw">
+          <div>
+            <img class="vue" src="../img/r/logos.png" alt="The logo before and after the move to X" style="width:100%;height:auto;border:0;border-radius:var(--r);display:block">
+            <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.8em">
+              <span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Bird: the chirp</span>
+              <span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Light, chatty, public</span>
+              <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">X: the everything app</span>
+              <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Neutral, serious, extensible</span>
+              <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">The tweet becomes the post</span>
+            </div>
+          </div>
+          <div>
+            <img class="vue" src="../img/r/premium.png" alt="The Premium subscriptions on X" style="width:100%;height:auto;border:0;border-radius:var(--r);display:block">
+            <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.8em">
+              <span class="badge badge-bleu">Premium &euro;4.67</span>
+              <span class="badge badge-bleu">Premium+ &euro;22.17</span>
+              <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Badge, Grok, no ads</span>
+              <span class="badge badge-rouge">The blue tick no longer means &ldquo;verified&rdquo;</span>
+            </div>
+            <p class="corps" style="margin-top:.7em">The tick = subscription <span class="hl">&ne;</span> verified identity.<br>05/12/25: the European Commission &rarr; misleading.</p>
+          </div>
+        </div>
+        </div>
+    </div>
+    <div class="pied">
+      <p class="src">Sources: X (accessed 06/09/2026), screenshots of the interface and the subscription page taken by Romane and Sofian · X Help Center (accessed 06/09/2026), page &ldquo;About the blue checkmark&rdquo;.</p>
+    </div>
+  </div>
+  <div class="notes">A breathing slide after the ownership diagram. The thread to hold: the bird named a conversation, the letter X names nothing and leaves room for everything. Three ideas: we still write in 280 characters, the hashtag from 2007 is still the sorting system, and the logo change says everything about the strategy. The bird named a conversation, the letter X names nothing and leaves room for anything: payments, video, artificial intelligence. Finish on the price: X no longer lives on advertising alone, it sells a &euro;4.67 subscription that grants the badge and access to Grok. 60 seconds.</div>
+</section>
+
+<!-- 6 · MONDE -->
+<section id="s5">
+  <span class="num">06 / 16</span>
+  <div class="wrap">
+    <h2>The global audience, July 2026</h2>
+    <div class="grille g4" style="margin-bottom:2vh">
+      <div class="carte"><span class="chiffre">4.7bn</span><span class="unite">visits per month</span></div>
+      <div class="carte"><span class="chiffre">5<sup style="font-size:.4em;vertical-align:super">th</sup></span><span class="unite">website worldwide</span></div>
+      <div class="carte"><span class="chiffre haut">12:15</span><span class="unite">average duration</span></div>
+      <div class="carte"><span class="chiffre">69.8%</span><span class="unite">direct traffic</span></div>
+    </div>
+
+    <div class="grille" style="grid-template-columns:1fr 1fr auto;gap:1.6vw;align-items:stretch">
+
+      <div class="carte" style="display:flex;flex-direction:column">
+        <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Where the visits come from</span>
+        <ul class="pays">
+          <li><span>United States</span><strong>29.0%</strong></li>
+          <li><span>Japan</span><strong>10.9%</strong></li>
+          <li><span>United Kingdom</span><strong>4.5%</strong></li>
+          <li><span>T&uuml;rkiye</span><strong>3.8%</strong></li>
+          <li><span>Spain</span><strong>3.6%</strong></li>
+        </ul>
+        <p class="ast" style="margin-top:auto">* France does not appear in the top five countries.</p>
+      </div>
+
+      <div class="carte" style="display:flex;flex-direction:column">
+        <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Who comes</span>
+        <div style="display:flex;align-items:center;gap:1.2vw;margin-top:1em">
+          <span class="anneau" style="--p:68"><i>68%</i></span>
+          <div>
+            <p class="corps" style="margin:0"><strong>68% men</strong></p>
+            <p class="corps" style="margin:0">32% women</p>
+          </div>
+        </div>
+        <div class="grille g2" style="gap:10px;margin-top:auto">
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">25-34</p><p class="corps" style="margin:.3em 0 0">the dominant age group</p></div>
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">14.3</p><p class="corps" style="margin:.3em 0 0">pages per visit</p></div>
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">32.4%</p><p class="corps" style="margin:.3em 0 0">bounce rate, 1/3 of visitors leave</p></div>
+        </div>
+      </div>
+
+      <img class="twr" data-tw="similarweb" src="../img/similarweb-ext.png" alt="The Similarweb extension panel on x.com" style="--dx:0%;--dy:0.5%;--l:auto;height:52vh;max-width:100%;object-fit:contain;border-radius:var(--r);border:0;background:transparent;align-self:start;justify-self:end">
+
+    </div>
+
+    <div class="pied">
+      <p class="src">Source: Similarweb (accessed 06/09/2026), Chrome extension opened on x.com, July 2026 data, estimated.</p>
+    </div>
+  </div>
+  <div class="notes">The number that matters is not 4.7 billion, it is 12 minutes 15 and 69.8% direct traffic. Nobody lands on X by accident, people type the address. It is a habit, not a discovery channel. And a habit is not something a brand can buy with one campaign. 50 seconds.</div>
+</section>
+
+<!-- 6 · FRANCE -->
+<section id="s6" style="--usg-dy:-48px;--gen-dy:0px">
+  <span class="num">07 / 16</span>
+  <div class="wrap">
+    <h2>A drop for France.</h2>
+    <div class="grille g3 etale" style="align-items:stretch;gap:2.6vw;min-height:58vh">
+
+      <div>
+        <div class="grille g2" style="gap:14px">
+          <div class="bloc-gris">
+            <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Potential advertising audience</p>
+            <p class="chiffre bas" style="margin:.5em 0 0">15.5<span style="font-size:var(--fs-md)"> million</span></p>
+            <p class="corps" style="margin:.4em 0 0">down from 17.5 million in 2024</p>
+          </div>
+          <div class="bloc-gris">
+            <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Male audience</p>
+            <p class="chiffre" style="margin:.5em 0 0">62<span style="font-size:var(--fs-md)">%</span></p>
+            <div class="jauge-barre"><i style="width:62%"></i></div>
+          </div>
+        </div>
+        <div class="secteurs" data-tw="bloc secteurs" data-var="sec">
+          <p class="corps sect-t" style="margin:0 0 .55em;color:var(--encre);font-weight:600">Sectors strongly present</p>
+          <div class="tags sect-p">
+            <span class="tag tag-plein">News</span><span class="tag tag-plein">Politics</span>
+            <span class="tag tag-plein">Tech</span><span class="tag tag-plein">Sport</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Usage centred on real time</p>
+        <div class="tags usg" data-tw="usages" style="flex-direction:column;align-items:stretch;gap:1.6vh;margin-top:1.4vh">
+          <span class="tag tag-vide" style="justify-content:center;padding:1.3em 1em">Reactions to events</span>
+          <span class="tag tag-vide" style="justify-content:center;padding:1.3em 1em">Trend sharing</span>
+          <span class="tag tag-vide" style="justify-content:center;padding:1.3em 1em">Breaking news</span>
+        </div>
+        <div class="grille g2" style="gap:14px;margin-top:1.4em">
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">7<sup style="font-size:.4em;vertical-align:super">th</sup></p><p class="corps" style="margin:.4em 0 0">social network in France</p></div>
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">3h 45</p><p class="corps" style="margin:.4em 0 0">per month, per person</p></div>
+        </div>
+      </div>
+
+      <div style="justify-content:flex-start">
+        <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Share of each generation present on X</p>
+        <div class="gen" data-tw="generations" style="margin-top:.8em">
+          <div class="jauge"><span>Generation Z</span><span class="detail">27%</span></div><div class="jauge-barre"><i style="width:27%;background:var(--bleu)"></i></div>
+          <div class="jauge" style="margin-top:.8em"><span>Millennials</span><span class="detail">18%</span></div><div class="jauge-barre"><i style="width:18%;background:var(--bleu)"></i></div>
+          <div class="jauge" style="margin-top:.8em"><span>Generation X</span><span class="detail">14%</span></div><div class="jauge-barre"><i style="width:14%;background:var(--bleu)"></i></div>
+          <div class="jauge" style="margin-top:.8em"><span>Baby boomers</span><span class="detail">10%</span></div><div class="jauge-barre"><i style="width:10%;background:var(--bleu)"></i></div>
+          <div class="jauge" style="margin-top:.8em"><span>Silent generation</span><span class="detail">7%</span></div><div class="jauge-barre"><i style="width:7%;background:var(--bleu)"></i></div>
+        </div>
+      </div>
+
+    </div>
+    <div class="pied">
+      <p class="src">Sources: Ecommerce Nation (accessed 06/09/2026), 2024 guide p. 8 and 2025 guide p. 5 · Statista (accessed 06/09/2026), January 2025 and 2024.</p>
+    </div>
+  </div>
+  <div class="notes">Two figures, one sentence. Two million fewer reachable people in a year, and seven minutes a day. Then the turn: it is still the network where Generation Z is the most over-represented. So X is small, male, young and intense. A brand that treats it as a mass medium has picked the wrong tool. 60 seconds.</div>
+</section>
+
+<!-- 7 · PERSONAS -->
+<section id="s7">
+  <span class="num">08 / 16</span>
+  <div class="wrap">
+    <h2>The real user, and the one a brand should target</h2>
+    <div class="grille g2">
+
+      <div class="carte persona-a">
+        <div class="persona">
+          <img class="vign" src="../img/persona-theo.jpg" alt="Portrait of the persona Théo">
+          <div>
+            <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Persona A · the real user</span>
+            <p class="nom">Théo, 27</p>
+            <p class="detail">Junior developer in Lille</p>
+          </div>
+        </div>
+        <table class="attrs">
+          <tr><td>Job</td><td>Junior developer</td></tr>
+          <tr><td>City</td><td>Lille</td></tr>
+          <tr><td>Frequency</td><td>5 to 8 opens a day</td></tr>
+          <tr><td>Time</td><td>7 minutes a day, on mobile</td></tr>
+          <tr><td>Arrival</td><td>Direct, never through a search</td></tr>
+        </table>
+        <p class="bl">What he does on X</p>
+        <p class="corps" style="margin:0">He reads and does not post. He follows news, tech, football and memes. He bookmarks rather than likes, and filters out advertising in his head.</p>
+        <p class="bl">What drives him</p>
+        <div class="jauge"><span>Getting informed fast</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+        <div class="jauge"><span>Being entertained</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="jauge"><span>Taking part, replying</span><span class="pts"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+        <div class="jauge"><span>Buying</span><span class="pts"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+        <p class="corps" style="margin-top:.9em"><strong>What he is worth to a brand:</strong> visibility, almost no conversion.</p>
+      </div>
+
+      <div class="carte carte-bleu persona-b">
+        <div class="persona">
+          <img class="vign" src="../img/persona-camille.jpg" alt="Portrait of the persona Camille">
+          <div>
+            <span class="badge badge-bleu">Persona B · the brand&rsquo;s target</span>
+            <p class="nom">Camille, 34</p>
+            <p class="detail">Journalist, specialist in her field</p>
+          </div>
+        </div>
+        <table class="attrs">
+          <tr><td>Job</td><td>Journalist and analyst</td></tr>
+          <tr><td>City</td><td>Paris</td></tr>
+          <tr><td>Audience</td><td>200 to 2,000 followers</td></tr>
+          <tr><td>Usage</td><td>Daily professional monitoring</td></tr>
+          <tr><td>Reaction</td><td>Within the hour, or never</td></tr>
+        </table>
+        <p class="bl">What she does on X</p>
+        <p class="corps" style="margin:0">She posts and quotes. She follows her sources, her competitors and live events, and passes on whatever is useful or funny. One share from her is worth a thousand bought impressions.</p>
+        <p class="bl">What drives her</p>
+        <div class="jauge"><span>Watching her field</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+        <div class="jauge"><span>Posting and commenting</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="jauge"><span>Building a network</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="jauge"><span>Buying</span><span class="pts"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+        <p class="corps" style="margin-top:.9em"><strong>What she is worth:</strong> credibility, and reach at one remove. She is the one we write for.</p>
+      </div>
+
+    </div>
+  </div>
+  <div class="notes">Explain why there are two. The audience you have is not the one you write for. On X the passive majority is Théo, but all the value sits with Camille, because X is a relay network, not a reach network. Show the gauges: Théo does not take part and does not buy, Camille posts and passes on. Then the line: "On X you do not talk to your audience, you talk to the people who will repeat you." 60 seconds.</div>
+</section>
+
+<!-- 8 · SECTEURS -->
+<section id="s8" style="--t-dy:-34px;">
+  <span class="num">09 / 16</span>
+  <div class="wrap">
+    <h2>The fields where X is still essential</h2>
+    <div class="classement">
+      <div class="rang"><span class="pastille">1</span><div><b>News and politics</b><p class="corps">The reflex during a live event</p></div></div>
+      <div class="rang"><span class="pastille">2</span><div><b>Tech and artificial intelligence</b><p class="corps">Models are announced here before the press release</p></div></div>
+      <div class="rang"><span class="pastille">3</span><div><b>Sport</b><p class="corps">Second screen during matches</p></div></div>
+      <div class="rang"><span class="pastille">4</span><div><b>Video games and entertainment</b><p class="corps">Release dates and patch notes</p></div></div>
+      <div class="rang"><span class="pastille">5</span><div><b>Finance and crypto</b><p class="corps">Real-time market commentary</p></div></div>
+      <div class="rang"><span class="pastille">6</span><div><b>Customer service</b><p class="corps">The public complaint, in front of everyone</p></div></div>
+    </div>
+    <div class="carte" style="margin-top:9.5vh">
+      <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Features</span>
+      <div class="duo">
+        <span class="mot fort">Thread</span><span class="fl gros">+</span><span class="mot fort">Monitoring</span>
+      </div>
+    </div>
+    <div class="pied">
+      <p class="src">Sources: Ecommerce Nation (accessed 06/09/2026), 2024 guide pp. 8-9 and 2025 guide p. 5 · SocialHub Magazine (accessed 06/09/2026), issue 6, 2026.</p>
+    </div>
+  </div>
+  <div class="notes">Do not list the six sectors, the room will drift. Give two, then jump straight to the clock idea, that is the analysis the brief expects. "X is not a platform of sectors, it is a platform of deadlines." 45 seconds.</div>
+</section>
+
+<!-- 9 · CONSEILS -->
+<section id="s9" style="--t-dy:-34px;">
+  <span class="num">10 / 16</span>
+  <div class="wrap">
+    <h2>Getting started on X: our six recommendations</h2>
+    <div class="conseils">
+      <div class="bulle g"><h3><span style="color:var(--bleu)">01</span>  Post every day, or do not start</h3><p class="corps">One to three messages a day.</p></div>
+      <div class="bulle g"><h3><span style="color:var(--bleu)">02</span>  Reply before you post</h3><p class="corps">Month 1: reply to posts.</p></div>
+      <div class="bulle g fin"><h3><span style="color:var(--bleu)">03</span>  Text first, image second</h3><p class="corps">Virality: image &lt; text.</p></div>
+      <div class="bulle d"><h3><span style="color:var(--bleu)">04</span>  Originality</h3><p class="corps">Burger King France follows <span class="hl">no</span> account and writes like a person.</p></div>
+      <div class="bulle d"><h3><span style="color:var(--bleu)">05</span>  Follow the event, never the calendar</h3><p class="corps">One message posted 40 minutes after a match is worth ten scheduled a month ahead.</p></div>
+      <div class="bulle d fin"><h3><span style="color:var(--bleu)">06</span>  Measure bookmarks and replies</h3><p class="corps">A like = polite, a bookmark = useful, a reply = alive.</p></div>
+    </div>
+    <div class="carte" style="margin-top:1.6vh">
+      <span class="badge badge-bleu">What the algorithm&rsquo;s own code confirms</span>
+      <div class="grille g3" style="gap:1.4vw;margin-top:.7em">
+        <div><span class="chiffre">48 h</span><span class="unite">lifespan</span><p class="corps" style="margin:.4em 0 0">Beyond that, the age filter removes the post from the feed.</p></div>
+        <div><span class="chiffre">2 feeds</span><span class="unite">For you and Following</span></div>
+        <div><span class="chiffre">5</span><span class="unite">families of signals</span><p class="corps" style="margin:.4em 0 0">Engagement, clicks, attention, following, negative signals.</p></div>
+      </div>
+    </div>
+    <div class="pied">
+      <p class="src">Sources: Ecommerce Nation (accessed 06/09/2026), the four objectives on the X page · X (accessed 06/09/2026) · public repository <em>xai-org/x-algorithm</em> (accessed 06/09/2026).</p>
+    </div>
+  </div>
+  <div class="notes">This is the practical part, the lecturer asked for it explicitly. Say points 1, 2 and 6 out loud, they are the counter-intuitive ones. Push "reply before you post": it costs nothing, and nobody does it. On the two feeds: "For you" is ranked by the algorithm, "Following" is chronological and only contains accounts you follow. The score adds up predicted probabilities of action, not counts of likes. Three corrections follow the ranking: author diversity, an out-of-network discount, and a boost for accounts with few impressions. 60 seconds.</div>
+</section>
+
+<!-- 10 · USAGES -->
+<section id="s10" style="--sgp-dx:6px;--sgp-dy:-4px;--sgm-dx:4px;--sgm-dy:-2px">
+  <span class="num">11 / 16</span>
+  <div class="wrap">
+    <h2>The pros and cons of X</h2>
+    <div class="grille g2">
+      <div class="carte">
+        <span class="badge badge-vert">Worth doing</span>
+        <ul class="signe plus">
+          <li><span class="sg" data-tw="signes plus" data-var="sgp">+</span><strong>Live events</strong>: matches, conferences, launches, crises.</li>
+          <li><span class="sg">+</span><strong>Public customer service.</strong></li>
+          <li><span class="sg">+</span><strong>Tech and B2B credibility</strong>: journalists, developers, investors.</li>
+          <li><span class="sg">+</span><strong>Market monitoring.</strong></li>
+          <li><span class="sg">+</span><strong>Tone</strong>: frank and direct <span class="hl">&ne;</span> LinkedIn.</li>
+          <li><span class="sg">+</span><strong>Publishing faster than anywhere else.</strong></li>
+          <li><span class="sg">+</span><strong>An adult, working audience.</strong></li>
+        </ul>
+      </div>
+      <div class="carte">
+        <span class="badge badge-rouge">To rule out</span>
+        <ul class="signe moins">
+          <li><span class="sg" data-tw="signes moins" data-var="sgm">–</span><strong>Falling user base in France</strong>: &searr; 15.5M.</li>
+          <li><span class="sg">–</span><strong>Direct selling</strong>: no native store and weak conversion.</li>
+          <li><span class="sg">–</span><strong>Women over 45.</strong></li>
+          <li><span class="sg">–</span><strong>A risk-free feed</strong>: fake accounts, crypto scams and automation sit next to the brands.</li>
+          <li><span class="sg">–</span><strong>Replacing LinkedIn</strong>: prospecting, recruiting, commercial relationships.</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pied">
+      <p class="src">Sources: Ecommerce Nation (accessed 06/09/2026), 2024 and 2025 guides · European Commission (accessed 06/09/2026), DSA decision of December 2025.</p>
+    </div>
+  </div>
+  <div class="notes">The right-hand column is the one people will remember. To develop out loud: public customer service inspires more trust than a form, because the answer is visible to everyone. Monitoring covers competitors and the sector, free and in real time. An adult, working audience, where TikTok and Instagram aim first at the general public. Polished visual storytelling has no place here, the feed is built for text and crops images. And for sectors that care about brand safety, moderation is contested, the &euro;120m fine proves it: "If your brand cannot afford to appear next to anything at all, X is not a channel, it is a risk." 45 seconds.</div>
+</section>
+
+<!-- 11 · REPÈRES -->
+<section id="s11" style="--c-dy:12px;--t-dy:17px;--pp-dy:21px;--nom-dx:-1px;--nom-dy:21px;--ps-dx:36px;--ps-dy:11px;--ab-dx:-11px;--ab-dy:-25px;--img-dy:-48px;--img:514px">
+  <span class="num">12 / 16</span>
+  <div class="wrap">
+    <div class="entete" style="margin-bottom:1.6vh">
+      <h2 style="margin:0" data-tw="titre" data-var="t">The most-liked accounts and posts</h2>
+      <span class="pilule" id="bascule">
+        <span class="actif" data-vue="monde">World</span><span data-vue="france">France</span><span data-vue="posts">Posts</span>
+      </span>
+    </div>
+
+    <div class="vue-bloc" id="v-monde">
+      <div class="grille g5"><div class="col"><div class="tete"><img src="../img/av-elonmusk.jpg" alt="" data-tw="photos" data-var="pp"><span class="nm" data-tw="noms" data-var="nom">Elon Musk</span></div>
+        <p class="ps detail" data-tw="pseudos" data-var="ps">@elonmusk</p><p class="ab" data-tw="abonnes" data-var="ab">241.5M</p>
+        <img class="shot" src="../img/r/musk.png" alt="Elon Musk's profile on X" data-tw="images" data-var="img"></div><div class="col"><div class="tete"><img src="../img/av-BarackObama.jpg" alt=""><span class="nm">Barack Obama</span></div>
+        <p class="ps detail">@BarackObama</p><p class="ab">119.0M</p>
+        <img class="shot" src="../img/r/obama.png" alt="Barack Obama's profile on X"></div><div class="col"><div class="tete"><img src="../img/av-Cristiano.jpg" alt=""><span class="nm">Cristiano Ronaldo</span></div>
+        <p class="ps detail">@Cristiano</p><p class="ab">114.1M</p>
+        <img class="shot" src="../img/r/ronaldo.png" alt="Cristiano Ronaldo's profile on X"></div><div class="col"><div class="tete"><img src="../img/av-realDonaldTrump.jpg" alt=""><span class="nm">Donald Trump</span></div>
+        <p class="ps detail">@realDonaldTrump</p><p class="ab">111.8M</p>
+        <img class="shot" src="../img/r/trump.png" alt="Donald Trump's profile on X"></div><div class="col"><div class="tete"><img src="../img/av-narendramodi.jpg" alt=""><span class="nm">Narendra Modi</span></div>
+        <p class="ps detail">@narendramodi</p><p class="ab">107.2M</p>
+        <img class="shot" src="../img/r/modi.png" alt="Narendra Modi's profile on X"></div></div>
+    </div>
+
+    <div class="vue-bloc" id="v-france" hidden>
+      <div class="grille g5"><div class="col"><div class="tete"><img src="../img/av-KMbappe.jpg" alt=""><span class="nm">Kylian Mbappé</span></div>
+        <p class="ps detail">@KMbappe</p><p class="ab">23.7M</p>
+        <img class="shot" src="../img/r/mbappe2.png" alt="Kylian Mbappé's profile on X"></div><div class="col"><div class="tete"><img src="../img/av-davidguetta.jpg" alt=""><span class="nm">David Guetta</span></div>
+        <p class="ps detail">@davidguetta</p><p class="ab">15.4M</p>
+        <img class="shot" src="../img/r/guetta2.png" alt="David Guetta's profile on X"></div><div class="col"><div class="tete"><img src="../img/av-PSG_inside.jpg" alt=""><span class="nm">Paris Saint-Germain</span></div>
+        <p class="ps detail">@PSG_inside</p><p class="ab">14.8M</p>
+        <img class="shot" src="../img/r/psg2.png" alt="Paris Saint-Germain's profile on X"></div><div class="col"><div class="tete"><img src="../img/av-EmmanuelMacron.jpg" alt=""><span class="nm">Emmanuel Macron</span></div>
+        <p class="ps detail">@EmmanuelMacron</p><p class="ab">11.0M</p>
+        <img class="shot" src="../img/r/macron.png" alt="Emmanuel Macron's profile on X"></div><div class="col"><div class="tete"><img src="../img/av-lemondefr.jpg" alt=""><span class="nm">Le Monde</span></div>
+        <p class="ps detail">@lemondefr</p><p class="ab">9.9M</p>
+        <img class="shot" src="../img/r/lemonde.png" alt="Le Monde's profile on X"></div></div>
+    </div>
+
+    <div class="vue-bloc" id="v-posts" hidden>
+      <div class="grille g5"><div class="col"><div class="tete"><img src="../img/av-chadwickboseman.jpg" alt=""><span class="nm">His family announces his death</span></div>
+        <p class="ps detail">@chadwickboseman</p><p class="ab">6.6M</p>
+        <img class="shot twr h" data-tw="post-boseman" style="--dx:0%;--dy:-10%;--l:30vh;--oy:0%" src="../img/post-boseman.png" alt="Post by @chadwickboseman"></div><div class="col"><div class="tete"><img src="../img/av-elonmusk.jpg" alt=""><span class="nm">&ldquo;I&rsquo;m buying Coca-Cola&rdquo;</span></div>
+        <p class="ps detail">@elonmusk</p><p class="ab">4.3M</p>
+        <img class="shot twr h" data-tw="post-musk" style="--dx:0%;--dy:-10%;--l:11vh;--oy:0%" src="../img/post-musk-coca.png" alt="Post by @elonmusk"></div><div class="col"><div class="tete"><img src="../img/av-BarackObama.jpg" alt=""><span class="nm">A Nelson Mandela quote</span></div>
+        <p class="ps detail">@BarackObama</p><p class="ab">3.6M</p>
+        <img class="shot twr h" data-tw="post-obama" style="--dx:0%;--dy:-10%;--l:30vh;--oy:0%" src="../img/post-obama.png" alt="Post by @BarackObama"></div><div class="col"><div class="tete"><img src="../img/av-GretaThunberg.jpg" alt=""><span class="nm">Reply to Andrew Tate</span></div>
+        <p class="ps detail">@GretaThunberg</p><p class="ab">3.5M</p>
+        <img class="shot twr h" data-tw="post-greta" style="--dx:0%;--dy:-10%;--l:30vh;--oy:0%" src="../img/post-greta.png" alt="Post by @GretaThunberg"></div><div class="col"><div class="tete"><img src="../img/av-JoeBiden.jpg" alt=""><span class="nm">&ldquo;It&rsquo;s a new day in America&rdquo;</span></div>
+        <p class="ps detail">@JoeBiden</p><p class="ab">3.5M</p>
+        <img class="shot twr h" data-tw="post-biden" style="--dx:0%;--dy:-10%;--l:20vh;--oy:0%" src="../img/post-biden.png" alt="Post by @JoeBiden"></div></div>
+    </div>
+
+    <div class="pied">
+      <p class="src">Sources: X (accessed 06/09/2026), screenshots of the profiles and posts taken by Romane and Sofian · Wikipedia (accessed 06/09/2026), lists of most-followed accounts and most-liked posts.</p>
+    </div>
+  </div>
+  <div class="notes">Three views on a single slide. Show the world ranking, switch to France and point out that the top French account is one tenth of the top global one, then switch to the posts and deliver the line: not one of the five most-liked posts in history is a brand post. Three of them are about grief or politics. 70 seconds.</div>
+</section>
+
+<!-- 12 · COMPTES -->
+<section id="s12">
+  <span class="num">13 / 16</span>
+  <div class="wrap">
+    <h2>Three accounts, three inventions</h2>
+    <div class="grille g3" style="align-items:start">
+      <div class="col">
+        <img class="shot twr hh" data-tw="compte-openai" style="--dx:0%;--dy:0%;--l:52vh;margin-top:0;border-radius:var(--r)" src="../img/openai.png" alt="The @OpenAI account on X">
+        <p class="lg">@OpenAI <span class="detail">5.2M followers</span></p>
+        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Newsroom</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Plain-text announcement</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">No press release</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">The launch becomes a post</span></div>
+      </div>
+      <div class="col">
+        <img class="shot twr hh" data-tw="compte-grok" style="--dx:0%;--dy:0%;--l:52vh;margin-top:0;border-radius:var(--r)" src="../img/grok.png" alt="The @grok account on X">
+        <p class="lg">@grok <span class="detail">9.0M followers</span></p>
+        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">AI native to the network</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Replies inside the feed</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">39M posts</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">The tool lives in the stream</span></div>
+      </div>
+      <div class="col">
+        <img class="shot twr hh" data-tw="compte-burgerking" style="--dx:0%;--dy:0%;--l:52vh;margin-top:0;border-radius:var(--r)" src="../img/burgerking.png" alt="The @BurgerKingFR account on X">
+        <p class="lg">@BurgerKingFR <span class="detail">188.7K followers</span></p>
+        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Follows nobody</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">A person&rsquo;s tone</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Same voice since 2013</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Discipline</span></div>
+      </div>
+    </div>
+    <div class="pied">
+      <p class="src">Source: X (accessed 06/09/2026).</p>
+    </div>
+  </div>
+  <div class="notes">Develop Burger King, it is the case a French brand can actually act on. Following nobody is not a detail, it is a statement: the account is a broadcaster, not a member of the community. It is the opposite of every social media manual, and it works. OpenAI turned X into its newsroom: a product launch became a post. Grok is an artificial intelligence that lives in the feed and answers when mentioned. Put the question to the room: would you dare recommend following nobody to a client? 60 seconds.</div>
+</section>
+
+<!-- 13 · FORMATS -->
+<section id="s13">
+  <span class="num">14 / 16</span>
+  <div class="wrap">
+    <h2>The formats that fit the feed</h2>
+    <div class="grille g2" style="align-items:start;gap:3vw">
+      <div>
+        <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Images</span>
+        <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:1em">
+          <div class="forme twr" data-tw="profil" style="--dx:3.9%;--dy:130.4%;aspect-ratio:1/1"><b>400 × 400</b><span>profile picture</span></div>
+          <div class="forme twr" data-tw="banniere" style="--dx:-104.3%;--dy:185.9%;aspect-ratio:3/1"><b>1500 × 500</b><span>header</span></div>
+          <div class="forme twr" data-tw="post-carre" style="--dx:-93.4%;--dy:129.5%;aspect-ratio:1/1"><b>1200 × 1200</b><span>square post</span></div>
+          <div class="forme twr" data-tw="post-paysage" style="--dx:-200.6%;--dy:194.8%;aspect-ratio:1.91/1"><b>1200 × 628</b><span>landscape post</span></div>
+        </div>
+        <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
+          <div class="forme twr" data-tw="pub-image" style="--dx:3.4%;--dy:-94.5%;aspect-ratio:16/9;grid-column:span 2"><b>1200 × 675</b><span>ad · 600 × 335 minimum</span></div>
+        </div>
+      </div>
+      <div>
+        <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Video</span>
+        <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:1em">
+          <div class="forme twr" data-tw="video" style="--dx:53.1%;--dy:93.6%;aspect-ratio:16/10"><b>1920 × 1200</b><span>post · 512 MB · 2 min 20 max</span></div>
+          <div class="forme twr" data-tw="carrousel-carre" style="--dx:101.9%;--dy:14.8%;aspect-ratio:1/1"><b>800 × 800</b><span>square carousel · 2 to 6 videos</span></div>
+          <div class="forme twr" data-tw="carrousel-paysage" style="--dx:-33.1%;--dy:88.0%;aspect-ratio:16/9"><b>800 × 450</b><span>landscape carousel · 2 to 6 videos</span></div>
+        </div>
+        <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
+          <div class="forme twr" data-tw="pub-video" style="--dx:-8.0%;--dy:-89.6%;aspect-ratio:16/9;grid-column:span 2"><b>Ad</b><span>1:1 or 16:9 · 1 GB · MP4 or MOV</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="pied">
+      <p class="src">Source: Ecommerce Nation (accessed 06/09/2026), Social Media Guide 2024, X page, Formats tab, p. 9.</p>
+    </div>
+  </div>
+  <div class="notes">Do not read the sizes, they are there so the document stays useful after the presentation. Say only the rule: the feed crops to landscape and plays without sound, so square survives, portrait gets cut, and a video that needs sound is already lost. Two minutes twenty is the ceiling, thirty seconds is the right length. 30 seconds, the fastest slide.</div>
+</section>
+
+<!-- 14 · OUTILS -->
+<section id="s14" style="--t-dy:-34px;">
+  <span class="num">15 / 16</span>
+  <div class="wrap">
+    <h2>Management tools and where they stop</h2>
+    <table>
+      <tr><th>Tool</th><th>What it is really for</th><th>Where it stops</th></tr>
+      <tr><td><strong>X Pro</strong> <span class="detail">(formerly TweetDeck)</span></td><td>Watching several live columns during an event, like a newsroom.</td><td>Native, now reserved for X Premium subscribers. No real analytics report.</td></tr>
+      <tr><td><strong>X for Business</strong></td><td>Creating and funding advertising campaigns.</td><td>Advertising only, no community management.</td></tr>
+      <tr><td><strong>Buffer</strong></td><td>Scheduling across several networks, for small teams, at low cost.</td><td>Light analytics, no social listening.</td></tr>
+      <tr><td><strong>Hootsuite</strong></td><td>Dashboard, multi-account, approval workflow. The agency standard.</td><td>Expensive for a single network.</td></tr>
+      <tr><td><strong>Audiense Connect</strong></td><td>Segmenting the audience and understanding who follows the account.</td><td>Specialised in X, paid.</td></tr>
+      <tr><td><strong>Brandwatch and Mention</strong></td><td>Social listening and alerts in a crisis.</td><td>Enterprise pricing only.</td></tr>
+    </table>
+    <div class="pied">
+      <p class="src">Sources: Ecommerce Nation (accessed 06/09/2026), Tools tab of the 2024 guide and 2025 guide p. 5 · vendors&rsquo; pricing pages (accessed 06/09/2026).</p>
+    </div>
+  </div>
+  <div class="notes">The lecturer said he would focus on tools for this first presentation: deliver the recommendation out loud, it is no longer written on the slide. Say: "For a launch, X Pro to watch, Buffer to publish, and a free Mention alert on the brand name. Under &euro;20 a month. Hootsuite only when several people have to approve a post." The last line is the argument: "the tool is a symptom of the team, not of the network." 60 seconds.</div>
+</section>
+
+<!-- 15 · CONCLUSION -->
+<section id="s15" style="text-align:center;align-items:center">
+  <span class="num">16 / 16</span>
+  <div class="wrap">
+    <h2 style="margin:0;font-size:clamp(3rem,8vw,6rem);letter-spacing:-.05em">Conclusion</h2>
+  </div>
+  <div class="notes">Nothing to read, everything is spoken. Three sentences, then silence. "X is no longer a reach channel, it is a citation channel." "It now belongs to an artificial intelligence lab, and Grok already writes in the feed." "So the question for 2027 is not whether X keeps its users, but whether it still needs them." Stop there. 40 seconds.</div>
+</section>
+
+<!-- ANNEXE -->
+<section id="s16">
+  <span class="num">Appendix</span>
+  <div class="wrap">
+    <h2>Our sources, and how we actually used AI tools</h2>
+    <div class="grille g2" style="align-items:start">
+      <div class="carte">
+        <span class="unite" style="margin-top:0">Sources</span>
+        <ul>
+          <li>Ecommerce Nation, <em>Social Media Guide</em> 2024 pp. 8-9 and 2025 p. 5</li>
+          <li>Course deck &ldquo;class 1 &amp; 2&rdquo;, slides 51, 52 and 56, and syllabus slides 19 to 21</li>
+          <li>SocialHub Magazine issue 6, 2026</li>
+          <li>Similarweb, July 2026 data read on x.com</li>
+          <li>Pappers, TWITTER FRANCE SAS record, SIREN 789 305 596</li>
+          <li>Wikipedia, articles on X, the most-liked posts and the most-followed accounts</li>
+          <li>Our own screenshots taken on X</li>
+        </ul>
+        <p class="src" style="margin-top:.6em">All these sources were accessed on 06/09/2026.</p>
+      </div>
+      <div class="carte">
+        <span class="unite" style="margin-top:0">AI tools, and their limits</span>
+        <p class="corps"><img src="../img/logo-chatgpt.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>ChatGPT:</strong> content ideas, variety of angles.</p>
+        <p class="corps"><img src="../img/logo-claude.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>Claude:</strong> online research, source checking, wording, building the presentation.</p>
+              </div>
+    </div>
+    <div class="pied">
+      <p class="src">Romane Da-Silva &amp; Sofian Chtioui · 8 September 2026</p>
+    </div>
+  </div>
+</section>
+
+<div class="panneau" id="panneau"></div>
+
+<script>
+/* ---- bascule Monde / France de la slide 11 ---- */
+const bascule=document.getElementById('bascule');
+if(bascule) bascule.addEventListener('click',e=>{
+  const b=e.target.closest('[data-vue]'); if(!b)return;
+  bascule.querySelectorAll('span').forEach(x=>x.classList.toggle('actif',x===b));
+  ['monde','france','posts'].forEach(v=>{document.getElementById('v-'+v).hidden = b.dataset.vue!==v;});
+});
+
+/* ---- mode reglage : T pour entrer et sortir, glisser pour deplacer,
+       fleches pour ajuster de 0,5 % (0,1 % avec Maj), C pour copier ---- */
+let vise=null;
+const panneau=document.getElementById('panneau');
+function blocs(){return [...document.querySelectorAll('section.ici [data-tw]')];}
+function rel(el){return el.classList.contains('twr')||el.dataset.var;}
+function fam(el){return el.dataset.var||null;}
+function vsec(el,n,d){const sec=el.closest('section');return sec.style.getPropertyValue(n).trim()||d;}
+function px(el,n,d){return el.style.getPropertyValue(n).trim()||d;}
+function val(el,n){return parseFloat(getComputedStyle(el).getPropertyValue(n))||0;}
+function ecrire(){
+  const b=blocs();
+  panneau.innerHTML='<b>Slide adjustment</b>'+b.map(e=>{
+    const n=e.dataset.tw;
+    const f=fam(e);
+    if(f) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>offset ${vsec(e,'--'+f+'-dx','0px')} / ${vsec(e,'--'+f+'-dy','0px')} · size ${vsec(e,'--'+f,'auto')}</span></div>`;
+    if(rel(e)) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>offset ${px(e,'--dx','0%')} / ${px(e,'--dy','0%')} · size ${px(e,'--l','auto')} · crop ${px(e,'--ox','50%')} / ${px(e,'--oy','50%')}</span></div>`;
+    return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>x ${px(e,'--x','')} · y ${px(e,'--y','')} · width ${px(e,'--l','86%')}</span></div>`;
+  }).join('')+'<div class="aide">Drag to move · arrows to nudge · Shift+arrows to resize · Alt+drag or Alt+arrows to crop · C to copy · T to exit</div>';
+}
+function texteValeurs(){
+  return blocs().map(e=>fam(e)
+    ? `${e.dataset.tw} : --${fam(e)}-dx:${vsec(e,'--'+fam(e)+'-dx','0px')}; --${fam(e)}-dy:${vsec(e,'--'+fam(e)+'-dy','0px')}; --${fam(e)}:${vsec(e,'--'+fam(e),'auto')};`
+    : rel(e)
+    ? `${e.dataset.tw} : --dx:${px(e,'--dx','0%')}; --dy:${px(e,'--dy','0%')}; --l:${px(e,'--l','auto')};`
+    : `${e.dataset.tw} : --x:${px(e,'--x','')}; --y:${px(e,'--y','')}; --l:${px(e,'--l','86%')};`)
+    .concat([...document.querySelectorAll('section.ici [data-edit]')].map(e=>`text: ${e.textContent.trim()}`)).join('\n');
+}
+addEventListener('mousedown',ev=>{
+  if(!document.body.classList.contains('reglage'))return;
+  const el=ev.target.closest('[data-tw]'); if(!el)return;
+  ev.preventDefault();
+  blocs().forEach(e=>e.classList.remove('vise')); vise=el; el.classList.add('vise'); ecrire();
+  const sec=el.closest('section'), r=sec.getBoundingClientRect();
+  const f=fam(el);
+  if(ev.altKey&&rel(el)&&!f){
+    const bx=px(el,'--ox',''), by=px(el,'--oy','');
+    const d0={x:ev.clientX,y:ev.clientY,ox:bx===''?50:parseFloat(bx),oy:by===''?50:parseFloat(by)};
+    const r0=el.getBoundingClientRect();
+    const pan=e2=>{
+      const ox=Math.max(0,Math.min(100,d0.ox-(e2.clientX-d0.x)/r0.width*120));
+      const oy=Math.max(0,Math.min(100,d0.oy-(e2.clientY-d0.y)/r0.height*120));
+      el.style.setProperty('--ox',ox.toFixed(0)+'%'); el.style.setProperty('--oy',oy.toFixed(0)+'%'); ecrire();
+    };
+    const fin=()=>{removeEventListener('mousemove',pan);removeEventListener('mouseup',fin);};
+    addEventListener('mousemove',pan); addEventListener('mouseup',fin); return;
+  }
+  const dep=rel(el)?(f?{x:ev.clientX,y:ev.clientY,dx:parseFloat(vsec(el,'--'+f+'-dx','0'))||0,dy:parseFloat(vsec(el,'--'+f+'-dy','0'))||0}
+                      :{x:ev.clientX,y:ev.clientY,dx:parseFloat(px(el,'--dx','0'))||0,dy:parseFloat(px(el,'--dy','0'))||0}):null;
+  const bouge=e=>{
+    if(f){
+      const dx=dep.dx+(e.clientX-dep.x), dy=dep.dy+(e.clientY-dep.y);
+      sec.style.setProperty('--'+f+'-dx',Math.round(dx)+'px'); sec.style.setProperty('--'+f+'-dy',Math.round(dy)+'px');
+    } else if(dep){
+      const dx=dep.dx+(e.clientX-dep.x)/r.width*100, dy=dep.dy+(e.clientY-dep.y)/r.height*100;
+      el.style.setProperty('--dx',dx.toFixed(1)+'%'); el.style.setProperty('--dy',dy.toFixed(1)+'%');
+    } else {
+      const x=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100));
+      const y=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100));
+      el.style.setProperty('--x',x.toFixed(1)+'%'); el.style.setProperty('--y',y.toFixed(1)+'%');
+    }
+    ecrire();
+  };
+  const stop=()=>{removeEventListener('mousemove',bouge);removeEventListener('mouseup',stop);};
+  addEventListener('mousemove',bouge); addEventListener('mouseup',stop);
+});
+
+const secs=[...document.querySelectorAll('section')];
+const liens=[...document.querySelectorAll('.rail a')];
+const barre=document.querySelector('.rail .bar i');
+let i=0;
+function aller(n){i=Math.max(0,Math.min(secs.length-1,n));secs[i].scrollIntoView({behavior:'smooth'});}
+addEventListener('keydown',e=>{
+  const k=e.key;
+  if(document.body.classList.contains('reglage')&&vise&&k.startsWith('Arrow')){
+    e.preventDefault();
+    const pas=e.shiftKey?0.1:0.5;
+    if(e.altKey&&rel(vise)&&!fam(vise)){
+      const pr=k==='ArrowLeft'||k==='ArrowRight'?'--ox':'--oy';
+      const d=(k==='ArrowRight'||k==='ArrowDown')?2:-2;
+      const b=px(vise,pr,''); const v=(b===''?50:parseFloat(b))+d;
+      vise.style.setProperty(pr,Math.max(0,Math.min(100,v)).toFixed(0)+'%');
+      ecrire(); return;
+    }
+    const f=fam(vise), sec2=vise.closest('section');
+    if(f){
+      if(e.shiftKey&&(k==='ArrowLeft'||k==='ArrowRight')){
+        const cur=parseFloat(vsec(vise,'--'+f,''))||parseFloat(getComputedStyle(vise)[f==='img'?'height':(f==='pp'?'width':'fontSize')]);
+        const nv=cur+(k==='ArrowRight'?1:-1);
+        sec2.style.setProperty('--'+f, Math.max(4,nv)+'px');
+      } else {
+        const pr=k==='ArrowLeft'||k==='ArrowRight'?'-dx':'-dy';
+        const d=(k==='ArrowRight'||k==='ArrowDown')?1:-1;
+        const v=(parseFloat(vsec(vise,'--'+f+pr,'0'))||0)+d;
+        sec2.style.setProperty('--'+f+pr, Math.round(v)+'px');
+      }
+      ecrire(); return;
+    }
+    if(e.shiftKey&&(k==='ArrowLeft'||k==='ArrowRight')){
+      const brut=px(vise,'--l','86%'); const u=(brut.match(/[a-z%]+$/)||['%'])[0];
+      const l=(parseFloat(brut)||86)+(k==='ArrowRight'?1:-1);
+      vise.style.setProperty('--l',Math.max(4,l).toFixed(0)+u);
+    } else if(rel(vise)){
+      const p=k==='ArrowLeft'||k==='ArrowRight'?'--dx':'--dy';
+      const d=(k==='ArrowRight'||k==='ArrowDown')?pas:-pas;
+      const v=(parseFloat(px(vise,p,'0'))||0)+d;
+      vise.style.setProperty(p,v.toFixed(1)+'%');
+    } else {
+      const p=k==='ArrowLeft'||k==='ArrowRight'?'--x':'--y';
+      const d=(k==='ArrowRight'||k==='ArrowDown')?pas:-pas;
+      const v=(parseFloat(vise.style.getPropertyValue(p))||50)+d;
+      vise.style.setProperty(p,Math.max(0,Math.min(100,v)).toFixed(1)+'%');
+    }
+    ecrire(); return;
+  }
+  if(k==='ArrowDown'||k==='ArrowRight'||k==='PageDown'||k===' '){e.preventDefault();aller(i+1);}
+  else if(k==='ArrowUp'||k==='ArrowLeft'||k==='PageUp'){e.preventDefault();aller(i-1);}
+  else if(k==='Home'){e.preventDefault();aller(0);}
+  else if(k==='End'){e.preventDefault();aller(secs.length-1);}
+  else if(k==='n'||k==='N'){document.body.classList.toggle('notesvues');}
+  else if(k==='t'||k==='T'){if(document.activeElement&&document.activeElement.isContentEditable)return;document.body.classList.toggle('reglage');document.querySelectorAll('[data-edit]').forEach(e=>e.contentEditable=document.body.classList.contains('reglage'));vise=null;ecrire();}
+  else if(k==='c'||k==='C'){if(document.activeElement&&document.activeElement.isContentEditable)return;if(document.body.classList.contains('reglage')){navigator.clipboard.writeText(texteValeurs());panneau.querySelector('.aide').textContent='Valeurs copiées.';}}
+});
+const io=new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(en.isIntersecting){
+      i=secs.indexOf(en.target);
+      secs.forEach(s=>s.classList.remove('ici'));
+      en.target.classList.add('ici');
+      liens.forEach((a,j)=>a.classList.toggle('on',j===i));
+      if(document.body.classList.contains('reglage'))ecrire();
+      barre.style.height=((i+1)/secs.length*100)+'%';
+    }
+  });
+},{threshold:.55});
+secs.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
