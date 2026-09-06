@@ -88,6 +88,14 @@ strong{font-weight:600}
 .carte-sombre{background:#000!important;border-color:#000!important}
 /* tableau geant de la slide 11 */
 .col{display:flex;flex-direction:column}
+/* slide 12 : chaque famille d'elements se regle par des variables de section */
+#s11 h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
+#s11 .col .tete img{width:var(--pp,4vh);height:var(--pp,4vh);position:relative;left:var(--pp-dx,0);top:var(--pp-dy,0)}
+#s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
+#s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
+#s11 .col .ab{font-size:var(--ab,var(--fs-chiffre));position:relative;left:var(--ab-dx,0);top:var(--ab-dy,0)}
+#s11 .col .shot{width:var(--img,100%);position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
+#s11 .col .lg{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 .col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
 .col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
 .col .nm{font-weight:600;line-height:1.15;font-size:var(--fs-md)}
@@ -122,6 +130,14 @@ strong{font-weight:600}
 .carte-sombre{background:#000!important;border-color:#000!important}
 /* tableau geant de la slide 11 */
 .col{display:flex;flex-direction:column}
+/* slide 12 : chaque famille d'elements se regle par des variables de section */
+#s11 h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
+#s11 .col .tete img{width:var(--pp,4vh);height:var(--pp,4vh);position:relative;left:var(--pp-dx,0);top:var(--pp-dy,0)}
+#s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
+#s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
+#s11 .col .ab{font-size:var(--ab,var(--fs-chiffre));position:relative;left:var(--ab-dx,0);top:var(--ab-dy,0)}
+#s11 .col .shot{width:var(--img,100%);position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
+#s11 .col .lg{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 .col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
 .col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
 .col .nm{font-weight:600;line-height:1.15;font-size:var(--fs-md)}
@@ -672,16 +688,16 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">12 / 16</span>
   <div class="wrap">
     <div class="entete" style="margin-bottom:1.6vh">
-      <h2 style="margin:0">Les comptes et publications les plus aimés</h2>
+      <h2 style="margin:0" data-tw="titre" data-var="t">Les comptes et publications les plus aimés</h2>
       <span class="pilule" id="bascule">
         <span class="actif" data-vue="monde">Monde</span><span data-vue="france">France</span><span data-vue="posts">Publications</span>
       </span>
     </div>
 
     <div class="vue-bloc" id="v-monde">
-      <div class="grille g5"><div class="col"><div class="tete"><img src="img/av-elonmusk.jpg" alt=""><span class="nm">Elon Musk</span></div>
-        <p class="ps detail">@elonmusk</p><p class="ab">241,5 M</p>
-        <img class="shot" src="img/r/musk.png" alt="Profil de Elon Musk sur X"></div><div class="col"><div class="tete"><img src="img/av-BarackObama.jpg" alt=""><span class="nm">Barack Obama</span></div>
+      <div class="grille g5"><div class="col"><div class="tete"><img src="img/av-elonmusk.jpg" alt="" data-tw="photos" data-var="pp"><span class="nm" data-tw="noms" data-var="nom">Elon Musk</span></div>
+        <p class="ps detail" data-tw="pseudos" data-var="ps">@elonmusk</p><p class="ab" data-tw="abonnes" data-var="ab">241,5 M</p>
+        <img class="shot" src="img/r/musk.png" alt="Profil de Elon Musk sur X" data-tw="images" data-var="img"></div><div class="col"><div class="tete"><img src="img/av-BarackObama.jpg" alt=""><span class="nm">Barack Obama</span></div>
         <p class="ps detail">@BarackObama</p><p class="ab">119,0 M</p>
         <img class="shot" src="img/r/obama.png" alt="Profil de Barack Obama sur X"></div><div class="col"><div class="tete"><img src="img/av-Cristiano.jpg" alt=""><span class="nm">Cristiano Ronaldo</span></div>
         <p class="ps detail">@Cristiano</p><p class="ab">114,1 M</p>
@@ -760,24 +776,24 @@ body.notesvues section.ici .notes{display:block}
       <div>
         <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Images</span>
         <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:1em">
-          <div class="forme twr" data-tw="profil" style="aspect-ratio:1/1"><b>400 × 400</b><span>photo de profil</span></div>
-          <div class="forme twr" data-tw="banniere" style="aspect-ratio:3/1"><b>1500 × 500</b><span>bannière</span></div>
-          <div class="forme twr" data-tw="post-carre" style="aspect-ratio:1/1"><b>1200 × 1200</b><span>publication carrée</span></div>
-          <div class="forme twr" data-tw="post-paysage" style="aspect-ratio:1.91/1"><b>1200 × 628</b><span>publication paysage</span></div>
+          <div class="forme twr" data-tw="profil" style="--dx:4.2%;--dy:120.7%;aspect-ratio:1/1"><b>400 × 400</b><span>photo de profil</span></div>
+          <div class="forme twr" data-tw="banniere" style="--dx:-103.5%;--dy:169.3%;aspect-ratio:3/1"><b>1500 × 500</b><span>bannière</span></div>
+          <div class="forme twr" data-tw="post-carre" style="--dx:-93.4%;--dy:122.0%;aspect-ratio:1/1"><b>1200 × 1200</b><span>publication carrée</span></div>
+          <div class="forme twr" data-tw="post-paysage" style="--dx:-201.7%;--dy:179.5%;aspect-ratio:1.91/1"><b>1200 × 628</b><span>publication paysage</span></div>
         </div>
         <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
-          <div class="forme twr" data-tw="pub-image" style="aspect-ratio:16/9;grid-column:span 2"><b>1200 × 675</b><span>publicité · 600 × 335 minimum</span></div>
+          <div class="forme twr" data-tw="pub-image" style="--dx:3.4%;--dy:-94.5%;aspect-ratio:16/9;grid-column:span 2"><b>1200 × 675</b><span>publicité · 600 × 335 minimum</span></div>
         </div>
       </div>
       <div>
         <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Vidéo</span>
         <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:1em">
-          <div class="forme twr" data-tw="video" style="aspect-ratio:16/10"><b>1920 × 1200</b><span>publication · 512 Mo · 2 min 20 maximum</span></div>
-          <div class="forme twr" data-tw="carrousel-carre" style="aspect-ratio:1/1"><b>800 × 800</b><span>carrousel carré · 2 à 6 vidéos</span></div>
-          <div class="forme twr" data-tw="carrousel-paysage" style="aspect-ratio:16/9"><b>800 × 450</b><span>carrousel paysage · 2 à 6 vidéos</span></div>
+          <div class="forme twr" data-tw="video" style="--dx:53.8%;--dy:78.7%;aspect-ratio:16/10"><b>1920 × 1200</b><span>publication · 512 Mo · 2 min 20 maximum</span></div>
+          <div class="forme twr" data-tw="carrousel-carre" style="--dx:104.7%;--dy:-2.1%;aspect-ratio:1/1"><b>800 × 800</b><span>carrousel carré · 2 à 6 vidéos</span></div>
+          <div class="forme twr" data-tw="carrousel-paysage" style="--dx:-36.3%;--dy:73.2%;aspect-ratio:16/9"><b>800 × 450</b><span>carrousel paysage · 2 à 6 vidéos</span></div>
         </div>
         <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
-          <div class="forme twr" data-tw="pub-video" style="aspect-ratio:16/9;grid-column:span 2"><b>Publicité</b><span>1:1 ou 16:9 · 1 Go · MP4 ou MOV</span></div>
+          <div class="forme twr" data-tw="pub-video" style="--dx:-0.9%;--dy:-94.3%;aspect-ratio:16/9;grid-column:span 2"><b>Publicité</b><span>1:1 ou 16:9 · 1 Go · MP4 ou MOV</span></div>
         </div>
       </div>
     </div>
@@ -882,19 +898,25 @@ if(bascule) bascule.addEventListener('click',e=>{
 let vise=null;
 const panneau=document.getElementById('panneau');
 function blocs(){return [...document.querySelectorAll('section.ici [data-tw]')];}
-function rel(el){return el.classList.contains('twr');}
+function rel(el){return el.classList.contains('twr')||el.dataset.var;}
+function fam(el){return el.dataset.var||null;}
+function vsec(el,n,d){const sec=el.closest('section');return sec.style.getPropertyValue(n).trim()||d;}
 function px(el,n,d){return el.style.getPropertyValue(n).trim()||d;}
 function val(el,n){return parseFloat(getComputedStyle(el).getPropertyValue(n))||0;}
 function ecrire(){
   const b=blocs();
   panneau.innerHTML='<b>Réglage de la slide</b>'+b.map(e=>{
     const n=e.dataset.tw;
+    const f=fam(e);
+    if(f) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>décalage ${vsec(e,'--'+f+'-dx','0px')} / ${vsec(e,'--'+f+'-dy','0px')} · taille ${vsec(e,'--'+f,'auto')}</span></div>`;
     if(rel(e)) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>décalage ${px(e,'--dx','0%')} / ${px(e,'--dy','0%')} · largeur ${px(e,'--l','auto')}</span></div>`;
     return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>x ${px(e,'--x','')} · y ${px(e,'--y','')} · largeur ${px(e,'--l','86%')}</span></div>`;
   }).join('')+'<div class="aide">Glisser pour déplacer · flèches pour ajuster · Maj+flèches gauche/droite pour la largeur · C pour copier · T pour sortir</div>';
 }
 function texteValeurs(){
-  return blocs().map(e=>rel(e)
+  return blocs().map(e=>fam(e)
+    ? `${e.dataset.tw} : --${fam(e)}-dx:${vsec(e,'--'+fam(e)+'-dx','0px')}; --${fam(e)}-dy:${vsec(e,'--'+fam(e)+'-dy','0px')}; --${fam(e)}:${vsec(e,'--'+fam(e),'auto')};`
+    : rel(e)
     ? `${e.dataset.tw} : --dx:${px(e,'--dx','0%')}; --dy:${px(e,'--dy','0%')}; --l:${px(e,'--l','auto')};`
     : `${e.dataset.tw} : --x:${px(e,'--x','')}; --y:${px(e,'--y','')}; --l:${px(e,'--l','86%')};`)
     .concat([...document.querySelectorAll('section.ici [data-edit]')].map(e=>`texte : ${e.textContent.trim()}`)).join('\n');
@@ -905,9 +927,14 @@ addEventListener('mousedown',ev=>{
   ev.preventDefault();
   blocs().forEach(e=>e.classList.remove('vise')); vise=el; el.classList.add('vise'); ecrire();
   const sec=el.closest('section'), r=sec.getBoundingClientRect();
-  const dep=rel(el)?{x:ev.clientX,y:ev.clientY,dx:parseFloat(px(el,'--dx','0'))||0,dy:parseFloat(px(el,'--dy','0'))||0}:null;
+  const f=fam(el);
+  const dep=rel(el)?(f?{x:ev.clientX,y:ev.clientY,dx:parseFloat(vsec(el,'--'+f+'-dx','0'))||0,dy:parseFloat(vsec(el,'--'+f+'-dy','0'))||0}
+                      :{x:ev.clientX,y:ev.clientY,dx:parseFloat(px(el,'--dx','0'))||0,dy:parseFloat(px(el,'--dy','0'))||0}):null;
   const bouge=e=>{
-    if(dep){
+    if(f){
+      const dx=dep.dx+(e.clientX-dep.x), dy=dep.dy+(e.clientY-dep.y);
+      sec.style.setProperty('--'+f+'-dx',Math.round(dx)+'px'); sec.style.setProperty('--'+f+'-dy',Math.round(dy)+'px');
+    } else if(dep){
       const dx=dep.dx+(e.clientX-dep.x)/r.width*100, dy=dep.dy+(e.clientY-dep.y)/r.height*100;
       el.style.setProperty('--dx',dx.toFixed(1)+'%'); el.style.setProperty('--dy',dy.toFixed(1)+'%');
     } else {
@@ -931,6 +958,20 @@ addEventListener('keydown',e=>{
   if(document.body.classList.contains('reglage')&&vise&&k.startsWith('Arrow')){
     e.preventDefault();
     const pas=e.shiftKey?0.1:0.5;
+    const f=fam(vise), sec2=vise.closest('section');
+    if(f){
+      if(e.shiftKey&&(k==='ArrowLeft'||k==='ArrowRight')){
+        const cur=parseFloat(vsec(vise,'--'+f,''))||parseFloat(getComputedStyle(vise)[f==='img'?'width':'fontSize']);
+        const nv=cur+(k==='ArrowRight'?1:-1);
+        sec2.style.setProperty('--'+f, Math.max(4,nv)+'px');
+      } else {
+        const pr=k==='ArrowLeft'||k==='ArrowRight'?'-dx':'-dy';
+        const d=(k==='ArrowRight'||k==='ArrowDown')?1:-1;
+        const v=(parseFloat(vsec(vise,'--'+f+pr,'0'))||0)+d;
+        sec2.style.setProperty('--'+f+pr, Math.round(v)+'px');
+      }
+      ecrire(); return;
+    }
     if(e.shiftKey&&(k==='ArrowLeft'||k==='ArrowRight')){
       const l=(parseFloat(vise.style.getPropertyValue('--l'))||86)+(k==='ArrowRight'?1:-1);
       vise.style.setProperty('--l',Math.max(10,Math.min(100,l)).toFixed(0)+'%');
