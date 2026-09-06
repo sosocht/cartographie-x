@@ -43,6 +43,8 @@ body{margin:0;font-family:var(--sans);font-size:var(--fs-md);font-weight:400;lin
 section{min-height:100vh;min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;
   padding:3.4vh 2.6vw 3.4vh calc(var(--rail) + 2.6vw);display:flex;flex-direction:column;
   justify-content:center;border-top:1px solid var(--filet);position:relative}
+section:has(.plein){justify-content:flex-start}
+section:has(.plein) .wrap{flex:1;display:flex;flex-direction:column}
 section:first-of-type{border-top:0}
 .wrap{width:100%;max-width:1500px;margin:0 auto}
 .num{position:absolute;bottom:2.6vh;right:2.6vw;font-size:var(--fs-sm);font-weight:600;
@@ -74,6 +76,12 @@ strong{font-weight:600}
   box-shadow:var(--ombre);padding:1em 1.15em}
 .carte-bleu{border-color:var(--bleu)}
 .grille{display:grid;gap:12px}
+.plein{flex:1;display:flex;flex-direction:column}
+.plein .grille{flex:1;grid-auto-rows:1fr}
+.plein .carte .corps{margin-top:auto;padding-top:.8em}
+.carte{display:flex;flex-direction:column}
+/* titre de carte : meme niveau typographique que le chiffre */
+.t-carte{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.12;margin:.3em 0 0}
 .g2{grid-template-columns:1fr 1fr}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
@@ -182,17 +190,17 @@ body.notesvues section.ici .notes{display:block}
 <!-- 2 · ITINÉRAIRE -->
 <section id="s2">
   <span class="num">02 / 15</span>
-  <div class="wrap">
+  <div class="wrap plein">
     <h2>Huit étapes, quinze slides, dix minutes</h2>
     <div class="grille g4">
-      <div class="carte"><span class="chiffre">1</span><p class="corps"><strong>Dates clés et actualités</strong><br>Vingt ans, et un 2026 très agité.</p></div>
-      <div class="carte"><span class="chiffre">2</span><p class="corps"><strong>Audience</strong><br>Le monde, la France, et qui reste vraiment.</p></div>
-      <div class="carte"><span class="chiffre">3</span><p class="corps"><strong>Conseils et cas d'usage</strong><br>Comment se lancer, et quand s'abstenir.</p></div>
-      <div class="carte"><span class="chiffre">4</span><p class="corps"><strong>Secteurs dominants</strong><br>Les domaines où X reste incontournable.</p></div>
-      <div class="carte"><span class="chiffre">5</span><p class="corps"><strong>Comptes à suivre</strong><br>Trois comptes, pour ce qu'ils inventent.</p></div>
-      <div class="carte"><span class="chiffre">6</span><p class="corps"><strong>Qualité photo et vidéo</strong><br>Les formats adaptés au fil.</p></div>
-      <div class="carte"><span class="chiffre">7</span><p class="corps"><strong>Outils de gestion</strong><br>Qui fait quoi, et à quel prix.</p></div>
-      <div class="carte"><span class="chiffre">8</span><p class="corps"><strong>Conclusion</strong><br>Notre position, sans résumé.</p></div>
+      <div class="carte"><span class="chiffre" style="color:var(--bleu)">1</span><p class="t-carte">Dates clés et actualités</p><p class="corps">Vingt ans, et un 2026 très agité.</p></div>
+      <div class="carte"><span class="chiffre" style="color:var(--bleu)">2</span><p class="t-carte">Audience</p><p class="corps">Le monde, la France, et qui reste vraiment.</p></div>
+      <div class="carte"><span class="chiffre" style="color:var(--bleu)">3</span><p class="t-carte">Conseils et cas d'usage</p><p class="corps">Comment se lancer, et quand s'abstenir.</p></div>
+      <div class="carte"><span class="chiffre" style="color:var(--bleu)">4</span><p class="t-carte">Secteurs dominants</p><p class="corps">Les domaines où X reste incontournable.</p></div>
+      <div class="carte"><span class="chiffre" style="color:var(--bleu)">5</span><p class="t-carte">Comptes à suivre</p><p class="corps">Trois comptes, pour ce qu'ils inventent.</p></div>
+      <div class="carte"><span class="chiffre" style="color:var(--bleu)">6</span><p class="t-carte">Qualité photo et vidéo</p><p class="corps">Les formats adaptés au fil.</p></div>
+      <div class="carte"><span class="chiffre" style="color:var(--bleu)">7</span><p class="t-carte">Outils de gestion</p><p class="corps">Qui fait quoi, et à quel prix.</p></div>
+      <div class="carte"><span class="chiffre" style="color:var(--bleu)">8</span><p class="t-carte">Conclusion</p><p class="corps">Notre position, sans résumé.</p></div>
     </div>
   </div>
   <div class="notes">Ne pas lire les huit cases. Dire : « Ces huit points sont ceux de la consigne. Nous avons ajouté deux choses qu'elle ne demandait pas : les personas, et l'identité légale de X en France. C'est là que sont nos deux surprises. » 30 secondes.</div>
