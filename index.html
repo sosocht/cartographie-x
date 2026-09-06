@@ -123,8 +123,8 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 #s6 .usg{position:relative;left:var(--usg-dx,0);top:var(--usg-dy,0)}
 #s6 .gen{position:relative;left:var(--gen-dx,0);top:var(--gen-dy,0)}
 /* slide 3 : le cadre garde sa place, l'image grandit dedans par --gr */
-#s3 .ph3{position:relative;width:var(--l,26.1vw);aspect-ratio:1100/362;flex:none}
-#s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:var(--gr,100%);height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
+#s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
+#s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
 #s6 .secteurs{position:relative;left:var(--sec-dx,0);top:var(--sec-dy,0)}
 #s6 .sect-t{font-size:var(--sct,var(--fs-md))}
 #s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
@@ -196,8 +196,8 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 #s6 .usg{position:relative;left:var(--usg-dx,0);top:var(--usg-dy,0)}
 #s6 .gen{position:relative;left:var(--gen-dx,0);top:var(--gen-dy,0)}
 /* slide 3 : le cadre garde sa place, l'image grandit dedans par --gr */
-#s3 .ph3{position:relative;width:var(--l,26.1vw);aspect-ratio:1100/362;flex:none}
-#s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:var(--gr,100%);height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
+#s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
+#s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
 #s6 .secteurs{position:relative;left:var(--sec-dx,0);top:var(--sec-dy,0)}
 #s6 .sect-t{font-size:var(--sct,var(--fs-md))}
 #s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
@@ -419,13 +419,13 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 3 · DATES -->
-<section id="s3" style="--gr:155%">
+<section id="s3">
   <span class="num">03 / 16</span>
   <div class="wrap">
     <h2 style="margin-bottom:.3em">Vingt ans en dix dates</h2>
     <div class="grille g2" style="grid-template-columns:1fr auto;align-items:start;gap:2.4vw;margin-bottom:4vh">
       <p class="corps" style="margin:0;white-space:nowrap"><strong>Jack Dorsey, Biz Stone, Evan Williams et Dick Costolo</strong>, l'entrée en bourse, en 2013.</p>
-      <div class="ph3 twr" data-tw="photo" style="--dx:0%;--dy:-29.6%;--l:26.1vw"><img src="img/fondateurs.png" alt="Les fondateurs de Twitter à l'entrée en bourse"></div>
+      <div class="ph3 twr" data-tw="photo" style="--dx:0%;--dy:-29.6%;--l:40.5vw"><img src="img/fondateurs.png" alt="Les fondateurs de Twitter à l'entrée en bourse"></div>
     </div>
     <div class="grille g5" style="grid-auto-rows:17vh">
       <div class="carte"><span class="chiffre">2006</span><p class="corps"><strong>Lancement</strong> le 15 juillet, par Jack Dorsey et trois associés.</p></div>
@@ -954,11 +954,9 @@ body.notesvues section.ici .notes{display:block}
       </div>
       <div class="carte">
         <span class="unite" style="margin-top:0">Outils d'intelligence artificielle et leurs limites</span>
-        <p class="corps"><img src="img/logo-chatgpt.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>ChatGPT :</strong> idées de contenu, diversité des angles, premier jet des personas.</p>
-        <p class="corps"><img src="img/logo-claude.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>Claude :</strong> recherches en ligne, vérification des sources, captures, formulation, construction de la présentation.</p>
-        <p class="corps"><strong>Leurs limites :</strong> six conseils génériques supprimés, une date fausse au premier passage, d'où une source et une date sur chaque chiffre.</p>
-        <p class="corps"><strong>Non délégué :</strong> l'angle, la position, l'ouverture.</p>
-      </div>
+        <p class="corps"><img src="img/logo-chatgpt.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>ChatGPT :</strong> idées de contenu, diversité des angles.</p>
+        <p class="corps"><img src="img/logo-claude.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>Claude :</strong> recherches en ligne, vérification des sources, formulation, construction de la présentation.</p>
+              </div>
     </div>
     <div class="pied">
       <p class="src">Sofian Chtioui &amp; Romane Da-Silva · 8 septembre 2026</p>
