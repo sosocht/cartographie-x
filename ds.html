@@ -10,100 +10,80 @@
 <style>
   :root {
     --encre:#0a0a0a; --fond:#f5f5f5; --carte:#ffffff;
-    --bleu:#1d9bf0; --vert:#00875a; --rouge:#d0121e;
-    --bleu-doux:rgba(29,155,240,.1); --vert-doux:rgba(0,135,90,.12); --rouge-doux:rgba(208,18,30,.1);
-    --sourdine:rgba(10,10,10,.55); --filet:#e4e4e2; --separateur:rgba(10,10,10,.28);
-    --t-titre:54px; --t-texte:14px; --t-petit:12px;
+    --bleu:#1d9bf0; --vert:#008000; --rouge:#ff0000;
+    --bleu-doux:rgba(29,155,240,.1); --vert-doux:rgba(0,128,0,.1); --rouge-doux:rgba(255,0,0,.08);
+    --sourdine:rgba(10,10,10,.55); --tenu:rgba(10,10,10,.38);
+    --filet:#e4e4e2; --separateur:rgba(10,10,10,.28);
+    --t-titre:50px; --t-chiffre:30px; --t-texte:14px; --t-detail:12px;
   }
   * { box-sizing:border-box; }
   body {
-    margin:0; padding:16px 24px 24px;
+    margin:0; padding:16px 24px 24px; min-height:100vh; display:flex; flex-direction:column;
     font-family:"Plus Jakarta Sans", system-ui, sans-serif;
-    font-size:var(--t-texte); font-weight:400; line-height:1.45;
+    font-size:var(--t-texte); font-weight:400; line-height:1.5;
     background:var(--fond); color:var(--encre);
     -webkit-font-smoothing:antialiased;
   }
   h1 {
-    font-size:var(--t-titre); font-weight:700; line-height:1; letter-spacing:-.035em;
-    margin:0; padding-bottom:15px; text-align:center;
+    font-size:var(--t-titre); font-weight:600; line-height:1; letter-spacing:-.035em;
+    margin:0; padding-bottom:16px; text-align:center;
     border-bottom:1.5px solid var(--separateur);
   }
-  h2 { font-size:var(--t-petit); font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--sourdine); margin:0 0 10px; }
+  h2 { font-size:var(--t-detail); font-weight:700; text-transform:uppercase; letter-spacing:.16em;
+       color:var(--sourdine); margin:0 0 12px; }
 
   .haut { display:grid; grid-template-columns:auto 1fr; gap:30px; align-items:stretch; }
   .haut, body > section { padding-top:30px; padding-bottom:30px; border-bottom:1.5px solid var(--separateur); }
-  .haut { padding-top:30px; }
-  body > section:last-of-type { padding-bottom:0; border-bottom:0; }
+  body > section:last-of-type { padding-bottom:0; border-bottom:0; flex:1; display:flex; flex-direction:column; }
+  body > section:last-of-type .bloc { flex:1; display:flex; flex-direction:column; }
+  body > section:last-of-type table { flex:1; }
   .haut > section { padding:0; border:0; display:flex; flex-direction:column; min-width:0; }
   .haut > section:last-child { border-left:1.5px solid var(--separateur); padding-left:30px; }
-  .bloc { border:1px solid var(--filet); border-radius:20px; padding:9px 11px; }
-  .haut > section .bloc { width:fit-content; }
+  .bloc { border:1px solid var(--filet); border-radius:20px; padding:12px 14px; }
+  .haut > section:first-child .bloc { width:fit-content; }
+  .haut > section .bloc { display:flex; align-items:center; }
   .rangee { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
-  .rangee + .rangee { margin-top:8px; }
-  .compo { flex-wrap:nowrap; }
 
-  /* Couleurs — carrés jointifs, même taille */
+  /* Couleurs */
   .couleurs { display:flex; flex-wrap:wrap; gap:0; border-radius:20px; overflow:hidden; }
-  .jeton { display:flex; align-items:center; justify-content:center; width:88px; height:58px; flex:0 0 auto; }
-  .jeton code { font-family:ui-monospace, Menlo, monospace; font-size:var(--t-petit); letter-spacing:-.02em; }
+  .jeton { display:flex; align-items:center; justify-content:center; width:96px; height:88px; flex:0 0 auto; }
+  .jeton code { font-family:ui-monospace, Menlo, monospace; font-size:var(--t-detail); letter-spacing:-.02em; }
 
   /* Typographie */
   table { width:100%; border-collapse:collapse; }
-  th { text-align:left; font-size:var(--t-petit); font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--sourdine); padding:0 14px 8px 0; border-bottom:1px solid var(--filet); }
-  td { padding:5px 14px 5px 0; border-bottom:1px solid var(--filet); vertical-align:middle; }
+  th { text-align:left; font-size:var(--t-detail); font-weight:700; text-transform:uppercase;
+       letter-spacing:.16em; color:var(--sourdine); padding:0 14px 10px 0; border-bottom:1px solid var(--filet); }
+  td { padding:9px 14px 9px 0; border-bottom:1px solid var(--filet); vertical-align:middle; }
   tr:last-child td { border-bottom:0; padding-bottom:0; }
-  td code { font-family:ui-monospace, Menlo, monospace; color:var(--sourdine); font-size:var(--t-petit); }
+  td code { font-family:ui-monospace, Menlo, monospace; color:var(--sourdine); font-size:var(--t-detail); }
 
-  /* Pilules, étiquettes, puces — les éléments en ligne d'une slide */
-  .surtitre { font-size:var(--t-petit); font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--bleu); }
-  .source { font-size:var(--t-petit); font-weight:300; color:var(--sourdine); }
-  .detail { font-size:var(--t-petit); font-weight:300; color:var(--sourdine); }
-  .numero { font-size:var(--t-petit); font-weight:700; letter-spacing:.1em; color:rgba(10,10,10,.35); }
-  .puce { display:inline-flex; align-items:center; gap:.5em; font-size:var(--t-petit); color:var(--sourdine); background:var(--carte); border:1px solid var(--filet); border-radius:999px; padding:.45em .9em; white-space:nowrap; flex:none; }
-  .puce span.mark { width:13px; height:13px; border-radius:3px; background:#d97757; flex:none; }
-  .badge { display:inline-flex; align-items:center; border-radius:999px; padding:.35em .9em; font-size:var(--t-petit); font-weight:700; text-transform:uppercase; letter-spacing:.1em; white-space:nowrap; flex:none; }
+  /* Composants */
+  .widget { background:var(--carte); border:1px solid var(--filet); border-radius:20px; padding:12px 16px; }
+  .chiffre { display:block; font-size:var(--t-chiffre); font-weight:500; letter-spacing:-.03em;
+             line-height:1; white-space:nowrap; }
+  .unite { display:block; margin-top:8px; font-size:var(--t-detail); font-weight:700;
+           text-transform:uppercase; letter-spacing:.16em; color:var(--sourdine); }
+  .badge { display:inline-flex; align-items:center; border-radius:999px; padding:.4em .8em;
+           font-size:var(--t-detail); font-weight:700; text-transform:uppercase; letter-spacing:.1em;
+           white-space:nowrap; flex:none; }
   .badge-bleu { background:var(--bleu-doux); color:var(--bleu); }
   .badge-vert { background:var(--vert-doux); color:var(--vert); }
   .badge-rouge { background:var(--rouge-doux); color:var(--rouge); }
-  .pilule { display:inline-flex; gap:2px; padding:3px; border-radius:999px; border:1px solid var(--filet); background:rgba(10,10,10,.05); }
-  .pilule span { padding:.5em 1em; border-radius:999px; font-size:var(--t-petit); font-weight:700; letter-spacing:.1em; color:var(--sourdine); }
+  .numero { font-size:var(--t-detail); font-weight:700; letter-spacing:.16em; color:var(--tenu); }
+  .pilule { display:inline-flex; gap:2px; padding:3px; border-radius:999px;
+            border:1px solid var(--filet); background:rgba(10,10,10,.05); }
+  .pilule span { padding:.5em .95em; border-radius:999px; font-size:var(--t-detail);
+                 font-weight:700; letter-spacing:.1em; color:var(--sourdine); }
   .pilule .actif { background:var(--carte); color:var(--encre); box-shadow:0 1px 5px rgba(0,0,0,.18); }
 
-  /* Composants de slide */
-  .duo { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
-  .carte { background:var(--carte); border:1px solid var(--filet); border-radius:20px; padding:11px 14px; }
-  .carte-bleu { border-color:var(--bleu); }
-  .chiffre { font-size:var(--t-titre); font-weight:700; letter-spacing:-.035em; line-height:1; display:block; white-space:nowrap; }
-  .chiffre-bas { color:var(--rouge); }
-  .chiffre-haut { color:var(--vert); }
-  .unite { display:block; margin-top:8px; font-size:var(--t-petit); font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--sourdine); }
-  .carte p { margin:0; }
-  .carte .corps { font-size:var(--t-petit); color:var(--sourdine); line-height:1.4; }
-  .cadre { border:1px solid var(--filet); border-radius:20px; background:var(--carte); height:100%; min-height:78px; padding:0 14px; display:flex; align-items:center; justify-content:center; font-size:var(--t-petit); color:var(--sourdine); }
-  /* Slide de couverture : seule surface sombre du système */
-  .couverture { background:var(--encre); border-radius:20px; padding:14px 16px; text-align:center; color:#fff; }
-  .couverture .surtitre { color:#7fcbff; }
-  .couverture .t { font-size:32px; font-weight:700; letter-spacing:-.045em; line-height:1; margin:5px 0; }
-  .couverture .corps { font-size:var(--t-petit); color:rgba(255,255,255,.75); }
-
-  @media (max-width:1100px) {
-    .compo { flex-wrap:wrap; }
-    .compo > * { flex:1 1 210px !important; }
-  }
   @media (max-width:1000px) {
     .haut { grid-template-columns:1fr; gap:30px; }
-    .haut > section:last-child { border-left:0; padding-left:0; padding-top:30px; border-top:1.5px solid var(--separateur); }
-    .haut > section .bloc { width:100%; }
-    .duo { grid-template-columns:1fr; }
+    .haut > section:last-child { border-left:0; padding-left:0; padding-top:30px;
+                                 border-top:1.5px solid var(--separateur); }
+    .haut > section:first-child .bloc { width:100%; }
   }
   @media (max-width:900px) {
-    .puce { white-space:normal; }
-  }
-  @media (max-width:520px) {
-    :root { --t-titre:34px; }
-  }
-  @media (max-width:900px) {
-    .jeton { width:20%; height:56px; }
+    .jeton { width:20%; height:60px; }
     table, tbody, tr, td { display:block; width:100%; }
     thead { display:none; }
     tr { border-bottom:1px solid var(--filet); padding:10px 0; }
@@ -112,6 +92,7 @@
     td:first-child { font-weight:700; margin-bottom:4px; }
     td[data-l]::before { content:attr(data-l) " · "; color:var(--sourdine); }
   }
+  @media (max-width:520px) { :root { --t-titre:34px; } }
 </style>
 </head>
 <body>
@@ -126,25 +107,24 @@
       <div class="jeton" style="background:#0a0a0a"><code style="color:#f5f5f5">#0A0A0A</code></div>
       <div class="jeton" style="background:#f5f5f5"><code style="color:#0a0a0a">#F5F5F5</code></div>
       <div class="jeton" style="background:#1d9bf0"><code style="color:#ffffff">#1D9BF0</code></div>
-      <div class="jeton" style="background:#00875a"><code style="color:#ffffff">#00875A</code></div>
-      <div class="jeton" style="background:#d0121e"><code style="color:#ffffff">#D0121E</code></div>
+      <div class="jeton" style="background:#008000"><code style="color:#ffffff">#008000</code></div>
+      <div class="jeton" style="background:#ff0000"><code style="color:#ffffff">#FF0000</code></div>
     </div>
   </div>
 </section>
 <section>
-  <h2>Pilules, étiquettes et puces</h2>
+  <h2>Composants</h2>
   <div class="bloc">
     <div class="rangee">
-      <span class="surtitre">Étape 2 — Audience, France</span>
+      <span class="widget">
+        <span class="chiffre">15,5 M</span>
+        <span class="unite">Touchables 2025</span>
+      </span>
       <span class="badge badge-bleu">Point fort</span>
       <span class="badge badge-vert">Opportunité</span>
       <span class="badge badge-rouge">Point faible</span>
-      <span class="numero">06 / 15</span>
-    </div>
-    <div class="rangee">
-      <span class="puce"><span class="mark"></span>Claude Code — recherche au registre du commerce</span>
       <span class="pilule"><span class="actif">Monde</span><span>France</span></span>
-      <span class="source">Source : Ecommerce Nation (consulté le 06/09/2026), Guide des réseaux sociaux 2025, p. 5</span>
+      <span class="numero">06 / 15</span>
     </div>
   </div>
 </section>
@@ -155,64 +135,32 @@
   <div class="bloc">
     <table>
       <thead><tr>
-        <th style="width:140px">Niveau</th><th style="width:145px">Taille</th><th style="width:70px">Poids</th>
-        <th style="width:105px">Épaisseur</th><th style="width:430px">Usage</th><th>Aperçu</th>
+        <th style="width:170px">Niveau</th><th style="width:110px">Taille</th><th style="width:90px">Poids</th>
+        <th style="width:130px">Épaisseur</th><th style="width:430px">Usage</th><th>Aperçu</th>
       </tr></thead>
       <tbody>
         <tr>
-          <td>Détail</td><td data-l="Taille"><code>12 px · 0,94 vw</code></td><td data-l="Poids"><code>300</code></td><td data-l="Épaisseur">Light</td>
-          <td data-l="Usage">Information secondaire : identifiant d'un compte, précision, ligne de source sous une slide</td>
+          <td>Détail</td><td data-l="Taille"><code>12 px</code></td><td data-l="Poids"><code>300</code></td><td data-l="Épaisseur">Light</td>
+          <td data-l="Usage">Sources, identifiants, précisions</td>
           <td style="font-size:12px;font-weight:300">Cartographie de X</td>
         </tr>
         <tr>
-          <td>Étiquette</td><td data-l="Taille"><code>12 px · 0,94 vw</code></td><td data-l="Poids"><code>700</code></td><td data-l="Épaisseur">Bold</td>
-          <td data-l="Usage">Numéro de slide, unité d'un chiffre, pilules, badges, en-tête de tableau. MAJUSCULES, interlettrage .16em</td>
-          <td style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em">Cartographie de X</td>
-        </tr>
-        <tr>
-          <td>Texte courant</td><td data-l="Taille"><code>14 px · 1,15 vw</code></td><td data-l="Poids"><code>400</code></td><td data-l="Épaisseur">Regular</td>
-          <td data-l="Usage">Phrases, listes, cellules de tableau, corps des cartes. Jamais sous 14 px. Le 700 détache un mot, pas une phrase</td>
+          <td>Texte courant</td><td data-l="Taille"><code>14 px</code></td><td data-l="Poids"><code>400</code></td><td data-l="Épaisseur">Regular</td>
+          <td data-l="Usage">Phrases, listes, cellules de tableau, corps des cartes</td>
           <td style="font-size:14px;font-weight:400">Cartographie de X</td>
         </tr>
         <tr>
-          <td>Titre</td><td data-l="Taille"><code>54 px · 4,2 vw</code></td><td data-l="Poids"><code>700</code></td><td data-l="Épaisseur">Bold</td>
-          <td data-l="Usage">Titre de slide et chiffre clé. Le 800 est réservé au titre de la couverture</td>
-          <td style="font-size:54px;font-weight:700;letter-spacing:-.035em;line-height:1">Cartographie de X</td>
+          <td>Chiffre clé</td><td data-l="Taille"><code>30 px</code></td><td data-l="Poids"><code>500</code></td><td data-l="Épaisseur">Medium</td>
+          <td data-l="Usage">Chiffre des widgets</td>
+          <td style="font-size:30px;font-weight:500;letter-spacing:-.03em;line-height:1">Cartographie de X</td>
+        </tr>
+        <tr>
+          <td>Titre</td><td data-l="Taille"><code>50 px</code></td><td data-l="Poids"><code>600</code></td><td data-l="Épaisseur">Semi-bold</td>
+          <td data-l="Usage">Titre de slide, titre de couverture</td>
+          <td style="font-size:50px;font-weight:600;letter-spacing:-.035em;line-height:1">Cartographie de X</td>
         </tr>
       </tbody>
     </table>
-  </div>
-</section>
-
-<section>
-  <h2>Composants</h2>
-  <div class="bloc">
-    <div class="rangee compo" style="align-items:stretch">
-      <span class="carte" style="flex:0 0 auto">
-        <span class="chiffre chiffre-bas">15,5 M</span>
-        <span class="unite">Touchables, 2025</span>
-      </span>
-      <span class="carte" style="flex:0 0 auto">
-        <span class="chiffre chiffre-haut">12:15</span>
-        <span class="unite">Durée moyenne</span>
-      </span>
-      <span class="carte carte-bleu" style="flex:1;min-width:180px">
-        <p class="corps"><strong>Ce que ça veut dire.</strong> Le trafic monde progresse pendant que l'audience française recule. X rétrécit ici, pas partout.</p>
-      </span>
-      <span class="carte" style="flex:1;min-width:190px">
-        <table style="font-size:var(--t-petit)">
-          <tr><td style="padding:2px 12px 2px 0">Elon Musk <span class="detail">@elonmusk</span></td><td style="text-align:right;font-weight:700;padding:2px 0;white-space:nowrap">241,6 M</td></tr>
-          <tr><td style="padding:2px 12px 2px 0">Barack Obama <span class="detail">@BarackObama</span></td><td style="text-align:right;font-weight:700;padding:2px 0;white-space:nowrap">119,0 M</td></tr>
-          <tr><td style="padding:2px 12px 2px 0">Cristiano Ronaldo <span class="detail">@Cristiano</span></td><td style="text-align:right;font-weight:700;padding:2px 0;white-space:nowrap">114,1 M</td></tr>
-        </table>
-      </span>
-      <span class="cadre" style="flex:0 0 150px">Capture</span>
-      <span class="couverture" style="flex:0 0 300px">
-        <p class="surtitre">R5.MDEE.13 — Stratégie social media</p>
-        <p class="t">Cartographie de X</p>
-        <p class="corps">Image plein écran, voile noir 62 %, titre centré</p>
-      </span>
-    </div>
   </div>
 </section>
 

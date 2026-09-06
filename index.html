@@ -12,11 +12,12 @@
 /* Design System : .claude/skills/slides-design/ds.html — copie locale dans ds.html */
 :root{
   --encre:#0a0a0a; --fond:#f5f5f5; --carte:#fff; --filet:#e4e4e2;
-  --bleu:#1d9bf0; --vert:#00875a; --rouge:#d0121e;
+  --bleu:#1d9bf0; --vert:#008000; --rouge:#ff0000;
   --sourdine:rgba(10,10,10,.55); --tenu:rgba(10,10,10,.38);
-  --fs-xl:clamp(2rem,4.2vw,3.6rem);
-  --fs-md:clamp(14px,1.15vw,1.06rem);
-  --fs-sm:clamp(11px,.92vw,.84rem);
+  --fs-titre:clamp(1.9rem,3.9vw,3.3rem);
+  --fs-chiffre:clamp(22px,2.34vw,2.1rem);
+  --fs-md:clamp(14px,1.09vw,1.05rem);
+  --fs-sm:clamp(11px,.94vw,.84rem);
   --sans:"Plus Jakarta Sans",system-ui,sans-serif;
   --r:20px; --rail:5.2vh;
   --ombre:0 1px 2px rgba(10,10,10,.04),0 8px 24px rgba(10,10,10,.06);
@@ -46,7 +47,7 @@ section:first-of-type{border-top:0}
 .wrap{width:100%;max-width:1500px;margin:0 auto}
 .num{position:absolute;bottom:2.6vh;right:2.6vw;font-size:var(--fs-sm);font-weight:700;
   letter-spacing:.16em;color:var(--tenu)}
-h1,h2{font-size:var(--fs-xl);font-weight:700;letter-spacing:-.035em;line-height:1.04;margin:0 0 .55em}
+h1,h2{font-size:var(--fs-titre);font-weight:600;letter-spacing:-.035em;line-height:1.04;margin:0 0 .55em}
 .sub{color:var(--sourdine);margin:0 0 1.4em;max-width:74ch}
 strong{font-weight:700}
 .hl{color:var(--bleu);font-weight:700}
@@ -71,7 +72,7 @@ strong{font-weight:700}
 .g3{grid-template-columns:repeat(3,1fr)}
 .g4{grid-template-columns:repeat(4,1fr)}
 .g5{grid-template-columns:repeat(5,1fr)}
-.chiffre{font-size:var(--fs-xl);font-weight:700;letter-spacing:-.035em;line-height:1;display:block;white-space:nowrap}
+.chiffre{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.035em;line-height:1;display:block;white-space:nowrap}
 .chiffre.bas{color:var(--rouge)} .chiffre.haut{color:var(--vert)}
 .unite{display:block;margin-top:.5em;font-size:var(--fs-sm);font-weight:700;text-transform:uppercase;
   letter-spacing:.16em;color:var(--sourdine)}
@@ -96,7 +97,7 @@ td.n{font-weight:700;text-align:right;white-space:nowrap}
 #s1 .wrap{max-width:82vw}
 #s1 .mention{font-size:var(--fs-sm);font-weight:700;text-transform:uppercase;letter-spacing:.16em;
   color:#7fcbff;margin:0 0 .9em}
-#s1 h1{font-size:clamp(3rem,9.6vw,7.4rem);font-weight:800;letter-spacing:-.05em;margin:0}
+#s1 h1{font-size:clamp(3rem,9.6vw,7.4rem);font-weight:600;letter-spacing:-.05em;margin:0}
 #s1 .sub{color:#e4e9eb;margin:1em auto 0;max-width:62ch}
 #s1 .meta{font-size:var(--fs-sm);font-weight:300;color:rgba(255,255,255,.62);letter-spacing:.06em;
   text-transform:uppercase;margin-top:2.4em}
@@ -121,7 +122,7 @@ body.notesvues section.ici .notes{display:block}
   .pied{padding-right:0}
   .carte{box-shadow:none}
   .vue.profil{height:auto;aspect-ratio:640/340} .vue.post{height:190px} .vue.large{max-height:230px}
-  h1,h2{font-size:30px} .chiffre{font-size:30px}
+  h1,h2{font-size:32px} .chiffre{font-size:24px}
   body{font-size:14px} .src,.corps,.unite,.detail,th,.ai,.num{font-size:11px}
   .face{width:22px;height:22px} .ai img{width:11px;height:11px}
   #s1{min-height:770px;display:flex;justify-content:center} #s1 h1{font-size:76px}
