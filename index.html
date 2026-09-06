@@ -121,6 +121,16 @@ strong{font-weight:600}
 #s6 .sect-t{position:relative;left:var(--sct-dx,0);top:var(--sct-dy,0);font-size:var(--sct,var(--fs-md))}
 #s6 .sect-p{position:relative;left:var(--scp-dx,0);top:var(--scp-dy,0)}
 #s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
+/* anneau de répartition */
+.anneau{width:13vh;height:13vh;border-radius:50%;flex:0 0 auto;
+  background:conic-gradient(var(--encre) 0 calc(var(--p,50)*1%), #d7dbdd 0);
+  display:grid;place-items:center}
+.anneau i{width:64%;height:64%;border-radius:50%;background:var(--carte);display:grid;place-items:center;
+  font-size:var(--fs-md);font-weight:600;font-style:normal;white-space:nowrap}
+.pays{list-style:none;padding:0;margin:.6em 0 0}
+.pays li{display:flex;justify-content:space-between;gap:1em;padding:.32em 0;border-bottom:1px solid var(--filet)}
+.pays li:last-child{border-bottom:0}
+.ast{font-size:12px;font-weight:300;color:var(--sourdine);margin:.9em 0 0}
 /* classement numéroté, modèle du top 10 Ecommerce Nation */
 .classement{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:5.5vh;margin-top:3vh}
 .rang{display:grid;grid-template-columns:auto 1fr;gap:1.1vw;align-items:center}
@@ -177,6 +187,16 @@ strong{font-weight:600}
 #s6 .sect-t{position:relative;left:var(--sct-dx,0);top:var(--sct-dy,0);font-size:var(--sct,var(--fs-md))}
 #s6 .sect-p{position:relative;left:var(--scp-dx,0);top:var(--scp-dy,0)}
 #s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
+/* anneau de répartition */
+.anneau{width:13vh;height:13vh;border-radius:50%;flex:0 0 auto;
+  background:conic-gradient(var(--encre) 0 calc(var(--p,50)*1%), #d7dbdd 0);
+  display:grid;place-items:center}
+.anneau i{width:64%;height:64%;border-radius:50%;background:var(--carte);display:grid;place-items:center;
+  font-size:var(--fs-md);font-weight:600;font-style:normal;white-space:nowrap}
+.pays{list-style:none;padding:0;margin:.6em 0 0}
+.pays li{display:flex;justify-content:space-between;gap:1em;padding:.32em 0;border-bottom:1px solid var(--filet)}
+.pays li:last-child{border-bottom:0}
+.ast{font-size:12px;font-weight:300;color:var(--sourdine);margin:.9em 0 0}
 /* classement numéroté, modèle du top 10 Ecommerce Nation */
 .classement{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:5.5vh;margin-top:3vh}
 .rang{display:grid;grid-template-columns:auto 1fr;gap:1.1vw;align-items:center}
@@ -488,20 +508,46 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">06 / 16</span>
   <div class="wrap">
     <h2>L'audience mondiale, en juillet 2026</h2>
-    <div class="grille g4" style="margin-bottom:12px">
+    <div class="grille g4" style="margin-bottom:2vh">
       <div class="carte"><span class="chiffre">4,7 Md</span><span class="unite">visites par mois</span></div>
       <div class="carte"><span class="chiffre">5<sup style="font-size:.4em;vertical-align:super">e</sup></span><span class="unite">site mondial</span></div>
       <div class="carte"><span class="chiffre haut">12:15</span><span class="unite">durée moyenne</span></div>
       <div class="carte"><span class="chiffre">69,8 %</span><span class="unite">de trafic direct</span></div>
     </div>
-    <div class="grille g2" style="align-items:start;grid-template-columns:250px 1fr">
-      <img class="vue" src="img/similarweb-ext.png" alt="Panneau de l'extension Similarweb sur x.com" style="max-height:38vh;width:auto;object-fit:contain">
-      <div>
-        <div class="carte" style="margin-bottom:10px;padding:.7em .9em"><p class="corps" style="margin:0"><strong>D'où.</strong> États-Unis 29 %, Japon 11 %, Royaume-Uni 4,5 %, Turquie 3,8 %, Espagne 3,6 %. <strong>La France n'y est pas.</strong></p></div>
-        <div class="carte" style="margin-bottom:10px;padding:.7em .9em"><p class="corps" style="margin:0"><strong>Qui.</strong> 68 % d'hommes, 25 à 34 ans. 14,3 pages par visite : ceux qui viennent restent.</p></div>
-        <div class="carte carte-bleu" style="padding:.7em .9em"><p class="corps" style="margin:0"><strong>Donc.</strong> Le trafic mondial monte de 6,8 % sur un mois pendant que la France recule. X ne rétrécit pas partout, il rétrécit ici.</p></div>
+
+    <div class="grille" style="grid-template-columns:1fr 1fr 1.25fr;gap:1.6vw;align-items:stretch">
+
+      <div class="carte" style="display:flex;flex-direction:column">
+        <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">D'où viennent les visites</span>
+        <ul class="pays">
+          <li><span>États-Unis</span><strong>29,0 %</strong></li>
+          <li><span>Japon</span><strong>10,9 %</strong></li>
+          <li><span>Royaume-Uni</span><strong>4,5 %</strong></li>
+          <li><span>Turquie</span><strong>3,8 %</strong></li>
+          <li><span>Espagne</span><strong>3,6 %</strong></li>
+        </ul>
+        <p class="ast" style="margin-top:auto">* La France n'apparaît dans aucun des cinq premiers pays.</p>
       </div>
+
+      <div class="carte" style="display:flex;flex-direction:column">
+        <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Qui vient</span>
+        <div style="display:flex;align-items:center;gap:1.2vw;margin-top:1em">
+          <span class="anneau" style="--p:68"><i>68 %</i></span>
+          <div>
+            <p class="corps" style="margin:0"><strong>68 % d'hommes</strong></p>
+            <p class="corps" style="margin:0">32 % de femmes</p>
+          </div>
+        </div>
+        <div class="grille g2" style="gap:10px;margin-top:auto">
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">25-34</p><p class="corps" style="margin:.3em 0 0">ans, tranche dominante</p></div>
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">14,3</p><p class="corps" style="margin:.3em 0 0">pages par visite</p></div>
+        </div>
+      </div>
+
+      <img class="vue" src="img/similarweb-ext.png" alt="Panneau de l'extension Similarweb sur x.com" style="width:100%;height:46vh;object-fit:contain;object-position:top;border:0">
+
     </div>
+
     <div class="pied">
       <p class="src">Source : Similarweb (consulté le 06/09/2026), extension Chrome ouverte sur x.com, données de juillet 2026, estimées. Extension ouverte et relevée avec Claude.</p>
     </div>
