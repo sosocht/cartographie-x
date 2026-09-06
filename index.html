@@ -33,7 +33,7 @@ body{margin:0;font-family:var(--sans);font-size:var(--fs-md);font-weight:400;lin
   padding:1.4vh 0;gap:.6vh;z-index:50}
 .rail .mark{width:2.4vh;height:2.4vh;margin-bottom:1.2vh;flex:0 0 auto}
 .rail a{width:2.6vh;height:1.9vh;display:grid;place-items:center;border-radius:6px;
-  font-size:var(--fs-sm);font-weight:700;color:var(--tenu);text-decoration:none;transition:.18s}
+  font-size:var(--fs-sm);font-weight:600;color:var(--tenu);text-decoration:none;transition:.18s}
 .rail a:hover{background:var(--fond);color:var(--sourdine)}
 .rail a.on{color:var(--carte);background:var(--encre)}
 .rail .bar{margin-top:auto;width:.3vh;height:7vh;background:var(--filet);border-radius:2px;overflow:hidden}
@@ -45,14 +45,20 @@ section{min-height:100vh;min-height:100svh;scroll-snap-align:start;scroll-snap-s
   justify-content:center;border-top:1px solid var(--filet);position:relative}
 section:first-of-type{border-top:0}
 .wrap{width:100%;max-width:1500px;margin:0 auto}
-.num{position:absolute;bottom:2.6vh;right:2.6vw;font-size:var(--fs-sm);font-weight:700;
+.num{position:absolute;bottom:2.6vh;right:2.6vw;font-size:var(--fs-sm);font-weight:600;
   letter-spacing:.16em;color:var(--tenu)}
 h1,h2{font-size:var(--fs-titre);font-weight:600;letter-spacing:-.035em;line-height:1.04;margin:0 0 .55em}
 .sub{color:var(--sourdine);margin:0 0 1.4em;max-width:74ch}
-strong{font-weight:700}
-.hl{color:var(--bleu);font-weight:700}
-.hl-v{color:var(--vert);font-weight:700}
-.hl-r{color:var(--rouge);font-weight:700}
+strong{font-weight:600}
+.hl{color:var(--bleu);font-weight:600}
+.hl-v{color:var(--vert);font-weight:600}
+.hl-r{color:var(--rouge);font-weight:600}
+.badge{display:inline-flex;align-items:center;border-radius:999px;padding:.4em .8em;
+  font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.1em;
+  white-space:nowrap;flex:none}
+.badge-bleu{background:rgba(29,155,240,.1);color:var(--bleu)}
+.badge-vert{background:rgba(0,128,0,.1);color:var(--vert)}
+.badge-rouge{background:rgba(255,0,0,.08);color:var(--rouge)}
 
 /* pied de slide : source à gauche, outil d'IA à droite, jamais superposés */
 .pied{display:flex;align-items:center;justify-content:space-between;gap:1.4em;
@@ -74,15 +80,14 @@ strong{font-weight:700}
 .g5{grid-template-columns:repeat(5,1fr)}
 .chiffre{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.035em;line-height:1;display:block;white-space:nowrap}
 .chiffre.bas{color:var(--rouge)} .chiffre.haut{color:var(--vert)}
-.unite{display:block;margin-top:.5em;font-size:var(--fs-sm);font-weight:700;text-transform:uppercase;
-  letter-spacing:.16em;color:var(--sourdine)}
+.unite{display:block;margin-top:.5em;font-size:var(--fs-sm);font-weight:600;color:var(--sourdine)}
 .corps{font-size:var(--fs-sm);color:var(--sourdine);margin:.4em 0 0;line-height:1.45}
 .detail{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine)}
 ul{margin:.35em 0;padding-left:1.05em} li{margin:.28em 0}
 table{border-collapse:collapse;width:100%}
 th,td{text-align:left;padding:.4em .6em;border-bottom:1px solid var(--filet);vertical-align:middle}
-th{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine);font-weight:700}
-td.n{font-weight:700;text-align:right;white-space:nowrap}
+th{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine);font-weight:600}
+td.n{font-weight:600;text-align:right;white-space:nowrap}
 .face{width:2.9vh;height:2.9vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);
   vertical-align:middle;margin-right:.5em;background:var(--fond)}
 .vue{width:100%;border:1px solid var(--filet);border-radius:var(--r);display:block;background:var(--carte)}
@@ -95,7 +100,7 @@ td.n{font-weight:700;text-align:right;white-space:nowrap}
   background-image:linear-gradient(rgba(10,10,10,.62),rgba(10,10,10,.62)),url("img/cover.jpg");
   background-size:cover;background-position:center}
 #s1 .wrap{max-width:82vw}
-#s1 .mention{font-size:var(--fs-sm);font-weight:700;text-transform:uppercase;letter-spacing:.16em;
+#s1 .mention{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;
   color:#7fcbff;margin:0 0 .9em}
 #s1 h1{font-size:clamp(3rem,9.6vw,7.4rem);font-weight:600;letter-spacing:-.05em;margin:0}
 #s1 .sub{color:#e4e9eb;margin:1em auto 0;max-width:62ch}
@@ -283,7 +288,7 @@ body.notesvues section.ici .notes{display:block}
     <h2>L'utilisateur réel et celui qu'une marque doit viser</h2>
     <div class="grille g2">
       <div class="carte">
-        <span class="unite" style="margin-top:0">Persona A · l'utilisateur que X a vraiment</span>
+        <span class="badge badge-bleu" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Persona A · l'utilisateur réel</span>
         <p style="margin:.5em 0 0"><strong>Théo, 27 ans, Lille.</strong> Développeur junior.</p>
         <ul>
           <li>Ouvre X <strong>5 à 8 fois par jour</strong>, sept minutes au total, presque toujours sur mobile.</li>
@@ -294,7 +299,7 @@ body.notesvues section.ici .notes{display:block}
         <p class="corps"><strong>Ce qu'il vaut pour une marque :</strong> de la visibilité, presque aucune conversion.</p>
       </div>
       <div class="carte carte-bleu">
-        <span class="unite" style="margin-top:0;color:var(--bleu)">Persona B · celui qu'une marque doit viser</span>
+        <span class="badge badge-bleu">Persona B · celui que la marque vise</span>
         <p style="margin:.5em 0 0"><strong>Camille, 34 ans, Paris.</strong> Journaliste et spécialiste de son secteur.</p>
         <ul>
           <li>Elle publie et cite, <strong>200 à 2 000 abonnés</strong> mais les bons.</li>
@@ -366,7 +371,7 @@ body.notesvues section.ici .notes{display:block}
     <h2>Les usages pertinents et ceux à écarter</h2>
     <div class="grille g2">
       <div class="carte">
-        <span class="unite" style="margin-top:0;color:var(--vert)">Pertinent</span>
+        <span class="badge badge-vert">Pertinent</span>
         <ul>
           <li><strong>Les événements en direct</strong> : matchs, conférences, lancements, crises.</li>
           <li><strong>Le service client public</strong>, qui inspire plus confiance qu'un formulaire.</li>
@@ -376,7 +381,7 @@ body.notesvues section.ici .notes{display:block}
         </ul>
       </div>
       <div class="carte">
-        <span class="unite" style="margin-top:0;color:var(--rouge)">À écarter</span>
+        <span class="badge badge-rouge">À écarter</span>
         <ul>
           <li><strong>La portée de masse en France</strong> : 15,5 M touchables et en baisse. Préférer Instagram ou TikTok.</li>
           <li><strong>La vente directe</strong> : pas de boutique native et une conversion faible.</li>
@@ -534,7 +539,7 @@ body.notesvues section.ici .notes{display:block}
         <div class="carte"><p class="corps" style="margin:0"><strong>Ce que nous dirions à un client demain.</strong> Garder le compte, réduire le budget, réaffecter la dépense à Instagram, et conserver une personne capable de répondre dans l'heure. Sur X, le temps de réponse est toute la stratégie.</p></div>
       </div>
       <div class="carte carte-bleu">
-        <span class="unite" style="margin-top:0;color:var(--bleu)">Et maintenant, l'ouverture</span>
+        <span class="badge badge-bleu">Et maintenant, l'ouverture</span>
         <p class="corps" style="margin-top:.6em">X a été racheté par un laboratoire d'intelligence artificielle, puis absorbé par une société de fusées. Grok répond déjà à l'intérieur du fil. La vraie question pour 2027 n'est donc pas de savoir si X garde ses utilisateurs.</p>
         <p class="corps"><strong>Elle est de savoir si le prochain X en a encore besoin.</strong> Si le fil peut être écrit et commenté par des intelligences artificielles, un réseau social sans foule n'est plus une contradiction, c'est un produit.</p>
         <p class="corps">C'est la question dont nous aimerions entendre la classe débattre.</p>
