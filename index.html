@@ -94,7 +94,7 @@ strong{font-weight:600}
 #s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 #s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
 #s11 .col .ab{font-size:var(--ab,var(--fs-chiffre));position:relative;left:var(--ab-dx,0);top:var(--ab-dy,0)}
-#s11 .col .shot{width:var(--img,100%);height:var(--imgh,34vh);object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
+#s11 .col .shot{width:100%;height:var(--img,34vh);object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
 #s11 .col .lg{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 .col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
 .col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
@@ -136,7 +136,7 @@ strong{font-weight:600}
 #s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 #s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
 #s11 .col .ab{font-size:var(--ab,var(--fs-chiffre));position:relative;left:var(--ab-dx,0);top:var(--ab-dy,0)}
-#s11 .col .shot{width:var(--img,100%);height:var(--imgh,34vh);object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
+#s11 .col .shot{width:100%;height:var(--img,34vh);object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
 #s11 .col .lg{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 .col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
 .col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
@@ -253,6 +253,7 @@ td.n{font-weight:600;text-align:right;white-space:nowrap}
 #s1 .tw{text-align:center}
 .twr{position:relative;left:var(--dx,0%);top:var(--dy,0%)}
 img.twr{width:var(--l,100%);height:auto}
+img.twr.h,#s11 .col .shot.twr.h{width:100%;height:var(--l,30vh);object-fit:contain;left:var(--dx,0);top:var(--dy,0)}
 #s1 .mention{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:#7fcbff}
 #s1 h1{font-size:clamp(3rem,9.6vw,7.4rem);font-weight:600;letter-spacing:-.05em;line-height:1}
 #s1 .sub{color:#e4e9eb}
@@ -723,11 +724,11 @@ body.notesvues section.ici .notes{display:block}
     </div>
 
     <div class="vue-bloc" id="v-posts" hidden>
-      <div class="grille g5"><div class="col"><img class="shot twr" data-tw="post-boseman" style="margin-top:0" src="img/post-boseman.png" alt="Publication de @chadwickboseman">
-        <p class="lg">Sa famille annonce sa mort</p><p class="ps detail">@chadwickboseman</p><p class="ab">6,6 M</p></div><div class="col"><img class="shot twr" data-tw="post-musk" style="margin-top:0" src="img/post-musk-coca.png" alt="Publication de @elonmusk">
-        <p class="lg">« Je rachète Coca-Cola »</p><p class="ps detail">@elonmusk</p><p class="ab">4,3 M</p></div><div class="col"><img class="shot twr" data-tw="post-obama" style="margin-top:0" src="img/post-obama.png" alt="Publication de @BarackObama">
-        <p class="lg">Citation de Nelson Mandela</p><p class="ps detail">@BarackObama</p><p class="ab">3,6 M</p></div><div class="col"><img class="shot twr" data-tw="post-greta" style="margin-top:0" src="img/post-greta.png" alt="Publication de @GretaThunberg">
-        <p class="lg">Réponse à Andrew Tate</p><p class="ps detail">@GretaThunberg</p><p class="ab">3,5 M</p></div><div class="col"><img class="shot twr" data-tw="post-biden" style="margin-top:0" src="img/post-biden.png" alt="Publication de @JoeBiden">
+      <div class="grille g5"><div class="col"><img class="shot twr h" data-tw="post-boseman" style="--l:30vh;margin-top:0" src="img/post-boseman.png" alt="Publication de @chadwickboseman">
+        <p class="lg">Sa famille annonce sa mort</p><p class="ps detail">@chadwickboseman</p><p class="ab">6,6 M</p></div><div class="col"><img class="shot twr h" data-tw="post-musk" style="--l:30vh;margin-top:0" src="img/post-musk-coca.png" alt="Publication de @elonmusk">
+        <p class="lg">« Je rachète Coca-Cola »</p><p class="ps detail">@elonmusk</p><p class="ab">4,3 M</p></div><div class="col"><img class="shot twr h" data-tw="post-obama" style="--l:30vh;margin-top:0" src="img/post-obama.png" alt="Publication de @BarackObama">
+        <p class="lg">Citation de Nelson Mandela</p><p class="ps detail">@BarackObama</p><p class="ab">3,6 M</p></div><div class="col"><img class="shot twr h" data-tw="post-greta" style="--l:30vh;margin-top:0" src="img/post-greta.png" alt="Publication de @GretaThunberg">
+        <p class="lg">Réponse à Andrew Tate</p><p class="ps detail">@GretaThunberg</p><p class="ab">3,5 M</p></div><div class="col"><img class="shot twr h" data-tw="post-biden" style="--l:30vh;margin-top:0" src="img/post-biden.png" alt="Publication de @JoeBiden">
         <p class="lg">« It's a new day in America »</p><p class="ps detail">@JoeBiden</p><p class="ab">3,5 M</p></div></div>
     </div>
 
@@ -745,17 +746,17 @@ body.notesvues section.ici .notes{display:block}
     <h2>Trois comptes, trois inventions</h2>
     <div class="grille g3" style="align-items:start">
       <div class="col">
-        <img class="shot twr" data-tw="compte-openai" style="margin-top:0;height:44vh;object-fit:contain" src="img/openai.png" alt="Compte @OpenAI sur X">
+        <img class="shot twr h" data-tw="compte-openai" style="--l:44vh;margin-top:0" src="img/openai.png" alt="Compte @OpenAI sur X">
         <p class="lg">@OpenAI <span class="detail">5,2 M d'abonnés</span></p>
         <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Salle de presse</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Annonce en texte brut</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Sans communiqué</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Le lancement devient un post</span></div>
       </div>
       <div class="col">
-        <img class="shot twr" data-tw="compte-grok" style="margin-top:0;height:44vh;object-fit:contain" src="img/grok.png" alt="Compte @grok sur X">
+        <img class="shot twr h" data-tw="compte-grok" style="--l:44vh;margin-top:0" src="img/grok.png" alt="Compte @grok sur X">
         <p class="lg">@grok <span class="detail">9,0 M d'abonnés</span></p>
         <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">IA native du réseau</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Répond dans le fil</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">39 M de publications</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">L'outil vit dans le flux</span></div>
       </div>
       <div class="col">
-        <img class="shot twr" data-tw="compte-burgerking" style="margin-top:0;height:44vh;object-fit:contain" src="img/burgerking.png" alt="Compte @BurgerKingFR sur X">
+        <img class="shot twr h" data-tw="compte-burgerking" style="--l:44vh;margin-top:0" src="img/burgerking.png" alt="Compte @BurgerKingFR sur X">
         <p class="lg">@BurgerKingFR <span class="detail">188,7 K d'abonnés</span></p>
         <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Zéro abonnement</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Ton de personne</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Même voix depuis 2013</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Discipline</span></div>
       </div>
@@ -961,7 +962,7 @@ addEventListener('keydown',e=>{
     const f=fam(vise), sec2=vise.closest('section');
     if(f){
       if(e.shiftKey&&(k==='ArrowLeft'||k==='ArrowRight')){
-        const cur=parseFloat(vsec(vise,'--'+f,''))||parseFloat(getComputedStyle(vise)[f==='img'?'width':'fontSize']);
+        const cur=parseFloat(vsec(vise,'--'+f,''))||parseFloat(getComputedStyle(vise)[f==='img'?'height':(f==='pp'?'width':'fontSize')]);
         const nv=cur+(k==='ArrowRight'?1:-1);
         sec2.style.setProperty('--'+f, Math.max(4,nv)+'px');
       } else {
@@ -973,8 +974,9 @@ addEventListener('keydown',e=>{
       ecrire(); return;
     }
     if(e.shiftKey&&(k==='ArrowLeft'||k==='ArrowRight')){
-      const l=(parseFloat(vise.style.getPropertyValue('--l'))||86)+(k==='ArrowRight'?1:-1);
-      vise.style.setProperty('--l',Math.max(10,Math.min(100,l)).toFixed(0)+'%');
+      const brut=px(vise,'--l','86%'); const u=(brut.match(/[a-z%]+$/)||['%'])[0];
+      const l=(parseFloat(brut)||86)+(k==='ArrowRight'?1:-1);
+      vise.style.setProperty('--l',Math.max(4,l).toFixed(0)+u);
     } else if(rel(vise)){
       const p=k==='ArrowLeft'||k==='ArrowRight'?'--dx':'--dy';
       const d=(k==='ArrowRight'||k==='ArrowDown')?pas:-pas;
