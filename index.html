@@ -65,6 +65,22 @@ strong{font-weight:600}
 .pilule span{padding:.5em 1.1em;border-radius:999px;font-size:var(--fs-sm);font-weight:600;
   letter-spacing:.1em;text-transform:uppercase;color:var(--sourdine);transition:.18s}
 .pilule .actif{background:var(--carte);color:var(--encre);box-shadow:0 1px 5px rgba(10,10,10,.18)}
+/* fiche persona */
+.persona{display:grid;grid-template-columns:auto 1fr;gap:1.4vw;align-items:start}
+.persona .vign{width:9vh;height:9vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);background:var(--fond)}
+.persona .nom{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin:.35em 0 0}
+.attrs{margin:.7em 0 0}
+.attrs td{padding:.28em .6em .28em 0;border-bottom:1px solid var(--filet)}
+.attrs td:first-child{color:var(--sourdine);width:7.5em}
+.attrs tr:last-child td{border-bottom:0}
+.bl{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine);margin:1em 0 .35em}
+.jauge{display:grid;grid-template-columns:1fr auto;gap:.6em;align-items:center;margin:.3em 0}
+.jauge span{font-size:var(--fs-sm)}
+.pts{display:flex;gap:.4vh}
+.pts i{width:.95vh;height:.95vh;border-radius:50%;background:var(--filet);display:block}
+.pts i.on{background:var(--bleu)}
+.persona-b .pts i.on{background:var(--bleu)}
+.persona-a .pts i.on{background:var(--encre)}
 .entete{display:flex;align-items:center;justify-content:space-between;gap:1em;margin-bottom:.6em}
 .entete .t{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine)}
 
@@ -77,6 +93,9 @@ strong{font-weight:600}
 .carte{background:var(--carte);border:1px solid var(--filet);border-radius:var(--r);
   box-shadow:var(--ombre);padding:1em 1.15em}
 .carte-bleu{border-color:var(--bleu)}
+#s3 .carte{transition:border-color .18s,box-shadow .18s}
+#s3 .carte:hover{border-color:var(--bleu);box-shadow:0 0 0 1px var(--bleu),var(--ombre)}
+#s3 .carte:hover .chiffre{color:var(--bleu)}
 .grille{display:grid;gap:12px}
 
 /* sommaire : lignes numerotees, sans carte */
@@ -86,6 +105,12 @@ strong{font-weight:600}
 .etape .n{font-size:var(--fs-chiffre);font-weight:500;color:var(--bleu);line-height:1;min-width:1.2em}
 .etape h3{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin:0}
 .etape p{margin:.2em 0 0}
+/* conseils : trois colonnes numerotees, sans carte */
+.conseils{display:grid;grid-template-columns:repeat(3,1fr);column-gap:2.6vw;row-gap:2.4vh}
+.conseil{display:grid;grid-template-columns:auto 1fr;column-gap:1vw;padding-top:1.2vh;border-top:2px solid var(--bleu)}
+.conseil .n{font-size:var(--fs-chiffre);font-weight:500;color:var(--bleu);line-height:1}
+.conseil h3{font-size:var(--fs-md);font-weight:600;line-height:1.25;margin:0}
+.conseil p{margin:.3em 0 0}
 .carte{display:flex;flex-direction:column}
 /* titre de carte : meme niveau typographique que le chiffre */
 .t-carte{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.12;margin:.3em 0 0}
@@ -229,7 +254,11 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">03 / 15</span>
   <div class="wrap">
     <h2>Vingt ans en dix dates</h2>
-    <div class="grille g5" style="grid-auto-rows:20vh">
+    <div class="grille g2" style="grid-template-columns:auto 1fr;align-items:center;margin-bottom:12px">
+      <img src="img/fondateurs.png" alt="Les fondateurs de Twitter" style="height:11vh;width:auto;border-radius:var(--r);border:1px solid var(--filet);display:block">
+      <p class="corps" style="margin:0"><strong>Jack Dorsey, Biz Stone, Evan Williams et Dick Costolo</strong> le jour de l'entrée en bourse, en 2013. Sept ans après le premier message, Twitter vaut 24 milliards de dollars à son premier jour de cotation.</p>
+    </div>
+    <div class="grille g5" style="grid-auto-rows:17vh">
       <div class="carte"><span class="chiffre">2006</span><p class="corps"><strong>Lancement</strong> le 15 juillet, par Jack Dorsey et trois associés.</p></div>
       <div class="carte"><span class="chiffre">2007</span><p class="corps">Le <strong>hashtag</strong> est inventé par un utilisateur, pas par l'entreprise.</p></div>
       <div class="carte"><span class="chiffre">2013</span><p class="corps"><strong>Entrée en bourse</strong> à New York.</p></div>
@@ -242,7 +271,7 @@ body.notesvues section.ici .notes{display:block}
       <div class="carte"><span class="chiffre">2026</span><p class="corps">Février : <strong>xAI fusionne avec SpaceX</strong>. X n'est plus l'activité principale du groupe.</p></div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Wikipédia (consulté le 06/09/2026), article « X (social network) » · CNBC · The New York Times. Dates cherchées avec Claude Code.</p>
+      <p class="src">Sources : Wikipédia (consulté le 06/09/2026), article « X (social network) » · CNBC · The New York Times · photo transmise par Romane. Dates cherchées avec Claude.</p>
     </div>
   </div>
   <div class="notes">N'en garder que trois à l'oral. 2017 : le format double, X est le seul réseau à avoir changé son unité d'écriture. 2023 : le rebranding abandonne l'un des noms les plus connus au monde et le verbe « tweeter » qui allait avec ; la plateforme garde ses utilisateurs mais doit reconstruire sa notoriété sur une lettre. 2025 : xAI, la société d'intelligence artificielle d'Elon Musk qui développe Grok, rachète X ; le réseau devient une source de données et d'audience pour entraîner et diffuser des modèles. Si on demande le DSA : le Digital Services Act est la loi européenne de 2022 qui oblige les très grandes plateformes à la transparence sur la publicité, l'algorithme et la modération ; l'amende de 120 M€ sanctionne des manquements à ces obligations. Si on demande 2026 : xAI fusionne avec SpaceX, le lanceur spatial de Musk, donc X se retrouve dans un groupe dont le métier est l'espace et l'intelligence artificielle, pas le réseau social. 60 secondes.</div>
@@ -266,7 +295,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Pappers (consulté le 06/09/2026), fiche TWITTER FRANCE SAS · CNBC · The New York Times. Registre du commerce interrogé avec Claude Code.</p>
+      <p class="src">Sources : Pappers (consulté le 06/09/2026), fiche TWITTER FRANCE SAS · CNBC · The New York Times. Registre du commerce interrogé avec Claude.</p>
     </div>
   </div>
   <div class="notes">Deux idées, une par colonne. À gauche : X n'est plus une entreprise, c'est une poupée russe. Le réseau appartient à xAI depuis mars 2025, et xAI a fusionné avec SpaceX en février 2026. La stratégie de Musk n'est pas de faire vivre un réseau social, c'est de nourrir une intelligence artificielle avec le seul flux de conversations mondiales en temps réel qu'il possède. À droite, la surprise : la structure française s'appelle encore TWITTER FRANCE SAS, facture 12,9 M€ et se déclare cabinet de relations publiques. Ce n'est pas elle qui vend la publicité, celle-ci part de l'Irlande. Lâcher la phrase : « Le nom n'a jamais changé parce que le nom n'a jamais été le produit. » 80 secondes.</div>
@@ -292,7 +321,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Source : Similarweb (consulté le 06/09/2026), extension Chrome ouverte sur x.com, données de juillet 2026, estimées. Extension ouverte et relevée avec Claude Code.</p>
+      <p class="src">Source : Similarweb (consulté le 06/09/2026), extension Chrome ouverte sur x.com, données de juillet 2026, estimées. Extension ouverte et relevée avec Claude.</p>
     </div>
   </div>
   <div class="notes">Le chiffre qui compte n'est pas 4,7 milliards, c'est 12 minutes 15 et 69,8 % de trafic direct. Personne n'arrive sur X par hasard, on tape l'adresse. C'est une habitude, pas un canal de découverte. Et une habitude, une marque ne l'achète pas en une campagne. 50 secondes.</div>
@@ -326,34 +355,65 @@ body.notesvues section.ici .notes{display:block}
   <div class="wrap">
     <h2>L'utilisateur réel et celui qu'une marque doit viser</h2>
     <div class="grille g2">
-      <div class="carte">
-        <span class="badge badge-bleu" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Persona A · l'utilisateur réel</span>
-        <p style="margin:.5em 0 0"><strong>Théo, 27 ans, Lille.</strong> Développeur junior.</p>
-        <ul>
-          <li>Ouvre X <strong>5 à 8 fois par jour</strong>, sept minutes au total, presque toujours sur mobile.</li>
-          <li><strong>Il lit, il ne publie pas.</strong> Il suit l'actualité, la tech, le football, les mèmes.</li>
-          <li>Il arrive en <strong>direct</strong>, jamais par une recherche. Il met en signet plutôt qu'il n'aime.</li>
-          <li>Il filtre mentalement la publicité : il vient pour le fil, pas pour les marques.</li>
-        </ul>
-        <p class="corps"><strong>Ce qu'il vaut pour une marque :</strong> de la visibilité, presque aucune conversion.</p>
+
+      <div class="carte persona-a">
+        <div class="persona">
+          <img class="vign" src="img/av-elonmusk.jpg" alt="" style="visibility:hidden">
+          <div>
+            <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Persona A · l'utilisateur réel</span>
+            <p class="nom">Théo, 27 ans</p>
+            <p class="detail">Développeur junior à Lille</p>
+          </div>
+        </div>
+        <table class="attrs">
+          <tr><td>Métier</td><td>Développeur junior</td></tr>
+          <tr><td>Ville</td><td>Lille</td></tr>
+          <tr><td>Fréquence</td><td>5 à 8 ouvertures par jour</td></tr>
+          <tr><td>Temps</td><td>7 minutes par jour, sur mobile</td></tr>
+          <tr><td>Arrivée</td><td>En direct, jamais par une recherche</td></tr>
+        </table>
+        <p class="bl">Ce qu'il fait sur X</p>
+        <p class="corps" style="margin:0">Il lit et ne publie pas. Il suit l'actualité, la tech, le football et les mèmes. Il met en signet plutôt qu'il n'aime, et filtre mentalement la publicité.</p>
+        <p class="bl">Ce qui le motive</p>
+        <div class="jauge"><span>S'informer vite</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+        <div class="jauge"><span>Se divertir</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="jauge"><span>Participer, répondre</span><span class="pts"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+        <div class="jauge"><span>Acheter</span><span class="pts"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+        <p class="corps" style="margin-top:.9em"><strong>Ce qu'il vaut pour une marque :</strong> de la visibilité, presque aucune conversion.</p>
       </div>
-      <div class="carte carte-bleu">
-        <span class="badge badge-bleu">Persona B · celui que la marque vise</span>
-        <p style="margin:.5em 0 0"><strong>Camille, 34 ans, Paris.</strong> Journaliste et spécialiste de son secteur.</p>
-        <ul>
-          <li>Elle publie et cite, <strong>200 à 2 000 abonnés</strong> mais les bons.</li>
-          <li>Elle utilise X comme un <strong>outil de veille professionnelle</strong> : sources, concurrents, événements en direct.</li>
-          <li>Elle relaie ce qui est <strong>utile ou drôle</strong> dans l'heure, ou jamais.</li>
-          <li>Un seul partage de sa part vaut mille impressions achetées.</li>
-        </ul>
-        <p class="corps"><strong>Ce qu'elle vaut :</strong> de la crédibilité et une portée au second degré. C'est pour elle que l'on écrit.</p>
+
+      <div class="carte carte-bleu persona-b">
+        <div class="persona">
+          <img class="vign" src="img/av-elonmusk.jpg" alt="" style="visibility:hidden">
+          <div>
+            <span class="badge badge-bleu">Persona B · la cible d'une marque</span>
+            <p class="nom">Camille, 34 ans</p>
+            <p class="detail">Journaliste, spécialiste de son secteur</p>
+          </div>
+        </div>
+        <table class="attrs">
+          <tr><td>Métier</td><td>Journaliste et analyste</td></tr>
+          <tr><td>Ville</td><td>Paris</td></tr>
+          <tr><td>Audience</td><td>200 à 2 000 abonnés, mais les bons</td></tr>
+          <tr><td>Usage</td><td>Veille professionnelle quotidienne</td></tr>
+          <tr><td>Réaction</td><td>Dans l'heure, ou jamais</td></tr>
+        </table>
+        <p class="bl">Ce qu'elle fait sur X</p>
+        <p class="corps" style="margin:0">Elle publie et cite. Elle y suit ses sources, ses concurrents et les événements en direct, et relaie ce qui est utile ou drôle. Un seul partage d'elle vaut mille impressions achetées.</p>
+        <p class="bl">Ce qui la motive</p>
+        <div class="jauge"><span>Veiller sur son secteur</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i></span></div>
+        <div class="jauge"><span>Publier et commenter</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="jauge"><span>Se constituer un réseau</span><span class="pts"><i class="on"></i><i class="on"></i><i class="on"></i><i class="on"></i><i></i></span></div>
+        <div class="jauge"><span>Acheter</span><span class="pts"><i class="on"></i><i></i><i></i><i></i><i></i></span></div>
+        <p class="corps" style="margin-top:.9em"><strong>Ce qu'elle vaut :</strong> de la crédibilité et une portée au second degré. C'est pour elle que l'on écrit.</p>
       </div>
+
     </div>
     <div class="pied">
       <p class="src">Source : les données d'audience des slides précédentes. Lecture des chiffres, pas une étude terrain. Premier jet des deux profils avec ChatGPT, réécrit par nos soins.</p>
     </div>
   </div>
-  <div class="notes">Expliquer pourquoi deux. L'audience que l'on a n'est pas celle pour qui l'on écrit. Sur X, la majorité passive c'est Théo, mais toute la valeur est chez Camille, parce que X est un réseau de relais et non un réseau de portée. Puis la phrase : « Sur X, on ne parle pas à son audience, on parle à ceux qui vont vous répéter. » 60 secondes.</div>
+  <div class="notes">Expliquer pourquoi deux. L'audience que l'on a n'est pas celle pour qui l'on écrit. Sur X, la majorité passive c'est Théo, mais toute la valeur est chez Camille, parce que X est un réseau de relais et non un réseau de portée. Montrer les jauges : Théo ne participe pas et n'achète pas, Camille publie et relaie. Puis la phrase : « Sur X, on ne parle pas à son audience, on parle à ceux qui vont vous répéter. » 60 secondes.</div>
 </section>
 
 <!-- 8 · SECTEURS -->
@@ -382,17 +442,13 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">09 / 15</span>
   <div class="wrap">
     <h2>Se lancer sur X : nos six recommandations</h2>
-    <div class="grille g2">
-      <div>
-        <div class="carte" style="margin-bottom:10px"><p class="corps" style="margin:0"><strong>1. Publier tous les jours, ou ne pas commencer.</strong> Un à trois messages par jour. Sur un réseau construit sur la fraîcheur, un rythme hebdomadaire passe inaperçu.</p></div>
-        <div class="carte" style="margin-bottom:10px"><p class="corps" style="margin:0"><strong>2. Répondre avant de publier.</strong> Passer le premier mois à répondre aux autres. Les réponses ne coûtent rien et c'est ainsi qu'un nouveau compte est réellement découvert.</p></div>
-        <div class="carte"><p class="corps" style="margin:0"><strong>3. Le texte d'abord, l'image ensuite.</strong> X est le seul grand réseau où une phrase seule dépasse encore un visuel travaillé. Garder l'image pour la preuve, pas pour la décoration.</p></div>
-      </div>
-      <div>
-        <div class="carte" style="margin-bottom:10px"><p class="corps" style="margin:0"><strong>4. Une voix, pas une voix de marque.</strong> Burger King France ne suit <span class="hl">aucun</span> compte et écrit comme une personne. Cela fonctionne parce que c'est constant, pas parce que c'est drôle.</p></div>
-        <div class="carte" style="margin-bottom:10px"><p class="corps" style="margin:0"><strong>5. Suivre l'événement, jamais le calendrier.</strong> Un message publié 40 minutes après un match vaut dix messages programmés un mois à l'avance.</p></div>
-        <div class="carte"><p class="corps" style="margin:0"><strong>6. Mesurer les signets et les réponses</strong>, pas les mentions « j'aime ». Un « j'aime » est poli, un signet signifie utile, une réponse signifie vivant.</p></div>
-      </div>
+    <div class="conseils">
+      <div class="conseil"><span class="n">01</span><div><h3>Publier tous les jours, ou ne pas commencer</h3><p class="corps">Un à trois messages par jour. Sur un réseau construit sur la fraîcheur, un rythme hebdomadaire passe inaperçu.</p></div></div>
+      <div class="conseil"><span class="n">02</span><div><h3>Répondre avant de publier</h3><p class="corps">Passer le premier mois à répondre aux autres. Les réponses ne coûtent rien et c'est ainsi qu'un nouveau compte est découvert.</p></div></div>
+      <div class="conseil"><span class="n">03</span><div><h3>Le texte d'abord, l'image ensuite</h3><p class="corps">X est le seul grand réseau où une phrase seule dépasse un visuel travaillé. Garder l'image pour la preuve, pas pour la décoration.</p></div></div>
+      <div class="conseil"><span class="n">04</span><div><h3>Une voix, pas une voix de marque</h3><p class="corps">Burger King France ne suit <span class="hl">aucun</span> compte et écrit comme une personne. Cela marche parce que c'est constant, pas parce que c'est drôle.</p></div></div>
+      <div class="conseil"><span class="n">05</span><div><h3>Suivre l'événement, jamais le calendrier</h3><p class="corps">Un message publié 40 minutes après un match vaut dix messages programmés un mois à l'avance.</p></div></div>
+      <div class="conseil"><span class="n">06</span><div><h3>Mesurer les signets et les réponses</h3><p class="corps">Un « j'aime » est poli, un signet signifie utile, une réponse signifie vivant. Les trois ne disent pas la même chose.</p></div></div>
     </div>
     <div class="pied">
       <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · X (consulté le 06/09/2026), comptes observés. Liste soumise à ChatGPT, trois conseils génériques écartés.</p>
@@ -481,7 +537,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : X (consulté le 06/09/2026), captures des profils et des publications · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. Chiffres vérifiés sur les profils avec Claude Code.</p>
+      <p class="src">Sources : X (consulté le 06/09/2026), captures des profils et des publications · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. Chiffres vérifiés sur les profils avec Claude.</p>
     </div>
   </div>
   <div class="notes">Montrer le tableau Monde, basculer sur France d'un clic, puis livrer la seule phrase qui compte : aucune des cinq publications les plus aimées de l'histoire de la plateforme n'est une publication de marque. Trois relèvent du deuil ou de la politique. Sur X, une marque ne gagnera jamais le fil, elle peut seulement être utile à l'intérieur du moment de quelqu'un d'autre. 60 secondes.</div>
@@ -507,7 +563,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Source : X (consulté le 06/09/2026), captures des trois profils dans les mêmes conditions d'affichage. Profils capturés avec Claude Code.</p>
+      <p class="src">Source : X (consulté le 06/09/2026), captures des trois profils dans les mêmes conditions d'affichage. Profils capturés avec Claude.</p>
     </div>
   </div>
   <div class="notes">Développer Burger King, c'est le cas actionnable pour une marque française. Zéro abonnement n'est pas un détail, c'est une déclaration : le compte est un diffuseur, pas un membre de la communauté. C'est l'inverse de tous les manuels de social media, et cela fonctionne. Poser la question à la salle : oseriez-vous recommander cela à un client ? 60 secondes.</div>
