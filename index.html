@@ -60,6 +60,13 @@ strong{font-weight:600}
 .badge-bleu{background:rgba(29,155,240,.1);color:var(--bleu)}
 .badge-vert{background:rgba(0,128,0,.1);color:var(--vert)}
 .badge-rouge{background:rgba(255,0,0,.08);color:var(--rouge)}
+.pilule{display:inline-flex;gap:2px;padding:3px;border-radius:999px;border:1px solid var(--filet);
+  background:rgba(10,10,10,.05);cursor:pointer;user-select:none}
+.pilule span{padding:.5em 1.1em;border-radius:999px;font-size:var(--fs-sm);font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--sourdine);transition:.18s}
+.pilule .actif{background:var(--carte);color:var(--encre);box-shadow:0 1px 5px rgba(10,10,10,.18)}
+.entete{display:flex;align-items:center;justify-content:space-between;gap:1em;margin-bottom:.6em}
+.entete .t{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine)}
 
 /* pied de slide : source à gauche, outil d'IA à droite, jamais superposés */
 .pied{margin-top:1.4em;padding-right:6em}
@@ -307,7 +314,7 @@ body.notesvues section.ici .notes{display:block}
       <div class="carte"><p class="corps" style="margin:0"><strong>Par genre.</strong> 62 à 66 % d'hommes selon l'année. C'est l'audience la plus déséquilibrée de tous les grands réseaux français.</p></div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guide des réseaux sociaux 2024 p. 8 et 2025 p. 5 · Statista, janvier 2025 et 2024.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 p. 8 et 2025 p. 5 · Statista (consulté le 06/09/2026), janvier 2025 et 2024.</p>
     </div>
   </div>
   <div class="notes">Deux chiffres, une phrase. Moins deux millions de personnes touchables en un an, et sept minutes par jour. Puis le retournement : c'est pourtant le réseau où la génération Z est la plus sur-représentée. Donc X est petit, masculin, jeune et intense. Une marque qui le traite comme un média de masse se trompe d'outil. 60 secondes.</div>
@@ -343,7 +350,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Personas construits à partir des données d'audience présentées dans les slides précédentes. Ce n'est pas une étude terrain mais une lecture des chiffres. Premier jet des deux profils avec ChatGPT, réécrits par nos soins.</p>
+      <p class="src">Source : les données d'audience des slides précédentes. Lecture des chiffres, pas une étude terrain. Premier jet des deux profils avec ChatGPT, réécrit par nos soins.</p>
     </div>
   </div>
   <div class="notes">Expliquer pourquoi deux. L'audience que l'on a n'est pas celle pour qui l'on écrit. Sur X, la majorité passive c'est Théo, mais toute la valeur est chez Camille, parce que X est un réseau de relais et non un réseau de portée. Puis la phrase : « Sur X, on ne parle pas à son audience, on parle à ceux qui vont vous répéter. » 60 secondes.</div>
@@ -364,7 +371,7 @@ body.notesvues section.ici .notes{display:block}
     </div>
     <div class="carte carte-bleu"><p class="corps" style="margin:0"><strong>Le point commun n'est pas un secteur, c'est une horloge.</strong> X domine partout où la valeur d'un message s'effondre au bout d'une heure. Si votre message est encore pertinent demain, publiez-le ailleurs.</p></div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 p. 8-9 et 2025 p. 5 · SocialHub Magazine n° 6, 2026.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 p. 8-9 et 2025 p. 5 · SocialHub Magazine (consulté le 06/09/2026), n° 6, 2026.</p>
     </div>
   </div>
   <div class="notes">Ne pas énumérer les six secteurs, la salle décroche. En donner deux, puis sauter directement à l'idée de l'horloge, c'est l'analyse que la consigne attend. « X n'est pas une plateforme de secteur, c'est une plateforme d'échéance. » 45 secondes.</div>
@@ -388,7 +395,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · comptes observés sur la plateforme le 06/09/2026. Liste soumise à ChatGPT, trois conseils génériques écartés.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · X (consulté le 06/09/2026), comptes observés. Liste soumise à ChatGPT, trois conseils génériques écartés.</p>
     </div>
   </div>
   <div class="notes">C'est la partie pratique, le professeur la demande explicitement. Dire à l'oral les conseils 1, 2 et 6, ce sont les contre-intuitifs. Insister sur « répondre avant de publier » : c'est gratuit, et personne ne le fait. 60 secondes.</div>
@@ -422,7 +429,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 et 2025 · Commission européenne, décision DSA de décembre 2025.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 et 2025 · Commission européenne (consulté le 06/09/2026), décision DSA de décembre 2025.</p>
     </div>
   </div>
   <div class="notes">La colonne de droite est celle que l'on retiendra. Dire la dernière ligne à voix haute : « Si votre marque ne peut pas se permettre d'apparaître à côté de n'importe quoi, X n'est pas un canal, c'est un risque. » 45 secondes.</div>
@@ -432,46 +439,52 @@ body.notesvues section.ici .notes{display:block}
 <section id="s11">
   <span class="num">11 / 15</span>
   <div class="wrap">
-    <h2>Les comptes les plus suivis et les publications les plus aimées</h2>
-    <div class="grille g2" style="align-items:start">
+    <h2>Les comptes et publications les plus aimés</h2>
+    <div class="grille g2" style="align-items:start;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)">
       <div>
-        <table>
-          <tr><th colspan="2">Les plus suivis dans le monde</th><th style="text-align:right">Abonnés</th></tr>
+        <div class="entete">
+          <span class="t">Les comptes les plus suivis</span>
+          <span class="pilule" id="bascule"><span class="actif" data-vue="monde">Monde</span><span data-vue="france">France</span></span>
+        </div>
+        <table id="t-monde">
+          <tr><th colspan="2">Compte</th><th style="text-align:right">Abonnés</th></tr>
           <tr><td><img class="face" src="img/av-elonmusk.jpg" alt=""></td><td>Elon Musk <span class="detail">@elonmusk</span></td><td class="n">241,6 M</td></tr>
           <tr><td><img class="face" src="img/av-BarackObama.jpg" alt=""></td><td>Barack Obama <span class="detail">@BarackObama</span></td><td class="n">119,0 M</td></tr>
           <tr><td><img class="face" src="img/av-Cristiano.jpg" alt=""></td><td>Cristiano Ronaldo <span class="detail">@Cristiano</span></td><td class="n">114,1 M</td></tr>
           <tr><td><img class="face" src="img/av-realDonaldTrump.jpg" alt=""></td><td>Donald Trump <span class="detail">@realDonaldTrump</span></td><td class="n">111,7 M</td></tr>
           <tr><td><img class="face" src="img/av-narendramodi.jpg" alt=""></td><td>Narendra Modi <span class="detail">@narendramodi</span></td><td class="n">107,1 M</td></tr>
         </table>
-        <table style="margin-top:10px">
-          <tr><th colspan="2">Les plus suivis en France</th><th style="text-align:right">Abonnés</th></tr>
+        <table id="t-france" hidden>
+          <tr><th colspan="2">Compte</th><th style="text-align:right">Abonnés</th></tr>
           <tr><td><img class="face" src="img/av-KMbappe.jpg" alt=""></td><td>Kylian Mbappé <span class="detail">@KMbappe</span></td><td class="n">23,7 M</td></tr>
           <tr><td><img class="face" src="img/av-davidguetta.jpg" alt=""></td><td>David Guetta <span class="detail">@davidguetta</span></td><td class="n">15,4 M</td></tr>
           <tr><td><img class="face" src="img/av-PSG_inside.jpg" alt=""></td><td>Paris Saint-Germain <span class="detail">@PSG_inside</span></td><td class="n">14,8 M</td></tr>
         </table>
+        <div class="carte carte-bleu" style="margin-top:1em"><p class="corps" style="margin:0"><strong>Aucune des cinq publications n'est une publication de marque.</strong> Trois relèvent du deuil ou de la politique, une est une plaisanterie, une est une réponse à une provocation. C'est le plafond de la plateforme.</p></div>
       </div>
       <div>
-        <table>
-          <tr><th>Les publications les plus aimées de l'histoire</th><th style="text-align:right">Mentions</th></tr>
+        <span class="t" style="font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine)">Les publications les plus aimées de l'histoire</span>
+        <table style="margin-top:.6em">
           <tr><td>La famille de Chadwick Boseman annonce sa mort <span class="detail">août 2020</span></td><td class="n">6,6 M</td></tr>
           <tr><td>Elon Musk, « je rachète Coca-Cola » <span class="detail">avril 2022</span></td><td class="n">4,3 M</td></tr>
           <tr><td>Barack Obama, citation de Nelson Mandela <span class="detail">août 2017</span></td><td class="n">3,6 M</td></tr>
           <tr><td>Greta Thunberg répond à Andrew Tate <span class="detail">décembre 2022</span></td><td class="n">3,5 M</td></tr>
           <tr><td>Joe Biden, « a new day in America » <span class="detail">janvier 2021</span></td><td class="n">3,5 M</td></tr>
         </table>
-        <div class="grille g3" style="margin-top:10px">
+        <div class="grille g5" style="margin-top:.9em">
           <img class="vue post" src="img/post-boseman.png" alt="Publication de Chadwick Boseman">
           <img class="vue post" src="img/post-musk-coca.png" alt="Publication d'Elon Musk">
           <img class="vue post" src="img/post-obama.png" alt="Publication de Barack Obama">
+          <img class="vue post" src="img/post-greta.png" alt="Publication de Greta Thunberg">
+          <img class="vue post" src="img/post-biden.png" alt="Publication de Joe Biden">
         </div>
-        <p class="corps"><strong>Aucune des cinq n'est une publication de marque.</strong> Trois relèvent du deuil ou de la politique, une est une plaisanterie, une est une réponse à une provocation. C'est le plafond de la plateforme.</p>
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : captures faites sur la plateforme le 06/09/2026 · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. Chiffres vérifiés sur les profils en direct avec Claude Code.</p>
+      <p class="src">Sources : X (consulté le 06/09/2026), captures des profils et des publications · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. Chiffres vérifiés sur les profils avec Claude Code.</p>
     </div>
   </div>
-  <div class="notes">Montrer les deux tableaux cinq secondes, puis livrer la seule phrase qui compte : aucune des cinq publications les plus aimées de l'histoire de la plateforme n'est une publication de marque. Trois relèvent du deuil ou de la politique. Sur X, une marque ne gagnera jamais le fil, elle peut seulement être utile à l'intérieur du moment de quelqu'un d'autre. 60 secondes.</div>
+  <div class="notes">Montrer le tableau Monde, basculer sur France d'un clic, puis livrer la seule phrase qui compte : aucune des cinq publications les plus aimées de l'histoire de la plateforme n'est une publication de marque. Trois relèvent du deuil ou de la politique. Sur X, une marque ne gagnera jamais le fil, elle peut seulement être utile à l'intérieur du moment de quelqu'un d'autre. 60 secondes.</div>
 </section>
 
 <!-- 12 · COMPTES -->
@@ -494,7 +507,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Source : captures faites sur la plateforme le 06/09/2026, dans les mêmes conditions d'affichage pour les trois comptes. Profils capturés avec Claude Code.</p>
+      <p class="src">Source : X (consulté le 06/09/2026), captures des trois profils dans les mêmes conditions d'affichage. Profils capturés avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">Développer Burger King, c'est le cas actionnable pour une marque française. Zéro abonnement n'est pas un détail, c'est une déclaration : le compte est un diffuseur, pas un membre de la communauté. C'est l'inverse de tous les manuels de social media, et cela fonctionne. Poser la question à la salle : oseriez-vous recommander cela à un client ? 60 secondes.</div>
@@ -550,7 +563,7 @@ body.notesvues section.ici .notes{display:block}
     </table>
     <div class="carte carte-bleu" style="margin-top:12px"><p class="corps" style="margin:0"><strong>Notre recommandation pour un lancement.</strong> X Pro pour surveiller, Buffer pour publier, et une alerte Mention gratuite sur le nom de la marque. Moins de 20 € par mois au total. Hootsuite seulement lorsque plusieurs personnes doivent valider une publication : l'outil est un symptôme de l'équipe, pas du réseau.</p></div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), onglet Outils du Guide 2024 et Guide 2025 p. 5 · pages tarifaires publiques des éditeurs.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), onglet Outils du Guide 2024 et Guide 2025 p. 5 · pages tarifaires des éditeurs (consultées le 06/09/2026).</p>
     </div>
   </div>
   <div class="notes">Le professeur a annoncé qu'il insisterait sur les outils pour cette première présentation : livrer la recommandation, pas la liste. La dernière phrase est l'argument : « l'outil est un symptôme de l'équipe, pas du réseau. » 60 secondes.</div>
@@ -574,7 +587,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Pas de résumé, conformément à la consigne. Notre lecture des chiffres présentés dans les slides précédentes. Position contre-argumentée avec ChatGPT, objection conservée.</p>
+      <p class="src">Source : les chiffres présentés dans les slides précédentes. Pas de résumé, conformément à la consigne. Position contre-argumentée avec ChatGPT, objection conservée.</p>
     </div>
   </div>
   <div class="notes">Ralentir. Poser trois phrases et s'arrêter : « X n'est plus un endroit où l'on est vu, c'est un endroit où l'on est cité. » Puis : « Gardez le compte, réduisez le budget, gardez le temps de réponse. » Puis : « La question de 2027 est de savoir si le prochain X a encore besoin de ses utilisateurs. » Et se taire. Le silence est la fin. 70 secondes.</div>
@@ -615,6 +628,15 @@ body.notesvues section.ici .notes{display:block}
 <div class="panneau" id="panneau"></div>
 
 <script>
+/* ---- bascule Monde / France de la slide 11 ---- */
+const bascule=document.getElementById('bascule');
+if(bascule) bascule.addEventListener('click',e=>{
+  const b=e.target.closest('[data-vue]'); if(!b)return;
+  bascule.querySelectorAll('span').forEach(x=>x.classList.toggle('actif',x===b));
+  document.getElementById('t-monde').hidden = b.dataset.vue!=='monde';
+  document.getElementById('t-france').hidden = b.dataset.vue!=='france';
+});
+
 /* ---- mode reglage : T pour entrer et sortir, glisser pour deplacer,
        fleches pour ajuster de 0,5 % (0,1 % avec Maj), C pour copier ---- */
 let vise=null;
