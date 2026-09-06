@@ -3,100 +3,212 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Design System — Mapping X</title>
+<title>Design System — Slides</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
 <style>
-:root{
-  /* ---- 3 couleurs (celles de la plateforme, rien d'inventé) ---- */
-  --ink:#0F1419;      /* noir du texte de X */
-  --blue:#1D9BF0;     /* bleu de X : les chiffres qui montent, les liens */
-  --red:#F4212E;      /* rouge du coeur de X : les chiffres qui baissent, les alertes */
-  /* ---- neutres ---- */
-  --paper:#FFFFFF;
-  --ground:#F7F9F9;   /* fond de X en clair */
-  --line:#E4E9EB;
-  --muted:#536471;    /* gris secondaire de X */
-  /* ---- 3 tailles de police, pas une de plus ---- */
-  --fs-xl:clamp(2rem,4.6vw,3.6rem);
-  --fs-md:clamp(.95rem,1.28vw,1.12rem);
-  --fs-sm:clamp(.7rem,.92vw,.8rem);
-  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
-  --r:16px;
-  --shadow:0 1px 2px rgba(15,20,25,.04),0 8px 24px rgba(15,20,25,.06);
-}
-*{box-sizing:border-box}
-body{margin:0;font-family:var(--sans);font-size:var(--fs-md);color:var(--ink);background:var(--ground);line-height:1.55}
-main{max-width:900px;margin:0 auto;padding:6vh 5vw}
-h1{font-size:var(--fs-xl);font-weight:800;letter-spacing:-.03em;margin:0 0 .2em}
-h2{font-size:var(--fs-md);font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:3.2em 0 1em;padding-bottom:.6em;border-bottom:1px solid var(--line)}
-p{max-width:62ch}
-.lead{color:var(--muted)}
-.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:1.4em 1.6em;margin:.8em 0}
-.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
-.sw{height:74px;border-radius:12px;display:flex;align-items:flex-end;padding:.5em .7em;color:#fff;font-size:var(--fs-sm);font-weight:700}
-.eyebrow{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.16em;font-weight:700;color:var(--blue)}
-.stat{font-size:var(--fs-xl);font-weight:800;letter-spacing:-.03em;line-height:1}
-.down{color:var(--red)} .up{color:var(--blue)}
-table{border-collapse:collapse;width:100%;font-size:var(--fs-md)}
-th,td{text-align:left;padding:.6em .8em;border-bottom:1px solid var(--line)}
-th{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
-code{font-size:var(--fs-sm);background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:.15em .45em}
+  :root {
+    --encre:#0a0a0a; --fond:#f5f5f5; --carte:#ffffff;
+    --bleu:#1d9bf0; --vert:#00ba7c; --rouge:#f4212e;
+    --bleu-doux:rgba(29,155,240,.1); --vert-doux:rgba(0,186,124,.12); --rouge-doux:rgba(244,33,46,.1);
+    --sourdine:rgba(10,10,10,.55); --filet:#e4e4e2; --separateur:rgba(10,10,10,.28);
+    --t-titre:54px; --t-texte:17px; --t-etiquette:12px;
+  }
+  * { box-sizing:border-box; }
+  body {
+    margin:0; padding:16px 24px 24px;
+    font-family:"Plus Jakarta Sans", system-ui, sans-serif;
+    font-size:var(--t-texte); font-weight:400; line-height:1.45;
+    background:var(--fond); color:var(--encre);
+    -webkit-font-smoothing:antialiased;
+  }
+  h1 {
+    font-size:var(--t-titre); font-weight:800; line-height:1; letter-spacing:-.035em;
+    margin:0; padding-bottom:15px; text-align:center;
+    border-bottom:1.5px solid var(--separateur);
+  }
+  h2 { font-size:var(--t-etiquette); font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--sourdine); margin:0 0 10px; }
+
+  .haut { display:grid; grid-template-columns:auto 1fr; gap:30px; align-items:stretch; }
+  .haut, body > section { padding-top:30px; padding-bottom:30px; border-bottom:1.5px solid var(--separateur); }
+  .haut { padding-top:30px; }
+  body > section:last-of-type { padding-bottom:0; border-bottom:0; }
+  .haut > section { padding:0; border:0; display:flex; flex-direction:column; min-width:0; }
+  .haut > section:last-child { border-left:1.5px solid var(--separateur); padding-left:30px; }
+  .bloc { border:1px solid var(--filet); border-radius:14px; padding:9px 11px; }
+  .haut > section .bloc { width:fit-content; }
+  .rangee { display:flex; flex-wrap:wrap; align-items:center; gap:10px; }
+  .rangee + .rangee { margin-top:8px; }
+  .compo { flex-wrap:nowrap; }
+
+  /* Couleurs — carrés jointifs, même taille */
+  .couleurs { display:flex; flex-wrap:wrap; gap:0; border-radius:8px; overflow:hidden; }
+  .jeton { display:flex; align-items:center; justify-content:center; width:88px; height:58px; flex:0 0 auto; }
+  .jeton code { font-family:ui-monospace, Menlo, monospace; font-size:var(--t-etiquette); letter-spacing:-.02em; }
+
+  /* Typographie */
+  table { width:100%; border-collapse:collapse; }
+  th { text-align:left; font-size:var(--t-etiquette); font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--sourdine); padding:0 14px 8px 0; border-bottom:1px solid var(--filet); }
+  td { padding:6px 14px 6px 0; border-bottom:1px solid var(--filet); vertical-align:middle; }
+  tr:last-child td { border-bottom:0; padding-bottom:0; }
+  td code { font-family:ui-monospace, Menlo, monospace; color:var(--sourdine); font-size:var(--t-etiquette); }
+
+  /* Pilules, étiquettes, puces — les éléments en ligne d'une slide */
+  .surtitre { font-size:var(--t-etiquette); font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--bleu); }
+  .source { font-size:var(--t-etiquette); font-weight:400; color:var(--sourdine); }
+  .numero { font-size:var(--t-etiquette); font-weight:700; letter-spacing:.1em; color:rgba(10,10,10,.35); }
+  .puce { display:inline-flex; align-items:center; gap:.5em; font-size:var(--t-etiquette); color:var(--sourdine); background:var(--carte); border:1px solid var(--filet); border-radius:999px; padding:.45em .9em; white-space:nowrap; flex:none; }
+  .puce span.mark { width:13px; height:13px; border-radius:3px; background:#d97757; flex:none; }
+  .badge { display:inline-flex; align-items:center; border-radius:999px; padding:.35em .9em; font-size:var(--t-etiquette); font-weight:700; text-transform:uppercase; letter-spacing:.1em; white-space:nowrap; flex:none; }
+  .badge-bleu { background:var(--bleu-doux); color:var(--bleu); }
+  .badge-vert { background:var(--vert-doux); color:var(--vert); }
+  .badge-rouge { background:var(--rouge-doux); color:var(--rouge); }
+  .pilule { display:inline-flex; gap:2px; padding:3px; border-radius:999px; border:1px solid var(--filet); background:rgba(10,10,10,.05); }
+  .pilule span { padding:.5em 1em; border-radius:999px; font-size:var(--t-etiquette); font-weight:700; letter-spacing:.1em; color:var(--sourdine); }
+  .pilule .actif { background:var(--carte); color:var(--encre); box-shadow:0 1px 5px rgba(0,0,0,.18); }
+
+  /* Composants de slide */
+  .duo { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+  .carte { background:var(--carte); border:1px solid var(--filet); border-radius:16px; padding:11px 14px; }
+  .carte-bleu { border-color:var(--bleu); }
+  .chiffre { font-size:var(--t-titre); font-weight:800; letter-spacing:-.035em; line-height:1; display:block; white-space:nowrap; }
+  .chiffre-bas { color:var(--rouge); }
+  .chiffre-haut { color:var(--vert); }
+  .unite { display:block; margin-top:8px; font-size:var(--t-etiquette); font-weight:700; text-transform:uppercase; letter-spacing:.16em; color:var(--sourdine); }
+  .carte p { margin:0; }
+  .carte .corps { font-size:var(--t-etiquette); color:var(--sourdine); line-height:1.4; }
+  .cadre { border:1px solid var(--filet); border-radius:12px; background:var(--carte); height:100%; min-height:78px; padding:0 14px; display:flex; align-items:center; justify-content:center; font-size:var(--t-etiquette); color:var(--sourdine); }
+  /* Slide de couverture : seule surface sombre du système */
+  .couverture { background:var(--encre); border-radius:16px; padding:14px 16px; text-align:center; color:#fff; }
+  .couverture .surtitre { color:#7fcbff; }
+  .couverture .t { font-size:32px; font-weight:800; letter-spacing:-.045em; line-height:1; margin:5px 0; }
+  .couverture .corps { font-size:var(--t-etiquette); color:rgba(255,255,255,.75); }
+
+  @media (max-width:1100px) {
+    .compo { flex-wrap:wrap; }
+    .compo > * { flex:1 1 210px !important; }
+  }
+  @media (max-width:1000px) {
+    .haut { grid-template-columns:1fr; gap:30px; }
+    .haut > section:last-child { border-left:0; padding-left:0; padding-top:30px; border-top:1.5px solid var(--separateur); }
+    .haut > section .bloc { width:100%; }
+    .duo { grid-template-columns:1fr; }
+  }
+  @media (max-width:900px) {
+    .puce { white-space:normal; }
+  }
+  @media (max-width:520px) {
+    :root { --t-titre:34px; }
+  }
+  @media (max-width:900px) {
+    .jeton { width:20%; height:56px; }
+    table, tbody, tr, td { display:block; width:100%; }
+    thead { display:none; }
+    tr { border-bottom:1px solid var(--filet); padding:10px 0; }
+    tr:last-child { border-bottom:0; padding-bottom:0; }
+    td { border:0; padding:2px 0; }
+    td:first-child { font-weight:700; margin-bottom:4px; }
+    td[data-l]::before { content:attr(data-l) " · "; color:var(--sourdine); }
+  }
 </style>
 </head>
 <body>
-<main>
-  <p class="eyebrow">R5.MDEE.13 · Design System</p>
-  <h1>Mapping X</h1>
-  <p class="lead">Système de design du deck « Mapping X » (Sofian Chtioui &amp; Romane Da-Silva, TD Igor Perez).
-  Un seul principe : <strong>on emprunte le langage visuel de la plateforme qu'on cartographie.</strong>
-  Les trois couleurs sont celles de X, pas des couleurs décoratives. Un lecteur doit reconnaître le sujet avant d'avoir lu le titre.</p>
 
-  <h2>Les 3 couleurs</h2>
-  <div class="grid">
-    <div><div class="sw" style="background:#0F1419">Ink · #0F1419</div><p class="lead" style="font-size:var(--fs-sm)">Le noir exact du texte de X. Titres, chiffres neutres.</p></div>
-    <div><div class="sw" style="background:#1D9BF0">Blue · #1D9BF0</div><p class="lead" style="font-size:var(--fs-sm)">Le bleu de X. Ce qui progresse, les liens, l'accent.</p></div>
-    <div><div class="sw" style="background:#F4212E">Red · #F4212E</div><p class="lead" style="font-size:var(--fs-sm)">Le rouge du cœur de X. Ce qui recule, les alertes.</p></div>
-  </div>
-  <p class="lead">Neutres : <code>#FFFFFF</code> cartes · <code>#F7F9F9</code> fond · <code>#E4E9EB</code> filets · <code>#536471</code> texte secondaire.</p>
+<h1>Design System</h1>
 
-  <h2>Les 3 tailles de police</h2>
-  <div class="card">
-    <p class="stat">15,5 M</p>
-    <p style="font-size:var(--fs-sm);color:var(--muted)">XL — <code>clamp(2rem,4.6vw,3.6rem)</code> · titres de section et chiffres clés. Poids 800, interlettrage −.03em.</p>
+<div class="haut">
+<section>
+  <h2>Couleurs</h2>
+  <div class="bloc">
+    <div class="couleurs">
+      <div class="jeton" style="background:#0a0a0a"><code style="color:#f5f5f5">#0A0A0A</code></div>
+      <div class="jeton" style="background:#f5f5f5"><code style="color:#0a0a0a">#F5F5F5</code></div>
+      <div class="jeton" style="background:#1d9bf0"><code style="color:#ffffff">#1D9BF0</code></div>
+      <div class="jeton" style="background:#00ba7c"><code style="color:#ffffff">#00BA7C</code></div>
+      <div class="jeton" style="background:#f4212e"><code style="color:#ffffff">#F4212E</code></div>
+    </div>
   </div>
-  <div class="card">
-    <p style="margin:0">Corps de texte : une idée par ligne, jamais plus de 62 caractères de large.</p>
-    <p style="font-size:var(--fs-sm);color:var(--muted);margin-bottom:0">MD — <code>clamp(.95rem,1.28vw,1.12rem)</code> · texte courant, tableaux, listes.</p>
+</section>
+<section>
+  <h2>Pilules, étiquettes et puces</h2>
+  <div class="bloc">
+    <div class="rangee">
+      <span class="surtitre">Étape 2 — Audience, France</span>
+      <span class="badge badge-bleu">Point fort</span>
+      <span class="badge badge-vert">Opportunité</span>
+      <span class="badge badge-rouge">Point faible</span>
+      <span class="numero">06 / 15</span>
+    </div>
+    <div class="rangee">
+      <span class="puce"><span class="mark"></span>Claude Code — recherche au registre du commerce</span>
+      <span class="pilule"><span class="actif">Monde</span><span>France</span></span>
+      <span class="source">Source : Ecommerce Nation, Guide 2025 (p. 5)</span>
+    </div>
   </div>
-  <div class="card">
-    <p class="eyebrow" style="margin:0">Étiquette · Source · Légende</p>
-    <p style="font-size:var(--fs-sm);color:var(--muted);margin-bottom:0">SM — <code>clamp(.7rem,.92vw,.8rem)</code> · sur-titres, sources, légendes. Majuscules, interlettrage .16em.</p>
-  </div>
-  <p class="lead">La hiérarchie se fait au <strong>poids</strong> (400 / 700 / 800) et à la <strong>couleur</strong>, jamais en ajoutant une quatrième taille.</p>
+</section>
+</div>
 
-  <h2>Le format : un dossier qui défile</h2>
-  <p>Le deck n'est pas un diaporama horizontal. C'est <strong>une page verticale</strong> découpée en 15 sections plein écran, séparées par un filet et un numéro <code>03 / 15</code>.
-  On avance à la flèche <strong>↓</strong> ou <strong>→</strong>, on recule avec <strong>↑</strong> ou <strong>←</strong> : chaque section se cale d'elle-même (<code>scroll-snap</code>).
-  C'est la mise en page des guides Ecommerce Nation, que le prof nous a donnés comme source : cartes blanches, gros chiffres, colonnes courtes.</p>
-  <div class="card">
-    <p style="margin:0"><strong>Rail de gauche</strong> — logo X, index des 15 sections, section active en bleu. Il remplace le sommaire et sert de barre de progression pendant l'oral.</p>
+<section>
+  <h2>Typographie — Plus Jakarta Sans</h2>
+  <div class="bloc">
+    <table>
+      <thead><tr>
+        <th style="width:150px">Niveau</th><th style="width:150px">Taille</th><th style="width:70px">Poids</th>
+        <th style="width:110px">Épaisseur</th><th style="width:420px">Usage</th><th>Aperçu</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>Étiquette</td><td data-l="Taille"><code>12 px · 0,94 vw</code></td><td data-l="Poids"><code>700</code></td><td data-l="Épaisseur">Bold</td>
+          <td data-l="Usage">Sur-titre, numéro de slide, unité d'un chiffre, source, en-tête de tableau — MAJUSCULES, interlettrage .16em</td>
+          <td style="font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.16em">Cartographie de X</td>
+        </tr>
+        <tr>
+          <td>Texte courant</td><td data-l="Taille"><code>17 px · 1,33 vw</code></td><td data-l="Poids"><code>400</code></td><td data-l="Épaisseur">Regular</td>
+          <td data-l="Usage">Phrases, listes, cellules de tableau, corps des cartes. Le 700 détache un mot, jamais une phrase entière</td>
+          <td style="font-size:17px;font-weight:400">Cartographie de X</td>
+        </tr>
+        <tr>
+          <td>Titre</td><td data-l="Taille"><code>54 px · 4,2 vw</code></td><td data-l="Poids"><code>800</code></td><td data-l="Épaisseur">Extra-bold</td>
+          <td data-l="Usage">Titre de slide et chiffre clé — interlettrage −.035em</td>
+          <td style="font-size:54px;font-weight:800;letter-spacing:-.035em;line-height:1">Cartographie de X</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  <div class="card">
-    <p style="margin:0"><strong>Impression</strong> — <code>@media print</code> casse la page tous les 100vh : Ctrl/Cmd + P donne un PDF de 15 pages en 16:9, déposable sur Moodle.</p>
-  </div>
+</section>
 
+<section>
   <h2>Composants</h2>
-  <table>
-    <tr><th>Nom</th><th>Rôle</th><th>Règle</th></tr>
-    <tr><td>Carte</td><td>Bloc d'information</td><td>Fond blanc, filet 1px, rayon 16, ombre douce. Jamais de fond coloré plein.</td></tr>
-    <tr><td>Chiffre clé</td><td>Une donnée qui compte</td><td>Taille XL + une unité en petit. Bleu s'il monte, rouge s'il baisse, noir s'il est neutre.</td></tr>
-    <tr><td>Sur-titre</td><td>Situer la rubrique</td><td>Taille SM, majuscules, bleu. Toujours au-dessus du titre.</td></tr>
-    <tr><td>Puce IA</td><td>Traçabilité</td><td>Logo officiel de l'outil réellement utilisé + ce qu'il a fait. Aucun logo décoratif.</td></tr>
-    <tr><td>Source</td><td>Preuve</td><td>Taille SM, gris, en bas de section. Chaque chiffre a sa source et sa date.</td></tr>
-  </table>
+  <div class="bloc">
+    <div class="rangee compo" style="align-items:stretch">
+      <span class="carte" style="flex:0 0 auto">
+        <span class="chiffre chiffre-bas">15,5 M</span>
+        <span class="unite">Touchables, 2025</span>
+      </span>
+      <span class="carte" style="flex:0 0 auto">
+        <span class="chiffre chiffre-haut">12:15</span>
+        <span class="unite">Durée moyenne</span>
+      </span>
+      <span class="carte carte-bleu" style="flex:1;min-width:180px">
+        <p class="corps"><strong>Ce que ça veut dire.</strong> Le trafic monde progresse pendant que l'audience française recule. X rétrécit ici, pas partout.</p>
+      </span>
+      <span class="carte" style="flex:1;min-width:190px">
+        <table style="font-size:var(--t-etiquette)">
+          <tr><td style="padding:2px 12px 2px 0">Elon Musk <span style="color:var(--sourdine)">@elonmusk</span></td><td style="text-align:right;font-weight:700;padding:2px 0;white-space:nowrap">241,6 M</td></tr>
+          <tr><td style="padding:2px 12px 2px 0">Barack Obama <span style="color:var(--sourdine)">@BarackObama</span></td><td style="text-align:right;font-weight:700;padding:2px 0;white-space:nowrap">119,0 M</td></tr>
+          <tr><td style="padding:2px 12px 2px 0">Cristiano Ronaldo <span style="color:var(--sourdine)">@Cristiano</span></td><td style="text-align:right;font-weight:700;padding:2px 0;white-space:nowrap">114,1 M</td></tr>
+        </table>
+      </span>
+      <span class="cadre" style="flex:0 0 150px">Capture</span>
+      <span class="couverture" style="flex:0 0 300px">
+        <p class="surtitre">R5.MDEE.13 — Stratégie social media</p>
+        <p class="t">Cartographie de X</p>
+        <p class="corps">Image plein écran, voile noir 62 %, titre centré</p>
+      </span>
+    </div>
+  </div>
+</section>
 
-  <h2>Règle de contenu</h2>
-  <p>Une section = <strong>une idée</strong> + <strong>une preuve chiffrée</strong> + <strong>une conséquence pour une marque</strong>.
-  Si une section n'a pas les trois, elle n'est pas finie. Le prof a écrit « pas de synthèse » pour la conclusion : la dernière section prend position et ouvre, elle ne résume rien.</p>
-</main>
 </body>
 </html>
