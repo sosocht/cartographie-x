@@ -272,7 +272,8 @@ td.n{font-weight:600;text-align:right;white-space:nowrap}
 #s1 .tw{text-align:center}
 .twr{position:relative;left:var(--dx,0%);top:var(--dy,0%)}
 img.twr{width:var(--l,100%);height:auto}
-img.twr.h,#s11 .col .shot.twr.h{width:100%;height:var(--l,30vh);object-fit:contain;left:var(--dx,0);top:var(--dy,0)}
+img.twr.h,#s11 .col .shot.twr.h{width:100%;height:var(--l,30vh);object-fit:var(--fit,cover);
+  object-position:var(--ox,50%) var(--oy,50%);left:var(--dx,0);top:var(--dy,0)}
 #s1 .mention{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:#7fcbff}
 #s1 h1{font-size:clamp(3rem,9.6vw,7.4rem);font-weight:600;letter-spacing:-.05em;line-height:1}
 #s1 .sub{color:#e4e9eb}
@@ -668,7 +669,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 10 · USAGES -->
-<section id="s10" style="--sgp-dx:3px;--sgp-dy:-4px">
+<section id="s10" style="--sgp-dx:6px;--sgp-dy:-4px;--sgm-dx:4px;--sgm-dy:-2px">
   <span class="num">11 / 16</span>
   <div class="wrap">
     <h2>Les usages pertinents et ceux à écarter</h2>
@@ -741,12 +742,17 @@ body.notesvues section.ici .notes{display:block}
     </div>
 
     <div class="vue-bloc" id="v-posts" hidden>
-      <div class="grille g5"><div class="col"><img class="shot twr h" data-tw="post-boseman" style="--l:30vh;margin-top:0" src="img/post-boseman.png" alt="Publication de @chadwickboseman">
-        <p class="lg">Sa famille annonce sa mort</p><p class="ps detail">@chadwickboseman</p><p class="ab">6,6 M</p></div><div class="col"><img class="shot twr h" data-tw="post-musk" style="--l:30vh;margin-top:0" src="img/post-musk-coca.png" alt="Publication de @elonmusk">
-        <p class="lg">« Je rachète Coca-Cola »</p><p class="ps detail">@elonmusk</p><p class="ab">4,3 M</p></div><div class="col"><img class="shot twr h" data-tw="post-obama" style="--l:30vh;margin-top:0" src="img/post-obama.png" alt="Publication de @BarackObama">
-        <p class="lg">Citation de Nelson Mandela</p><p class="ps detail">@BarackObama</p><p class="ab">3,6 M</p></div><div class="col"><img class="shot twr h" data-tw="post-greta" style="--l:30vh;margin-top:0" src="img/post-greta.png" alt="Publication de @GretaThunberg">
-        <p class="lg">Réponse à Andrew Tate</p><p class="ps detail">@GretaThunberg</p><p class="ab">3,5 M</p></div><div class="col"><img class="shot twr h" data-tw="post-biden" style="--l:30vh;margin-top:0" src="img/post-biden.png" alt="Publication de @JoeBiden">
-        <p class="lg">« It's a new day in America »</p><p class="ps detail">@JoeBiden</p><p class="ab">3,5 M</p></div></div>
+      <div class="grille g5"><div class="col"><div class="tete"><img src="img/av-chadwickboseman.jpg" alt=""><span class="nm">Sa famille annonce sa mort</span></div>
+        <p class="ps detail">@chadwickboseman</p><p class="ab">6,6 M</p>
+        <img class="shot twr h" data-tw="post-boseman" style="--l:30vh" src="img/post-boseman.png" alt="Publication de @chadwickboseman"></div><div class="col"><div class="tete"><img src="img/av-elonmusk.jpg" alt=""><span class="nm">« Je rachète Coca-Cola »</span></div>
+        <p class="ps detail">@elonmusk</p><p class="ab">4,3 M</p>
+        <img class="shot twr h" data-tw="post-musk" style="--l:30vh" src="img/post-musk-coca.png" alt="Publication de @elonmusk"></div><div class="col"><div class="tete"><img src="img/av-BarackObama.jpg" alt=""><span class="nm">Citation de Nelson Mandela</span></div>
+        <p class="ps detail">@BarackObama</p><p class="ab">3,6 M</p>
+        <img class="shot twr h" data-tw="post-obama" style="--l:30vh" src="img/post-obama.png" alt="Publication de @BarackObama"></div><div class="col"><div class="tete"><img src="img/av-GretaThunberg.jpg" alt=""><span class="nm">Réponse à Andrew Tate</span></div>
+        <p class="ps detail">@GretaThunberg</p><p class="ab">3,5 M</p>
+        <img class="shot twr h" data-tw="post-greta" style="--l:30vh" src="img/post-greta.png" alt="Publication de @GretaThunberg"></div><div class="col"><div class="tete"><img src="img/av-JoeBiden.jpg" alt=""><span class="nm">« It's a new day in America »</span></div>
+        <p class="ps detail">@JoeBiden</p><p class="ab">3,5 M</p>
+        <img class="shot twr h" data-tw="post-biden" style="--l:30vh" src="img/post-biden.png" alt="Publication de @JoeBiden"></div></div>
     </div>
 
     <div class="pied">
@@ -926,9 +932,9 @@ function ecrire(){
     const n=e.dataset.tw;
     const f=fam(e);
     if(f) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>décalage ${vsec(e,'--'+f+'-dx','0px')} / ${vsec(e,'--'+f+'-dy','0px')} · taille ${vsec(e,'--'+f,'auto')}</span></div>`;
-    if(rel(e)) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>décalage ${px(e,'--dx','0%')} / ${px(e,'--dy','0%')} · largeur ${px(e,'--l','auto')}</span></div>`;
+    if(rel(e)) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>décalage ${px(e,'--dx','0%')} / ${px(e,'--dy','0%')} · taille ${px(e,'--l','auto')} · cadrage ${px(e,'--ox','50%')} / ${px(e,'--oy','50%')}</span></div>`;
     return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>x ${px(e,'--x','')} · y ${px(e,'--y','')} · largeur ${px(e,'--l','86%')}</span></div>`;
-  }).join('')+'<div class="aide">Glisser pour déplacer · flèches pour ajuster · Maj+flèches gauche/droite pour la largeur · C pour copier · T pour sortir</div>';
+  }).join('')+'<div class="aide">Glisser pour déplacer · flèches pour ajuster · Maj+flèches pour la taille · Alt+flèches pour le cadrage · C pour copier · T pour sortir</div>';
 }
 function texteValeurs(){
   return blocs().map(e=>fam(e)
@@ -975,6 +981,13 @@ addEventListener('keydown',e=>{
   if(document.body.classList.contains('reglage')&&vise&&k.startsWith('Arrow')){
     e.preventDefault();
     const pas=e.shiftKey?0.1:0.5;
+    if(e.altKey&&rel(vise)&&!fam(vise)){
+      const pr=k==='ArrowLeft'||k==='ArrowRight'?'--ox':'--oy';
+      const d=(k==='ArrowRight'||k==='ArrowDown')?2:-2;
+      const v=(parseFloat(px(vise,pr,'50'))||50)+d;
+      vise.style.setProperty(pr,Math.max(0,Math.min(100,v)).toFixed(0)+'%');
+      ecrire(); return;
+    }
     const f=fam(vise), sec2=vise.closest('section');
     if(f){
       if(e.shiftKey&&(k==='ArrowLeft'||k==='ArrowRight')){
