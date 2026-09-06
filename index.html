@@ -63,13 +63,9 @@ strong{font-weight:600}
 .badge-rouge{background:rgba(255,0,0,.08);color:var(--rouge)}
 
 /* pied de slide : source à gauche, outil d'IA à droite, jamais superposés */
-.pied{display:flex;align-items:center;justify-content:space-between;gap:1.4em;
-  margin-top:1.4em;padding-right:6em;flex-wrap:wrap}
+.pied{margin-top:1.4em;padding-right:6em}
 .src{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin:0}
-.ai{display:inline-flex;align-items:center;gap:.5em;font-size:var(--fs-sm);font-weight:300;
-  color:var(--sourdine);background:var(--carte);border:1px solid var(--filet);border-radius:999px;
-  padding:.4em .9em;white-space:nowrap;flex:none}
-.ai img{width:1.4vh;height:1.4vh;flex:0 0 auto}
+.src .ico{width:1.25vh;height:1.25vh;vertical-align:-.15vh;margin:0 .25em 0 .1em}
 
 /* briques */
 .carte{background:var(--carte);border:1px solid var(--filet);border-radius:var(--r);
@@ -79,6 +75,13 @@ strong{font-weight:600}
 .plein{flex:1;display:flex;flex-direction:column}
 .plein .grille{flex:1;grid-auto-rows:1fr}
 .plein .carte .corps{margin-top:auto;padding-top:.8em}
+/* sommaire : lignes numerotees, sans carte */
+.etapes{display:grid;grid-template-columns:1fr 1fr;column-gap:3.5vw;row-gap:2.2vh;flex:1;align-content:center}
+.etape{display:grid;grid-template-columns:auto 1fr;column-gap:1.1vw;align-items:baseline;
+  padding-top:1.4vh;border-top:1px solid var(--filet)}
+.etape .n{font-size:var(--fs-chiffre);font-weight:500;color:var(--bleu);line-height:1;min-width:1.2em}
+.etape h3{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin:0}
+.etape p{margin:.2em 0 0}
 .carte{display:flex;flex-direction:column}
 /* titre de carte : meme niveau typographique que le chiffre */
 .t-carte{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.12;margin:.3em 0 0}
@@ -154,7 +157,7 @@ body.notesvues section.ici .notes{display:block}
   .vue.profil{height:auto;aspect-ratio:640/340} .vue.post{height:190px} .vue.large{max-height:230px}
   h1,h2{font-size:32px} .chiffre{font-size:24px}
   body{font-size:14px} .src,.corps,.unite,.detail,th,.ai,.num{font-size:11px}
-  .face{width:22px;height:22px} .ai img{width:11px;height:11px}
+  .face{width:22px;height:22px} .src .ico{width:11px;height:11px}
   #s1{min-height:0;display:flex;justify-content:center;background-attachment:scroll} #s1 h1{font-size:70px}
   #s1 .mention,#s1 .meta{font-size:11px}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -192,18 +195,18 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">02 / 15</span>
   <div class="wrap plein">
     <h2>Huit étapes, quinze slides, dix minutes</h2>
-    <div class="grille g4">
-      <div class="carte"><span class="chiffre" style="color:var(--bleu)">1</span><p class="t-carte">Dates clés et actualités</p><p class="corps">Vingt ans, et un 2026 très agité.</p></div>
-      <div class="carte"><span class="chiffre" style="color:var(--bleu)">2</span><p class="t-carte">Audience</p><p class="corps">Le monde, la France, et qui reste vraiment.</p></div>
-      <div class="carte"><span class="chiffre" style="color:var(--bleu)">3</span><p class="t-carte">Conseils et cas d'usage</p><p class="corps">Comment se lancer, et quand s'abstenir.</p></div>
-      <div class="carte"><span class="chiffre" style="color:var(--bleu)">4</span><p class="t-carte">Secteurs dominants</p><p class="corps">Les domaines où X reste incontournable.</p></div>
-      <div class="carte"><span class="chiffre" style="color:var(--bleu)">5</span><p class="t-carte">Comptes à suivre</p><p class="corps">Trois comptes, pour ce qu'ils inventent.</p></div>
-      <div class="carte"><span class="chiffre" style="color:var(--bleu)">6</span><p class="t-carte">Qualité photo et vidéo</p><p class="corps">Les formats adaptés au fil.</p></div>
-      <div class="carte"><span class="chiffre" style="color:var(--bleu)">7</span><p class="t-carte">Outils de gestion</p><p class="corps">Qui fait quoi, et à quel prix.</p></div>
-      <div class="carte"><span class="chiffre" style="color:var(--bleu)">8</span><p class="t-carte">Conclusion</p><p class="corps">Notre position, sans résumé.</p></div>
+    <div class="etapes">
+      <div class="etape"><span class="n">1</span><div><h3>Dates clés et actualités</h3><p class="corps">Vingt ans, et un 2026 très agité.</p></div></div>
+      <div class="etape"><span class="n">5</span><div><h3>Comptes à suivre</h3><p class="corps">Trois comptes, pour ce qu'ils inventent.</p></div></div>
+      <div class="etape"><span class="n">2</span><div><h3>Audience</h3><p class="corps">Le monde, la France, et qui reste vraiment.</p></div></div>
+      <div class="etape"><span class="n">6</span><div><h3>Qualité photo et vidéo</h3><p class="corps">Les formats adaptés au fil.</p></div></div>
+      <div class="etape"><span class="n">3</span><div><h3>Conseils et cas d'usage</h3><p class="corps">Comment se lancer, et quand s'abstenir.</p></div></div>
+      <div class="etape"><span class="n">7</span><div><h3>Outils de gestion</h3><p class="corps">Qui fait quoi, et à quel prix.</p></div></div>
+      <div class="etape"><span class="n">4</span><div><h3>Secteurs dominants</h3><p class="corps">Les domaines où X reste incontournable.</p></div></div>
+      <div class="etape"><span class="n">8</span><div><h3>Conclusion</h3><p class="corps">Notre position, sans résumé.</p></div></div>
     </div>
   </div>
-  <div class="notes">Ne pas lire les huit cases. Dire : « Ces huit points sont ceux de la consigne. Nous avons ajouté deux choses qu'elle ne demandait pas : les personas, et l'identité légale de X en France. C'est là que sont nos deux surprises. » 30 secondes.</div>
+  <div class="notes">Ne pas lire les huit lignes. Dire : « Ces huit points sont ceux de la consigne. Nous avons ajouté deux choses qu'elle ne demandait pas : les personas, et l'identité légale de X en France. C'est là que sont nos deux surprises. » 30 secondes.</div>
 </section>
 
 <!-- 3 · DATES -->
@@ -212,23 +215,22 @@ body.notesvues section.ici .notes{display:block}
   <div class="wrap">
     <h2>Vingt ans en dix dates</h2>
     <div class="grille g5">
-      <div class="carte"><span class="chiffre">2006</span><p class="corps"><strong>Lancement</strong> le 15 juillet. 140 caractères, la taille d'un SMS.</p></div>
+      <div class="carte"><span class="chiffre">2006</span><p class="corps"><strong>Lancement</strong> le 15 juillet, par Jack Dorsey et trois associés.</p></div>
       <div class="carte"><span class="chiffre">2007</span><p class="corps">Le <strong>hashtag</strong> est inventé par un utilisateur, pas par l'entreprise.</p></div>
       <div class="carte"><span class="chiffre">2013</span><p class="corps"><strong>Entrée en bourse</strong> à New York.</p></div>
       <div class="carte"><span class="chiffre">2017</span><p class="corps">Passage à <strong>280 caractères</strong>. Le format double.</p></div>
       <div class="carte"><span class="chiffre">2022</span><p class="corps">Musk rachète Twitter <strong>44 Md$</strong> et le retire de la bourse.</p></div>
-      <div class="carte"><span class="chiffre">2023</span><p class="corps">23 juillet : l'oiseau devient <strong>X</strong>. Le capital de marque repart de zéro.</p></div>
+      <div class="carte"><span class="chiffre">2023</span><p class="corps">23 juillet : l'oiseau devient <strong>X</strong>. Le nom Twitter est abandonné.</p></div>
       <div class="carte"><span class="chiffre">2024</span><p class="corps">17 mai : twitter.com redirige enfin vers <strong>x.com</strong>.</p></div>
-      <div class="carte"><span class="chiffre">2025</span><p class="corps">Mars : <strong>xAI rachète X</strong> pour 33 Md$. X devient un actif d'intelligence artificielle.</p></div>
-      <div class="carte"><span class="chiffre">2025</span><p class="corps">Décembre : <strong>120 M€ d'amende</strong> européenne au titre du DSA.</p></div>
-      <div class="carte"><span class="chiffre">2026</span><p class="corps">Février : <strong>fusion SpaceX et xAI</strong>. X devient une ligne dans une société de fusées.</p></div>
+      <div class="carte"><span class="chiffre">2025</span><p class="corps">Mars : <strong>xAI</strong>, la société d'intelligence artificielle d'Elon Musk, rachète X pour 33 Md$.</p></div>
+      <div class="carte"><span class="chiffre">2025</span><p class="corps">Décembre : <strong>120 M€ d'amende</strong> européenne pour manquement au Digital Services Act.</p></div>
+      <div class="carte"><span class="chiffre">2026</span><p class="corps">Février : <strong>xAI fusionne avec SpaceX</strong>. X n'est plus l'activité principale du groupe.</p></div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Wikipédia (consulté le 06/09/2026), article « X (social network) » · CNBC · The New York Times.</p>
-      <span class="ai"><img src="img/logo-claude.svg" alt="Claude">Claude Code, chaque date recoupée avec deux sources</span>
+      <p class="src">Sources : Wikipédia (consulté le 06/09/2026), article « X (social network) » · CNBC · The New York Times. <img src="img/logo-claude.svg" alt="Claude" class="ico">Dates cherchées et recoupées avec Claude Code.</p>
     </div>
   </div>
-  <div class="notes">N'en garder que trois à l'oral : 2017, le format double, X est le seul réseau à avoir changé son unité d'écriture. 2023, un rebranding qui jette l'un des noms de marque les plus forts au monde. 2025, X cesse d'être une entreprise et devient un actif dans un laboratoire d'intelligence artificielle. C'est la troisième qui porte tout l'exposé. 60 secondes.</div>
+  <div class="notes">N'en garder que trois à l'oral. 2017 : le format double, X est le seul réseau à avoir changé son unité d'écriture. 2023 : le rebranding abandonne l'un des noms les plus connus au monde et le verbe « tweeter » qui allait avec ; la plateforme garde ses utilisateurs mais doit reconstruire sa notoriété sur une lettre. 2025 : xAI, la société d'intelligence artificielle d'Elon Musk qui développe Grok, rachète X ; le réseau devient une source de données et d'audience pour entraîner et diffuser des modèles. Si on demande le DSA : le Digital Services Act est la loi européenne de 2022 qui oblige les très grandes plateformes à la transparence sur la publicité, l'algorithme et la modération ; l'amende de 120 M€ sanctionne des manquements à ces obligations. Si on demande 2026 : xAI fusionne avec SpaceX, le lanceur spatial de Musk, donc X se retrouve dans un groupe dont le métier est l'espace et l'intelligence artificielle, pas le réseau social. 60 secondes.</div>
 </section>
 
 <!-- 4 · PRESSION -->
@@ -249,8 +251,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Pappers (consulté le 06/09/2026), fiche TWITTER FRANCE SAS · Reuters · Commission européenne.</p>
-      <span class="ai"><img src="img/logo-claude.svg" alt="Claude">Claude Code, recherche au registre du commerce</span>
+      <p class="src">Sources : Pappers (consulté le 06/09/2026), fiche TWITTER FRANCE SAS · Reuters · Commission européenne. <img src="img/logo-claude.svg" alt="Claude" class="ico">Registre du commerce interrogé avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">Première surprise, prendre le temps. La structure française facture 12,9 M€ et se déclare cabinet de relations publiques. Ce n'est pas elle qui vend la publicité, celle-ci est facturée depuis l'Irlande. Donc quand une marque française achète de la publicité sur X, presque rien n'atterrit en France, et l'équipe locale est un relais de 20 à 49 personnes. Lâcher la phrase : « Le nom n'a jamais changé parce que le nom n'a jamais été le produit. » 70 secondes.</div>
@@ -276,8 +277,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Source : Similarweb (consulté le 06/09/2026), extension Chrome ouverte sur x.com, données de juillet 2026, estimées.</p>
-      <span class="ai"><img src="img/logo-claude.svg" alt="Claude">Claude Code, lecture de l'extension et capture</span>
+      <p class="src">Source : Similarweb (consulté le 06/09/2026), extension Chrome ouverte sur x.com, données de juillet 2026, estimées. <img src="img/logo-claude.svg" alt="Claude" class="ico">Extension ouverte et relevée avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">Le chiffre qui compte n'est pas 4,7 milliards, c'est 12 minutes 15 et 69,8 % de trafic direct. Personne n'arrive sur X par hasard, on tape l'adresse. C'est une habitude, pas un canal de découverte. Et une habitude, une marque ne l'achète pas en une campagne. 50 secondes.</div>
@@ -335,8 +335,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Personas construits à partir des données d'audience présentées dans les slides précédentes. Ce n'est pas une étude terrain mais une lecture des chiffres.</p>
-      <span class="ai"><img src="img/logo-chatgpt.svg" alt="ChatGPT">ChatGPT, premier jet des deux profils, réécrits par nos soins</span>
+      <p class="src">Personas construits à partir des données d'audience présentées dans les slides précédentes. Ce n'est pas une étude terrain mais une lecture des chiffres. <img src="img/logo-chatgpt.svg" alt="ChatGPT" class="ico">Premier jet des deux profils avec ChatGPT, réécrits par nos soins.</p>
     </div>
   </div>
   <div class="notes">Expliquer pourquoi deux. L'audience que l'on a n'est pas celle pour qui l'on écrit. Sur X, la majorité passive c'est Théo, mais toute la valeur est chez Camille, parce que X est un réseau de relais et non un réseau de portée. Puis la phrase : « Sur X, on ne parle pas à son audience, on parle à ceux qui vont vous répéter. » 60 secondes.</div>
@@ -381,8 +380,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · comptes observés sur la plateforme le 06/09/2026.</p>
-      <span class="ai"><img src="img/logo-chatgpt.svg" alt="ChatGPT">ChatGPT, liste challengée, trois conseils génériques écartés</span>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · comptes observés sur la plateforme le 06/09/2026. <img src="img/logo-chatgpt.svg" alt="ChatGPT" class="ico">Liste soumise à ChatGPT, trois conseils génériques écartés.</p>
     </div>
   </div>
   <div class="notes">C'est la partie pratique, le professeur la demande explicitement. Dire à l'oral les conseils 1, 2 et 6, ce sont les contre-intuitifs. Insister sur « répondre avant de publier » : c'est gratuit, et personne ne le fait. 60 secondes.</div>
@@ -462,8 +460,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : captures faites sur la plateforme le 06/09/2026 · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées.</p>
-      <span class="ai"><img src="img/logo-claude.svg" alt="Claude">Claude Code, chiffres vérifiés sur les profils en direct</span>
+      <p class="src">Sources : captures faites sur la plateforme le 06/09/2026 · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. <img src="img/logo-claude.svg" alt="Claude" class="ico">Chiffres vérifiés sur les profils en direct avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">Montrer les deux tableaux cinq secondes, puis livrer la seule phrase qui compte : aucune des cinq publications les plus aimées de l'histoire de la plateforme n'est une publication de marque. Trois relèvent du deuil ou de la politique. Sur X, une marque ne gagnera jamais le fil, elle peut seulement être utile à l'intérieur du moment de quelqu'un d'autre. 60 secondes.</div>
@@ -489,8 +486,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Source : captures faites sur la plateforme le 06/09/2026, dans les mêmes conditions d'affichage pour les trois comptes.</p>
-      <span class="ai"><img src="img/logo-claude.svg" alt="Claude">Claude Code, capture des trois profils en direct</span>
+      <p class="src">Source : captures faites sur la plateforme le 06/09/2026, dans les mêmes conditions d'affichage pour les trois comptes. <img src="img/logo-claude.svg" alt="Claude" class="ico">Profils capturés avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">Développer Burger King, c'est le cas actionnable pour une marque française. Zéro abonnement n'est pas un détail, c'est une déclaration : le compte est un diffuseur, pas un membre de la communauté. C'est l'inverse de tous les manuels de social media, et cela fonctionne. Poser la question à la salle : oseriez-vous recommander cela à un client ? 60 secondes.</div>
@@ -570,8 +566,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Pas de résumé, conformément à la consigne. Notre lecture des chiffres présentés dans les slides précédentes.</p>
-      <span class="ai"><img src="img/logo-chatgpt.svg" alt="ChatGPT">ChatGPT, position contre-argumentée, objection conservée</span>
+      <p class="src">Pas de résumé, conformément à la consigne. Notre lecture des chiffres présentés dans les slides précédentes. <img src="img/logo-chatgpt.svg" alt="ChatGPT" class="ico">Position contre-argumentée avec ChatGPT, objection conservée.</p>
     </div>
   </div>
   <div class="notes">Ralentir. Poser trois phrases et s'arrêter : « X n'est plus un endroit où l'on est vu, c'est un endroit où l'on est cité. » Puis : « Gardez le compte, réduisez le budget, gardez le temps de réponse. » Puis : « La question de 2027 est de savoir si le prochain X a encore besoin de ses utilisateurs. » Et se taire. Le silence est la fin. 70 secondes.</div>
