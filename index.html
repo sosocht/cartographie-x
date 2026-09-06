@@ -43,8 +43,7 @@ body{margin:0;font-family:var(--sans);font-size:var(--fs-md);font-weight:400;lin
 section{min-height:100vh;min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;
   padding:3.4vh 2.6vw 3.4vh calc(var(--rail) + 2.6vw);display:flex;flex-direction:column;
   justify-content:center;border-top:1px solid var(--filet);position:relative}
-section:has(.plein){justify-content:flex-start}
-section:has(.plein) .wrap{flex:1;display:flex;flex-direction:column}
+
 section:first-of-type{border-top:0}
 .wrap{width:100%;max-width:1500px;margin:0 auto}
 .num{position:absolute;bottom:2.6vh;right:2.6vw;font-size:var(--fs-sm);font-weight:600;
@@ -65,18 +64,16 @@ strong{font-weight:600}
 /* pied de slide : source à gauche, outil d'IA à droite, jamais superposés */
 .pied{margin-top:1.4em;padding-right:6em}
 .src{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin:0}
-.src .ico{width:1.25vh;height:1.25vh;vertical-align:-.15vh;margin:0 .25em 0 .1em}
+
 
 /* briques */
 .carte{background:var(--carte);border:1px solid var(--filet);border-radius:var(--r);
   box-shadow:var(--ombre);padding:1em 1.15em}
 .carte-bleu{border-color:var(--bleu)}
 .grille{display:grid;gap:12px}
-.plein{flex:1;display:flex;flex-direction:column}
-.plein .grille{flex:1;grid-auto-rows:1fr}
-.plein .carte .corps{margin-top:auto;padding-top:.8em}
+
 /* sommaire : lignes numerotees, sans carte */
-.etapes{display:grid;grid-template-columns:1fr 1fr;column-gap:3.5vw;row-gap:2.2vh;flex:1;align-content:center}
+.etapes{display:grid;grid-template-columns:1fr 1fr;column-gap:3.5vw;row-gap:2.4vh}
 .etape{display:grid;grid-template-columns:auto 1fr;column-gap:1.1vw;align-items:baseline;
   padding-top:1.4vh;border-top:1px solid var(--filet)}
 .etape .n{font-size:var(--fs-chiffre);font-weight:500;color:var(--bleu);line-height:1;min-width:1.2em}
@@ -105,6 +102,17 @@ td.n{font-weight:600;text-align:right;white-space:nowrap}
 .vue.profil{width:100%;height:auto;aspect-ratio:640/340;object-fit:cover;object-position:top center}
 .vue.post{height:26vh;object-fit:contain;background:var(--encre);border-color:var(--encre)}
 .vue.large{max-height:34vh;object-fit:contain;object-position:left top}
+/* schema de propriete : cercles emboites */
+.orbites{position:relative;width:min(52vh,100%);aspect-ratio:1;margin:0 auto}
+.orbite{position:absolute;border-radius:50%;display:flex;flex-direction:column;align-items:center}
+.orbite .lab{margin-top:1.1em;font-size:var(--fs-sm);font-weight:600;text-align:center;line-height:1.3;padding:0 2.2em}
+.orbite .an{display:block;font-weight:300;color:var(--sourdine)}
+.o1{inset:0;border:1px solid var(--filet);background:var(--carte)}
+.o2{inset:15%;border:1px solid var(--bleu);background:rgba(29,155,240,.07)}
+.o2 .lab{color:var(--bleu)}
+.o3{inset:33%;background:var(--encre);color:#fff;justify-content:center}
+.o3 img{width:22%;filter:invert(1)}
+.o3 .lab{color:rgba(255,255,255,.75);font-weight:300;margin-top:.7em}
 
 /* couverture : image plein écran, voile sombre, titre centré */
 #s1{background:var(--encre);color:#fff;border-top:0;
@@ -157,7 +165,7 @@ body.notesvues section.ici .notes{display:block}
   .vue.profil{height:auto;aspect-ratio:640/340} .vue.post{height:190px} .vue.large{max-height:230px}
   h1,h2{font-size:32px} .chiffre{font-size:24px}
   body{font-size:14px} .src,.corps,.unite,.detail,th,.ai,.num{font-size:11px}
-  .face{width:22px;height:22px} .src .ico{width:11px;height:11px}
+  .face{width:22px;height:22px}
   #s1{min-height:0;display:flex;justify-content:center;background-attachment:scroll} #s1 h1{font-size:70px}
   #s1 .mention,#s1 .meta{font-size:11px}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -193,7 +201,7 @@ body.notesvues section.ici .notes{display:block}
 <!-- 2 · ITINÉRAIRE -->
 <section id="s2">
   <span class="num">02 / 15</span>
-  <div class="wrap plein">
+  <div class="wrap">
     <h2>Huit étapes, quinze slides, dix minutes</h2>
     <div class="etapes">
       <div class="etape"><span class="n">1</span><div><h3>Dates clés et actualités</h3><p class="corps">Vingt ans, et un 2026 très agité.</p></div></div>
@@ -214,7 +222,7 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">03 / 15</span>
   <div class="wrap">
     <h2>Vingt ans en dix dates</h2>
-    <div class="grille g5">
+    <div class="grille g5" style="grid-auto-rows:20vh">
       <div class="carte"><span class="chiffre">2006</span><p class="corps"><strong>Lancement</strong> le 15 juillet, par Jack Dorsey et trois associés.</p></div>
       <div class="carte"><span class="chiffre">2007</span><p class="corps">Le <strong>hashtag</strong> est inventé par un utilisateur, pas par l'entreprise.</p></div>
       <div class="carte"><span class="chiffre">2013</span><p class="corps"><strong>Entrée en bourse</strong> à New York.</p></div>
@@ -227,34 +235,34 @@ body.notesvues section.ici .notes{display:block}
       <div class="carte"><span class="chiffre">2026</span><p class="corps">Février : <strong>xAI fusionne avec SpaceX</strong>. X n'est plus l'activité principale du groupe.</p></div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Wikipédia (consulté le 06/09/2026), article « X (social network) » · CNBC · The New York Times. <img src="img/logo-claude.svg" alt="Claude" class="ico">Dates cherchées et recoupées avec Claude Code.</p>
+      <p class="src">Sources : Wikipédia (consulté le 06/09/2026), article « X (social network) » · CNBC · The New York Times. Dates cherchées avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">N'en garder que trois à l'oral. 2017 : le format double, X est le seul réseau à avoir changé son unité d'écriture. 2023 : le rebranding abandonne l'un des noms les plus connus au monde et le verbe « tweeter » qui allait avec ; la plateforme garde ses utilisateurs mais doit reconstruire sa notoriété sur une lettre. 2025 : xAI, la société d'intelligence artificielle d'Elon Musk qui développe Grok, rachète X ; le réseau devient une source de données et d'audience pour entraîner et diffuser des modèles. Si on demande le DSA : le Digital Services Act est la loi européenne de 2022 qui oblige les très grandes plateformes à la transparence sur la publicité, l'algorithme et la modération ; l'amende de 120 M€ sanctionne des manquements à ces obligations. Si on demande 2026 : xAI fusionne avec SpaceX, le lanceur spatial de Musk, donc X se retrouve dans un groupe dont le métier est l'espace et l'intelligence artificielle, pas le réseau social. 60 secondes.</div>
 </section>
 
-<!-- 4 · PRESSION -->
+<!-- 4 · PROPRIÉTÉ -->
 <section id="s4">
   <span class="num">04 / 15</span>
   <div class="wrap">
-    <h2>2026 : une plateforme sous pression, une société toujours nommée Twitter</h2>
-    <div class="grille g2" style="align-items:start">
-      <div>
-        <div class="carte" style="margin-bottom:10px"><p class="corps" style="margin:0"><strong>Juillet 2025.</strong> La directrice générale Linda Yaccarino démissionne après deux ans. Aucun successeur annoncé.</p></div>
-        <div class="carte" style="margin-bottom:10px"><p class="corps" style="margin:0"><strong>Décembre 2025.</strong> <span class="hl-r">120 millions d'euros</span> d'amende européenne au titre du Digital Services Act.</p></div>
-        <div class="carte" style="margin-bottom:10px"><p class="corps" style="margin:0"><strong>Janvier 2026.</strong> Threads dépasse X en usage mobile.</p></div>
-        <div class="carte"><p class="corps" style="margin:0"><strong>Février 2026.</strong> SpaceX et xAI fusionnent. X appartient désormais à un groupe dont le métier principal n'est pas le réseau social.</p></div>
+    <h2>À qui appartient X, et sous quel nom en France</h2>
+    <div class="grille g2" style="align-items:center;grid-template-columns:1fr 1fr">
+      <div class="orbites">
+        <div class="o1 orbite"><span class="lab">Groupe SpaceX et xAI<span class="an">fusion, février 2026</span></span></div>
+        <div class="o2 orbite"><span class="lab">xAI, société d'intelligence artificielle<span class="an">rachète X en mars 2025, 33 Md$</span></span></div>
+        <div class="o3 orbite"><img src="img/logo-x.svg" alt="X"><span class="lab">le réseau social</span></div>
       </div>
       <div>
-        <img class="vue large" src="img/pappers.png" alt="Fiche du registre du commerce de Twitter France SAS">
+        <div class="carte carte-bleu" style="margin-bottom:12px"><p class="corps" style="margin:0"><strong>La stratégie.</strong> Musk ne rachète pas un réseau social, il l'absorbe. X fournit à xAI le flux de conversations en temps réel qui entraîne ses modèles, et l'audience qui les diffuse : Grok répond directement dans le fil. Le réseau devient un moyen au service de l'intelligence artificielle.</p></div>
+        <img class="vue large" src="img/pappers.png" alt="Fiche du registre du commerce de Twitter France SAS" style="max-height:26vh">
         <p class="corps"><strong>Ce que dit le registre du commerce.</strong> Trois ans après le rebranding, la filiale française s'appelle toujours <span class="hl">TWITTER FRANCE SAS</span> (SIREN 789 305 596). Son activité déclarée est le conseil en relations publiques, pas la publicité. <span class="hl">12,9 M€</span> de chiffre d'affaires, <span class="hl">20 à 49</span> salariés, 678 k€ de résultat net.</p>
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Pappers (consulté le 06/09/2026), fiche TWITTER FRANCE SAS · Reuters · Commission européenne. <img src="img/logo-claude.svg" alt="Claude" class="ico">Registre du commerce interrogé avec Claude Code.</p>
+      <p class="src">Sources : Pappers (consulté le 06/09/2026), fiche TWITTER FRANCE SAS · CNBC · The New York Times. Registre du commerce interrogé avec Claude Code.</p>
     </div>
   </div>
-  <div class="notes">Première surprise, prendre le temps. La structure française facture 12,9 M€ et se déclare cabinet de relations publiques. Ce n'est pas elle qui vend la publicité, celle-ci est facturée depuis l'Irlande. Donc quand une marque française achète de la publicité sur X, presque rien n'atterrit en France, et l'équipe locale est un relais de 20 à 49 personnes. Lâcher la phrase : « Le nom n'a jamais changé parce que le nom n'a jamais été le produit. » 70 secondes.</div>
+  <div class="notes">Deux idées, une par colonne. À gauche : X n'est plus une entreprise, c'est une poupée russe. Le réseau appartient à xAI depuis mars 2025, et xAI a fusionné avec SpaceX en février 2026. La stratégie de Musk n'est pas de faire vivre un réseau social, c'est de nourrir une intelligence artificielle avec le seul flux de conversations mondiales en temps réel qu'il possède. À droite, la surprise : la structure française s'appelle encore TWITTER FRANCE SAS, facture 12,9 M€ et se déclare cabinet de relations publiques. Ce n'est pas elle qui vend la publicité, celle-ci part de l'Irlande. Lâcher la phrase : « Le nom n'a jamais changé parce que le nom n'a jamais été le produit. » 80 secondes.</div>
 </section>
 
 <!-- 5 · MONDE -->
@@ -277,7 +285,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Source : Similarweb (consulté le 06/09/2026), extension Chrome ouverte sur x.com, données de juillet 2026, estimées. <img src="img/logo-claude.svg" alt="Claude" class="ico">Extension ouverte et relevée avec Claude Code.</p>
+      <p class="src">Source : Similarweb (consulté le 06/09/2026), extension Chrome ouverte sur x.com, données de juillet 2026, estimées. Extension ouverte et relevée avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">Le chiffre qui compte n'est pas 4,7 milliards, c'est 12 minutes 15 et 69,8 % de trafic direct. Personne n'arrive sur X par hasard, on tape l'adresse. C'est une habitude, pas un canal de découverte. Et une habitude, une marque ne l'achète pas en une campagne. 50 secondes.</div>
@@ -335,7 +343,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Personas construits à partir des données d'audience présentées dans les slides précédentes. Ce n'est pas une étude terrain mais une lecture des chiffres. <img src="img/logo-chatgpt.svg" alt="ChatGPT" class="ico">Premier jet des deux profils avec ChatGPT, réécrits par nos soins.</p>
+      <p class="src">Personas construits à partir des données d'audience présentées dans les slides précédentes. Ce n'est pas une étude terrain mais une lecture des chiffres. Premier jet des deux profils avec ChatGPT, réécrits par nos soins.</p>
     </div>
   </div>
   <div class="notes">Expliquer pourquoi deux. L'audience que l'on a n'est pas celle pour qui l'on écrit. Sur X, la majorité passive c'est Théo, mais toute la valeur est chez Camille, parce que X est un réseau de relais et non un réseau de portée. Puis la phrase : « Sur X, on ne parle pas à son audience, on parle à ceux qui vont vous répéter. » 60 secondes.</div>
@@ -380,7 +388,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · comptes observés sur la plateforme le 06/09/2026. <img src="img/logo-chatgpt.svg" alt="ChatGPT" class="ico">Liste soumise à ChatGPT, trois conseils génériques écartés.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · comptes observés sur la plateforme le 06/09/2026. Liste soumise à ChatGPT, trois conseils génériques écartés.</p>
     </div>
   </div>
   <div class="notes">C'est la partie pratique, le professeur la demande explicitement. Dire à l'oral les conseils 1, 2 et 6, ce sont les contre-intuitifs. Insister sur « répondre avant de publier » : c'est gratuit, et personne ne le fait. 60 secondes.</div>
@@ -460,7 +468,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : captures faites sur la plateforme le 06/09/2026 · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. <img src="img/logo-claude.svg" alt="Claude" class="ico">Chiffres vérifiés sur les profils en direct avec Claude Code.</p>
+      <p class="src">Sources : captures faites sur la plateforme le 06/09/2026 · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. Chiffres vérifiés sur les profils en direct avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">Montrer les deux tableaux cinq secondes, puis livrer la seule phrase qui compte : aucune des cinq publications les plus aimées de l'histoire de la plateforme n'est une publication de marque. Trois relèvent du deuil ou de la politique. Sur X, une marque ne gagnera jamais le fil, elle peut seulement être utile à l'intérieur du moment de quelqu'un d'autre. 60 secondes.</div>
@@ -486,7 +494,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Source : captures faites sur la plateforme le 06/09/2026, dans les mêmes conditions d'affichage pour les trois comptes. <img src="img/logo-claude.svg" alt="Claude" class="ico">Profils capturés avec Claude Code.</p>
+      <p class="src">Source : captures faites sur la plateforme le 06/09/2026, dans les mêmes conditions d'affichage pour les trois comptes. Profils capturés avec Claude Code.</p>
     </div>
   </div>
   <div class="notes">Développer Burger King, c'est le cas actionnable pour une marque française. Zéro abonnement n'est pas un détail, c'est une déclaration : le compte est un diffuseur, pas un membre de la communauté. C'est l'inverse de tous les manuels de social media, et cela fonctionne. Poser la question à la salle : oseriez-vous recommander cela à un client ? 60 secondes.</div>
@@ -566,7 +574,7 @@ body.notesvues section.ici .notes{display:block}
       </div>
     </div>
     <div class="pied">
-      <p class="src">Pas de résumé, conformément à la consigne. Notre lecture des chiffres présentés dans les slides précédentes. <img src="img/logo-chatgpt.svg" alt="ChatGPT" class="ico">Position contre-argumentée avec ChatGPT, objection conservée.</p>
+      <p class="src">Pas de résumé, conformément à la consigne. Notre lecture des chiffres présentés dans les slides précédentes. Position contre-argumentée avec ChatGPT, objection conservée.</p>
     </div>
   </div>
   <div class="notes">Ralentir. Poser trois phrases et s'arrêter : « X n'est plus un endroit où l'on est vu, c'est un endroit où l'on est cité. » Puis : « Gardez le compte, réduisez le budget, gardez le temps de réponse. » Puis : « La question de 2027 est de savoir si le prochain X a encore besoin de ses utilisateurs. » Et se taire. Le silence est la fin. 70 secondes.</div>
