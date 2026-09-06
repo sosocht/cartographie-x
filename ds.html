@@ -3,144 +3,100 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Design System</title>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;600;800&display=swap">
+<title>Design System — Mapping X</title>
 <style>
-  :root{
-    --noir:#1A1A1A; --blanc:#FAFAFA; --bleu:#1D9BF0;
-    --blanc-60:rgba(250,250,250,.6); --blanc-15:rgba(250,250,250,.15);
-    --noir-60:rgba(26,26,26,.6); --noir-15:rgba(26,26,26,.15); --bleu-15:rgba(29,155,240,.15);
-  }
-  *{box-sizing:border-box}
-  body{margin:0;background:var(--blanc);color:var(--noir);font-family:Archivo,system-ui,sans-serif;font-size:16px;line-height:1.5;padding:24px}
-  h1{font-size:40px;font-weight:800;line-height:1.05;letter-spacing:-.02em;margin:0;text-align:center}
-  h1 + hr{margin:22px 0 0}
-  hr{border:0;border-top:1px solid var(--noir-15);margin:0}
-  h2{font-size:24px;font-weight:800;letter-spacing:-.02em;margin:0 0 16px}
-  h3{font-size:16px;font-weight:600;margin:0 0 8px}
-  section{padding:30px 0}
-  .haut{display:grid;grid-template-columns:auto 1px 1fr;gap:0 32px;padding:30px 0}
-  .haut > .sep{background:var(--noir-15)}
-  .sw{display:flex}
-  .sw div{width:120px;height:120px;display:grid;place-items:center;font-variant-numeric:tabular-nums}
-  .sw div:first-child{border:1px solid var(--noir-15)}
-  .chip{display:inline-flex;align-items:center;gap:8px;border:1px solid currentColor;border-radius:999px;padding:8px 16px;font-weight:600;white-space:nowrap;flex:none}
-  .dark{background:var(--noir);color:var(--blanc);padding:20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-  .light{border:1px solid var(--noir-15);padding:20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
-  table{border-collapse:collapse;width:100%}
-  th,td{border:1px solid var(--noir-15);padding:8px 10px;text-align:left;vertical-align:middle}
-  th{background:var(--bleu-15);font-weight:600}
-  .t1{font-size:96px;font-weight:800;line-height:1.05;letter-spacing:-.02em}
-  .t2{font-size:36px;font-weight:400;line-height:1.35}
-  .t2b{font-size:36px;font-weight:600;line-height:1.35}
-  .t3{font-size:24px;font-weight:400}
-  .t3b{font-size:24px;font-weight:600}
-  .comp{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:24px 32px}
-  .ai{display:flex;gap:12px}
-  .ai svg{width:22px;height:22px}
-  .card{border:1px solid var(--blanc-15);border-radius:16px;padding:20px 22px}
-  .card.l{border-color:var(--noir-15)}
-  .big{font-size:96px;font-weight:800;line-height:1;color:var(--bleu);letter-spacing:-.02em}
-  .ph{border:2px dashed var(--bleu);border-radius:16px;height:150px;display:grid;place-items:center;color:var(--bleu);font-weight:600;text-align:center;padding:12px}
-  .notes{background:var(--bleu);color:var(--noir);padding:16px 20px;font-size:16px}
-  footer.f{display:flex;justify-content:space-between;color:var(--blanc-60);font-size:16px}
-  figure{margin:0} figure svg{display:block;max-width:100%;height:auto}
-  @media (max-width:760px){
-    .haut{grid-template-columns:1fr} .haut > .sep{height:1px;width:100%;margin:30px 0}
-    .sw{flex-wrap:wrap}
-    .typo thead{display:none}
-    .typo tr{display:grid;border:1px solid var(--noir-15);margin-bottom:12px}
-    .typo td{border:0;border-bottom:1px solid var(--noir-15);display:grid;gap:2px}
-    .typo td:last-child{border-bottom:0}
-    .typo td::before{content:attr(data-l);color:var(--noir-60);font-size:16px;font-weight:400;line-height:1.5}
-    .t1{font-size:56px} .t2,.t2b{font-size:28px} .big{font-size:56px}
-  }
+:root{
+  /* ---- 3 couleurs (celles de la plateforme, rien d'inventé) ---- */
+  --ink:#0F1419;      /* noir du texte de X */
+  --blue:#1D9BF0;     /* bleu de X : les chiffres qui montent, les liens */
+  --red:#F4212E;      /* rouge du coeur de X : les chiffres qui baissent, les alertes */
+  /* ---- neutres ---- */
+  --paper:#FFFFFF;
+  --ground:#F7F9F9;   /* fond de X en clair */
+  --line:#E4E9EB;
+  --muted:#536471;    /* gris secondaire de X */
+  /* ---- 3 tailles de police, pas une de plus ---- */
+  --fs-xl:clamp(2rem,4.6vw,3.6rem);
+  --fs-md:clamp(.95rem,1.28vw,1.12rem);
+  --fs-sm:clamp(.7rem,.92vw,.8rem);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --r:16px;
+  --shadow:0 1px 2px rgba(15,20,25,.04),0 8px 24px rgba(15,20,25,.06);
+}
+*{box-sizing:border-box}
+body{margin:0;font-family:var(--sans);font-size:var(--fs-md);color:var(--ink);background:var(--ground);line-height:1.55}
+main{max-width:900px;margin:0 auto;padding:6vh 5vw}
+h1{font-size:var(--fs-xl);font-weight:800;letter-spacing:-.03em;margin:0 0 .2em}
+h2{font-size:var(--fs-md);font-weight:800;text-transform:uppercase;letter-spacing:.14em;color:var(--muted);margin:3.2em 0 1em;padding-bottom:.6em;border-bottom:1px solid var(--line)}
+p{max-width:62ch}
+.lead{color:var(--muted)}
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);padding:1.4em 1.6em;margin:.8em 0}
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr))}
+.sw{height:74px;border-radius:12px;display:flex;align-items:flex-end;padding:.5em .7em;color:#fff;font-size:var(--fs-sm);font-weight:700}
+.eyebrow{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.16em;font-weight:700;color:var(--blue)}
+.stat{font-size:var(--fs-xl);font-weight:800;letter-spacing:-.03em;line-height:1}
+.down{color:var(--red)} .up{color:var(--blue)}
+table{border-collapse:collapse;width:100%;font-size:var(--fs-md)}
+th,td{text-align:left;padding:.6em .8em;border-bottom:1px solid var(--line)}
+th{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+code{font-size:var(--fs-sm);background:var(--ground);border:1px solid var(--line);border-radius:6px;padding:.15em .45em}
 </style>
 </head>
 <body>
-  <h1>Design System</h1>
-  <hr>
+<main>
+  <p class="eyebrow">R5.MDEE.13 · Design System</p>
+  <h1>Mapping X</h1>
+  <p class="lead">Système de design du deck « Mapping X » (Sofian Chtioui &amp; Romane Da-Silva, TD Igor Perez).
+  Un seul principe : <strong>on emprunte le langage visuel de la plateforme qu'on cartographie.</strong>
+  Les trois couleurs sont celles de X, pas des couleurs décoratives. Un lecteur doit reconnaître le sujet avant d'avoir lu le titre.</p>
 
-  <div class="haut">
-    <div>
-      <section style="padding:0">
-        <h2>Couleurs</h2>
-        <div class="sw">
-          <div style="background:#FAFAFA;color:#1A1A1A">#FAFAFA</div>
-          <div style="background:#1A1A1A;color:#FAFAFA">#1A1A1A</div>
-          <div style="background:#1D9BF0;color:#1A1A1A">#1D9BF0</div>
-        </div>
-      </section>
-    </div>
-    <div class="sep"></div>
-    <div>
-      <section style="padding:0">
-        <h2>Boutons</h2>
-        <div class="dark"><span class="chip">← → to navigate · N for notes</span></div>
-        <div class="light" style="margin-top:12px"><span class="chip">← → to navigate · N for notes</span></div>
-      </section>
-    </div>
+  <h2>Les 3 couleurs</h2>
+  <div class="grid">
+    <div><div class="sw" style="background:#0F1419">Ink · #0F1419</div><p class="lead" style="font-size:var(--fs-sm)">Le noir exact du texte de X. Titres, chiffres neutres.</p></div>
+    <div><div class="sw" style="background:#1D9BF0">Blue · #1D9BF0</div><p class="lead" style="font-size:var(--fs-sm)">Le bleu de X. Ce qui progresse, les liens, l'accent.</p></div>
+    <div><div class="sw" style="background:#F4212E">Red · #F4212E</div><p class="lead" style="font-size:var(--fs-sm)">Le rouge du cœur de X. Ce qui recule, les alertes.</p></div>
   </div>
-  <hr>
+  <p class="lead">Neutres : <code>#FFFFFF</code> cartes · <code>#F7F9F9</code> fond · <code>#E4E9EB</code> filets · <code>#536471</code> texte secondaire.</p>
 
-  <section>
-    <h2>Typographie</h2>
-    <table class="typo">
-      <thead><tr><th>Niveau</th><th>Taille</th><th>Poids</th><th>Épaisseur</th><th>Usage</th><th>Aperçu</th></tr></thead>
-      <tbody>
-        <tr><td data-l="Niveau">Libellé</td><td data-l="Taille">1.25 vw (24 px sur 1920)</td><td data-l="Poids">400</td><td data-l="Épaisseur">Normal</td><td data-l="Usage">Cellules de tableau, source en pied de slide, notes orateur</td><td data-l="Aperçu" class="t3">X is the real-time network</td></tr>
-        <tr><td data-l="Niveau">Libellé fort</td><td data-l="Taille">1.25 vw (24 px sur 1920)</td><td data-l="Poids">600</td><td data-l="Épaisseur">Demi-gras</td><td data-l="Usage">Badge outil IA, numéro de slide, en-têtes de tableau, légendes de graphique</td><td data-l="Aperçu" class="t3b">X is the real-time network</td></tr>
-        <tr><td data-l="Niveau">Texte</td><td data-l="Taille">1.9 vw (36 px sur 1920)</td><td data-l="Poids">400</td><td data-l="Épaisseur">Normal</td><td data-l="Usage">Texte courant des slides, listes, cartes</td><td data-l="Aperçu" class="t2">X is the real-time network</td></tr>
-        <tr><td data-l="Niveau">Texte fort</td><td data-l="Taille">1.9 vw (36 px sur 1920)</td><td data-l="Poids">600</td><td data-l="Épaisseur">Demi-gras</td><td data-l="Usage">Titre de carte, mot-clé, sous-titre de couverture</td><td data-l="Aperçu" class="t2b">X is the real-time network</td></tr>
-        <tr><td data-l="Niveau">Titre</td><td data-l="Taille">5 vw (96 px sur 1920)</td><td data-l="Poids">800</td><td data-l="Épaisseur">Extra-gras</td><td data-l="Usage">Titre de slide, titre de couverture, grand chiffre</td><td data-l="Aperçu" class="t1">X is the real-time network</td></tr>
-      </tbody>
-    </table>
-  </section>
-  <hr>
+  <h2>Les 3 tailles de police</h2>
+  <div class="card">
+    <p class="stat">15,5 M</p>
+    <p style="font-size:var(--fs-sm);color:var(--muted)">XL — <code>clamp(2rem,4.6vw,3.6rem)</code> · titres de section et chiffres clés. Poids 800, interlettrage −.03em.</p>
+  </div>
+  <div class="card">
+    <p style="margin:0">Corps de texte : une idée par ligne, jamais plus de 62 caractères de large.</p>
+    <p style="font-size:var(--fs-sm);color:var(--muted);margin-bottom:0">MD — <code>clamp(.95rem,1.28vw,1.12rem)</code> · texte courant, tableaux, listes.</p>
+  </div>
+  <div class="card">
+    <p class="eyebrow" style="margin:0">Étiquette · Source · Légende</p>
+    <p style="font-size:var(--fs-sm);color:var(--muted);margin-bottom:0">SM — <code>clamp(.7rem,.92vw,.8rem)</code> · sur-titres, sources, légendes. Majuscules, interlettrage .16em.</p>
+  </div>
+  <p class="lead">La hiérarchie se fait au <strong>poids</strong> (400 / 700 / 800) et à la <strong>couleur</strong>, jamais en ajoutant une quatrième taille.</p>
 
-  <section>
-    <h2>Composants</h2>
-    <div class="comp">
-      <div>
-        <h3>Badge outil IA (un par slide où l'outil est utilisé)</h3>
-        <div class="dark ai">
-          <span class="chip"><svg viewBox="0 0 24 24" fill="#D97757"><path d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></svg>Claude Code</span>
-          <span class="chip"><svg viewBox="0 0 24 24" fill="#D97757"><use href="#claude-glyph"/></svg>Claude</span>
-          <span class="chip"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M22.2819 9.8211a5.9847 5.9847 0 0 0-.5157-4.9108 6.0462 6.0462 0 0 0-6.5098-2.9A6.0651 6.0651 0 0 0 4.9807 4.1818a5.9847 5.9847 0 0 0-3.9977 2.9 6.0462 6.0462 0 0 0 .7427 7.0966 5.98 5.98 0 0 0 .511 4.9107 6.051 6.051 0 0 0 6.5146 2.9001A5.9847 5.9847 0 0 0 13.2599 24a6.0557 6.0557 0 0 0 5.7718-4.2058 5.9894 5.9894 0 0 0 3.9977-2.9001 6.0557 6.0557 0 0 0-.7475-7.0729zm-9.022 12.6081a4.4755 4.4755 0 0 1-2.8764-1.0408l.1419-.0804 4.7783-2.7582a.7948.7948 0 0 0 .3927-.6813v-6.7369l2.02 1.1686a.071.071 0 0 1 .038.052v5.5826a4.504 4.504 0 0 1-4.4945 4.4944zm-9.6607-4.1254a4.4708 4.4708 0 0 1-.5346-3.0137l.142.0852 4.783 2.7582a.7712.7712 0 0 0 .7806 0l5.8428-3.3685v2.3324a.0804.0804 0 0 1-.0332.0615L9.74 19.9502a4.4992 4.4992 0 0 1-6.1408-1.6464zM2.3408 7.8956a4.485 4.485 0 0 1 2.3655-1.9728V11.6a.7664.7664 0 0 0 .3879.6765l5.8144 3.3543-2.0201 1.1685a.0757.0757 0 0 1-.071 0l-4.8303-2.7865A4.504 4.504 0 0 1 2.3408 7.872zm16.5963 3.8558L13.1038 8.364 15.1192 7.2a.0757.0757 0 0 1 .071 0l4.8303 2.7913a4.4944 4.4944 0 0 1-.6765 8.1042v-5.6772a.79.79 0 0 0-.407-.667zm2.0107-3.0231l-.142-.0852-4.7735-2.7818a.7759.7759 0 0 0-.7854 0L9.409 9.2297V6.8974a.0662.0662 0 0 1 .0284-.0615l4.8303-2.7866a4.4992 4.4992 0 0 1 6.6802 4.66zM8.3065 12.863l-2.02-1.1638a.0804.0804 0 0 1-.038-.0567V6.0742a4.4992 4.4992 0 0 1 7.3757-3.4537l-.142.0805L8.704 5.459a.7948.7948 0 0 0-.3927.6813zm1.0976-2.3654l2.602-1.4998 2.6069 1.4998v2.9994l-2.5974 1.4997-2.6067-1.4997Z"/></svg>ChatGPT</span>
-        </div>
-      </div>
-      <div>
-        <h3>Pied de slide : source à gauche, numéro à droite</h3>
-        <div class="dark" style="display:block"><footer class="f"><span>Source: ECN, Guide des réseaux sociaux 2025, p. 5</span><span>5 / 15</span></footer></div>
-      </div>
-      <div>
-        <h3>Carte (fond sombre et fond clair)</h3>
-        <div class="dark" style="display:block"><div class="card"><b>Regulation</b><br>€120M DSA fine by the European Commission, Dec. 2025.</div></div>
-        <div class="light" style="display:block;margin-top:12px"><div class="card l"><b>Regulation</b><br>€120M DSA fine by the European Commission, Dec. 2025.</div></div>
-      </div>
-      <div>
-        <h3>Grand chiffre</h3>
-        <div class="dark" style="display:block"><div class="big">15.5M</div><div>potential ad audience in France, 2025</div></div>
-      </div>
-      <div>
-        <h3>Emplacement de capture d'écran (à remplacer)</h3>
-        <div class="dark" style="display:block"><div class="ph">Screenshot: @BurgerKingFR profile<br>(replace me)</div></div>
-      </div>
-      <div>
-        <h3>Notes orateur (touche N)</h3>
-        <div class="notes">Say: X lost 2 million potential ad viewers in France in one year. Ask the room who still opens X daily.</div>
-      </div>
-      <div>
-        <h3>Graphique</h3>
-        <figure>
-          <svg viewBox="0 0 320 120" role="img" aria-label="Deux barres : 17,5 millions en 2024, 15,5 millions en 2025" style="color:#1A1A1A">
-            <rect x="40" y="10" width="90" height="90" fill="#1A1A1A"/><text x="85" y="66" text-anchor="middle" fill="#FAFAFA" font-family="Archivo" font-weight="800" font-size="20">17.5M</text><text x="85" y="116" text-anchor="middle" font-family="Archivo" font-size="12" fill="currentColor">2024</text>
-            <rect x="180" y="20.3" width="90" height="79.7" fill="#1D9BF0"/><text x="225" y="66" text-anchor="middle" fill="#1A1A1A" font-family="Archivo" font-weight="800" font-size="20">15.5M</text><text x="225" y="116" text-anchor="middle" font-family="Archivo" font-size="12" fill="currentColor">2025</text>
-          </svg>
-        </figure>
-      </div>
-    </div>
-  </section>
-  <svg width="0" height="0" style="position:absolute"><defs><path id="claude-glyph" d="m4.7144 15.9555 4.7174-2.6471.079-.2307-.079-.1275h-.2307l-.7893-.0486-2.6956-.0729-2.3375-.0971-2.2646-.1214-.5707-.1215-.5343-.7042.0546-.3522.4797-.3218.686.0608 1.5179.1032 2.2767.1578 1.6514.0972 2.4468.255h.3886l.0546-.1579-.1336-.0971-.1032-.0972L6.973 9.8356l-2.55-1.6879-1.3356-.9714-.7225-.4918-.3643-.4614-.1578-1.0078.6557-.7225.8803.0607.2246.0607.8925.686 1.9064 1.4754 2.4893 1.8336.3643.3035.1457-.1032.0182-.0728-.164-.2733-1.3539-2.4467-1.445-2.4893-.6435-1.032-.17-.6194c-.0607-.255-.1032-.4674-.1032-.7285L6.287.1335 6.6997 0l.9957.1336.419.3642.6192 1.4147 1.0018 2.2282 1.5543 3.0296.4553.8985.2429.8318.091.255h.1579v-.1457l.1275-1.706.2368-2.0947.2307-2.6957.0789-.7589.3764-.9107.7468-.4918.5828.2793.4797.686-.0668.4433-.2853 1.8517-.5586 2.9021-.3643 1.9429h.2125l.2429-.2429.9835-1.3053 1.6514-2.0643.7286-.8196.85-.9046.5464-.4311h1.0321l.759 1.1293-.34 1.1657-1.0625 1.3478-.8804 1.1414-1.2628 1.7-.7893 1.36.0729.1093.1882-.0183 2.8535-.607 1.5421-.2794 1.8396-.3157.8318.3886.091.3946-.3278.8075-1.967.4857-2.3072.4614-3.4364.8136-.0425.0304.0486.0607 1.5482.1457.6618.0364h1.621l3.0175.2247.7892.522.4736.6376-.079.4857-1.2142.6193-1.6393-.3886-3.825-.9107-1.3113-.3279h-.1822v.1093l1.0929 1.0686 2.0035 1.8092 2.5075 2.3314.1275.5768-.3218.4554-.34-.0486-2.2039-1.6575-.85-.7468-1.9246-1.621h-.1275v.17l.4432.6496 2.3436 3.5214.1214 1.0807-.17.3521-.6071.2125-.6679-.1214-1.3721-1.9246L14.38 17.959l-1.1414-1.9428-.1397.079-.674 7.2552-.3156.3703-.7286.2793-.6071-.4614-.3218-.7468.3218-1.4753.3886-1.9246.3157-1.53.2853-1.9004.17-.6314-.0121-.0425-.1397.0182-1.4328 1.9672-2.1796 2.9446-1.7243 1.8456-.4128.164-.7164-.3704.0667-.6618.4008-.5889 2.386-3.0357 1.4389-1.882.929-1.0868-.0062-.1579h-.0546l-6.3385 4.1164-1.1293.1457-.4857-.4554.0608-.7467.2307-.2429 1.9064-1.3114Z"/></defs></svg>
+  <h2>Le format : un dossier qui défile</h2>
+  <p>Le deck n'est pas un diaporama horizontal. C'est <strong>une page verticale</strong> découpée en 15 sections plein écran, séparées par un filet et un numéro <code>03 / 15</code>.
+  On avance à la flèche <strong>↓</strong> ou <strong>→</strong>, on recule avec <strong>↑</strong> ou <strong>←</strong> : chaque section se cale d'elle-même (<code>scroll-snap</code>).
+  C'est la mise en page des guides Ecommerce Nation, que le prof nous a donnés comme source : cartes blanches, gros chiffres, colonnes courtes.</p>
+  <div class="card">
+    <p style="margin:0"><strong>Rail de gauche</strong> — logo X, index des 15 sections, section active en bleu. Il remplace le sommaire et sert de barre de progression pendant l'oral.</p>
+  </div>
+  <div class="card">
+    <p style="margin:0"><strong>Impression</strong> — <code>@media print</code> casse la page tous les 100vh : Ctrl/Cmd + P donne un PDF de 15 pages en 16:9, déposable sur Moodle.</p>
+  </div>
+
+  <h2>Composants</h2>
+  <table>
+    <tr><th>Nom</th><th>Rôle</th><th>Règle</th></tr>
+    <tr><td>Carte</td><td>Bloc d'information</td><td>Fond blanc, filet 1px, rayon 16, ombre douce. Jamais de fond coloré plein.</td></tr>
+    <tr><td>Chiffre clé</td><td>Une donnée qui compte</td><td>Taille XL + une unité en petit. Bleu s'il monte, rouge s'il baisse, noir s'il est neutre.</td></tr>
+    <tr><td>Sur-titre</td><td>Situer la rubrique</td><td>Taille SM, majuscules, bleu. Toujours au-dessus du titre.</td></tr>
+    <tr><td>Puce IA</td><td>Traçabilité</td><td>Logo officiel de l'outil réellement utilisé + ce qu'il a fait. Aucun logo décoratif.</td></tr>
+    <tr><td>Source</td><td>Preuve</td><td>Taille SM, gris, en bas de section. Chaque chiffre a sa source et sa date.</td></tr>
+  </table>
+
+  <h2>Règle de contenu</h2>
+  <p>Une section = <strong>une idée</strong> + <strong>une preuve chiffrée</strong> + <strong>une conséquence pour une marque</strong>.
+  Si une section n'a pas les trois, elle n'est pas finie. Le prof a écrit « pas de synthèse » pour la conclusion : la dernière section prend position et ouvre, elle ne résume rien.</p>
+</main>
 </body>
 </html>
