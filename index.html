@@ -32,11 +32,11 @@ body{margin:0;font-family:var(--sans);font-size:var(--fs-md);font-weight:400;lin
   border-right:1px solid var(--filet);display:flex;flex-direction:column;align-items:center;
   padding:1.4vh 0;gap:.6vh;z-index:50}
 .rail .mark{width:2.4vh;height:2.4vh;margin-bottom:1.2vh;flex:0 0 auto}
-.rail a{width:2.6vh;height:1.9vh;display:grid;place-items:center;border-radius:6px;
+.rail a{width:2.6vh;height:2.1vh;display:grid;place-items:center;border-radius:0;
   font-size:var(--fs-sm);font-weight:600;color:var(--tenu);text-decoration:none;transition:.18s}
-.rail a:hover{background:var(--fond);color:var(--sourdine)}
+.rail a:hover{background:rgba(10,10,10,.12);color:var(--encre)}
 .rail a.on{color:var(--carte);background:var(--encre)}
-.rail .bar{margin-top:auto;width:.3vh;height:7vh;background:var(--filet);border-radius:2px;overflow:hidden}
+.rail .bar{margin-top:auto;width:.8vh;height:9vh;background:var(--filet);border-radius:2px;overflow:hidden}
 .rail .bar i{display:block;width:100%;background:var(--bleu);height:0}
 
 /* slides */
@@ -88,22 +88,23 @@ strong{font-weight:600}
 /* tableau geant de la slide 11 */
 .col{display:flex;flex-direction:column}
 /* slide 12 : chaque famille d'elements se regle par des variables de section */
+#s5b h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
 #s11 h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
 #s11 .col .tete img{width:var(--pp,4vh);height:var(--pp,4vh);position:relative;left:var(--pp-dx,0);top:var(--pp-dy,0)}
 #s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 #s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
 #s11 .col .ab{font-size:var(--ab,var(--fs-chiffre));position:relative;left:var(--ab-dx,0);top:var(--ab-dy,0)}
-#s11 .col .shot{width:100%;height:var(--img,34vh);object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
+#s11 .col .shot{width:auto;max-width:100%;align-self:center;height:min(var(--img,34vh),calc(100vh - 404px));object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
 #s11 .col .lg{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 .col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
 .col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
 .col .nm{font-weight:600;line-height:1.15;font-size:var(--fs-md)}
 .col .ps{padding:0;margin:.1em 0 0}
 .col .ab{padding:.4em 0 .6em;font-size:var(--fs-chiffre);font-weight:500;line-height:1;text-align:center}
-.col .shot{width:100%;height:auto;border-radius:14px;display:block;margin-top:.3em}
+.col .shot{width:100%;height:auto;border-radius:var(--r);display:block;margin-top:.3em}
 .col .lg{padding:.7em 0 0;font-weight:600;line-height:1.25}
 /* formats de la slide 13 */
-.forme{border:2px solid var(--bleu);border-radius:12px;background:rgba(29,155,240,.06);
+.forme{border:2px solid var(--bleu);border-radius:var(--r);background:rgba(29,155,240,.06);
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.5em}
 .forme b{font-size:var(--fs-md);font-weight:600}
 .forme span{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin-top:.2em}
@@ -118,6 +119,8 @@ strong{font-weight:600}
 .tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
 .etale > div{display:flex;flex-direction:column;justify-content:space-between}
 /* slide 7 : titre et pilules des secteurs, réglables */
+#s6 .usg{position:relative;left:var(--usg-dx,0);top:var(--usg-dy,0)}
+#s6 .gen{position:relative;left:var(--gen-dx,0);top:var(--gen-dy,0)}
 #s6 .sect-t{position:relative;left:var(--sct-dx,0);top:var(--sct-dy,0);font-size:var(--sct,var(--fs-md))}
 #s6 .sect-p{position:relative;left:var(--scp-dx,0);top:var(--scp-dy,0)}
 #s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
@@ -148,28 +151,29 @@ strong{font-weight:600}
 .geant td.detail{width:16%}
 .geant td.n{width:12%;font-size:var(--fs-md)}
 .geant td.pf{width:34%}
-.geant td.pf img{height:11vh;width:100%;object-fit:contain;border-radius:12px}
+.geant td.pf img{height:11vh;width:100%;object-fit:contain;border-radius:var(--r)}
 .persona-b .pts i.on{background:var(--bleu)}
 .carte-sombre{background:#000!important;border-color:#000!important}
 /* tableau geant de la slide 11 */
 .col{display:flex;flex-direction:column}
 /* slide 12 : chaque famille d'elements se regle par des variables de section */
+#s5b h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
 #s11 h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
 #s11 .col .tete img{width:var(--pp,4vh);height:var(--pp,4vh);position:relative;left:var(--pp-dx,0);top:var(--pp-dy,0)}
 #s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 #s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
 #s11 .col .ab{font-size:var(--ab,var(--fs-chiffre));position:relative;left:var(--ab-dx,0);top:var(--ab-dy,0)}
-#s11 .col .shot{width:100%;height:var(--img,34vh);object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
+#s11 .col .shot{width:auto;max-width:100%;align-self:center;height:min(var(--img,34vh),calc(100vh - 404px));object-fit:contain;position:relative;left:var(--img-dx,0);top:var(--img-dy,0)}
 #s11 .col .lg{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 .col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
 .col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
 .col .nm{font-weight:600;line-height:1.15;font-size:var(--fs-md)}
 .col .ps{padding:0;margin:.1em 0 0}
 .col .ab{padding:.4em 0 .6em;font-size:var(--fs-chiffre);font-weight:500;line-height:1;text-align:center}
-.col .shot{width:100%;height:auto;border-radius:14px;display:block;margin-top:.3em}
+.col .shot{width:100%;height:auto;border-radius:var(--r);display:block;margin-top:.3em}
 .col .lg{padding:.7em 0 0;font-weight:600;line-height:1.25}
 /* formats de la slide 13 */
-.forme{border:2px solid var(--bleu);border-radius:12px;background:rgba(29,155,240,.06);
+.forme{border:2px solid var(--bleu);border-radius:var(--r);background:rgba(29,155,240,.06);
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.5em}
 .forme b{font-size:var(--fs-md);font-weight:600}
 .forme span{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin-top:.2em}
@@ -184,6 +188,8 @@ strong{font-weight:600}
 .tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
 .etale > div{display:flex;flex-direction:column;justify-content:space-between}
 /* slide 7 : titre et pilules des secteurs, réglables */
+#s6 .usg{position:relative;left:var(--usg-dx,0);top:var(--usg-dy,0)}
+#s6 .gen{position:relative;left:var(--gen-dx,0);top:var(--gen-dy,0)}
 #s6 .sect-t{position:relative;left:var(--sct-dx,0);top:var(--sct-dy,0);font-size:var(--sct,var(--fs-md))}
 #s6 .sect-p{position:relative;left:var(--scp-dx,0);top:var(--scp-dy,0)}
 #s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
@@ -214,7 +220,7 @@ strong{font-weight:600}
 .geant td.detail{width:16%}
 .geant td.n{width:12%;font-size:var(--fs-md)}
 .geant td.pf{width:34%}
-.geant td.pf img{height:11vh;width:100%;object-fit:contain;border-radius:12px}
+.geant td.pf img{height:11vh;width:100%;object-fit:contain;border-radius:var(--r)}
 .persona-a .pts i.on{background:var(--encre)}
 .entete{display:flex;align-items:flex-start;justify-content:space-between;gap:1.4em;margin-bottom:.6em}
 .entete .t{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine)}
@@ -348,6 +354,7 @@ body.notesvues section.ici .notes{display:block}
   .num{position:static;display:block;text-align:right;margin-bottom:-14px}
   .pied{padding-right:0}
   .carte{box-shadow:none}
+  #s11 .col .shot{height:var(--img,34vh)}
   .vue.profil{height:auto;aspect-ratio:640/340} .vue.post{height:190px} .vue.large{max-height:230px}
   h1,h2{font-size:32px} .chiffre{font-size:24px}
   body{font-size:14px} .src,.corps,.unite,.detail,th,.ai,.num{font-size:11px}
@@ -449,7 +456,7 @@ body.notesvues section.ici .notes{display:block}
       <div>
         <div class="carte">
           <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">En France, la société s'appelle encore Twitter</span>
-          <img class="vue twr" data-tw="pappers" src="img/pappers.png" alt="Fiche du registre du commerce de Twitter France SAS" style="margin:.8em 0;border-radius:12px">
+          <img class="vue twr" data-tw="pappers" src="img/pappers.png" alt="Fiche du registre du commerce de Twitter France SAS" style="margin:.8em 0;border-radius:var(--r)">
           <div class="grille g3" style="gap:10px">
             <div><span class="chiffre">12,9 M€</span><span class="unite">de chiffre d'affaires</span></div>
             <div><span class="chiffre">20 à 49</span><span class="unite">salariés</span></div>
@@ -467,21 +474,21 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 5 · IDENTITÉ ET PRODUIT -->
-<section id="s5b">
+<section id="s5b" style="--t-dy:-26px">
   <span class="num">05 / 16</span>
   <div class="wrap">
     <h2>Ce que X a changé de son identité et de son produit</h2>
     <div class="grille g2" style="align-items:start;gap:2.6vw">
       <div>
-        <img class="vue" src="img/r/composer.png" alt="Zone de rédaction avec le compteur de caractères" style="width:100%;height:auto;border:0;border-radius:12px;display:block">
+        <img class="vue" src="img/r/composer.png" alt="Zone de rédaction avec le compteur de caractères" style="width:100%;height:auto;border:0;border-radius:var(--r);display:block">
         <p class="corps"><strong>Écrire sur X.</strong> De 140 à 280 caractères, plus les indicateurs.</p>
-        <img class="vue" src="img/r/hashtag.png" alt="Publication avec des hashtags" style="width:100%;height:auto;border:0;border-radius:12px;display:block;margin-top:1.2vh">
+        <img class="vue" src="img/r/hashtag.png" alt="Publication avec des hashtags" style="width:100%;height:auto;border:0;border-radius:var(--r);display:block;margin-top:1.2vh">
         <p class="corps"><strong>Le hashtag reste le classement du réseau.</strong></p>
       </div>
       <div>
         <div class="grille g2" style="align-items:start;gap:1.4vw">
           <div>
-            <img class="vue" src="img/r/logos.png" alt="Le logo avant et après le passage à X" style="width:100%;height:auto;border:0;border-radius:12px;display:block">
+            <img class="vue" src="img/r/logos.png" alt="Le logo avant et après le passage à X" style="width:100%;height:auto;border:0;border-radius:var(--r);display:block">
             <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.8em">
               <span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Oiseau : le gazouillis</span>
               <span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Léger, bavard, public</span>
@@ -490,7 +497,7 @@ body.notesvues section.ici .notes{display:block}
             </div>
           </div>
           <div>
-            <img class="vue" src="img/r/premium.png" alt="Les abonnements Premium de X" style="width:100%;height:auto;border:0;border-radius:12px;display:block">
+            <img class="vue" src="img/r/premium.png" alt="Les abonnements Premium de X" style="width:100%;height:auto;border:0;border-radius:var(--r);display:block">
             <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.8em">
               <span class="badge badge-bleu">Premium 4,67 €</span>
               <span class="badge badge-bleu">Premium+ 22,17 €</span>
@@ -560,7 +567,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 6 · FRANCE -->
-<section id="s6" style="--sct-dy:-41px;--scp-dx:-4px;--scp-dy:-148px">
+<section id="s6" style="--sct-dy:-41px;--scp-dx:-4px;--scp-dy:-146px;--usg-dy:-48px;--gen-dy:-56px">
   <span class="num">07 / 16</span>
   <div class="wrap">
     <h2>France : deux millions de personnes parties en un an</h2>
@@ -588,7 +595,7 @@ body.notesvues section.ici .notes{display:block}
 
       <div>
         <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Usage centré sur le temps réel</p>
-        <div class="tags" style="flex-direction:column;align-items:stretch;gap:1.6vh;margin-top:1.4vh">
+        <div class="tags usg" data-tw="usages" style="flex-direction:column;align-items:stretch;gap:1.6vh;margin-top:1.4vh">
           <span class="tag tag-vide" style="justify-content:center;padding:1.3em 1em">réactions aux événements</span>
           <span class="tag tag-vide" style="justify-content:center;padding:1.3em 1em">partages de tendances</span>
           <span class="tag tag-vide" style="justify-content:center;padding:1.3em 1em">actualité brûlante</span>
@@ -601,7 +608,7 @@ body.notesvues section.ici .notes{display:block}
 
       <div>
         <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Part de chaque génération présente sur X</p>
-        <div style="margin-top:.8em">
+        <div class="gen" data-tw="generations" style="margin-top:.8em">
           <div class="jauge"><span>Génération Z</span><span class="detail">27 %</span></div><div class="jauge-barre"><i style="width:27%;background:var(--bleu)"></i></div>
           <div class="jauge" style="margin-top:.8em"><span>Millennials</span><span class="detail">18 %</span></div><div class="jauge-barre"><i style="width:18%;background:var(--bleu)"></i></div>
           <div class="jauge" style="margin-top:.8em"><span>Génération X</span><span class="detail">14 %</span></div><div class="jauge-barre"><i style="width:14%;background:var(--bleu)"></i></div>
@@ -628,7 +635,7 @@ body.notesvues section.ici .notes{display:block}
 
       <div class="carte persona-a">
         <div class="persona">
-          <img class="vign" src="img/av-elonmusk.jpg" alt="" style="visibility:hidden">
+          <img class="vign" src="img/persona-theo.jpg" alt="Portrait du persona Théo">
           <div>
             <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Persona A · l'utilisateur réel</span>
             <p class="nom">Théo, 27 ans</p>
@@ -654,7 +661,7 @@ body.notesvues section.ici .notes{display:block}
 
       <div class="carte carte-bleu persona-b">
         <div class="persona">
-          <img class="vign" src="img/av-elonmusk.jpg" alt="" style="visibility:hidden">
+          <img class="vign" src="img/persona-camille.jpg" alt="Portrait du persona Camille">
           <div>
             <span class="badge badge-bleu">Persona B · la cible d'une marque</span>
             <p class="nom">Camille, 34 ans</p>
@@ -761,7 +768,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 11 · REPÈRES -->
-<section id="s11" style="--t-dy:17px;--pp-dy:21px;--nom-dx:-1px;--nom-dy:21px;--ps-dx:36px;--ps-dy:11px;--ab-dx:-11px;--ab-dy:-25px;--img-dy:-48px;--img:352px">
+<section id="s11" style="--t-dy:17px;--pp-dy:21px;--nom-dx:-1px;--nom-dy:21px;--ps-dx:36px;--ps-dy:11px;--ab-dx:-11px;--ab-dy:-25px;--img-dy:-48px;--img:514px">
   <span class="num">12 / 16</span>
   <div class="wrap">
     <div class="entete" style="margin-bottom:1.6vh">
