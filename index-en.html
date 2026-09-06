@@ -1,0 +1,601 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mapping X — Sofian Chtioui &amp; Romane Da-Silva</title>
+<meta name="description" content="Mapping X: from social network to real-time AI terminal. R5.MDEE.13 Social Media Strategy & e-CRM, IUT de Lille.">
+<style>
+:root{
+  --ink:#0F1419; --blue:#1D9BF0; --red:#F4212E;
+  --paper:#fff; --ground:#F7F9F9; --line:#E4E9EB; --muted:#536471;
+  --fs-xl:clamp(1.9rem,4.4vw,3.4rem);
+  --fs-md:clamp(.86rem,1.18vw,1.06rem);
+  --fs-sm:clamp(.64rem,.84vw,.76rem);
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI","Helvetica Neue",Arial,sans-serif;
+  --r:16px; --rail:5.2vh;
+  --shadow:0 1px 2px rgba(15,20,25,.04),0 8px 24px rgba(15,20,25,.07);
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);font-size:var(--fs-md);line-height:1.5;color:var(--ink);
+  background:var(--ground);scroll-snap-type:y mandatory;overflow-x:hidden}
+
+/* ---------- rail de gauche : sommaire + progression ---------- */
+.rail{position:fixed;left:0;top:0;bottom:0;width:var(--rail);background:var(--paper);
+  border-right:1px solid var(--line);display:flex;flex-direction:column;align-items:center;
+  padding:14px 0;gap:6px;z-index:50}
+.rail .mark{width:2.4vh;height:2.4vh;margin-bottom:1.2vh;flex:0 0 auto}
+.rail a{width:2.6vh;height:1.9vh;display:grid;place-items:center;border-radius:6px;
+  font-size:var(--fs-sm);font-weight:700;color:#AAB8C2;text-decoration:none;transition:.18s}
+.rail a:hover{background:var(--ground);color:var(--muted)}
+.rail a.on{color:var(--paper);background:var(--ink)}
+.rail .bar{margin-top:auto;width:.3vh;height:7vh;background:var(--line);border-radius:2px;overflow:hidden}
+.rail .bar i{display:block;width:100%;background:var(--blue);height:0}
+
+/* ---------- sections ---------- */
+section{min-height:100vh;min-height:100svh;scroll-snap-align:start;scroll-snap-stop:always;
+  padding:5vh 4vw 5vh calc(var(--rail) + 4vw);display:flex;flex-direction:column;justify-content:center;
+  border-top:1px solid var(--line);position:relative}
+section:first-of-type{border-top:0}
+.wrap{width:100%;max-width:1180px;margin:0 auto}
+.num{position:absolute;bottom:3vh;right:4vw;font-size:var(--fs-sm);font-weight:700;color:#AAB8C2;letter-spacing:.1em}
+.eyebrow{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.16em;font-weight:800;color:var(--blue);margin:0 0 .5em}
+h1,h2{font-size:var(--fs-xl);font-weight:800;letter-spacing:-.035em;line-height:1.03;margin:0 0 .5em}
+h2 em{font-style:normal;color:var(--blue)}
+.sub{font-size:var(--fs-md);color:var(--muted);max-width:70ch;margin:0 0 1.6em}
+.src{font-size:var(--fs-sm);color:#8899A6;margin:1.6em 0 0;letter-spacing:.01em}
+strong{font-weight:700}
+.hl{color:var(--blue);font-weight:700}
+.hl-r{color:var(--red);font-weight:700}
+
+/* ---------- briques ---------- */
+.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);
+  box-shadow:var(--shadow);padding:1.1em 1.25em}
+.grid{display:grid;gap:14px}
+.g2{grid-template-columns:1fr 1fr}
+.g3{grid-template-columns:repeat(3,1fr)}
+.g4{grid-template-columns:repeat(4,1fr)}
+.g5{grid-template-columns:repeat(5,1fr)}
+.stat{font-size:var(--fs-xl);font-weight:800;letter-spacing:-.04em;line-height:.98;display:block}
+.stat.down{color:var(--red)} .stat.up{color:var(--blue)}
+.unit{font-size:var(--fs-sm);font-weight:700;color:var(--muted);text-transform:uppercase;letter-spacing:.1em;display:block;margin-top:.5em}
+.cap{font-size:var(--fs-sm);color:var(--muted);margin:.45em 0 0;line-height:1.4}
+ul{margin:.4em 0;padding-left:1.05em} li{margin:.3em 0}
+table{border-collapse:collapse;width:100%}
+th,td{text-align:left;padding:.45em .6em;border-bottom:1px solid var(--line);vertical-align:middle}
+th{font-size:var(--fs-sm);text-transform:uppercase;letter-spacing:.1em;color:var(--muted);font-weight:800}
+td.n{font-weight:800;text-align:right;white-space:nowrap}
+.face{width:2.9vh;height:2.9vh;border-radius:50%;object-fit:cover;object-position:top center;
+  border:1px solid var(--line);vertical-align:middle;margin-right:.5em;background:var(--ground)}
+.shot{width:100%;border:1px solid var(--line);border-radius:12px;display:block;background:var(--paper)}
+.shot.tall{height:30vh;object-fit:cover;object-position:top center}
+.shot.post{height:26vh;object-fit:contain;background:#000;border-color:#000}
+.shot.wide{max-height:34vh;object-fit:contain;object-position:left top}
+
+/* ---------- puce IA ---------- */
+.ai{position:absolute;bottom:3vh;left:calc(var(--rail) + 4vw);display:flex;align-items:center;gap:.5em;
+  font-size:var(--fs-sm);color:var(--muted);background:var(--paper);border:1px solid var(--line);
+  border-radius:999px;padding:.35em .8em;box-shadow:var(--shadow);max-width:46vw}
+.ai img{width:1.4vh;height:1.4vh;flex:0 0 auto}
+
+/* ---------- couverture ---------- */
+#s1{background:var(--ink);color:var(--paper);border-top:0;text-align:center;align-items:center;
+  background-image:linear-gradient(rgba(15,20,25,.62),rgba(15,20,25,.62)),url("img/cover.jpg");
+  background-size:cover;background-position:center}
+#s1 .wrap{max-width:80vw}
+#s1 .eyebrow{color:#7FCBFF}
+#s1 h1{font-size:clamp(3rem,10vw,7.5rem);letter-spacing:-.055em;margin:0}
+#s1 .sub{color:#E4E9EB;font-size:var(--fs-md);max-width:60ch;margin-left:auto;margin-right:auto}
+#s1 .meta{font-size:var(--fs-sm);color:#8899A6;letter-spacing:.06em;text-transform:uppercase;margin-top:2.4em}
+#s1 .hint{position:absolute;bottom:3vh;left:calc(var(--rail) + 4vw);font-size:var(--fs-sm);color:#8899A6;letter-spacing:.1em}
+#s1 .num{color:#546471}
+
+/* ---------- notes orateur (touche N) ---------- */
+.notes{display:none;position:fixed;left:var(--rail);right:0;bottom:0;background:var(--ink);color:#E4E9EB;
+  padding:1em 4vw;font-size:var(--fs-sm);line-height:1.55;z-index:60;border-top:2px solid var(--blue)}
+body.shownotes section.here .notes{display:block}
+
+/* ---------- impression : 15 pages 16:9 ---------- */
+@media screen and (max-width:900px){
+  .g5,.g4{grid-template-columns:repeat(2,1fr)}
+  .g3,.g2{grid-template-columns:1fr}
+  section{padding:5vh 5vw 5vh calc(var(--rail) + 5vw)}
+}
+/* ---------- impression : une section par page ---------- */
+@media print{
+  @page{size:landscape;margin:0}
+  html,body{background:#fff;scroll-snap-type:none}
+  .rail,.hint,.notes{display:none!important}
+  section{height:auto;min-height:0;display:block;padding:34px 40px 28px;border-top:0;
+    break-after:page;page-break-after:always;break-inside:avoid;overflow:hidden}
+  section:last-of-type{break-after:auto;page-break-after:auto}
+  .wrap{max-width:none}
+  .num{position:static;display:block;text-align:right;margin-bottom:-14px}
+  .ai{position:static;display:inline-flex;margin-top:14px;box-shadow:none;max-width:none}
+  .card{box-shadow:none}
+  .shot.tall{height:210px} .shot.post{height:190px} .shot.wide{max-height:230px}
+  .face{width:22px;height:22px} .rail{display:none}
+  h1,h2{font-size:30px} .stat{font-size:30px}
+  body{font-size:11px} .eyebrow,.cap,.src,.unit,th{font-size:8.5px}
+  .g5{grid-template-columns:repeat(5,1fr)} .g4{grid-template-columns:repeat(4,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)} .g2{grid-template-columns:1fr 1fr}
+  #s1{-webkit-print-color-adjust:exact;print-color-adjust:exact;min-height:770px;display:flex;justify-content:center}
+  #s1 h1{font-size:76px}
+  *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+}
+</style>
+</head>
+<body>
+
+<nav class="rail" aria-label="Sections">
+  <img class="mark" src="img/logo-x.svg" alt="X">
+  <a href="#s1" class="on">1</a><a href="#s2">2</a><a href="#s3">3</a><a href="#s4">4</a><a href="#s5">5</a>
+  <a href="#s6">6</a><a href="#s7">7</a><a href="#s8">8</a><a href="#s9">9</a><a href="#s10">10</a>
+  <a href="#s11">11</a><a href="#s12">12</a><a href="#s13">13</a><a href="#s14">14</a><a href="#s15">15</a>
+  <a href="#s16">+</a>
+  <div class="bar"><i></i></div>
+</nav>
+
+<!-- ============================= 1 · COVER ============================= -->
+<section id="s1">
+  <span class="num">01 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">R5.MDEE.13 — Social Media Strategy &amp; e-CRM · Igor Perez</p>
+    <h1>Mapping X</h1>
+    <p class="sub" style="margin-top:1.1em">X is not dying. It is changing job.<br>
+    A shrinking social network that is becoming a real-time AI terminal — and what a brand should do about it.</p>
+    <p class="meta">Sofian Chtioui &amp; Romane Da-Silva · BUT3 TC — MDEE · IUT de Lille, Roubaix · 8 September 2026</p>
+  </div>
+  <p class="hint">↓ or → to move · N for notes</p>
+  <div class="notes">Opening line: “Everyone in this room has an opinion on X. Almost nobody has the numbers. We spent the week getting them — from the platform, from the French company register and from traffic analytics.” Announce the thesis straight away: X is losing audience and gaining intensity. 40 seconds, then move.</div>
+</section>
+
+<!-- ============================= 2 · ROUTE ============================= -->
+<section id="s2">
+  <span class="num">02 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Our route</p>
+    <h2>Eight stops, fifteen slides, ten minutes</h2>
+    <div class="grid g4">
+      <div class="card"><span class="stat">1</span><p class="cap"><strong>Key dates &amp; news</strong><br>20 years, and a very loud 2026.</p></div>
+      <div class="card"><span class="stat">2</span><p class="cap"><strong>Audience</strong><br>World, France, and who is really left.</p></div>
+      <div class="card"><span class="stat">3</span><p class="cap"><strong>Tips &amp; use cases</strong><br>How to start, and when to stay away.</p></div>
+      <div class="card"><span class="stat">4</span><p class="cap"><strong>Dominant sectors</strong><br>Where X still wins.</p></div>
+      <div class="card"><span class="stat">5</span><p class="cap"><strong>Accounts to follow</strong><br>Three, for what they invent.</p></div>
+      <div class="card"><span class="stat">6</span><p class="cap"><strong>Photo &amp; video quality</strong><br>The formats that survive the feed.</p></div>
+      <div class="card"><span class="stat">7</span><p class="cap"><strong>Management tools</strong><br>Who does what, and at what price.</p></div>
+      <div class="card"><span class="stat">8</span><p class="cap"><strong>Conclusion</strong><br>Our position. No summary.</p></div>
+    </div>
+    <p class="src">The eight stops set by the brief (class 1 &amp; 2, slide 56). We added two personas and a company-register check, because a map without people and without money is only a drawing.</p>
+  </div>
+  <div class="notes">Don't read the eight boxes. Say: “These eight are the brief. We added two things the brief did not ask for: the personas, and the legal identity of X in France. That is where our two surprises are.” 30 seconds.</div>
+</section>
+
+<!-- ============================= 3 · DATES ============================= -->
+<section id="s3">
+  <span class="num">03 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 1 — Key dates</p>
+    <h2>Twenty years in ten dates</h2>
+    <div class="grid g5">
+      <div class="card"><span class="stat">2006</span><p class="cap"><strong>Launch</strong> on 15 July. 140 characters, SMS-sized.</p></div>
+      <div class="card"><span class="stat">2007</span><p class="cap">The <strong>hashtag</strong> is invented by a user, not by the company.</p></div>
+      <div class="card"><span class="stat">2013</span><p class="cap"><strong>IPO</strong> on the New York Stock Exchange.</p></div>
+      <div class="card"><span class="stat">2017</span><p class="cap">140 → <strong>280 characters</strong>. The format doubles.</p></div>
+      <div class="card"><span class="stat">2022</span><p class="cap">Musk buys Twitter for <strong>$44 bn</strong> and takes it private.</p></div>
+      <div class="card"><span class="stat">2023</span><p class="cap">23 July: the bird becomes <strong>X</strong>. Brand equity reset to zero.</p></div>
+      <div class="card"><span class="stat">2024</span><p class="cap">17 May: twitter.com finally redirects to <strong>x.com</strong>.</p></div>
+      <div class="card"><span class="stat">2025</span><p class="cap">March: <strong>xAI buys X</strong> for $33 bn. X becomes an AI asset.</p></div>
+      <div class="card"><span class="stat">2025</span><p class="cap">December: <strong>€120 m EU fine</strong> under the Digital Services Act.</p></div>
+      <div class="card"><span class="stat">2026</span><p class="cap">February: <strong>SpaceX–xAI merger</strong>. X is now a line in a rocket company.</p></div>
+    </div>
+    <p class="src">Sources: Wikipedia “X (social network)”, CNBC, The New York Times — consulted 4–6 September 2026.</p>
+  </div>
+  <div class="ai"><img src="img/logo-claude.svg" alt="Claude"> Claude Code — cross-checked each date against two sources</div>
+  <div class="notes">Pick three dates only: 2017 (the format doubles — X is the only network that changed its own writing unit), 2023 (a rebrand that threw away one of the strongest brand names in the world), 2025 (X stops being a company and becomes an asset inside an AI lab). That third one carries the whole talk. 60 seconds.</div>
+</section>
+
+<!-- ============================= 4 · PRESSURE ============================= -->
+<section id="s4">
+  <span class="num">04 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 1 — News</p>
+    <h2>2026: a platform under pressure — <em>and a company still called Twitter</em></h2>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>July 2025</strong> — CEO Linda Yaccarino resigns after two years. No replacement announced.</p></div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>December 2025</strong> — <span class="hl-r">€120 million</span> European fine under the Digital Services Act.</p></div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>January 2026</strong> — Threads overtakes X in mobile usage.</p></div>
+        <div class="card"><p class="cap" style="margin:0"><strong>February 2026</strong> — SpaceX and xAI merge. X is now inside a group whose main business is not social media.</p></div>
+      </div>
+      <div>
+        <img class="shot wide" src="img/pappers.png" alt="Pappers company record for Twitter France SAS">
+        <p class="cap"><strong>What we found in the French company register.</strong>
+        Three years after the rebrand, the French subsidiary is still legally named <span class="hl">TWITTER FRANCE SAS</span> (SIREN 789 305 596).
+        Its declared business is <em>public relations consulting</em> — not advertising.
+        <span class="hl">€12.9 m</span> revenue, <span class="hl">20 to 49</span> employees, €678 k net profit.</p>
+      </div>
+    </div>
+    <p class="src">Sources: pappers.fr (record updated 6 September 2026), Reuters, European Commission. Screenshot taken 6 September 2026.</p>
+  </div>
+  <div class="ai"><img src="img/logo-claude.svg" alt="Claude"> Claude Code — company-register search and screenshot</div>
+  <div class="notes">This is our first surprise, spend time here. The French entity bills €12.9 m and calls itself a PR consultancy. It does not sell the advertising: that is invoiced from Ireland. So when a French brand buys ads on X, almost none of that money lands in France, and the local team is a 20-to-49-people relay. Say the sentence: “The name never changed because the name was never the product.” 70 seconds.</div>
+</section>
+
+<!-- ============================= 5 · WORLD ============================= -->
+<section id="s5">
+  <span class="num">05 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 2 — Audience, world</p>
+    <h2>Fifth website on earth, twelve minutes a visit</h2>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="card"><span class="stat">4.7<span style="font-size:var(--fs-md)"> bn</span></span><span class="unit">visits / month</span></div>
+      <div class="card"><span class="stat">#5</span><span class="unit">website worldwide</span></div>
+      <div class="card"><span class="stat up">12:15</span><span class="unit">average visit</span></div>
+      <div class="card"><span class="stat">69.8<span style="font-size:var(--fs-md)"> %</span></span><span class="unit">direct traffic</span></div>
+    </div>
+    <div class="grid g2" style="align-items:start;grid-template-columns:24vh 1fr">
+      <div>
+        <img class="shot" src="img/similarweb-ext.png" alt="Similarweb extension panel on x.com, July 2026" style="max-height:40vh;width:auto;object-fit:contain">
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>Where the visits come from</strong> — United States 29.0 %, Japan 10.9 %, United Kingdom 4.5 %, Turkey 3.8 %, Spain 3.6 %. <strong>France is not in the top five.</strong></p></div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>Who</strong> — 67.7 % men, largest age group 25–34. Bounce rate 32 %, 14.3 pages per visit: people who come, stay.</p></div>
+        <div class="card" style="border-color:var(--blue)"><p class="cap" style="margin:0"><strong>What it means.</strong> Traffic is up 6.8 % on the month worldwide, while French reach falls. X is not shrinking everywhere — it is shrinking <em>here</em>. A global platform can stay huge and still stop being a French media channel.</p></div>
+      </div>
+    </div>
+    <p class="src">Source: Similarweb Chrome extension, read live on x.com on 6 September 2026 (July 2026 data). Estimated data.</p>
+  </div>
+  <div class="ai"><img src="img/logo-claude.svg" alt="Claude"> Claude Code — opened the Similarweb extension on x.com and captured the panel</div>
+  <div class="notes">The number that matters is not 4.7 billion, it is 12 minutes 15 and 69.8 % direct. Nobody arrives on X by accident: they type it. That is a habit, not a discovery channel. And a habit is exactly what a brand cannot buy with one campaign. 50 seconds.</div>
+</section>
+
+<!-- ============================= 6 · FRANCE ============================= -->
+<section id="s6">
+  <span class="num">06 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 2 — Audience, France</p>
+    <h2>France: two million people left in twelve months</h2>
+    <div class="grid g4" style="margin-bottom:16px">
+      <div class="card"><span class="stat down">15.5 M</span><span class="unit">reachable, 2025</span><p class="cap">against 17.5 M in 2024.</p></div>
+      <div class="card"><span class="stat">7<span style="font-size:var(--fs-md)">th</span></span><span class="unit">network in France</span><p class="cap">behind Facebook, Instagram, WhatsApp, TikTok, Snapchat, Messenger.</p></div>
+      <div class="card"><span class="stat">3h45</span><span class="unit">per month, per user</span><p class="cap">roughly seven minutes a day.</p></div>
+      <div class="card"><span class="stat">6<span style="font-size:var(--fs-md)"> %</span></span><span class="unit">of French social web traffic</span></div>
+    </div>
+    <div class="grid g2">
+      <div class="card"><p class="cap" style="margin:0"><strong>By generation</strong> — Gen Z <span class="hl">27 %</span>, Millennials 18 %, Gen X 14 %, Boomers 10 %, Silent 7 %. X is the network where the youngest are the most over-represented, on the smallest base.</p></div>
+      <div class="card"><p class="cap" style="margin:0"><strong>By gender</strong> — 62 to 66 % men, depending on the year. The most unbalanced audience of all the major French networks.</p></div>
+    </div>
+    <p class="src">Sources: Ecommerce Nation, Guide des réseaux sociaux 2024 (p. 8) and 2025 (p. 5) · Statista, January 2025 and 2024, quoted in class 1 &amp; 2, slides 51–52.</p>
+  </div>
+  <div class="notes">Two numbers, one sentence. Minus two million reachable people in one year, and seven minutes a day. Then the twist: it is still the network where Gen Z is the most over-represented. So X is small, male, young and intense. Any brand that treats it as a mass channel is using the wrong tool. 60 seconds.</div>
+</section>
+
+<!-- ============================= 7 · PERSONAS ============================= -->
+<section id="s7">
+  <span class="num">07 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 2 — Personas</p>
+    <h2>Who is there — and who you actually want</h2>
+    <div class="grid g2">
+      <div class="card">
+        <p class="eyebrow" style="color:var(--muted)">Persona A — the user X really has</p>
+        <p style="margin:.2em 0"><strong>Théo, 27, Lille.</strong> Junior developer.</p>
+        <ul>
+          <li>Opens X <strong>5 to 8 times a day</strong>, seven minutes total, almost always on mobile.</li>
+          <li><strong>Reads, does not post.</strong> Follows news, tech, football, memes.</li>
+          <li>Arrives <strong>direct</strong>, never through search. Bookmarks instead of liking.</li>
+          <li>Blocks ads mentally: he is there for the timeline, not for brands.</li>
+        </ul>
+        <p class="cap"><strong>What he is worth to a brand:</strong> reach, almost no conversion.</p>
+      </div>
+      <div class="card">
+        <p class="eyebrow">Persona B — the user a brand should target</p>
+        <p style="margin:.2em 0"><strong>Camille, 34, Paris.</strong> Journalist / industry insider.</p>
+        <ul>
+          <li>Posts and quotes, <strong>200 to 2 000 followers</strong> but the right ones.</li>
+          <li>Uses X as a <strong>professional monitoring tool</strong>: sources, competitors, live events.</li>
+          <li>Relays what is <strong>useful or funny</strong> within the hour, or never.</li>
+          <li>One repost from her is worth a thousand impressions bought.</li>
+        </ul>
+        <p class="cap"><strong>What she is worth:</strong> credibility and second-degree reach. This is who you write for.</p>
+      </div>
+    </div>
+    <p class="src">Personas built from the audience data above (Ecommerce Nation, SimilarWeb, Statista). Not a survey: a reading of the figures.</p>
+  </div>
+  <div class="ai"><img src="img/logo-chatgpt.svg" alt="ChatGPT"> ChatGPT — first draft of the two profiles, rewritten by us against the data</div>
+  <div class="notes">Explain why two. The audience you have is not the audience you write for. On X the passive majority is Théo, but the value is entirely in Camille, because X is a relay network, not a reach network. Then the line: “On X you don't talk to your audience. You talk to the people who will repeat you.” 60 seconds.</div>
+</section>
+
+<!-- ============================= 8 · SECTORS ============================= -->
+<section id="s8">
+  <span class="num">08 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 4 — Dominant sectors</p>
+    <h2>Where X still wins</h2>
+    <div class="grid g3" style="margin-bottom:14px">
+      <div class="card"><span class="stat">01</span><p class="cap"><strong>News &amp; politics</strong><br>The reflex during a live event. No other network is checked first.</p></div>
+      <div class="card"><span class="stat">02</span><p class="cap"><strong>Tech &amp; AI</strong><br>Model launches happen here before the press release. OpenAI, Grok, Anthropic all announce on X.</p></div>
+      <div class="card"><span class="stat">03</span><p class="cap"><strong>Sport</strong><br>Second screen during matches: PSG, Mbappé, transfer windows.</p></div>
+      <div class="card"><span class="stat">04</span><p class="cap"><strong>Gaming &amp; entertainment</strong><br>PlayStation France, studios, release dates and patch notes.</p></div>
+      <div class="card"><span class="stat">05</span><p class="cap"><strong>Finance &amp; crypto</strong><br>Market commentary in real time, for better and for worse.</p></div>
+      <div class="card"><span class="stat">06</span><p class="cap"><strong>Customer service</strong><br>Public complaints. 27 % of community managers still rate X important for their work.</p></div>
+    </div>
+    <div class="card"><p class="cap" style="margin:0"><strong>The common factor is not a sector, it is a clock.</strong> X dominates wherever the value of a message collapses after one hour. If your message is still good tomorrow, publish it somewhere else.</p></div>
+    <p class="src">Sources: Ecommerce Nation 2024 (p. 8–9) and 2025 (p. 5) · SocialHub Magazine #06, 2026.</p>
+  </div>
+  <div class="notes">Do not list six sectors, the audience switches off. Give two, then jump straight to the clock idea — that is the analysis the brief is asking for. “X is not a sector platform, it is a deadline platform.” 45 seconds.</div>
+</section>
+
+<!-- ============================= 9 · TIPS ============================= -->
+<section id="s9">
+  <span class="num">09 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 3 — Tips</p>
+    <h2>Launching on X: what we would actually do</h2>
+    <div class="grid g2">
+      <div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>1 · Post daily, or don't start.</strong> One to three posts a day. On a network built on freshness, a weekly rhythm is invisible.</p></div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>2 · Reply before you publish.</strong> Spend the first month answering others. Replies cost nothing and are how new accounts are actually discovered.</p></div>
+        <div class="card"><p class="cap" style="margin:0"><strong>3 · Text first, image second.</strong> X is the only major network where a naked sentence still outperforms a designed visual. Keep the image for proof, not decoration.</p></div>
+      </div>
+      <div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>4 · One voice, not a brand voice.</strong> Burger King France follows <span class="hl">zero</span> accounts and writes like a person. It works because it is consistent, not because it is funny.</p></div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>5 · Ride the event, never the calendar.</strong> A post published 40 minutes after a match is worth ten posts planned a month ahead.</p></div>
+        <div class="card"><p class="cap" style="margin:0"><strong>6 · Measure bookmarks and replies</strong>, not likes. Likes are polite. Bookmarks mean useful, replies mean alive.</p></div>
+      </div>
+    </div>
+    <p class="src">Built from the four objectives listed by Ecommerce Nation (interact, react to events, adopt a different tone, share news) and from the accounts observed on 6 September 2026.</p>
+  </div>
+  <div class="ai"><img src="img/logo-chatgpt.svg" alt="ChatGPT"> ChatGPT — challenged our list, we cut three generic tips it produced</div>
+  <div class="notes">This is the practical part, the prof asked for it explicitly. Deliver tips 1, 2 and 6 out loud, they are the counter-intuitive ones. Insist on “reply before you publish”: it is free, and it is what nobody does. 60 seconds.</div>
+</section>
+
+<!-- ============================= 10 · WHEN ============================= -->
+<section id="s10">
+  <span class="num">10 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 3 — Use cases</p>
+    <h2>Use X for this. Never for that.</h2>
+    <div class="grid g2">
+      <div class="card">
+        <p class="eyebrow">Use it</p>
+        <ul>
+          <li><strong>Live events</strong> — matches, keynotes, launches, crises.</li>
+          <li><strong>Public customer service</strong> — answering in the open builds more trust than a form.</li>
+          <li><strong>Tech and B2B credibility</strong> — reaching journalists, developers, investors.</li>
+          <li><strong>Monitoring</strong> — competitors and sector news, for free, in real time.</li>
+          <li><strong>Tone experiments</strong> — the one place a brand is allowed to be dry.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="eyebrow" style="color:var(--red)">Don't</p>
+        <ul>
+          <li><strong>Mass reach in France</strong> — 15.5 M reachable and falling. Use Instagram or TikTok.</li>
+          <li><strong>Selling directly</strong> — no native shop, weak conversion. Ecommerce Nation says it plainly: don't make commercial posts.</li>
+          <li><strong>Reaching women over 45</strong> — structurally the wrong audience.</li>
+          <li><strong>Beautiful visual storytelling</strong> — the feed is text-shaped, images get cropped.</li>
+          <li><strong>Brand safety-sensitive sectors</strong> — moderation is contested, a €120 m fine says so.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src">Sources: Ecommerce Nation 2024–2025 · European Commission, DSA decision, December 2025.</p>
+  </div>
+  <div class="notes">The right-hand column is what will be remembered. Say the last line out loud: “If your brand cannot afford to appear next to anything, X is not a channel, it is a risk.” 45 seconds.</div>
+</section>
+
+<!-- ============================= 11 · TOPS ============================= -->
+<section id="s11">
+  <span class="num">11 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 5 — Benchmarks</p>
+    <h2>The five biggest accounts, the five biggest posts</h2>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <table>
+          <tr><th colspan="2">Most followed — world</th><th style="text-align:right">Followers</th></tr>
+          <tr><td><img class="face" src="img/av-elonmusk.jpg" alt=""></td><td>Elon Musk <span style="color:var(--muted)">@elonmusk</span></td><td class="n">241.6 M</td></tr>
+          <tr><td><img class="face" src="img/av-BarackObama.jpg" alt=""></td><td>Barack Obama <span style="color:var(--muted)">@BarackObama</span></td><td class="n">119.0 M</td></tr>
+          <tr><td><img class="face" src="img/av-Cristiano.jpg" alt=""></td><td>Cristiano Ronaldo <span style="color:var(--muted)">@Cristiano</span></td><td class="n">114.1 M</td></tr>
+          <tr><td><img class="face" src="img/av-realDonaldTrump.jpg" alt=""></td><td>Donald Trump <span style="color:var(--muted)">@realDonaldTrump</span></td><td class="n">111.7 M</td></tr>
+          <tr><td><img class="face" src="img/av-narendramodi.jpg" alt=""></td><td>Narendra Modi <span style="color:var(--muted)">@narendramodi</span></td><td class="n">107.1 M</td></tr>
+        </table>
+        <table style="margin-top:14px">
+          <tr><th colspan="2">Most followed — France</th><th style="text-align:right">Followers</th></tr>
+          <tr><td><img class="face" src="img/av-KMbappe.jpg" alt=""></td><td>Kylian Mbappé <span style="color:var(--muted)">@KMbappe</span></td><td class="n">23.7 M</td></tr>
+          <tr><td><img class="face" src="img/av-davidguetta.jpg" alt=""></td><td>David Guetta <span style="color:var(--muted)">@davidguetta</span></td><td class="n">15.4 M</td></tr>
+          <tr><td><img class="face" src="img/av-PSG_inside.jpg" alt=""></td><td>Paris Saint-Germain <span style="color:var(--muted)">@PSG_inside</span></td><td class="n">14.8 M</td></tr>
+        </table>
+      </div>
+      <div>
+        <table>
+          <tr><th>Most-liked posts ever</th><th style="text-align:right">Likes</th></tr>
+          <tr><td>Chadwick Boseman's family — his death <span style="color:var(--muted)">Aug. 2020</span></td><td class="n">6.6 M</td></tr>
+          <tr><td>Elon Musk — “buying Coca-Cola” <span style="color:var(--muted)">Apr. 2022</span></td><td class="n">4.3 M</td></tr>
+          <tr><td>Barack Obama — Mandela quote <span style="color:var(--muted)">Aug. 2017</span></td><td class="n">3.6 M</td></tr>
+          <tr><td>Greta Thunberg — reply to Andrew Tate <span style="color:var(--muted)">Dec. 2022</span></td><td class="n">3.5 M</td></tr>
+          <tr><td>Joe Biden — “a new day in America” <span style="color:var(--muted)">Jan. 2021</span></td><td class="n">3.5 M</td></tr>
+        </table>
+        <div class="grid g3" style="margin-top:12px">
+          <img class="shot post" src="img/post-boseman.png" alt="Chadwick Boseman post">
+          <img class="shot post" src="img/post-musk-coca.png" alt="Elon Musk Coca-Cola post">
+          <img class="shot post" src="img/post-obama.png" alt="Barack Obama post">
+        </div>
+        <p class="cap"><strong>Not one of the five is a marketing post.</strong> Three are grief or politics, one is a joke, one is an insult returned. That is the ceiling of the platform.</p>
+      </div>
+    </div>
+    <p class="src">Followers: screenshots taken on the platform, September 2026 (world top 4–5: Wikipedia, 27 August 2026). Posts: Wikipedia “List of most-liked tweets”, 8 July 2026, cross-checked with our own screenshots.</p>
+  </div>
+  <div class="ai"><img src="img/logo-claude.svg" alt="Claude"> Claude Code — figures verified against the live profiles, not copied from a blog</div>
+  <div class="notes">Show the two tables for five seconds, then deliver the only sentence that matters: not one of the five biggest posts in the history of the platform is a brand post. Three are grief or politics. On X, a brand will never win the feed — it can only be useful inside someone else's moment. 60 seconds.</div>
+</section>
+
+<!-- ============================= 12 · ACCOUNTS ============================= -->
+<section id="s12">
+  <span class="num">12 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 5 — Three accounts to follow</p>
+    <h2>Three accounts, three inventions</h2>
+    <div class="grid g3" style="align-items:start">
+      <div>
+        <img class="shot tall" src="img/openai.png" alt="OpenAI account on X">
+        <p class="cap"><strong>@OpenAI</strong> — 5.2 M followers.<br>
+        Uses X as its <strong>press room</strong>: products are announced here first, in plain text, no press release. The invention is the format — a launch is a post.</p>
+      </div>
+      <div>
+        <img class="shot tall" src="img/grok.png" alt="Grok account on X">
+        <p class="cap"><strong>@grok</strong> — 9 M followers, 39 M posts.<br>
+        An AI that is <strong>a native user of the network</strong>: you mention it in a thread and it answers publicly. The invention is that the tool lives inside the feed, not beside it.</p>
+      </div>
+      <div>
+        <img class="shot tall" src="img/burgerking.png" alt="Burger King France account on X">
+        <p class="cap"><strong>@BurgerKingFR</strong> — 188.7 K followers, <span class="hl">0 following</span>.<br>
+        A bio written as an ID card, posts written like a person. The invention is <strong>discipline</strong>: the same voice since 2013, and it follows nobody.</p>
+      </div>
+    </div>
+    <p class="src">Screenshots taken from the platform on 6 September 2026 (@grok, @BurgerKingFR) and in August 2026 (@OpenAI).</p>
+  </div>
+  <div class="ai"><img src="img/logo-claude.svg" alt="Claude"> Claude Code — captured the three profiles live</div>
+  <div class="notes">Burger King is the one to develop, it is the actionable one for a French brand. Zero following is not a detail: it is a statement that the account is a broadcaster, not a community member — the opposite of every social media textbook, and it works. Ask the room: would you dare recommend that to a client? 60 seconds.</div>
+</section>
+
+<!-- ============================= 13 · FORMATS ============================= -->
+<section id="s13">
+  <span class="num">13 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 6 — Photo &amp; video quality</p>
+    <h2>The formats that survive the feed</h2>
+    <div class="grid g2" style="align-items:start">
+      <div class="card">
+        <p class="eyebrow" style="color:var(--muted)">Images</p>
+        <table>
+          <tr><th>Use</th><th>Size</th></tr>
+          <tr><td>Profile</td><td>400 × 400 px <span style="color:var(--muted)">(200 × 200 min.)</span></td></tr>
+          <tr><td>Header</td><td>1500 × 500 px</td></tr>
+          <tr><td>Feed post</td><td>1200 × 1200 or 1200 × 628 px</td></tr>
+          <tr><td>Advertising</td><td>1200 × 675 px <span style="color:var(--muted)">(600 × 335 min.)</span></td></tr>
+        </table>
+      </div>
+      <div class="card">
+        <p class="eyebrow" style="color:var(--muted)">Video</p>
+        <table>
+          <tr><th>Use</th><th>Ratio / limits</th></tr>
+          <tr><td>Post</td><td>1:2.39 to 2.39:1 · 1920 × 1200 · 512 MB · <strong>2 min 20 max</strong></td></tr>
+          <tr><td>Video carousel</td><td>16:9 or 1:1 · 800 × 450 / 800 × 800 · 2 to 6 videos</td></tr>
+          <tr><td>Ads</td><td>1:1 or 16:9 · 1 GB · MP4 or MOV</td></tr>
+        </table>
+      </div>
+    </div>
+    <div class="card" style="margin-top:14px"><p class="cap" style="margin:0"><strong>The rule behind the numbers:</strong> the feed crops to a landscape rectangle and plays without sound. Square survives, portrait gets cut, and any video that needs audio to be understood is already lost. Two minutes twenty is the ceiling — in practice, under thirty seconds.</p></div>
+    <p class="src">Source: Ecommerce Nation, Guide des réseaux sociaux 2024, X sheet, “Formats” tab (p. 9).</p>
+  </div>
+  <div class="notes">Don't read the tables — they are there so the deck stays useful after the presentation. Say only the rule: landscape, silent, under thirty seconds. 30 seconds, this is the fastest slide.</div>
+</section>
+
+<!-- ============================= 14 · TOOLS ============================= -->
+<section id="s14">
+  <span class="num">14 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 7 — Management tools</p>
+    <h2>Who does what — the stop the brief insists on</h2>
+    <table>
+      <tr><th>Tool</th><th>What it is really for</th><th>Where it stops</th></tr>
+      <tr><td><strong>X Pro</strong> <span style="color:var(--muted)">(ex-TweetDeck)</span></td><td>Watching several columns live during an event. The newsroom view.</td><td>Native, now behind X Premium. No real reporting.</td></tr>
+      <tr><td><strong>X for Business</strong></td><td>Running and paying for campaigns.</td><td>Advertising only, no community management.</td></tr>
+      <tr><td><strong>Buffer</strong></td><td>Scheduling across networks, small teams, cheap.</td><td>Light analytics, no listening.</td></tr>
+      <tr><td><strong>Hootsuite</strong></td><td>Dashboard, multi-account, approval workflow. The agency standard.</td><td>Expensive for a single network.</td></tr>
+      <tr><td><strong>Audiense Connect</strong></td><td>Audience segmentation, understanding who follows you.</td><td>Specialised, X-centric, paid.</td></tr>
+      <tr><td><strong>Brandwatch / Mention</strong></td><td>Listening and crisis alerts.</td><td>Enterprise pricing.</td></tr>
+    </table>
+    <div class="card" style="margin-top:14px"><p class="cap" style="margin:0"><strong>What we would recommend for a first launch:</strong> X Pro to watch, Buffer to publish, and a free Mention alert on the brand name. Total cost under €20 a month. Bring in Hootsuite only when several people need to approve a post — the tool is a symptom of the team, not of the network.</p></div>
+    <p class="src">Sources: Ecommerce Nation 2024 (Tools tab) and 2025 (p. 5) · public pricing pages, September 2026.</p>
+  </div>
+  <div class="notes">The prof said he would insist on the tools for this first presentation, so land the recommendation, not the list. The last sentence is the argument: “the tool is a symptom of the team, not of the network.” 60 seconds.</div>
+</section>
+
+<!-- ============================= 15 · POSITION ============================= -->
+<section id="s15">
+  <span class="num">15 / 15</span>
+  <div class="wrap">
+    <p class="eyebrow">Stop 8 — Conclusion</p>
+    <h2>X stopped being a social network. <em>Nobody has renamed the job yet.</em></h2>
+    <div class="grid g2" style="align-items:start">
+      <div>
+        <div class="card" style="margin-bottom:12px"><p class="cap" style="margin:0"><strong>Our position.</strong> X is no longer a place to be seen. It is a place to be <strong>quoted</strong>. Fifteen million reachable people in France, seven minutes a day, but 12 minutes 15 per visit worldwide and 70 % direct traffic: this is a habit, not an audience. A brand should stop measuring reach on X and start measuring who repeats it.</p></div>
+        <div class="card"><p class="cap" style="margin:0"><strong>What we would tell a client tomorrow.</strong> Keep the account, cut the budget, move the money to Instagram, and keep one person able to answer within the hour. On X, response time is the whole strategy.</p></div>
+      </div>
+      <div>
+        <div class="card"><p class="eyebrow">And now — the opening</p>
+          <p class="cap" style="margin:.2em 0 0">X was bought by an AI lab, then merged into a rocket company. Grok already answers inside the feed. So the real question for 2027 is not whether X keeps its users.
+          <br><br><strong>It is whether the next X still needs them.</strong> If the timeline can be written and answered by AI, a social network without a crowd is no longer a contradiction — it is a product.
+          <br><br>That is the question we would like to hear the class argue about.</p>
+        </div>
+      </div>
+    </div>
+    <p class="src">No summary, as requested. Our reading of the figures presented above.</p>
+  </div>
+  <div class="ai"><img src="img/logo-chatgpt.svg" alt="ChatGPT"> ChatGPT — argued against this position, we kept the objection that survived</div>
+  <div class="notes">Slow down. Land three sentences and stop: “X is no longer a place to be seen, it is a place to be quoted.” — “Keep the account, cut the budget, keep the response time.” — “The question for 2027 is whether the next X still needs its users.” Then stop talking. Silence is the ending. 70 seconds.</div>
+</section>
+
+<!-- ============================= APPENDIX ============================= -->
+<section id="s16">
+  <span class="num">Appendix</span>
+  <div class="wrap">
+    <p class="eyebrow">Sources &amp; AI toolkit</p>
+    <h2>What we read, and what the machines actually did</h2>
+    <div class="grid g2" style="align-items:start">
+      <div class="card">
+        <p class="eyebrow" style="color:var(--muted)">Sources</p>
+        <ul>
+          <li>Ecommerce Nation, <em>Guide des réseaux sociaux</em> 2024 (p. 8–9) and 2025 (p. 5)</li>
+          <li>Class support “class 1 &amp; 2”, slides 51, 52 and 56 · Syllabus, slides 19–21</li>
+          <li>SocialHub Magazine #06, 2026</li>
+          <li>SimilarWeb — x.com, July 2026 data, consulted 6 Sept. 2026</li>
+          <li>Pappers.fr — TWITTER FRANCE SAS, SIREN 789 305 596, record updated 6 Sept. 2026</li>
+          <li>Wikipedia — “X (social network)”, “List of most-liked tweets”, “List of most-followed accounts”</li>
+          <li>Our own screenshots taken on X, 6 September 2026</li>
+        </ul>
+      </div>
+      <div class="card">
+        <p class="eyebrow" style="color:var(--muted)">AI toolkit — and its limits</p>
+        <p class="cap" style="margin:.2em 0"><img src="img/logo-chatgpt.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>ChatGPT</strong> — generated our first list of 125 angles on X and drafted the two personas. It also produced six generic tips we deleted: it writes what is average, which is exactly what a presentation must avoid.</p>
+        <p class="cap" style="margin:.9em 0 0"><img src="img/logo-claude.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>Claude Code</strong> — searched the sources, read the PDFs, queried the company register, took the screenshots and built this page. It got one date wrong on first pass, which is why every figure here carries its source and its date.</p>
+        <p class="cap" style="margin:.9em 0 0"><strong>What we did not delegate:</strong> the angle, the position and the opening. The tools found the facts. The argument is ours.</p>
+      </div>
+    </div>
+    <p class="src">Live version: sosocht.github.io/mapping-x · Sofian Chtioui &amp; Romane Da-Silva · 8 September 2026</p>
+  </div>
+</section>
+
+<script>
+// ---- navigation clavier + suivi de la section active -------------------
+const secs=[...document.querySelectorAll('section')];
+const links=[...document.querySelectorAll('.rail a')];
+const bar=document.querySelector('.rail .bar i');
+let i=0;
+function go(n){i=Math.max(0,Math.min(secs.length-1,n));secs[i].scrollIntoView({behavior:'smooth'});}
+addEventListener('keydown',e=>{
+  const k=e.key;
+  if(k==='ArrowDown'||k==='ArrowRight'||k==='PageDown'||k===' '){e.preventDefault();go(i+1);}
+  else if(k==='ArrowUp'||k==='ArrowLeft'||k==='PageUp'){e.preventDefault();go(i-1);}
+  else if(k==='Home'){e.preventDefault();go(0);}
+  else if(k==='End'){e.preventDefault();go(secs.length-1);}
+  else if(k==='n'||k==='N'){document.body.classList.toggle('shownotes');}
+});
+const io=new IntersectionObserver(es=>{
+  es.forEach(en=>{
+    if(en.isIntersecting){
+      i=secs.indexOf(en.target);
+      secs.forEach(s=>s.classList.remove('here'));
+      en.target.classList.add('here');
+      links.forEach((a,j)=>a.classList.toggle('on',j===i));
+      bar.style.height=((i+1)/secs.length*100)+'%';
+    }
+  });
+},{threshold:.55});
+secs.forEach(s=>io.observe(s));
+</script>
+</body>
+</html>
