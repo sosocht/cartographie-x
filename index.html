@@ -117,6 +117,16 @@ strong{font-weight:600}
 .tag-plein{background:var(--encre);color:#fff}
 .tag-vide{border:1px solid var(--encre);color:var(--encre)}
 .tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
+.etale > div{display:flex;flex-direction:column;justify-content:space-between}
+/* classement numéroté, modèle du top 10 Ecommerce Nation */
+.classement{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:5.5vh;margin-top:3vh}
+.rang{display:grid;grid-template-columns:auto 1fr;gap:1.1vw;align-items:center}
+.pastille{width:4vh;height:4vh;border-radius:50%;background:var(--encre);color:#fff;
+  display:grid;place-items:center;font-size:var(--fs-md);font-weight:600;flex:0 0 auto}
+.rang b{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.02em;line-height:1.1;display:block}
+.rang p{margin:.15em 0 0}
+/* signes réglables de la slide 11 */
+.signe li::before{left:calc(-1.2em + var(--sg-dx,0px));top:calc(-.16em + var(--sg-dy,0px))}
 .formes{display:grid;gap:14px;align-items:end}
 .geant{table-layout:fixed}
 .geant th,.geant td{padding:.4vh .8vw;vertical-align:middle}
@@ -159,6 +169,16 @@ strong{font-weight:600}
 .tag-plein{background:var(--encre);color:#fff}
 .tag-vide{border:1px solid var(--encre);color:var(--encre)}
 .tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
+.etale > div{display:flex;flex-direction:column;justify-content:space-between}
+/* classement numéroté, modèle du top 10 Ecommerce Nation */
+.classement{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:5.5vh;margin-top:3vh}
+.rang{display:grid;grid-template-columns:auto 1fr;gap:1.1vw;align-items:center}
+.pastille{width:4vh;height:4vh;border-radius:50%;background:var(--encre);color:#fff;
+  display:grid;place-items:center;font-size:var(--fs-md);font-weight:600;flex:0 0 auto}
+.rang b{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.02em;line-height:1.1;display:block}
+.rang p{margin:.15em 0 0}
+/* signes réglables de la slide 11 */
+.signe li::before{left:calc(-1.2em + var(--sg-dx,0px));top:calc(-.16em + var(--sg-dy,0px))}
 .formes{display:grid;gap:14px;align-items:end}
 .geant{table-layout:fixed}
 .geant th,.geant td{padding:.4vh .8vw;vertical-align:middle}
@@ -486,7 +506,7 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">07 / 16</span>
   <div class="wrap">
     <h2>France : deux millions de personnes parties en un an</h2>
-    <div class="grille g3" style="align-items:start;gap:2.6vw">
+    <div class="grille g3 etale" style="align-items:stretch;gap:2.6vw;min-height:58vh">
 
       <div>
         <div class="grille g2" style="gap:14px">
@@ -613,16 +633,14 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">09 / 16</span>
   <div class="wrap">
     <h2>Les domaines où X reste incontournable</h2>
-    <div class="grille g3" style="margin-bottom:12px">
-      <div class="carte"><span class="unite" style="margin-top:0">01</span><p class="corps"><strong>Actualité et politique.</strong> Le réflexe pendant un événement en direct. Aucun autre réseau n'est consulté en premier.</p></div>
-      <div class="carte"><span class="unite" style="margin-top:0">02</span><p class="corps"><strong>Tech et intelligence artificielle.</strong> Les lancements de modèles y arrivent avant le communiqué. OpenAI, Grok et Anthropic annoncent tous sur X.</p></div>
-      <div class="carte"><span class="unite" style="margin-top:0">03</span><p class="corps"><strong>Sport.</strong> Second écran pendant les matchs : PSG, Mbappé, mercato.</p></div>
-      <div class="carte"><span class="unite" style="margin-top:0">04</span><p class="corps"><strong>Jeu vidéo et divertissement.</strong> PlayStation France, studios, dates de sortie et notes de mise à jour.</p></div>
-      <div class="carte"><span class="unite" style="margin-top:0">05</span><p class="corps"><strong>Finance et crypto.</strong> Le commentaire de marché en temps réel, pour le meilleur et pour le pire.</p></div>
-      <div class="carte"><span class="unite" style="margin-top:0">06</span><p class="corps"><strong>Service client.</strong> La réclamation publique. 27 % des community managers jugent encore X important pour leur travail.</p></div>
+    <div class="classement">
+      <div class="rang"><span class="pastille">1</span><div><b>Actualité et politique</b><p class="corps">Le réflexe pendant un événement en direct</p></div></div>
+      <div class="rang"><span class="pastille">2</span><div><b>Tech et intelligence artificielle</b><p class="corps">Les modèles y sont annoncés avant le communiqué</p></div></div>
+      <div class="rang"><span class="pastille">3</span><div><b>Sport</b><p class="corps">Second écran pendant les matchs</p></div></div>
+      <div class="rang"><span class="pastille">4</span><div><b>Jeu vidéo et divertissement</b><p class="corps">Dates de sortie et notes de mise à jour</p></div></div>
+      <div class="rang"><span class="pastille">5</span><div><b>Finance et crypto</b><p class="corps">Le commentaire de marché en temps réel</p></div></div>
+      <div class="rang"><span class="pastille">6</span><div><b>Service client</b><p class="corps">La réclamation publique, sous les yeux de tous</p></div></div>
     </div>
-    <img class="vue carte-sombre" src="img/r/deepmind.png" alt="Compte de Google DeepMind" style="height:13vh;object-fit:contain;margin-bottom:12px">
-    <div class="carte carte-bleu"><p class="corps" style="margin:0"><strong>Le point commun n'est pas un secteur, c'est une horloge.</strong> X domine partout où la valeur d'un message s'effondre au bout d'une heure. Si votre message est encore pertinent demain, publiez-le ailleurs.</p></div>
     <div class="pied">
       <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 p. 8-9 et 2025 p. 5 · SocialHub Magazine (consulté le 06/09/2026), n° 6, 2026.</p>
     </div>
@@ -659,7 +677,7 @@ body.notesvues section.ici .notes{display:block}
       <div class="carte">
         <span class="badge badge-vert">Pertinent</span>
         <ul class="signe plus">
-          <li data-s="+"><strong>Les événements en direct</strong> : matchs, conférences, lancements, crises.</li>
+          <li data-s="+" data-tw="signes" data-var="sg"><strong>Les événements en direct</strong> : matchs, conférences, lancements, crises.</li>
           <li data-s="+"><strong>Le service client public</strong>, qui inspire plus confiance qu'un formulaire.</li>
           <li data-s="+"><strong>La crédibilité tech et B2B</strong> : journalistes, développeurs, investisseurs.</li>
           <li data-s="+"><strong>La veille</strong> sur les concurrents et le secteur, gratuitement et en temps réel.</li>
@@ -685,7 +703,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 11 · REPÈRES -->
-<section id="s11">
+<section id="s11" style="--t-dy:17px;--pp-dy:21px;--nom-dx:-1px;--nom-dy:21px;--ps-dx:36px;--ps-dy:11px;--ab-dx:-11px;--ab-dy:-25px;--img-dy:-48px;--img:514px">
   <span class="num">12 / 16</span>
   <div class="wrap">
     <div class="entete" style="margin-bottom:1.6vh">
@@ -777,10 +795,10 @@ body.notesvues section.ici .notes{display:block}
       <div>
         <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Images</span>
         <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:1em">
-          <div class="forme twr" data-tw="profil" style="--dx:4.2%;--dy:120.7%;aspect-ratio:1/1"><b>400 × 400</b><span>photo de profil</span></div>
-          <div class="forme twr" data-tw="banniere" style="--dx:-103.5%;--dy:169.3%;aspect-ratio:3/1"><b>1500 × 500</b><span>bannière</span></div>
-          <div class="forme twr" data-tw="post-carre" style="--dx:-93.4%;--dy:122.0%;aspect-ratio:1/1"><b>1200 × 1200</b><span>publication carrée</span></div>
-          <div class="forme twr" data-tw="post-paysage" style="--dx:-201.7%;--dy:179.5%;aspect-ratio:1.91/1"><b>1200 × 628</b><span>publication paysage</span></div>
+          <div class="forme twr" data-tw="profil" style="--dx:3.9%;--dy:130.4%;aspect-ratio:1/1"><b>400 × 400</b><span>photo de profil</span></div>
+          <div class="forme twr" data-tw="banniere" style="--dx:-104.3%;--dy:185.9%;aspect-ratio:3/1"><b>1500 × 500</b><span>bannière</span></div>
+          <div class="forme twr" data-tw="post-carre" style="--dx:-93.4%;--dy:129.5%;aspect-ratio:1/1"><b>1200 × 1200</b><span>publication carrée</span></div>
+          <div class="forme twr" data-tw="post-paysage" style="--dx:-200.6%;--dy:194.8%;aspect-ratio:1.91/1"><b>1200 × 628</b><span>publication paysage</span></div>
         </div>
         <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
           <div class="forme twr" data-tw="pub-image" style="--dx:3.4%;--dy:-94.5%;aspect-ratio:16/9;grid-column:span 2"><b>1200 × 675</b><span>publicité · 600 × 335 minimum</span></div>
@@ -789,12 +807,12 @@ body.notesvues section.ici .notes{display:block}
       <div>
         <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Vidéo</span>
         <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:1em">
-          <div class="forme twr" data-tw="video" style="--dx:53.8%;--dy:78.7%;aspect-ratio:16/10"><b>1920 × 1200</b><span>publication · 512 Mo · 2 min 20 maximum</span></div>
-          <div class="forme twr" data-tw="carrousel-carre" style="--dx:104.7%;--dy:-2.1%;aspect-ratio:1/1"><b>800 × 800</b><span>carrousel carré · 2 à 6 vidéos</span></div>
-          <div class="forme twr" data-tw="carrousel-paysage" style="--dx:-36.3%;--dy:73.2%;aspect-ratio:16/9"><b>800 × 450</b><span>carrousel paysage · 2 à 6 vidéos</span></div>
+          <div class="forme twr" data-tw="video" style="--dx:53.1%;--dy:93.6%;aspect-ratio:16/10"><b>1920 × 1200</b><span>publication · 512 Mo · 2 min 20 maximum</span></div>
+          <div class="forme twr" data-tw="carrousel-carre" style="--dx:101.9%;--dy:14.8%;aspect-ratio:1/1"><b>800 × 800</b><span>carrousel carré · 2 à 6 vidéos</span></div>
+          <div class="forme twr" data-tw="carrousel-paysage" style="--dx:-33.1%;--dy:88.0%;aspect-ratio:16/9"><b>800 × 450</b><span>carrousel paysage · 2 à 6 vidéos</span></div>
         </div>
         <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
-          <div class="forme twr" data-tw="pub-video" style="--dx:-0.9%;--dy:-94.3%;aspect-ratio:16/9;grid-column:span 2"><b>Publicité</b><span>1:1 ou 16:9 · 1 Go · MP4 ou MOV</span></div>
+          <div class="forme twr" data-tw="pub-video" style="--dx:-8.0%;--dy:-89.6%;aspect-ratio:16/9;grid-column:span 2"><b>Publicité</b><span>1:1 ou 16:9 · 1 Go · MP4 ou MOV</span></div>
         </div>
       </div>
     </div>
