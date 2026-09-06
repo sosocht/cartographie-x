@@ -255,15 +255,24 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 .etape h3{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1.1;margin:0}
 .etape p{margin:.2em 0 0}
 /* conseils : trois colonnes numerotees, sans carte */
-.conseils{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:1.6vh}
+.conseils{display:grid;grid-template-columns:1fr 1fr;grid-template-rows:repeat(3,auto);grid-auto-flow:column;column-gap:3vw;row-gap:1.6vh}
 .bulle{position:relative;background:var(--carte);border:1px solid var(--filet);border-radius:20px;
   padding:1em 1.2em;box-shadow:var(--ombre)}
 .bulle::after{content:"";position:absolute;bottom:-9px;width:18px;height:18px;background:var(--carte);
   border-right:1px solid var(--filet);border-bottom:1px solid var(--filet);transform:rotate(45deg)}
 .bulle::after{left:50%;margin-left:-9px}
+.bulle.fin::after{display:none}
 .bulle h3{font-size:var(--fs-md);font-weight:600;line-height:1.25;margin:0}
 .bulle p{margin:.3em 0 0}
 
+/* schemas sans phrase : X -> alimente -> Grok, Thread + Veille */
+.flux,.duo{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1.1vw;margin-top:.9em}
+.flux img{height:3.4vh;width:auto}
+.mot{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.03em;line-height:1;color:var(--sourdine)}
+.mot.fort{color:var(--encre)}
+.fl{font-size:var(--fs-chiffre);font-weight:500;line-height:1;color:var(--tenu)}
+.fl.gros{color:var(--bleu)}
+.duo{gap:2.2vw;margin-top:.6em}
 .conseils .d{margin-left:12%} .conseils .g{margin-right:12%}
 .carte{display:flex;flex-direction:column}
 /* titre de carte : meme niveau typographique que le chiffre */
@@ -470,8 +479,9 @@ body.notesvues section.ici .notes{display:block}
             <div><span class="chiffre">20 à 49</span><span class="unite">salariés</span></div>
             <div><span class="chiffre">678 k€</span><span class="unite">de résultat net</span></div>
           </div>
-          <p class="corps">Activité déclarée : conseil en relations publiques, pas la publicité. Celle-ci est facturée depuis l'Irlande.</p>
-          <p class="corps" style="margin-top:.7em"><strong>Ce que le groupe prend à X :</strong> les publications publiques alimentent par défaut l'entraînement de Grok. Le partage se désactive dans les réglages, il n'est jamais demandé. Enquête ouverte le 11 avril 2025 par l'autorité irlandaise de protection des données.</p>
+          <div class="flux">
+            <img src="img/logo-x.svg" alt="X"><span class="fl">→</span><span class="mot">alimente</span><span class="fl">→</span><span class="mot fort">Grok</span>
+          </div>
         </div>
       </div>
     </div>
@@ -514,7 +524,7 @@ body.notesvues section.ici .notes{display:block}
               <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Badge, Grok, sans publicité</span>
               <span class="badge badge-rouge">La coche bleue n'est plus « vérifié »</span>
             </div>
-            <p class="corps" style="margin-top:.7em">La coche signale un abonnement payant, pas une identité vérifiée. La Commission européenne l'a jugée trompeuse le 5 décembre 2025 : en Europe, X ne parle plus de comptes « vérifiés ».</p>
+            <p class="corps" style="margin-top:.7em">La coche = abonnement <span class="hl">&ne;</span> identité vérifiée.<br>05/12/25 : la Commission européenne &rarr; trompeuse.</p>
           </div>
         </div>
         </div>
@@ -722,15 +732,13 @@ body.notesvues section.ici .notes{display:block}
       <div class="rang"><span class="pastille">6</span><div><b>Service client</b><p class="corps">La réclamation publique, sous les yeux de tous</p></div></div>
     </div>
     <div class="carte" style="margin-top:1.6vh">
-      <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Les fonctions qui portent ces domaines</span>
-      <div class="grille g3" style="gap:1.6vw;margin-top:.7em">
-        <div><p class="corps" style="margin:0"><strong>Le thread.</strong> Une suite de messages liés. C'est le format que recommande le guide 2025 pour détailler un sujet et installer une expertise.</p></div>
-        <div><p class="corps" style="margin:0"><strong>La veille.</strong> Les fils de discussion et les mots-clés suivis font de X un outil de surveillance de secteur, gratuit et en temps réel.</p></div>
-        <div><p class="corps" style="margin:0"><strong>Les notes de la communauté.</strong> La vérification est confiée aux utilisateurs. Le code de notation est public et une interface permet désormais à des IA d'écrire des notes.</p></div>
+      <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Fonctionnalités</span>
+      <div class="duo">
+        <span class="mot fort">Thread</span><span class="fl gros">+</span><span class="mot fort">Veille</span>
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 p. 8-9 et 2025 p. 5 · SocialHub Magazine (consulté le 06/09/2026), n° 6, 2026 · dépôt public <em>twitter/communitynotes</em> (consulté le 06/09/2026), code de notation et interface d'écriture par IA.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 p. 8-9 et 2025 p. 5 · SocialHub Magazine (consulté le 06/09/2026), n° 6, 2026.</p>
     </div>
   </div>
   <div class="notes">Ne pas énumérer les six secteurs, la salle décroche. En donner deux, puis sauter directement à l'idée de l'horloge, c'est l'analyse que la consigne attend. « X n'est pas une plateforme de secteur, c'est une plateforme d'échéance. » 45 secondes.</div>
@@ -743,26 +751,25 @@ body.notesvues section.ici .notes{display:block}
     <h2>Se lancer sur X : nos six recommandations</h2>
     <div class="conseils">
       <div class="bulle g"><h3><span style="color:var(--bleu)">01</span>  Publier tous les jours, ou ne pas commencer</h3><p class="corps">Un à trois messages par jour. Sur un réseau construit sur la fraîcheur, un rythme hebdomadaire passe inaperçu.</p></div>
-      <div class="bulle d"><h3><span style="color:var(--bleu)">02</span>  Répondre avant de publier</h3><p class="corps">Passer le premier mois à répondre aux autres. Les réponses ne coûtent rien et c'est ainsi qu'un nouveau compte est découvert.</p></div>
-      <div class="bulle g"><h3><span style="color:var(--bleu)">03</span>  Le texte d'abord, l'image ensuite</h3><p class="corps">X est le seul grand réseau où une phrase seule dépasse un visuel travaillé. Garder l'image pour la preuve.</p></div>
+      <div class="bulle g"><h3><span style="color:var(--bleu)">02</span>  Répondre avant de publier</h3><p class="corps">Passer le premier mois à répondre aux autres. Les réponses ne coûtent rien et c'est ainsi qu'un nouveau compte est découvert.</p></div>
+      <div class="bulle g fin"><h3><span style="color:var(--bleu)">03</span>  Le texte d'abord, l'image ensuite</h3><p class="corps">X est le seul grand réseau où une phrase seule dépasse un visuel travaillé. Garder l'image pour la preuve.</p></div>
       <div class="bulle d"><h3><span style="color:var(--bleu)">04</span>  Une voix, pas une voix de marque</h3><p class="corps">Burger King France ne suit <span class="hl">aucun</span> compte et écrit comme une personne. Cela marche parce que c'est constant.</p></div>
-      <div class="bulle g"><h3><span style="color:var(--bleu)">05</span>  Suivre l'événement, jamais le calendrier</h3><p class="corps">Un message publié 40 minutes après un match vaut dix messages programmés un mois à l'avance.</p></div>
-      <div class="bulle d"><h3><span style="color:var(--bleu)">06</span>  Mesurer les signets et les réponses</h3><p class="corps">Un « j'aime » est poli, un signet signifie utile, une réponse signifie vivant.</p></div>
+      <div class="bulle d"><h3><span style="color:var(--bleu)">05</span>  Suivre l'événement, jamais le calendrier</h3><p class="corps">Un message publié 40 minutes après un match vaut dix messages programmés un mois à l'avance.</p></div>
+      <div class="bulle d fin"><h3><span style="color:var(--bleu)">06</span>  Mesurer les signets et les réponses</h3><p class="corps">Un « j'aime » est poli, un signet signifie utile, une réponse signifie vivant.</p></div>
     </div>
     <div class="carte" style="margin-top:1.6vh">
       <span class="badge badge-bleu">Ce que le code de l'algorithme confirme</span>
-      <div class="grille g4" style="gap:1.4vw;margin-top:.7em">
-        <div><span class="chiffre">48 h</span><span class="unite">durée de vie</span><p class="corps" style="margin:.4em 0 0">Au-delà, le filtre d'âge retire la publication du fil « Pour vous ».</p></div>
-        <div><span class="chiffre">2 fils</span><span class="unite">Pour vous et Abonnements</span><p class="corps" style="margin:.4em 0 0">Le second est chronologique et ne contient que les comptes suivis.</p></div>
-        <div><span class="chiffre">5</span><span class="unite">familles de signaux</span><p class="corps" style="margin:.4em 0 0">Engagement, clics, attention, abonnement, signaux négatifs. Le score additionne des probabilités, pas des compteurs.</p></div>
-        <div><span class="chiffre">3</span><span class="unite">correctifs</span><p class="corps" style="margin:.4em 0 0">Diversité des auteurs, décote hors réseau, coup de pouce aux comptes peu vus.</p></div>
+      <div class="grille g3" style="gap:1.4vw;margin-top:.7em">
+        <div><span class="chiffre">48 h</span><span class="unite">durée de vie</span><p class="corps" style="margin:.4em 0 0">Au-delà, le filtre d'âge retire la publication du fil.</p></div>
+        <div><span class="chiffre">2 fils</span><span class="unite">Pour vous et Abonnements</span></div>
+        <div><span class="chiffre">5</span><span class="unite">familles de signaux</span><p class="corps" style="margin:.4em 0 0">Engagement, clics, attention, abonnement, signaux négatifs.</p></div>
       </div>
     </div>
     <div class="pied">
       <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · X (consulté le 06/09/2026), comptes observés · dépôt public <em>xai-org/x-algorithm</em> (consulté le 06/09/2026), code du fil « Pour vous » ouvert le 19 janvier 2026. Liste soumise à ChatGPT, trois conseils génériques écartés. Code lu avec Claude.</p>
     </div>
   </div>
-  <div class="notes">C'est la partie pratique, le professeur la demande explicitement. Dire à l'oral les conseils 1, 2 et 6, ce sont les contre-intuitifs. Insister sur « répondre avant de publier » : c'est gratuit, et personne ne le fait. 60 secondes.</div>
+  <div class="notes">C'est la partie pratique, le professeur la demande explicitement. Dire à l'oral les conseils 1, 2 et 6, ce sont les contre-intuitifs. Insister sur « répondre avant de publier » : c'est gratuit, et personne ne le fait. Sur les deux fils : « Pour vous » est classé par l'algorithme, « Abonnements » est chronologique et ne contient que les comptes suivis. Le score additionne des probabilités d'action, pas des compteurs de likes. Trois correctifs suivent le classement : diversité des auteurs, décote hors réseau, coup de pouce aux comptes peu vus. 60 secondes.</div>
 </section>
 
 <!-- 10 · USAGES -->
@@ -779,6 +786,8 @@ body.notesvues section.ici .notes{display:block}
           <li><span class="sg">+</span><strong>La crédibilité tech et B2B</strong> : journalistes, développeurs, investisseurs.</li>
           <li><span class="sg">+</span><strong>La veille</strong> sur les concurrents et le secteur, gratuitement et en temps réel.</li>
           <li><span class="sg">+</span><strong>Les essais de ton</strong>, le seul endroit où une marque peut se permettre d'être sobre et directe.</li>
+          <li><span class="sg">+</span><strong>Publier plus vite qu'ailleurs</strong> : un message se rédige en une minute, une story ou une vidéo demande une demi-journée.</li>
+          <li><span class="sg">+</span><strong>Une cible adulte et active</strong>, quand TikTok et Instagram visent d'abord le grand public.</li>
         </ul>
       </div>
       <div class="carte">
@@ -790,19 +799,12 @@ body.notesvues section.ici .notes{display:block}
           <li><span class="sg">–</span><strong>Le récit visuel soigné</strong> : le fil est conçu pour le texte et recadre les images.</li>
           <li><span class="sg">–</span><strong>Les secteurs sensibles à la sécurité de marque</strong> : la modération est contestée, une amende de 120 M€ en atteste.</li>
           <li><span class="sg">–</span><strong>Un fil sans risque</strong> : faux comptes, arnaques à la cryptomonnaie et automatisation cohabitent avec les marques.</li>
+          <li><span class="sg">–</span><strong>Remplacer LinkedIn</strong> : la prospection, le recrutement et la relation commerciale se jouent là-bas, pas ici.</li>
         </ul>
       </div>
     </div>
-    <div class="carte" style="margin-top:1.6vh">
-      <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Et face aux autres réseaux</span>
-      <div class="grille g3" style="gap:1.6vw;margin-top:.7em">
-        <div><p class="corps" style="margin:0"><strong>Plutôt qu'Instagram</strong> quand le message doit sortir dans l'heure. Instagram reste meilleur pour la portée et le récit visuel.</p></div>
-        <div><p class="corps" style="margin:0"><strong>Plutôt que TikTok</strong> quand la cible est professionnelle et adulte. TikTok garde le grand public et la vidéo.</p></div>
-        <div><p class="corps" style="margin:0"><strong>Pas à la place de LinkedIn</strong> : X sert le temps réel et le ton, LinkedIn sert la relation commerciale et le recrutement.</p></div>
-      </div>
-    </div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 et 2025 · Commission européenne (consulté le 06/09/2026), décision DSA de décembre 2025. La comparaison entre réseaux est notre lecture des chiffres d'audience présentés plus haut.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 et 2025 · Commission européenne (consulté le 06/09/2026), décision DSA de décembre 2025. La comparaison avec les autres réseaux est notre lecture des chiffres d'audience présentés plus haut.</p>
     </div>
   </div>
   <div class="notes">La colonne de droite est celle que l'on retiendra. Dire la dernière ligne à voix haute : « Si votre marque ne peut pas se permettre d'apparaître à côté de n'importe quoi, X n'est pas un canal, c'est un risque. » 45 secondes.</div>
@@ -949,16 +951,8 @@ body.notesvues section.ici .notes{display:block}
       <tr><td><strong>Audiense Connect</strong></td><td>Segmenter l'audience et comprendre qui suit le compte.</td><td>Spécialisé sur X, payant.</td></tr>
       <tr><td><strong>Brandwatch et Mention</strong></td><td>Écoute du web et alertes en cas de crise.</td><td>Tarification réservée aux grandes entreprises.</td></tr>
     </table>
-    <div class="carte" style="margin-top:1.6vh">
-      <span class="badge badge-bleu">Et pour la relation client, le volet e-CRM</span>
-      <div class="grille g3" style="gap:1.6vw;margin-top:.7em">
-        <div><p class="corps" style="margin:0"><strong>Le canal.</strong> La réclamation arrive en public, la réponse se termine en message privé. C'est le seul réseau où le service client se joue devant témoins.</p></div>
-        <div><p class="corps" style="margin:0"><strong>La donnée.</strong> X ne fournit pas de fiche client. Il faut rapprocher le pseudonyme d'un contact existant, à la main ou avec un outil comme Audiense.</p></div>
-        <div><p class="corps" style="margin:0"><strong>Les indicateurs.</strong> Vues, temps de lecture, clics sur le profil, réponses, signets, réabonnements : ce sont ceux que la plateforme mesure, donc ceux à suivre.</p></div>
-      </div>
-    </div>
     <div class="pied">
-      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), onglet Outils du Guide 2024 et Guide 2025 p. 5 · pages tarifaires des éditeurs (consultées le 06/09/2026) · dépôt public <em>xai-org/x-algorithm</em> (consulté le 06/09/2026) pour les indicateurs que la plateforme mesure réellement.</p>
+      <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), onglet Outils du Guide 2024 et Guide 2025 p. 5 · pages tarifaires des éditeurs (consultées le 06/09/2026).</p>
     </div>
   </div>
   <div class="notes">Le professeur a annoncé qu'il insisterait sur les outils pour cette première présentation : livrer la recommandation à l'oral, elle n'est plus écrite sur la slide. Dire : « Pour un lancement, X Pro pour surveiller, Buffer pour publier, et une alerte Mention gratuite sur le nom de la marque. Moins de 20 € par mois. Hootsuite seulement quand plusieurs personnes doivent valider une publication. » La dernière phrase est l'argument : « l'outil est un symptôme de l'équipe, pas du réseau. » 60 secondes.</div>
