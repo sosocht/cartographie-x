@@ -96,17 +96,30 @@ td.n{font-weight:600;text-align:right;white-space:nowrap}
 .vue.large{max-height:34vh;object-fit:contain;object-position:left top}
 
 /* couverture : image plein écran, voile sombre, titre centré */
-#s1{background:var(--encre);color:#fff;border-top:0;text-align:center;align-items:center;
-  background-image:linear-gradient(rgba(10,10,10,.62),rgba(10,10,10,.62)),url("img/cover.jpg");
+#s1{background:var(--encre);color:#fff;border-top:0;
+  background-image:linear-gradient(rgba(10,10,10,.30) 0%,rgba(10,10,10,.42) 42%,rgba(10,10,10,.88) 100%),url("img/cover.jpg");
   background-size:cover;background-position:center}
-#s1 .wrap{max-width:82vw}
-#s1 .mention{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;
-  color:#7fcbff;margin:0 0 .9em}
-#s1 h1{font-size:clamp(3rem,9.6vw,7.4rem);font-weight:600;letter-spacing:-.05em;margin:0}
-#s1 .sub{color:#e4e9eb;margin:1em auto 0;max-width:62ch}
-#s1 .meta{font-size:var(--fs-sm);font-weight:300;color:rgba(255,255,255,.62);letter-spacing:.06em;
-  text-transform:uppercase;margin-top:2.4em}
-#s1 .num{color:rgba(255,255,255,.45)}
+/* chaque bloc de texte de la couverture est place par --x / --y / --l (largeur) */
+#s1 .tw{position:absolute;left:var(--x);top:var(--y);width:var(--l,86%);
+  transform:translate(-50%,-50%);text-align:var(--a,center);margin:0}
+#s1 .mention{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:#7fcbff}
+#s1 h1{font-size:clamp(3rem,9.6vw,7.4rem);font-weight:600;letter-spacing:-.05em;line-height:1}
+#s1 .sub{color:#e4e9eb}
+#s1 .meta{font-size:var(--fs-sm);font-weight:300;color:rgba(255,255,255,.62);letter-spacing:.06em;text-transform:uppercase}
+#s1 .num{color:rgba(255,255,255,.5)}
+
+/* ---------- mode reglage : touche T ---------- */
+body.reglage [data-tw]{outline:1px dashed rgba(255,255,255,.45);cursor:grab}
+body.reglage [data-tw]:hover{outline-color:var(--bleu)}
+body.reglage [data-tw].vise{outline:2px solid var(--bleu)}
+.panneau{display:none;position:fixed;right:16px;top:16px;z-index:80;
+  background:var(--encre);color:#e4e9eb;border:1px solid rgba(255,255,255,.18);border-radius:20px;
+  padding:12px 16px;font-size:12px;font-weight:300;line-height:1.7;min-width:280px}
+body.reglage .panneau{display:block}
+.panneau b{font-weight:600;color:#fff}
+.panneau .l{display:flex;justify-content:space-between;gap:18px;font-family:ui-monospace,Menlo,monospace}
+.panneau .l.vise{color:#7fcbff}
+.panneau .aide{margin-top:8px;padding-top:8px;border-top:1px solid rgba(255,255,255,.18);color:rgba(255,255,255,.6)}
 
 /* notes orateur, touche N */
 .notes{display:none;position:fixed;left:var(--rail);right:0;bottom:0;background:var(--encre);
@@ -118,7 +131,8 @@ body.notesvues section.ici .notes{display:block}
 @media print{
   @page{size:landscape;margin:0}
   html,body{background:#fff;scroll-snap-type:none}
-  .rail,.notes{display:none!important}
+  .rail,.notes,.panneau{display:none!important}
+  [data-tw]{outline:0!important}
   section{height:100vh;min-height:0;display:flex;flex-direction:column;justify-content:center;
     padding:26px 34px;border-top:0;break-after:page;page-break-after:always;break-inside:avoid;overflow:hidden}
   section:last-of-type{break-after:auto;page-break-after:auto}
@@ -154,12 +168,10 @@ body.notesvues section.ici .notes{display:block}
 <!-- 1 · COUVERTURE -->
 <section id="s1">
   <span class="num">01 / 15</span>
-  <div class="wrap">
-    <p class="mention">R5.MDEE.13 · Stratégie social media &amp; e-CRM · Igor Perez</p>
-    <h1>Cartographie de X</h1>
-    <p class="sub">X ne disparaît pas, il change de métier. Un réseau social qui rétrécit et devient un terminal d'information en temps réel.</p>
-    <p class="meta">Sofian Chtioui &amp; Romane Da-Silva · BUT3 TC MDEE · IUT de Lille, Roubaix · 8 septembre 2026</p>
-  </div>
+  <p class="mention tw" data-tw="mention" style="--x:50%;--y:56%;--l:86%">R5.MDEE.13 · Stratégie social media &amp; e-CRM · Igor Perez</p>
+  <h1 class="tw" data-tw="titre" style="--x:50%;--y:67%;--l:92%">Cartographie de X</h1>
+  <p class="sub tw" data-tw="sous-titre" style="--x:50%;--y:80%;--l:62%">Un réseau social rétrécissant et qui devient acteur majeur de l'information en temps réel.</p>
+  <p class="meta tw" data-tw="auteurs" style="--x:50%;--y:90%;--l:86%">Sofian Chtioui &amp; Romane Da-Silva · BUT3 TC MDEE · IUT de Lille, Roubaix · 8 septembre 2026</p>
   <div class="notes">Ouverture : « Tout le monde ici a un avis sur X. Presque personne n'a les chiffres. Nous sommes allés les chercher sur la plateforme, au registre du commerce et dans les outils de trafic. » Annoncer la thèse tout de suite : X perd de l'audience et gagne en intensité. 40 secondes.</div>
 </section>
 
@@ -585,7 +597,41 @@ body.notesvues section.ici .notes{display:block}
   </div>
 </section>
 
+<div class="panneau" id="panneau"></div>
+
 <script>
+/* ---- mode reglage : T pour entrer et sortir, glisser pour deplacer,
+       fleches pour ajuster de 0,5 % (0,1 % avec Maj), C pour copier ---- */
+let vise=null;
+const panneau=document.getElementById('panneau');
+function blocs(){return [...document.querySelectorAll('section.ici [data-tw]')];}
+function val(el,n){return parseFloat(getComputedStyle(el).getPropertyValue(n))||0;}
+function ecrire(){
+  const b=blocs();
+  panneau.innerHTML='<b>Réglage de la slide</b>'+b.map(e=>{
+    const n=e.dataset.tw, x=e.style.getPropertyValue('--x').trim(), y=e.style.getPropertyValue('--y').trim(),
+          l=e.style.getPropertyValue('--l').trim()||'86%';
+    return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>x ${x} · y ${y} · largeur ${l}</span></div>`;
+  }).join('')+'<div class="aide">Glisser pour déplacer · flèches pour ajuster · Maj+flèches gauche/droite pour la largeur · C pour copier · T pour sortir</div>';
+}
+function texteValeurs(){
+  return blocs().map(e=>`${e.dataset.tw} : --x:${e.style.getPropertyValue('--x').trim()}; --y:${e.style.getPropertyValue('--y').trim()}; --l:${(e.style.getPropertyValue('--l').trim()||'86%')};`).join('\n');
+}
+addEventListener('mousedown',ev=>{
+  if(!document.body.classList.contains('reglage'))return;
+  const el=ev.target.closest('[data-tw]'); if(!el)return;
+  ev.preventDefault();
+  blocs().forEach(e=>e.classList.remove('vise')); vise=el; el.classList.add('vise'); ecrire();
+  const sec=el.closest('section'), r=sec.getBoundingClientRect();
+  const bouge=e=>{
+    const x=Math.max(0,Math.min(100,(e.clientX-r.left)/r.width*100));
+    const y=Math.max(0,Math.min(100,(e.clientY-r.top)/r.height*100));
+    el.style.setProperty('--x',x.toFixed(1)+'%'); el.style.setProperty('--y',y.toFixed(1)+'%'); ecrire();
+  };
+  const stop=()=>{removeEventListener('mousemove',bouge);removeEventListener('mouseup',stop);};
+  addEventListener('mousemove',bouge); addEventListener('mouseup',stop);
+});
+
 const secs=[...document.querySelectorAll('section')];
 const liens=[...document.querySelectorAll('.rail a')];
 const barre=document.querySelector('.rail .bar i');
@@ -593,11 +639,27 @@ let i=0;
 function aller(n){i=Math.max(0,Math.min(secs.length-1,n));secs[i].scrollIntoView({behavior:'smooth'});}
 addEventListener('keydown',e=>{
   const k=e.key;
+  if(document.body.classList.contains('reglage')&&vise&&k.startsWith('Arrow')){
+    e.preventDefault();
+    const pas=e.shiftKey?0.1:0.5;
+    if(e.shiftKey&&(k==='ArrowLeft'||k==='ArrowRight')){
+      const l=(parseFloat(vise.style.getPropertyValue('--l'))||86)+(k==='ArrowRight'?1:-1);
+      vise.style.setProperty('--l',Math.max(10,Math.min(100,l)).toFixed(0)+'%');
+    } else {
+      const p=k==='ArrowLeft'||k==='ArrowRight'?'--x':'--y';
+      const d=(k==='ArrowRight'||k==='ArrowDown')?pas:-pas;
+      const v=(parseFloat(vise.style.getPropertyValue(p))||50)+d;
+      vise.style.setProperty(p,Math.max(0,Math.min(100,v)).toFixed(1)+'%');
+    }
+    ecrire(); return;
+  }
   if(k==='ArrowDown'||k==='ArrowRight'||k==='PageDown'||k===' '){e.preventDefault();aller(i+1);}
   else if(k==='ArrowUp'||k==='ArrowLeft'||k==='PageUp'){e.preventDefault();aller(i-1);}
   else if(k==='Home'){e.preventDefault();aller(0);}
   else if(k==='End'){e.preventDefault();aller(secs.length-1);}
   else if(k==='n'||k==='N'){document.body.classList.toggle('notesvues');}
+  else if(k==='t'||k==='T'){document.body.classList.toggle('reglage');vise=null;ecrire();}
+  else if(k==='c'||k==='C'){if(document.body.classList.contains('reglage')){navigator.clipboard.writeText(texteValeurs());panneau.querySelector('.aide').textContent='Valeurs copiées.';}}
 });
 const io=new IntersectionObserver(es=>{
   es.forEach(en=>{
@@ -606,6 +668,7 @@ const io=new IntersectionObserver(es=>{
       secs.forEach(s=>s.classList.remove('ici'));
       en.target.classList.add('ici');
       liens.forEach((a,j)=>a.classList.toggle('on',j===i));
+      if(document.body.classList.contains('reglage'))ecrire();
       barre.style.height=((i+1)/secs.length*100)+'%';
     }
   });
