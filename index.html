@@ -988,7 +988,7 @@ function ecrire(){
     if(f) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>décalage ${vsec(e,'--'+f+'-dx','0px')} / ${vsec(e,'--'+f+'-dy','0px')} · taille ${vsec(e,'--'+f,'auto')}</span></div>`;
     if(rel(e)) return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>décalage ${px(e,'--dx','0%')} / ${px(e,'--dy','0%')} · taille ${px(e,'--l','auto')} · cadrage ${px(e,'--ox','50%')} / ${px(e,'--oy','50%')}</span></div>`;
     return `<div class="l${e===vise?' vise':''}"><span>${n}</span><span>x ${px(e,'--x','')} · y ${px(e,'--y','')} · largeur ${px(e,'--l','86%')}</span></div>`;
-  }).join('')+'<div class="aide">Glisser pour déplacer · flèches pour ajuster · Maj+flèches pour la taille · Alt+flèches pour le cadrage · C pour copier · T pour sortir</div>';
+  }).join('')+'<div class="aide">Glisser pour déplacer · flèches pour ajuster · Maj+flèches pour la taille · Alt+glisser ou Alt+flèches pour recadrer · C pour copier · T pour sortir</div>';
 }
 function texteValeurs(){
   return blocs().map(e=>fam(e)
@@ -1005,6 +1005,18 @@ addEventListener('mousedown',ev=>{
   blocs().forEach(e=>e.classList.remove('vise')); vise=el; el.classList.add('vise'); ecrire();
   const sec=el.closest('section'), r=sec.getBoundingClientRect();
   const f=fam(el);
+  if(ev.altKey&&rel(el)&&!f){
+    const bx=px(el,'--ox',''), by=px(el,'--oy','');
+    const d0={x:ev.clientX,y:ev.clientY,ox:bx===''?50:parseFloat(bx),oy:by===''?50:parseFloat(by)};
+    const r0=el.getBoundingClientRect();
+    const pan=e2=>{
+      const ox=Math.max(0,Math.min(100,d0.ox-(e2.clientX-d0.x)/r0.width*120));
+      const oy=Math.max(0,Math.min(100,d0.oy-(e2.clientY-d0.y)/r0.height*120));
+      el.style.setProperty('--ox',ox.toFixed(0)+'%'); el.style.setProperty('--oy',oy.toFixed(0)+'%'); ecrire();
+    };
+    const fin=()=>{removeEventListener('mousemove',pan);removeEventListener('mouseup',fin);};
+    addEventListener('mousemove',pan); addEventListener('mouseup',fin); return;
+  }
   const dep=rel(el)?(f?{x:ev.clientX,y:ev.clientY,dx:parseFloat(vsec(el,'--'+f+'-dx','0'))||0,dy:parseFloat(vsec(el,'--'+f+'-dy','0'))||0}
                       :{x:ev.clientX,y:ev.clientY,dx:parseFloat(px(el,'--dx','0'))||0,dy:parseFloat(px(el,'--dy','0'))||0}):null;
   const bouge=e=>{
@@ -1038,7 +1050,7 @@ addEventListener('keydown',e=>{
     if(e.altKey&&rel(vise)&&!fam(vise)){
       const pr=k==='ArrowLeft'||k==='ArrowRight'?'--ox':'--oy';
       const d=(k==='ArrowRight'||k==='ArrowDown')?2:-2;
-      const v=(parseFloat(px(vise,pr,'50'))||50)+d;
+      const b=px(vise,pr,''); const v=(b===''?50:parseFloat(b))+d;
       vise.style.setProperty(pr,Math.max(0,Math.min(100,v)).toFixed(0)+'%');
       ecrire(); return;
     }
