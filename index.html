@@ -62,10 +62,9 @@ strong{font-weight:600}
 .badge-rouge{background:rgba(255,0,0,.08);color:var(--rouge)}
 .signe{list-style:none;padding-left:1.25em;margin:.6em 0 0}
 .signe li{position:relative;margin:.6em 0}
-.signe li::before{content:attr(data-s);position:absolute;left:-1.2em;top:-.16em;
-  font-size:var(--fs-chiffre);font-weight:500;line-height:1;width:1em;text-align:center}
-.signe.plus li::before{color:var(--vert)}
-.signe.moins li::before{color:var(--rouge)}
+.sg{position:absolute;font-size:var(--fs-chiffre);font-weight:500;line-height:1;width:1em;text-align:center;cursor:default}
+.signe.plus .sg{left:calc(-1.2em + var(--sgp-dx,0px));top:calc(-.16em + var(--sgp-dy,0px));color:var(--vert)}
+.signe.moins .sg{left:calc(-1.2em + var(--sgm-dx,0px));top:calc(-.16em + var(--sgm-dy,0px));color:var(--rouge)}
 .pilule{display:inline-flex;gap:2px;padding:3px;border-radius:999px;border:1px solid var(--filet);
   background:rgba(10,10,10,.05);cursor:pointer;user-select:none}
 .pilule span{padding:.5em 1.1em;border-radius:999px;font-size:var(--fs-sm);font-weight:600;
@@ -126,7 +125,7 @@ strong{font-weight:600}
 .rang b{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.02em;line-height:1.1;display:block}
 .rang p{margin:.15em 0 0}
 /* signes réglables de la slide 11 */
-.signe li::before{left:calc(-1.2em + var(--sg-dx,0px));top:calc(-.16em + var(--sg-dy,0px))}
+
 .formes{display:grid;gap:14px;align-items:end}
 .geant{table-layout:fixed}
 .geant th,.geant td{padding:.4vh .8vw;vertical-align:middle}
@@ -178,7 +177,7 @@ strong{font-weight:600}
 .rang b{font-size:var(--fs-chiffre);font-weight:500;letter-spacing:-.02em;line-height:1.1;display:block}
 .rang p{margin:.15em 0 0}
 /* signes réglables de la slide 11 */
-.signe li::before{left:calc(-1.2em + var(--sg-dx,0px));top:calc(-.16em + var(--sg-dy,0px))}
+
 .formes{display:grid;gap:14px;align-items:end}
 .geant{table-layout:fixed}
 .geant th,.geant td{padding:.4vh .8vw;vertical-align:middle}
@@ -669,7 +668,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 10 · USAGES -->
-<section id="s10">
+<section id="s10" style="--sgp-dx:3px;--sgp-dy:-4px">
   <span class="num">11 / 16</span>
   <div class="wrap">
     <h2>Les usages pertinents et ceux à écarter</h2>
@@ -677,21 +676,21 @@ body.notesvues section.ici .notes{display:block}
       <div class="carte">
         <span class="badge badge-vert">Pertinent</span>
         <ul class="signe plus">
-          <li data-s="+" data-tw="signes" data-var="sg"><strong>Les événements en direct</strong> : matchs, conférences, lancements, crises.</li>
-          <li data-s="+"><strong>Le service client public</strong>, qui inspire plus confiance qu'un formulaire.</li>
-          <li data-s="+"><strong>La crédibilité tech et B2B</strong> : journalistes, développeurs, investisseurs.</li>
-          <li data-s="+"><strong>La veille</strong> sur les concurrents et le secteur, gratuitement et en temps réel.</li>
-          <li data-s="+"><strong>Les essais de ton</strong>, le seul endroit où une marque peut se permettre d'être sobre et directe.</li>
+          <li><span class="sg" data-tw="signes plus" data-var="sgp">+</span><strong>Les événements en direct</strong> : matchs, conférences, lancements, crises.</li>
+          <li><span class="sg">+</span><strong>Le service client public</strong>, qui inspire plus confiance qu'un formulaire.</li>
+          <li><span class="sg">+</span><strong>La crédibilité tech et B2B</strong> : journalistes, développeurs, investisseurs.</li>
+          <li><span class="sg">+</span><strong>La veille</strong> sur les concurrents et le secteur, gratuitement et en temps réel.</li>
+          <li><span class="sg">+</span><strong>Les essais de ton</strong>, le seul endroit où une marque peut se permettre d'être sobre et directe.</li>
         </ul>
       </div>
       <div class="carte">
         <span class="badge badge-rouge">À écarter</span>
         <ul class="signe moins">
-          <li data-s="–"><strong>La portée de masse en France</strong> : 15,5 M touchables et en baisse. Préférer Instagram ou TikTok.</li>
-          <li data-s="–"><strong>La vente directe</strong> : pas de boutique native et une conversion faible.</li>
-          <li data-s="–"><strong>Les femmes de plus de 45 ans</strong>, structurellement absentes de la plateforme.</li>
-          <li data-s="–"><strong>Le récit visuel soigné</strong> : le fil est conçu pour le texte et recadre les images.</li>
-          <li data-s="–"><strong>Les secteurs sensibles à la sécurité de marque</strong> : la modération est contestée, une amende de 120 M€ en atteste.</li>
+          <li><span class="sg" data-tw="signes moins" data-var="sgm">–</span><strong>La portée de masse en France</strong> : 15,5 M touchables et en baisse. Préférer Instagram ou TikTok.</li>
+          <li><span class="sg">–</span><strong>La vente directe</strong> : pas de boutique native et une conversion faible.</li>
+          <li><span class="sg">–</span><strong>Les femmes de plus de 45 ans</strong>, structurellement absentes de la plateforme.</li>
+          <li><span class="sg">–</span><strong>Le récit visuel soigné</strong> : le fil est conçu pour le texte et recadre les images.</li>
+          <li><span class="sg">–</span><strong>Les secteurs sensibles à la sécurité de marque</strong> : la modération est contestée, une amende de 120 M€ en atteste.</li>
         </ul>
       </div>
     </div>
