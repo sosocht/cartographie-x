@@ -88,8 +88,8 @@ strong{font-weight:600}
 /* tableau geant de la slide 11 */
 .col{display:flex;flex-direction:column}
 /* slide 12 : chaque famille d'elements se regle par des variables de section */
-#s5b h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
-#s11 h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
+section h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
+#s11 .vue-bloc{position:relative;left:var(--c-dx,0);top:var(--c-dy,0)}
 #s11 .col .tete img{width:var(--pp,4vh);height:var(--pp,4vh);position:relative;left:var(--pp-dx,0);top:var(--pp-dy,0)}
 #s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 #s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
@@ -157,8 +157,8 @@ strong{font-weight:600}
 /* tableau geant de la slide 11 */
 .col{display:flex;flex-direction:column}
 /* slide 12 : chaque famille d'elements se regle par des variables de section */
-#s5b h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
-#s11 h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
+section h2{position:relative;left:var(--t-dx,0);top:var(--t-dy,0)}
+#s11 .vue-bloc{position:relative;left:var(--c-dx,0);top:var(--c-dy,0)}
 #s11 .col .tete img{width:var(--pp,4vh);height:var(--pp,4vh);position:relative;left:var(--pp-dx,0);top:var(--pp-dy,0)}
 #s11 .col .nm{font-size:var(--nom,var(--fs-md));position:relative;left:var(--nom-dx,0);top:var(--nom-dy,0)}
 #s11 .col .ps{font-size:var(--ps,var(--fs-sm));position:relative;left:var(--ps-dx,0);top:var(--ps-dy,0)}
@@ -343,7 +343,7 @@ body.notesvues section.ici .notes{display:block}
 
 /* impression : une slide par page */
 @media print{
-  @page{size:landscape;margin:0}
+  @page{size:1280px 720px;margin:0}
   html,body{background:#fff;scroll-snap-type:none}
   .rail,.notes,.panneau{display:none!important}
   [data-tw]{outline:0!important}
@@ -352,9 +352,9 @@ body.notesvues section.ici .notes{display:block}
   section:last-of-type{break-after:auto;page-break-after:auto}
   .wrap{max-width:none}
   .num{position:static;display:block;text-align:right;margin-bottom:-14px}
+  #s15 .num{position:absolute;bottom:26px;right:34px;margin:0}
   .pied{padding-right:0}
   .carte{box-shadow:none}
-  #s11 .col .shot{height:var(--img,34vh)}
   .vue.profil{height:auto;aspect-ratio:640/340} .vue.post{height:190px} .vue.large{max-height:230px}
   h1,h2{font-size:32px} .chiffre{font-size:24px}
   body{font-size:14px} .src,.corps,.unite,.detail,th,.ai,.num{font-size:11px}
@@ -694,7 +694,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 8 · SECTEURS -->
-<section id="s8">
+<section id="s8" style="--t-dy:-34px;">
   <span class="num">09 / 16</span>
   <div class="wrap">
     <h2>Les domaines où X reste incontournable</h2>
@@ -714,7 +714,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 9 · CONSEILS -->
-<section id="s9">
+<section id="s9" style="--t-dy:-34px;">
   <span class="num">10 / 16</span>
   <div class="wrap">
     <h2>Se lancer sur X : nos six recommandations</h2>
@@ -768,7 +768,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 11 · REPÈRES -->
-<section id="s11" style="--t-dy:17px;--pp-dy:21px;--nom-dx:-1px;--nom-dy:21px;--ps-dx:36px;--ps-dy:11px;--ab-dx:-11px;--ab-dy:-25px;--img-dy:-48px;--img:514px">
+<section id="s11" style="--c-dy:12px;--t-dy:17px;--pp-dy:21px;--nom-dx:-1px;--nom-dy:21px;--ps-dx:36px;--ps-dy:11px;--ab-dx:-11px;--ab-dy:-25px;--img-dy:-48px;--img:514px">
   <span class="num">12 / 16</span>
   <div class="wrap">
     <div class="entete" style="margin-bottom:1.6vh">
@@ -894,7 +894,7 @@ body.notesvues section.ici .notes{display:block}
 </section>
 
 <!-- 14 · OUTILS -->
-<section id="s14">
+<section id="s14" style="--t-dy:-34px;">
   <span class="num">15 / 16</span>
   <div class="wrap">
     <h2>Les outils de gestion et leurs limites</h2>
@@ -944,13 +944,13 @@ body.notesvues section.ici .notes{display:block}
       </div>
       <div class="carte">
         <span class="unite" style="margin-top:0">Outils d'intelligence artificielle et leurs limites</span>
-        <p class="corps"><img src="img/logo-chatgpt.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>ChatGPT</strong> a produit notre première liste de 125 angles sur X et un premier jet des deux personas. Il a aussi produit six conseils génériques que nous avons supprimés : il écrit ce qui est moyen, exactement ce qu'une présentation doit éviter.</p>
-        <p class="corps"><img src="img/logo-claude.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>Claude Code</strong> a cherché les sources, lu les documents, interrogé le registre du commerce, ouvert l'extension Similarweb, pris les captures et construit cette présentation. Il s'est trompé une fois sur une date au premier passage : c'est pour cela que chaque chiffre porte ici sa source et sa date.</p>
+        <p class="corps"><img src="img/logo-chatgpt.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>ChatGPT :</strong> nous a permis d'avoir des idées de contenu et de la diversité dans les contenus. Il a aussi produit six conseils génériques que nous avons supprimés : il écrit ce qui est moyen, exactement ce qu'une présentation doit éviter.</p>
+        <p class="corps"><img src="img/logo-claude.svg" alt="" style="width:1.3vh;height:1.3vh;vertical-align:-.15vh"> <strong>Claude :</strong> a fait la présentation, a mené des recherches approfondies en ligne pour nos sources et nous a aidés à formuler correctement. Il s'est trompé une fois sur une date au premier passage : c'est pour cela que chaque chiffre porte ici sa source et sa date.</p>
         <p class="corps"><strong>Ce que nous n'avons pas délégué :</strong> l'angle, la position et l'ouverture. Les outils ont trouvé les faits, l'argument est de nous.</p>
       </div>
     </div>
     <div class="pied">
-      <p class="src">Sofian Chtioui &amp; Romane Da-Silva · 8 septembre 2026 · sosocht.github.io/mapping-x</p>
+      <p class="src">Sofian Chtioui &amp; Romane Da-Silva · 8 septembre 2026</p>
     </div>
   </div>
 </section>
