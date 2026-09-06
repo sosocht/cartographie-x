@@ -117,6 +117,10 @@ strong{font-weight:600}
 .tag-vide{border:1px solid var(--encre);color:var(--encre)}
 .tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
 .etale > div{display:flex;flex-direction:column;justify-content:space-between}
+/* slide 7 : titre et pilules des secteurs, réglables */
+#s6 .sect-t{position:relative;left:var(--sct-dx,0);top:var(--sct-dy,0);font-size:var(--sct,var(--fs-md))}
+#s6 .sect-p{position:relative;left:var(--scp-dx,0);top:var(--scp-dy,0)}
+#s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
 /* classement numéroté, modèle du top 10 Ecommerce Nation */
 .classement{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:5.5vh;margin-top:3vh}
 .rang{display:grid;grid-template-columns:auto 1fr;gap:1.1vw;align-items:center}
@@ -169,6 +173,10 @@ strong{font-weight:600}
 .tag-vide{border:1px solid var(--encre);color:var(--encre)}
 .tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
 .etale > div{display:flex;flex-direction:column;justify-content:space-between}
+/* slide 7 : titre et pilules des secteurs, réglables */
+#s6 .sect-t{position:relative;left:var(--sct-dx,0);top:var(--sct-dy,0);font-size:var(--sct,var(--fs-md))}
+#s6 .sect-p{position:relative;left:var(--scp-dx,0);top:var(--scp-dy,0)}
+#s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
 /* classement numéroté, modèle du top 10 Ecommerce Nation */
 .classement{display:grid;grid-template-columns:1fr 1fr;column-gap:3vw;row-gap:5.5vh;margin-top:3vh}
 .rang{display:grid;grid-template-columns:auto 1fr;gap:1.1vw;align-items:center}
@@ -521,8 +529,8 @@ body.notesvues section.ici .notes{display:block}
             <div class="jauge-barre"><i style="width:62%"></i></div>
           </div>
         </div>
-        <p class="corps" style="margin-top:.4em;color:var(--encre);font-weight:600">Secteurs très présents</p>
-        <div class="tags" style="margin-top:.45em">
+        <p class="corps sect-t" data-tw="titre secteurs" data-var="sct" style="margin-top:.4em;color:var(--encre);font-weight:600">Secteurs très présents</p>
+        <div class="tags sect-p" data-tw="pilules secteurs" data-var="scp" style="margin-top:.45em">
           <span class="tag tag-plein">Actualité</span><span class="tag tag-plein">Politique</span>
           <span class="tag tag-plein">Tech</span><span class="tag tag-plein">Sport</span>
         </div>
