@@ -60,9 +60,9 @@ strong{font-weight:600}
 .badge-bleu{background:rgba(29,155,240,.1);color:var(--bleu)}
 .badge-vert{background:rgba(0,128,0,.1);color:var(--vert)}
 .badge-rouge{background:rgba(255,0,0,.08);color:var(--rouge)}
-.signe{list-style:none;padding-left:1.7em;margin:.6em 0 0}
+.signe{list-style:none;padding-left:1.25em;margin:.6em 0 0}
 .signe li{position:relative;margin:.6em 0}
-.signe li::before{content:attr(data-s);position:absolute;left:-1.5em;top:-.18em;
+.signe li::before{content:attr(data-s);position:absolute;left:-1.2em;top:-.16em;
   font-size:var(--fs-chiffre);font-weight:500;line-height:1;width:1em;text-align:center}
 .signe.plus li::before{color:var(--vert)}
 .signe.moins li::before{color:var(--rouge)}
@@ -87,20 +87,28 @@ strong{font-weight:600}
 .pts i.on{background:var(--bleu)}
 .carte-sombre{background:#000!important;border-color:#000!important}
 /* tableau geant de la slide 11 */
-.col{background:var(--carte);border:1px solid var(--filet);border-radius:20px;overflow:hidden;
-  box-shadow:var(--ombre);display:flex;flex-direction:column}
-.col .tete{display:flex;align-items:center;gap:.6em;padding:.8em .9em .2em}
+.col{display:flex;flex-direction:column}
+.col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
 .col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
 .col .nm{font-weight:600;line-height:1.15;font-size:var(--fs-md)}
-.col .ps{padding:0 .9em;margin:.1em 0 0}
-.col .ab{padding:.3em .9em .5em;font-size:var(--fs-chiffre);font-weight:500;line-height:1}
-.col .shot{width:100%;height:21vh;object-fit:contain;background:#000;margin-top:.3em}
-.col .lg{padding:.7em .9em;font-weight:600;line-height:1.25}
+.col .ps{padding:0;margin:.1em 0 0}
+.col .ab{padding:.4em 0 .6em;font-size:var(--fs-chiffre);font-weight:500;line-height:1;text-align:center}
+.col .shot{width:100%;height:auto;border-radius:14px;display:block;margin-top:.3em}
+.col .lg{padding:.7em 0 0;font-weight:600;line-height:1.25}
 /* formats de la slide 13 */
 .forme{border:2px solid var(--bleu);border-radius:12px;background:rgba(29,155,240,.06);
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.5em}
 .forme b{font-size:var(--fs-md);font-weight:600}
 .forme span{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin-top:.2em}
+/* bloc audience, modèle de la fiche Ecommerce Nation */
+.bloc-gris{background:rgba(10,10,10,.05);border-radius:20px;padding:1.1em 1.3em}
+.jauge-barre{height:1.6vh;border-radius:999px;background:rgba(10,10,10,.12);overflow:hidden;margin-top:.6em}
+.jauge-barre i{display:block;height:100%;background:var(--encre)}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:.42em 1em;font-size:var(--fs-sm);
+  font-weight:600;white-space:nowrap}
+.tag-plein{background:var(--encre);color:#fff}
+.tag-vide{border:1px solid var(--encre);color:var(--encre)}
+.tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
 .formes{display:grid;gap:14px;align-items:end}
 .geant{table-layout:fixed}
 .geant th,.geant td{padding:.4vh .8vw;vertical-align:middle}
@@ -113,20 +121,28 @@ strong{font-weight:600}
 .persona-b .pts i.on{background:var(--bleu)}
 .carte-sombre{background:#000!important;border-color:#000!important}
 /* tableau geant de la slide 11 */
-.col{background:var(--carte);border:1px solid var(--filet);border-radius:20px;overflow:hidden;
-  box-shadow:var(--ombre);display:flex;flex-direction:column}
-.col .tete{display:flex;align-items:center;gap:.6em;padding:.8em .9em .2em}
+.col{display:flex;flex-direction:column}
+.col .tete{display:flex;align-items:center;gap:.6em;padding:.6em 0 .2em}
 .col .tete img{width:4vh;height:4vh;border-radius:50%;object-fit:cover;border:1px solid var(--filet);flex:0 0 auto}
 .col .nm{font-weight:600;line-height:1.15;font-size:var(--fs-md)}
-.col .ps{padding:0 .9em;margin:.1em 0 0}
-.col .ab{padding:.3em .9em .5em;font-size:var(--fs-chiffre);font-weight:500;line-height:1}
-.col .shot{width:100%;height:21vh;object-fit:contain;background:#000;margin-top:.3em}
-.col .lg{padding:.7em .9em;font-weight:600;line-height:1.25}
+.col .ps{padding:0;margin:.1em 0 0}
+.col .ab{padding:.4em 0 .6em;font-size:var(--fs-chiffre);font-weight:500;line-height:1;text-align:center}
+.col .shot{width:100%;height:auto;border-radius:14px;display:block;margin-top:.3em}
+.col .lg{padding:.7em 0 0;font-weight:600;line-height:1.25}
 /* formats de la slide 13 */
 .forme{border:2px solid var(--bleu);border-radius:12px;background:rgba(29,155,240,.06);
   display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:.5em}
 .forme b{font-size:var(--fs-md);font-weight:600}
 .forme span{font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);margin-top:.2em}
+/* bloc audience, modèle de la fiche Ecommerce Nation */
+.bloc-gris{background:rgba(10,10,10,.05);border-radius:20px;padding:1.1em 1.3em}
+.jauge-barre{height:1.6vh;border-radius:999px;background:rgba(10,10,10,.12);overflow:hidden;margin-top:.6em}
+.jauge-barre i{display:block;height:100%;background:var(--encre)}
+.tag{display:inline-flex;align-items:center;border-radius:999px;padding:.42em 1em;font-size:var(--fs-sm);
+  font-weight:600;white-space:nowrap}
+.tag-plein{background:var(--encre);color:#fff}
+.tag-vide{border:1px solid var(--encre);color:var(--encre)}
+.tags{display:flex;flex-wrap:wrap;gap:.5em;margin-top:.7em}
 .formes{display:grid;gap:14px;align-items:end}
 .geant{table-layout:fixed}
 .geant th,.geant td{padding:.4vh .8vw;vertical-align:middle}
@@ -167,11 +183,10 @@ strong{font-weight:600}
   padding:1em 1.2em;box-shadow:var(--ombre)}
 .bulle::after{content:"";position:absolute;bottom:-9px;width:18px;height:18px;background:var(--carte);
   border-right:1px solid var(--filet);border-bottom:1px solid var(--filet);transform:rotate(45deg)}
-.bulle.g::after{left:34px} .bulle.d::after{right:34px}
+.bulle::after{left:50%;margin-left:-9px}
 .bulle h3{font-size:var(--fs-md);font-weight:600;line-height:1.25;margin:0}
 .bulle p{margin:.3em 0 0}
-.bulle .pt{position:absolute;bottom:-1.6vh;width:1.5vh;height:1.5vh;border-radius:50%;background:var(--bleu)}
-.bulle.g .pt{left:14px} .bulle.d .pt{right:14px}
+
 .conseils .d{margin-left:12%} .conseils .g{margin-right:12%}
 .carte{display:flex;flex-direction:column}
 /* titre de carte : meme niveau typographique que le chiffre */
@@ -235,6 +250,7 @@ img.twr{width:var(--l,100%);height:auto}
 body.reglage [data-tw]{outline:1px dashed rgba(255,255,255,.45);cursor:grab}
 body.reglage [data-tw]:hover{outline-color:var(--bleu)}
 body.reglage [data-tw].vise{outline:2px solid var(--bleu)}
+body.reglage [data-edit]{outline:1px dashed var(--bleu);cursor:text}
 .panneau{display:none;position:fixed;right:16px;top:16px;z-index:80;
   background:var(--encre);color:#e4e9eb;border:1px solid rgba(255,255,255,.18);border-radius:20px;
   padding:12px 16px;font-size:12px;font-weight:300;line-height:1.7;min-width:280px}
@@ -324,7 +340,7 @@ body.notesvues section.ici .notes{display:block}
   <div class="wrap">
     <h2 style="margin-bottom:.3em">Vingt ans en dix dates</h2>
     <div class="grille g2" style="grid-template-columns:1fr auto;align-items:start;gap:2.4vw;margin-bottom:4vh">
-      <p class="corps" style="margin:0;max-width:46ch"><strong>Jack Dorsey, Biz Stone, Evan Williams et Dick Costolo</strong> à l'entrée en bourse, en 2013. Treize ans plus tard, la société n'existe plus sous ce nom.</p>
+      <p class="corps" style="margin:0;white-space:nowrap"><strong>Jack Dorsey, Biz Stone, Evan Williams et Dick Costolo</strong>, l'entrée en bourse, en 2013.</p>
       <img class="twr" data-tw="photo" src="img/fondateurs.png" alt="Les fondateurs de Twitter à l'entrée en bourse" style="--dx:46.3%;--dy:-29.6%;--l:49%;border-radius:var(--r);border:1px solid var(--filet);display:block">
     </div>
     <div class="grille g5" style="grid-auto-rows:17vh">
@@ -362,7 +378,6 @@ body.notesvues section.ici .notes{display:block}
         </div>
       </div>
       <div>
-        <div class="carte carte-bleu" style="margin-bottom:12px"><p class="corps" style="margin:0"><strong>La stratégie.</strong> Musk ne rachète pas un réseau social, il l'absorbe. X fournit à xAI le flux de conversations en temps réel qui entraîne ses modèles, et l'audience qui les diffuse : Grok répond directement dans le fil.</p></div>
         <div class="carte">
           <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">En France, la société s'appelle encore Twitter</span>
           <img class="vue twr" data-tw="pappers" src="img/pappers.png" alt="Fiche du registre du commerce de Twitter France SAS" style="margin:.8em 0;border-radius:12px">
@@ -389,24 +404,24 @@ body.notesvues section.ici .notes{display:block}
     <h2>Ce que X a changé de son identité et de son produit</h2>
     <div class="grille g2" style="align-items:start;gap:2.6vw">
       <div>
-        <img class="vue carte-sombre" src="img/r/composer.png" alt="Zone de rédaction avec le compteur de caractères" style="height:12vh;object-fit:contain">
-        <p class="corps"><strong>Écrire sur X.</strong> 280 caractères, un compteur circulaire, huit boutons de format et le choix de qui peut répondre.</p>
-        <img class="vue carte-sombre" src="img/r/hashtag.png" alt="Publication avec des hashtags" style="height:12vh;object-fit:contain;margin-top:1.2vh">
-        <p class="corps"><strong>Le hashtag reste le classement du réseau.</strong> Inventé par un utilisateur en 2007, il sert encore à rattacher un message à un sujet.</p>
+        <img class="vue" src="img/r/composer.png" alt="Zone de rédaction avec le compteur de caractères" style="width:100%;height:auto;border:0;border-radius:12px;display:block">
+        <p class="corps"><strong>Écrire sur X.</strong> De 140 à 280 caractères, plus les indicateurs.</p>
+        <img class="vue" src="img/r/hashtag.png" alt="Publication avec des hashtags" style="width:100%;height:auto;border:0;border-radius:12px;display:block;margin-top:1.2vh">
+        <p class="corps"><strong>Le hashtag reste le classement du réseau.</strong></p>
       </div>
       <div>
         <div class="grille g2" style="align-items:start;gap:1.4vw">
           <div>
-            <img class="vue carte-sombre" src="img/r/logos.png" alt="Le logo avant et après le passage à X" style="height:12vh;object-fit:contain">
+            <img class="vue" src="img/r/logos.png" alt="Le logo avant et après le passage à X" style="width:100%;height:auto;border:0;border-radius:12px;display:block">
             <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.8em">
-              <span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Oiseau : le gazouillis</span>
-              <span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Léger, bavard, public</span>
+              <span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Oiseau : le gazouillis</span>
+              <span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Léger, bavard, public</span>
               <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">X : l'application à tout faire</span>
               <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Neutre, sérieux, extensible</span>
             </div>
           </div>
           <div>
-            <img class="vue carte-sombre" src="img/r/premium.png" alt="Les abonnements Premium de X" style="height:20vh;object-fit:contain">
+            <img class="vue" src="img/r/premium.png" alt="Les abonnements Premium de X" style="width:100%;height:auto;border:0;border-radius:12px;display:block">
             <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;margin-top:.8em">
               <span class="badge badge-bleu">Premium 4,67 €</span>
               <span class="badge badge-bleu">Premium+ 22,17 €</span>
@@ -414,14 +429,13 @@ body.notesvues section.ici .notes{display:block}
             </div>
           </div>
         </div>
-        <div class="carte carte-bleu" style="margin-top:1.4vh"><p class="corps" style="margin:0"><strong>Le fil rouge.</strong> L'oiseau désignait une conversation, la lettre X ne désigne rien : elle laisse la place à tout. Le modèle suit, X ne vit plus seulement de la publicité mais de l'abonnement.</p></div>
-      </div>
+        </div>
     </div>
     <div class="pied">
       <p class="src">Source : X (consulté le 06/09/2026), captures de l'interface et de la page d'abonnement faites par Sofian et Romane.</p>
     </div>
   </div>
-  <div class="notes">Slide de respiration après le schéma de propriété. Trois idées : on écrit toujours en 280 caractères, le hashtag de 2007 sert encore de classement, et le changement de logo dit tout de la stratégie. L'oiseau désignait une conversation, la lettre X ne désigne rien et laisse la place à tout : paiement, vidéo, intelligence artificielle. Finir sur le prix : X ne vit plus seulement de la publicité, il vend un abonnement à 4,67 € qui donne le badge et l'accès à Grok. 60 secondes.</div>
+  <div class="notes">Slide de respiration après le schéma de propriété. Le fil rouge à dire : l'oiseau désignait une conversation, la lettre X ne désigne rien et laisse la place à tout. Trois idées : on écrit toujours en 280 caractères, le hashtag de 2007 sert encore de classement, et le changement de logo dit tout de la stratégie. L'oiseau désignait une conversation, la lettre X ne désigne rien et laisse la place à tout : paiement, vidéo, intelligence artificielle. Finir sur le prix : X ne vit plus seulement de la publicité, il vend un abonnement à 4,67 € qui donne le badge et l'accès à Grok. 60 secondes.</div>
 </section>
 
 <!-- 6 · MONDE -->
@@ -455,15 +469,53 @@ body.notesvues section.ici .notes{display:block}
   <span class="num">07 / 16</span>
   <div class="wrap">
     <h2>France : deux millions de personnes parties en un an</h2>
-    <div class="grille g4" style="margin-bottom:12px">
-      <div class="carte"><span class="chiffre bas">15,5 M</span><span class="unite">touchables en 2025</span><p class="corps">contre 17,5 M en 2024.</p></div>
-      <div class="carte"><span class="chiffre">7<sup style="font-size:.4em;vertical-align:super">e</sup></span><span class="unite">réseau en France</span><p class="corps">derrière Facebook, Instagram, WhatsApp, TikTok, Snapchat et Messenger.</p></div>
-      <div class="carte"><span class="chiffre">3h45</span><span class="unite">par mois et par personne</span><p class="corps">soit environ sept minutes par jour.</p></div>
-      <div class="carte"><span class="chiffre">6 %</span><span class="unite">du trafic web social français</span></div>
-    </div>
-    <div class="grille g2">
-      <div class="carte"><p class="corps" style="margin:0"><strong>Par génération.</strong> Génération Z <span class="hl">27 %</span>, millennials 18 %, génération X 14 %, baby-boomers 10 %, génération silencieuse 7 %. X est le réseau où les plus jeunes sont les plus sur-représentés, sur la plus petite base.</p></div>
-      <div class="carte"><p class="corps" style="margin:0"><strong>Par genre.</strong> 62 à 66 % d'hommes selon l'année. C'est l'audience la plus déséquilibrée de tous les grands réseaux français.</p></div>
+    <div class="grille g3" style="align-items:start;gap:2.6vw">
+
+      <div>
+        <div class="grille g2" style="gap:14px">
+          <div class="bloc-gris">
+            <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Audience publicitaire potentielle</p>
+            <p class="chiffre bas" style="margin:.5em 0 0">15,5<span style="font-size:var(--fs-md)"> millions</span></p>
+            <p class="corps" style="margin:.4em 0 0">contre 17,5 millions en 2024</p>
+          </div>
+          <div class="bloc-gris">
+            <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Audience plutôt masculine</p>
+            <p class="chiffre" style="margin:.5em 0 0">62<span style="font-size:var(--fs-md)"> %</span></p>
+            <div class="jauge-barre"><i style="width:62%"></i></div>
+          </div>
+        </div>
+        <p class="corps" style="margin-top:1.2em;color:var(--encre);font-weight:600">Secteurs très présents</p>
+        <div class="tags">
+          <span class="tag tag-plein">Actualité</span><span class="tag tag-plein">Politique</span>
+          <span class="tag tag-plein">Tech</span><span class="tag tag-plein">Sport</span>
+        </div>
+      </div>
+
+      <div>
+        <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Usage centré sur le temps réel</p>
+        <div class="tags" style="flex-direction:column;align-items:stretch">
+          <span class="tag tag-vide" style="justify-content:center">réactions aux événements</span>
+          <span class="tag tag-vide" style="justify-content:center">partages de tendances</span>
+          <span class="tag tag-vide" style="justify-content:center">actualité brûlante</span>
+        </div>
+        <div class="grille g2" style="gap:14px;margin-top:1.4em">
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">7<sup style="font-size:.4em;vertical-align:super">e</sup></p><p class="corps" style="margin:.4em 0 0">réseau en France</p></div>
+          <div class="bloc-gris"><p class="chiffre" style="margin:0">3h45</p><p class="corps" style="margin:.4em 0 0">par mois et par personne</p></div>
+        </div>
+      </div>
+
+      <div>
+        <p class="corps" style="margin:0;color:var(--encre);font-weight:600">Part de chaque génération présente sur X</p>
+        <div style="margin-top:.8em">
+          <div class="jauge"><span>Génération Z</span><span class="detail">27 %</span></div><div class="jauge-barre"><i style="width:27%;background:var(--bleu)"></i></div>
+          <div class="jauge" style="margin-top:.8em"><span>Millennials</span><span class="detail">18 %</span></div><div class="jauge-barre"><i style="width:18%;background:var(--bleu)"></i></div>
+          <div class="jauge" style="margin-top:.8em"><span>Génération X</span><span class="detail">14 %</span></div><div class="jauge-barre"><i style="width:14%;background:var(--bleu)"></i></div>
+          <div class="jauge" style="margin-top:.8em"><span>Baby-boomers</span><span class="detail">10 %</span></div><div class="jauge-barre"><i style="width:10%;background:var(--bleu)"></i></div>
+          <div class="jauge" style="margin-top:.8em"><span>Génération silencieuse</span><span class="detail">7 %</span></div><div class="jauge-barre"><i style="width:7%;background:var(--bleu)"></i></div>
+        </div>
+        <p class="corps" style="margin-top:1em"><strong>X est le réseau où les plus jeunes sont les plus sur-représentés</strong>, sur la plus petite base.</p>
+      </div>
+
     </div>
     <div class="pied">
       <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 p. 8 et 2025 p. 5 · Statista (consulté le 06/09/2026), janvier 2025 et 2024.</p>
@@ -567,12 +619,12 @@ body.notesvues section.ici .notes{display:block}
   <div class="wrap">
     <h2>Se lancer sur X : nos six recommandations</h2>
     <div class="conseils">
-      <div class="bulle g"><span class="pt"></span><h3>Publier tous les jours, ou ne pas commencer</h3><p class="corps">Un à trois messages par jour. Sur un réseau construit sur la fraîcheur, un rythme hebdomadaire passe inaperçu.</p></div>
-      <div class="bulle d"><span class="pt"></span><h3>Répondre avant de publier</h3><p class="corps">Passer le premier mois à répondre aux autres. Les réponses ne coûtent rien et c'est ainsi qu'un nouveau compte est découvert.</p></div>
-      <div class="bulle g"><span class="pt"></span><h3>Le texte d'abord, l'image ensuite</h3><p class="corps">X est le seul grand réseau où une phrase seule dépasse un visuel travaillé. Garder l'image pour la preuve.</p></div>
-      <div class="bulle d"><span class="pt"></span><h3>Une voix, pas une voix de marque</h3><p class="corps">Burger King France ne suit <span class="hl">aucun</span> compte et écrit comme une personne. Cela marche parce que c'est constant.</p></div>
-      <div class="bulle g"><span class="pt"></span><h3>Suivre l'événement, jamais le calendrier</h3><p class="corps">Un message publié 40 minutes après un match vaut dix messages programmés un mois à l'avance.</p></div>
-      <div class="bulle d"><span class="pt"></span><h3>Mesurer les signets et les réponses</h3><p class="corps">Un « j'aime » est poli, un signet signifie utile, une réponse signifie vivant.</p></div>
+      <div class="bulle g"><h3><span style="color:var(--bleu)">01</span>  Publier tous les jours, ou ne pas commencer</h3><p class="corps">Un à trois messages par jour. Sur un réseau construit sur la fraîcheur, un rythme hebdomadaire passe inaperçu.</p></div>
+      <div class="bulle d"><h3><span style="color:var(--bleu)">02</span>  Répondre avant de publier</h3><p class="corps">Passer le premier mois à répondre aux autres. Les réponses ne coûtent rien et c'est ainsi qu'un nouveau compte est découvert.</p></div>
+      <div class="bulle g"><h3><span style="color:var(--bleu)">03</span>  Le texte d'abord, l'image ensuite</h3><p class="corps">X est le seul grand réseau où une phrase seule dépasse un visuel travaillé. Garder l'image pour la preuve.</p></div>
+      <div class="bulle d"><h3><span style="color:var(--bleu)">04</span>  Une voix, pas une voix de marque</h3><p class="corps">Burger King France ne suit <span class="hl">aucun</span> compte et écrit comme une personne. Cela marche parce que c'est constant.</p></div>
+      <div class="bulle g"><h3><span style="color:var(--bleu)">05</span>  Suivre l'événement, jamais le calendrier</h3><p class="corps">Un message publié 40 minutes après un match vaut dix messages programmés un mois à l'avance.</p></div>
+      <div class="bulle d"><h3><span style="color:var(--bleu)">06</span>  Mesurer les signets et les réponses</h3><p class="corps">Un « j'aime » est poli, un signet signifie utile, une réponse signifie vivant.</p></div>
     </div>
     <div class="pied">
       <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), quatre objectifs de la fiche X · X (consulté le 06/09/2026), comptes observés. Liste soumise à ChatGPT, trois conseils génériques écartés.</p>
@@ -655,11 +707,11 @@ body.notesvues section.ici .notes{display:block}
     </div>
 
     <div class="vue-bloc" id="v-posts" hidden>
-      <div class="grille g5"><div class="col"><img class="shot" style="margin-top:0;height:26vh;object-fit:contain" src="img/post-boseman.png" alt="Publication de @chadwickboseman">
-        <p class="lg">Sa famille annonce sa mort</p><p class="ps detail">@chadwickboseman</p><p class="ab">6,6 M</p></div><div class="col"><img class="shot" style="margin-top:0;height:26vh;object-fit:contain" src="img/post-musk-coca.png" alt="Publication de @elonmusk">
-        <p class="lg">« Je rachète Coca-Cola »</p><p class="ps detail">@elonmusk</p><p class="ab">4,3 M</p></div><div class="col"><img class="shot" style="margin-top:0;height:26vh;object-fit:contain" src="img/post-obama.png" alt="Publication de @BarackObama">
-        <p class="lg">Citation de Nelson Mandela</p><p class="ps detail">@BarackObama</p><p class="ab">3,6 M</p></div><div class="col"><img class="shot" style="margin-top:0;height:26vh;object-fit:contain" src="img/post-greta.png" alt="Publication de @GretaThunberg">
-        <p class="lg">Réponse à Andrew Tate</p><p class="ps detail">@GretaThunberg</p><p class="ab">3,5 M</p></div><div class="col"><img class="shot" style="margin-top:0;height:26vh;object-fit:contain" src="img/post-biden.png" alt="Publication de @JoeBiden">
+      <div class="grille g5"><div class="col"><img class="shot twr" data-tw="post-boseman" style="margin-top:0" src="img/post-boseman.png" alt="Publication de @chadwickboseman">
+        <p class="lg">Sa famille annonce sa mort</p><p class="ps detail">@chadwickboseman</p><p class="ab">6,6 M</p></div><div class="col"><img class="shot twr" data-tw="post-musk" style="margin-top:0" src="img/post-musk-coca.png" alt="Publication de @elonmusk">
+        <p class="lg">« Je rachète Coca-Cola »</p><p class="ps detail">@elonmusk</p><p class="ab">4,3 M</p></div><div class="col"><img class="shot twr" data-tw="post-obama" style="margin-top:0" src="img/post-obama.png" alt="Publication de @BarackObama">
+        <p class="lg">Citation de Nelson Mandela</p><p class="ps detail">@BarackObama</p><p class="ab">3,6 M</p></div><div class="col"><img class="shot twr" data-tw="post-greta" style="margin-top:0" src="img/post-greta.png" alt="Publication de @GretaThunberg">
+        <p class="lg">Réponse à Andrew Tate</p><p class="ps detail">@GretaThunberg</p><p class="ab">3,5 M</p></div><div class="col"><img class="shot twr" data-tw="post-biden" style="margin-top:0" src="img/post-biden.png" alt="Publication de @JoeBiden">
         <p class="lg">« It's a new day in America »</p><p class="ps detail">@JoeBiden</p><p class="ab">3,5 M</p></div></div>
     </div>
 
@@ -677,19 +729,19 @@ body.notesvues section.ici .notes{display:block}
     <h2>Trois comptes, trois inventions</h2>
     <div class="grille g3" style="align-items:start">
       <div class="col">
-        <img class="shot" style="margin-top:0;height:34vh;object-fit:cover;object-position:top center" src="img/openai.png" alt="Compte @OpenAI sur X">
+        <img class="shot twr" data-tw="compte-openai" style="margin-top:0" src="img/openai.png" alt="Compte @OpenAI sur X">
         <p class="lg">@OpenAI <span class="detail">5,2 M d'abonnés</span></p>
-        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Salle de presse</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Annonce en texte brut</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Sans communiqué</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Le lancement devient un post</span></div>
+        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Salle de presse</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Annonce en texte brut</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Sans communiqué</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Le lancement devient un post</span></div>
       </div>
       <div class="col">
-        <img class="shot" style="margin-top:0;height:34vh;object-fit:cover;object-position:top center" src="img/grok.png" alt="Compte @grok sur X">
+        <img class="shot twr" data-tw="compte-grok" style="margin-top:0" src="img/grok.png" alt="Compte @grok sur X">
         <p class="lg">@grok <span class="detail">9,0 M d'abonnés</span></p>
-        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">IA native du réseau</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Répond dans le fil</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">39 M de publications</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">L'outil vit dans le flux</span></div>
+        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">IA native du réseau</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Répond dans le fil</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">39 M de publications</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">L'outil vit dans le flux</span></div>
       </div>
       <div class="col">
-        <img class="shot" style="margin-top:0;height:34vh;object-fit:cover;object-position:top center" src="img/burgerking.png" alt="Compte @BurgerKingFR sur X">
+        <img class="shot twr" data-tw="compte-burgerking" style="margin-top:0" src="img/burgerking.png" alt="Compte @BurgerKingFR sur X">
         <p class="lg">@BurgerKingFR <span class="detail">188,7 K d'abonnés</span></p>
-        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Zéro abonnement</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Ton de personne</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Même voix depuis 2013</span><span class="badge" style="background:rgba(29,155,240,.1);color:var(--bleu)">Discipline</span></div>
+        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Zéro abonnement</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Ton de personne</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Même voix depuis 2013</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Discipline</span></div>
       </div>
     </div>
     <div class="pied">
@@ -708,24 +760,24 @@ body.notesvues section.ici .notes{display:block}
       <div>
         <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Images</span>
         <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:1em">
-          <div class="forme" style="aspect-ratio:1/1"><b>400 × 400</b><span>photo de profil</span></div>
-          <div class="forme" style="aspect-ratio:3/1"><b>1500 × 500</b><span>bannière</span></div>
-          <div class="forme" style="aspect-ratio:1/1"><b>1200 × 1200</b><span>publication carrée</span></div>
-          <div class="forme" style="aspect-ratio:1.91/1"><b>1200 × 628</b><span>publication paysage</span></div>
+          <div class="forme twr" data-tw="profil" style="aspect-ratio:1/1"><b>400 × 400</b><span>photo de profil</span></div>
+          <div class="forme twr" data-tw="banniere" style="aspect-ratio:3/1"><b>1500 × 500</b><span>bannière</span></div>
+          <div class="forme twr" data-tw="post-carre" style="aspect-ratio:1/1"><b>1200 × 1200</b><span>publication carrée</span></div>
+          <div class="forme twr" data-tw="post-paysage" style="aspect-ratio:1.91/1"><b>1200 × 628</b><span>publication paysage</span></div>
         </div>
         <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
-          <div class="forme" style="aspect-ratio:16/9;grid-column:span 2"><b>1200 × 675</b><span>publicité · 600 × 335 minimum</span></div>
+          <div class="forme twr" data-tw="pub-image" style="aspect-ratio:16/9;grid-column:span 2"><b>1200 × 675</b><span>publicité · 600 × 335 minimum</span></div>
         </div>
       </div>
       <div>
         <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Vidéo</span>
         <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:1em">
-          <div class="forme" style="aspect-ratio:16/10"><b>1920 × 1200</b><span>publication · 512 Mo · 2 min 20 maximum</span></div>
-          <div class="forme" style="aspect-ratio:1/1"><b>800 × 800</b><span>carrousel carré · 2 à 6 vidéos</span></div>
-          <div class="forme" style="aspect-ratio:16/9"><b>800 × 450</b><span>carrousel paysage · 2 à 6 vidéos</span></div>
+          <div class="forme twr" data-tw="video" style="aspect-ratio:16/10"><b>1920 × 1200</b><span>publication · 512 Mo · 2 min 20 maximum</span></div>
+          <div class="forme twr" data-tw="carrousel-carre" style="aspect-ratio:1/1"><b>800 × 800</b><span>carrousel carré · 2 à 6 vidéos</span></div>
+          <div class="forme twr" data-tw="carrousel-paysage" style="aspect-ratio:16/9"><b>800 × 450</b><span>carrousel paysage · 2 à 6 vidéos</span></div>
         </div>
         <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
-          <div class="forme" style="aspect-ratio:16/9;grid-column:span 2"><b>Publicité</b><span>1:1 ou 16:9 · 1 Go · MP4 ou MOV</span></div>
+          <div class="forme twr" data-tw="pub-video" style="aspect-ratio:16/9;grid-column:span 2"><b>Publicité</b><span>1:1 ou 16:9 · 1 Go · MP4 ou MOV</span></div>
         </div>
       </div>
     </div>
@@ -844,7 +896,8 @@ function ecrire(){
 function texteValeurs(){
   return blocs().map(e=>rel(e)
     ? `${e.dataset.tw} : --dx:${px(e,'--dx','0%')}; --dy:${px(e,'--dy','0%')}; --l:${px(e,'--l','auto')};`
-    : `${e.dataset.tw} : --x:${px(e,'--x','')}; --y:${px(e,'--y','')}; --l:${px(e,'--l','86%')};`).join('\n');
+    : `${e.dataset.tw} : --x:${px(e,'--x','')}; --y:${px(e,'--y','')}; --l:${px(e,'--l','86%')};`)
+    .concat([...document.querySelectorAll('section.ici [data-edit]')].map(e=>`texte : ${e.textContent.trim()}`)).join('\n');
 }
 addEventListener('mousedown',ev=>{
   if(!document.body.classList.contains('reglage'))return;
@@ -899,8 +952,8 @@ addEventListener('keydown',e=>{
   else if(k==='Home'){e.preventDefault();aller(0);}
   else if(k==='End'){e.preventDefault();aller(secs.length-1);}
   else if(k==='n'||k==='N'){document.body.classList.toggle('notesvues');}
-  else if(k==='t'||k==='T'){document.body.classList.toggle('reglage');vise=null;ecrire();}
-  else if(k==='c'||k==='C'){if(document.body.classList.contains('reglage')){navigator.clipboard.writeText(texteValeurs());panneau.querySelector('.aide').textContent='Valeurs copiées.';}}
+  else if(k==='t'||k==='T'){if(document.activeElement&&document.activeElement.isContentEditable)return;document.body.classList.toggle('reglage');document.querySelectorAll('[data-edit]').forEach(e=>e.contentEditable=document.body.classList.contains('reglage'));vise=null;ecrire();}
+  else if(k==='c'||k==='C'){if(document.activeElement&&document.activeElement.isContentEditable)return;if(document.body.classList.contains('reglage')){navigator.clipboard.writeText(texteValeurs());panneau.querySelector('.aide').textContent='Valeurs copiées.';}}
 });
 const io=new IntersectionObserver(es=>{
   es.forEach(en=>{
