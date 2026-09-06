@@ -63,7 +63,7 @@ strong{font-weight:600}
 .pilule{display:inline-flex;gap:2px;padding:3px;border-radius:999px;border:1px solid var(--filet);
   background:rgba(10,10,10,.05);cursor:pointer;user-select:none}
 .pilule span{padding:.5em 1.1em;border-radius:999px;font-size:var(--fs-sm);font-weight:600;
-  letter-spacing:.1em;text-transform:uppercase;color:var(--sourdine);transition:.18s}
+  letter-spacing:.1em;text-transform:uppercase;color:var(--sourdine);transition:.18s;white-space:nowrap}
 .pilule .actif{background:var(--carte);color:var(--encre);box-shadow:0 1px 5px rgba(10,10,10,.18)}
 /* fiche persona */
 .persona{display:grid;grid-template-columns:auto 1fr;gap:1.4vw;align-items:start}
@@ -79,7 +79,9 @@ strong{font-weight:600}
 .pts{display:flex;gap:.4vh}
 .pts i{width:.95vh;height:.95vh;border-radius:50%;background:var(--filet);display:block}
 .pts i.on{background:var(--bleu)}
+.carte-sombre{background:#000!important;border-color:#000!important}
 .persona-b .pts i.on{background:var(--bleu)}
+.carte-sombre{background:#000!important;border-color:#000!important}
 .persona-a .pts i.on{background:var(--encre)}
 .entete{display:flex;align-items:center;justify-content:space-between;gap:1em;margin-bottom:.6em}
 .entete .t{font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine)}
@@ -137,14 +139,17 @@ td.n{font-weight:600;text-align:right;white-space:nowrap}
 /* schema de propriete : cercles emboites */
 .orbites{position:relative;width:min(52vh,100%);aspect-ratio:1;margin:0 auto}
 .orbite{position:absolute;border-radius:50%;display:flex;flex-direction:column;align-items:center}
-.orbite .lab{margin-top:1.1em;font-size:var(--fs-sm);font-weight:600;text-align:center;line-height:1.3;padding:0 2.2em}
-.orbite .an{display:block;font-weight:300;color:var(--sourdine)}
+.orbite .lab{margin-top:.9em;font-size:var(--fs-sm);font-weight:600;text-align:center;line-height:1.2;white-space:nowrap}
 .o1{inset:0;border:1px solid var(--filet);background:var(--carte)}
 .o2{inset:15%;border:1px solid var(--bleu);background:rgba(29,155,240,.07)}
 .o2 .lab{color:var(--bleu)}
 .o3{inset:33%;background:var(--encre);color:#fff;justify-content:center}
 .o3 img{width:22%;filter:invert(1)}
-.o3 .lab{color:rgba(255,255,255,.75);font-weight:300;margin-top:.7em}
+.o3 .lab{color:rgba(255,255,255,.75);font-weight:300;margin-top:.6em}
+.legende{margin-top:1.6vh}
+.legende div{display:grid;grid-template-columns:auto 1fr;gap:.7em;align-items:baseline;padding:.5em 0;border-top:1px solid var(--filet)}
+.legende b{font-weight:600}
+.legende i{width:.9vh;height:.9vh;border-radius:50%;display:block;margin-top:.5em}
 
 /* couverture : image plein écran, voile sombre, titre centré */
 #s1{background:var(--encre);color:#fff;border-top:0;
@@ -253,10 +258,13 @@ body.notesvues section.ici .notes{display:block}
 <section id="s3">
   <span class="num">03 / 15</span>
   <div class="wrap">
-    <h2>Vingt ans en dix dates</h2>
-    <div class="grille g2" style="grid-template-columns:auto 1fr;align-items:center;margin-bottom:12px">
-      <img src="img/fondateurs.png" alt="Les fondateurs de Twitter" style="height:11vh;width:auto;border-radius:var(--r);border:1px solid var(--filet);display:block">
-      <p class="corps" style="margin:0"><strong>Jack Dorsey, Biz Stone, Evan Williams et Dick Costolo</strong> le jour de l'entrée en bourse, en 2013. Sept ans après le premier message, Twitter vaut 24 milliards de dollars à son premier jour de cotation.</p>
+    <h2 style="margin-bottom:.3em">Vingt ans en dix dates</h2>
+    <div class="grille g2" style="grid-template-columns:1fr auto;align-items:start;gap:2.4vw;margin-bottom:4vh">
+      <p class="corps" style="margin:0;max-width:62ch"><strong>Jack Dorsey, Biz Stone, Evan Williams et Dick Costolo</strong> le jour de l'entrée en bourse, en 2013. Sept ans après le premier message, Twitter vaut 24 milliards de dollars à son premier jour de cotation. Treize ans plus tard, la société n'existe plus sous ce nom.</p>
+      <div style="display:flex;flex-direction:column;gap:10px;align-items:flex-end">
+        <img src="img/fondateurs.png" alt="Les fondateurs de Twitter à l'entrée en bourse" style="height:15vh;width:auto;border-radius:var(--r);border:1px solid var(--filet);display:block">
+        <img src="img/r/logos.png" alt="Le logo avant et après le passage à X" style="height:6vh;width:auto;border-radius:12px;border:1px solid var(--filet);display:block;background:#000">
+      </div>
     </div>
     <div class="grille g5" style="grid-auto-rows:17vh">
       <div class="carte"><span class="chiffre">2006</span><p class="corps"><strong>Lancement</strong> le 15 juillet, par Jack Dorsey et trois associés.</p></div>
@@ -281,17 +289,32 @@ body.notesvues section.ici .notes{display:block}
 <section id="s4">
   <span class="num">04 / 15</span>
   <div class="wrap">
-    <h2>À qui appartient X, et sous quel nom en France</h2>
-    <div class="grille g2" style="align-items:center;grid-template-columns:1fr 1fr">
-      <div class="orbites">
-        <div class="o1 orbite"><span class="lab">Groupe SpaceX et xAI<span class="an">fusion, février 2026</span></span></div>
-        <div class="o2 orbite"><span class="lab">xAI, société d'intelligence artificielle<span class="an">rachète X en mars 2025, 33 Md$</span></span></div>
-        <div class="o3 orbite"><img src="img/logo-x.svg" alt="X"><span class="lab">le réseau social</span></div>
+    <h2>À qui appartient X</h2>
+    <div class="grille g2" style="align-items:start;grid-template-columns:1fr 1fr;gap:2.4vw">
+      <div>
+        <div class="orbites">
+          <div class="o1 orbite"><span class="lab">Groupe SpaceX et xAI</span></div>
+          <div class="o2 orbite"><span class="lab">xAI</span></div>
+          <div class="o3 orbite"><img src="img/logo-x.svg" alt="X"><span class="lab">le réseau social</span></div>
+        </div>
+        <div class="legende">
+          <div><i style="background:var(--encre)"></i><span><b>X</b>, le réseau social, racheté par Musk en 2022 pour 44 Md$.</span></div>
+          <div><i style="background:var(--bleu)"></i><span><b>xAI</b>, sa société d'intelligence artificielle, rachète X en mars 2025 pour 33 Md$.</span></div>
+          <div><i style="background:#AAB8C2"></i><span><b>SpaceX et xAI</b> fusionnent en février 2026. X n'est plus l'activité principale du groupe.</span></div>
+        </div>
       </div>
       <div>
-        <div class="carte carte-bleu" style="margin-bottom:12px"><p class="corps" style="margin:0"><strong>La stratégie.</strong> Musk ne rachète pas un réseau social, il l'absorbe. X fournit à xAI le flux de conversations en temps réel qui entraîne ses modèles, et l'audience qui les diffuse : Grok répond directement dans le fil. Le réseau devient un moyen au service de l'intelligence artificielle.</p></div>
-        <img class="vue large" src="img/pappers.png" alt="Fiche du registre du commerce de Twitter France SAS" style="max-height:26vh">
-        <p class="corps"><strong>Ce que dit le registre du commerce.</strong> Trois ans après le rebranding, la filiale française s'appelle toujours <span class="hl">TWITTER FRANCE SAS</span> (SIREN 789 305 596). Son activité déclarée est le conseil en relations publiques, pas la publicité. <span class="hl">12,9 M€</span> de chiffre d'affaires, <span class="hl">20 à 49</span> salariés, 678 k€ de résultat net.</p>
+        <div class="carte carte-bleu" style="margin-bottom:12px"><p class="corps" style="margin:0"><strong>La stratégie.</strong> Musk ne rachète pas un réseau social, il l'absorbe. X fournit à xAI le flux de conversations en temps réel qui entraîne ses modèles, et l'audience qui les diffuse : Grok répond directement dans le fil.</p></div>
+        <div class="carte">
+          <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">En France, la société s'appelle encore Twitter</span>
+          <img class="vue" src="img/pappers.png" alt="Fiche du registre du commerce de Twitter France SAS" style="margin:.8em 0;border-radius:12px">
+          <div class="grille g3" style="gap:10px">
+            <div><span class="chiffre">12,9 M€</span><span class="unite">de chiffre d'affaires</span></div>
+            <div><span class="chiffre">20 à 49</span><span class="unite">salariés</span></div>
+            <div><span class="chiffre">678 k€</span><span class="unite">de résultat net</span></div>
+          </div>
+          <p class="corps">Activité déclarée : conseil en relations publiques, pas la publicité. Celle-ci est facturée depuis l'Irlande.</p>
+        </div>
       </div>
     </div>
     <div class="pied">
@@ -429,6 +452,10 @@ body.notesvues section.ici .notes{display:block}
       <div class="carte"><span class="unite" style="margin-top:0">05</span><p class="corps"><strong>Finance et crypto.</strong> Le commentaire de marché en temps réel, pour le meilleur et pour le pire.</p></div>
       <div class="carte"><span class="unite" style="margin-top:0">06</span><p class="corps"><strong>Service client.</strong> La réclamation publique. 27 % des community managers jugent encore X important pour leur travail.</p></div>
     </div>
+    <div class="grille g2" style="margin-bottom:12px">
+      <img class="vue carte-sombre" src="img/r/hashtag.png" alt="Publication sportive avec hashtags" style="height:13vh;object-fit:contain">
+      <img class="vue carte-sombre" src="img/r/deepmind.png" alt="Compte de Google DeepMind" style="height:13vh;object-fit:contain">
+    </div>
     <div class="carte carte-bleu"><p class="corps" style="margin:0"><strong>Le point commun n'est pas un secteur, c'est une horloge.</strong> X domine partout où la valeur d'un message s'effondre au bout d'une heure. Si votre message est encore pertinent demain, publiez-le ailleurs.</p></div>
     <div class="pied">
       <p class="src">Sources : Ecommerce Nation (consulté le 06/09/2026), Guides 2024 p. 8-9 et 2025 p. 5 · SocialHub Magazine (consulté le 06/09/2026), n° 6, 2026.</p>
@@ -495,52 +522,70 @@ body.notesvues section.ici .notes{display:block}
 <section id="s11">
   <span class="num">11 / 15</span>
   <div class="wrap">
-    <h2>Les comptes et publications les plus aimés</h2>
-    <div class="grille g2" style="align-items:start;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr)">
-      <div>
-        <div class="entete">
-          <span class="t">Les comptes les plus suivis</span>
-          <span class="pilule" id="bascule"><span class="actif" data-vue="monde">Monde</span><span data-vue="france">France</span></span>
-        </div>
-        <table id="t-monde">
-          <tr><th colspan="2">Compte</th><th style="text-align:right">Abonnés</th></tr>
-          <tr><td><img class="face" src="img/av-elonmusk.jpg" alt=""></td><td>Elon Musk <span class="detail">@elonmusk</span></td><td class="n">241,6 M</td></tr>
-          <tr><td><img class="face" src="img/av-BarackObama.jpg" alt=""></td><td>Barack Obama <span class="detail">@BarackObama</span></td><td class="n">119,0 M</td></tr>
-          <tr><td><img class="face" src="img/av-Cristiano.jpg" alt=""></td><td>Cristiano Ronaldo <span class="detail">@Cristiano</span></td><td class="n">114,1 M</td></tr>
-          <tr><td><img class="face" src="img/av-realDonaldTrump.jpg" alt=""></td><td>Donald Trump <span class="detail">@realDonaldTrump</span></td><td class="n">111,7 M</td></tr>
-          <tr><td><img class="face" src="img/av-narendramodi.jpg" alt=""></td><td>Narendra Modi <span class="detail">@narendramodi</span></td><td class="n">107,1 M</td></tr>
-        </table>
-        <table id="t-france" hidden>
-          <tr><th colspan="2">Compte</th><th style="text-align:right">Abonnés</th></tr>
-          <tr><td><img class="face" src="img/av-KMbappe.jpg" alt=""></td><td>Kylian Mbappé <span class="detail">@KMbappe</span></td><td class="n">23,7 M</td></tr>
-          <tr><td><img class="face" src="img/av-davidguetta.jpg" alt=""></td><td>David Guetta <span class="detail">@davidguetta</span></td><td class="n">15,4 M</td></tr>
-          <tr><td><img class="face" src="img/av-PSG_inside.jpg" alt=""></td><td>Paris Saint-Germain <span class="detail">@PSG_inside</span></td><td class="n">14,8 M</td></tr>
-        </table>
-        <div class="carte carte-bleu" style="margin-top:1em"><p class="corps" style="margin:0"><strong>Aucune des cinq publications n'est une publication de marque.</strong> Trois relèvent du deuil ou de la politique, une est une plaisanterie, une est une réponse à une provocation. C'est le plafond de la plateforme.</p></div>
+    <div class="entete" style="margin-bottom:1.2vh">
+      <h2 style="margin:0">Les comptes et publications les plus aimés</h2>
+      <span class="pilule" id="bascule">
+        <span class="actif" data-vue="monde">Monde</span><span data-vue="france">France</span><span data-vue="posts">Publications</span>
+      </span>
+    </div>
+
+    <div class="vue-bloc" id="v-monde">
+      <div class="grille g3" style="margin-bottom:1.4vh">
+        <img class="vue carte-sombre" src="img/r/musk.png" alt="Compte d'Elon Musk">
+        <img class="vue carte-sombre" src="img/r/obama.png" alt="Compte de Barack Obama">
+        <img class="vue carte-sombre" src="img/r/ronaldo.png" alt="Compte de Cristiano Ronaldo">
       </div>
-      <div>
-        <span class="t" style="font-size:var(--fs-sm);font-weight:600;text-transform:uppercase;letter-spacing:.16em;color:var(--sourdine)">Les publications les plus aimées de l'histoire</span>
-        <table style="margin-top:.6em">
+      <table>
+        <tr><th>Les cinq comptes les plus suivis dans le monde</th><th style="text-align:right">Abonnés</th></tr>
+        <tr><td>Elon Musk <span class="detail">@elonmusk</span></td><td class="n">241,6 M</td></tr>
+        <tr><td>Barack Obama <span class="detail">@BarackObama</span></td><td class="n">119,0 M</td></tr>
+        <tr><td>Cristiano Ronaldo <span class="detail">@Cristiano</span></td><td class="n">114,1 M</td></tr>
+        <tr><td>Donald Trump <span class="detail">@realDonaldTrump</span></td><td class="n">111,7 M</td></tr>
+        <tr><td>Narendra Modi <span class="detail">@narendramodi</span></td><td class="n">107,1 M</td></tr>
+      </table>
+    </div>
+
+    <div class="vue-bloc" id="v-france" hidden>
+      <div class="grille g3" style="margin-bottom:1.4vh">
+        <img class="vue carte-sombre" src="img/r/mbappe.png" alt="Compte de Kylian Mbappé">
+        <img class="vue carte-sombre" src="img/r/guetta.png" alt="Compte de David Guetta">
+        <img class="vue carte-sombre" src="img/r/psg.png" alt="Compte du Paris Saint-Germain">
+      </div>
+      <table>
+        <tr><th>Les comptes français les plus suivis</th><th style="text-align:right">Abonnés</th></tr>
+        <tr><td>Kylian Mbappé <span class="detail">@KMbappe</span></td><td class="n">23,7 M</td></tr>
+        <tr><td>David Guetta <span class="detail">@davidguetta</span></td><td class="n">15,4 M</td></tr>
+        <tr><td>Paris Saint-Germain <span class="detail">@PSG_inside</span></td><td class="n">14,8 M</td></tr>
+      </table>
+      <p class="corps"><strong>Vingt fois moins d'abonnés qu'au niveau mondial.</strong> Le premier compte français pèse un dixième du premier compte mondial : la France n'est pas un marché de X.</p>
+    </div>
+
+    <div class="vue-bloc" id="v-posts" hidden>
+      <div class="grille g5" style="margin-bottom:1.4vh">
+        <img class="vue post" src="img/post-boseman.png" alt="Publication de Chadwick Boseman">
+        <img class="vue post" src="img/post-musk-coca.png" alt="Publication d'Elon Musk">
+        <img class="vue post" src="img/post-obama.png" alt="Publication de Barack Obama">
+        <img class="vue post" src="img/post-greta.png" alt="Publication de Greta Thunberg">
+        <img class="vue post" src="img/post-biden.png" alt="Publication de Joe Biden">
+      </div>
+      <div class="grille g2" style="align-items:start">
+        <table>
+          <tr><th>Les publications les plus aimées de l'histoire</th><th style="text-align:right">Mentions</th></tr>
           <tr><td>La famille de Chadwick Boseman annonce sa mort <span class="detail">août 2020</span></td><td class="n">6,6 M</td></tr>
           <tr><td>Elon Musk, « je rachète Coca-Cola » <span class="detail">avril 2022</span></td><td class="n">4,3 M</td></tr>
           <tr><td>Barack Obama, citation de Nelson Mandela <span class="detail">août 2017</span></td><td class="n">3,6 M</td></tr>
           <tr><td>Greta Thunberg répond à Andrew Tate <span class="detail">décembre 2022</span></td><td class="n">3,5 M</td></tr>
           <tr><td>Joe Biden, « a new day in America » <span class="detail">janvier 2021</span></td><td class="n">3,5 M</td></tr>
         </table>
-        <div class="grille g5" style="margin-top:.9em">
-          <img class="vue post" src="img/post-boseman.png" alt="Publication de Chadwick Boseman">
-          <img class="vue post" src="img/post-musk-coca.png" alt="Publication d'Elon Musk">
-          <img class="vue post" src="img/post-obama.png" alt="Publication de Barack Obama">
-          <img class="vue post" src="img/post-greta.png" alt="Publication de Greta Thunberg">
-          <img class="vue post" src="img/post-biden.png" alt="Publication de Joe Biden">
-        </div>
+        <div class="carte carte-bleu"><p class="corps" style="margin:0"><strong>Aucune des cinq n'est une publication de marque.</strong> Trois relèvent du deuil ou de la politique, une est une plaisanterie, une est une réponse à une provocation. C'est le plafond de la plateforme : sur X, une marque ne gagne pas le fil, elle peut seulement être utile à l'intérieur du moment de quelqu'un d'autre.</p></div>
       </div>
     </div>
+
     <div class="pied">
-      <p class="src">Sources : X (consulté le 06/09/2026), captures des profils et des publications · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. Chiffres vérifiés sur les profils avec Claude.</p>
+      <p class="src">Sources : X (consulté le 06/09/2026), captures des profils et des publications transmises par Romane · Wikipédia (consulté le 06/09/2026), listes des comptes les plus suivis et des publications les plus aimées. Chiffres vérifiés sur les profils avec Claude.</p>
     </div>
   </div>
-  <div class="notes">Montrer le tableau Monde, basculer sur France d'un clic, puis livrer la seule phrase qui compte : aucune des cinq publications les plus aimées de l'histoire de la plateforme n'est une publication de marque. Trois relèvent du deuil ou de la politique. Sur X, une marque ne gagnera jamais le fil, elle peut seulement être utile à l'intérieur du moment de quelqu'un d'autre. 60 secondes.</div>
+  <div class="notes">Trois vues sur une seule slide. Montrer le top mondial cinq secondes, basculer sur la France en disant que le premier compte français pèse un dixième du premier compte mondial, puis basculer sur les publications et livrer la phrase : aucune des cinq publications les plus aimées de l'histoire n'est une publication de marque. Trois relèvent du deuil ou de la politique. 70 secondes.</div>
 </section>
 
 <!-- 12 · COMPTES -->
@@ -595,6 +640,7 @@ body.notesvues section.ici .notes{display:block}
         </table>
       </div>
     </div>
+    <img class="vue carte-sombre" src="img/r/composer.png" alt="Zone de rédaction d'un message avec le compteur de caractères" style="margin-top:12px;height:7vh;object-fit:contain">
     <div class="carte carte-bleu" style="margin-top:12px"><p class="corps" style="margin:0"><strong>La règle derrière les chiffres.</strong> Le fil recadre en rectangle paysage et lit sans le son. Le carré survit, le portrait est coupé, et toute vidéo qui a besoin du son pour être comprise est déjà perdue. Deux minutes vingt est le plafond, trente secondes la bonne durée.</p></div>
     <div class="pied">
       <p class="src">Source : Ecommerce Nation (consulté le 06/09/2026), Guide des réseaux sociaux 2024, fiche X, onglet Formats, p. 9.</p>
@@ -689,8 +735,7 @@ const bascule=document.getElementById('bascule');
 if(bascule) bascule.addEventListener('click',e=>{
   const b=e.target.closest('[data-vue]'); if(!b)return;
   bascule.querySelectorAll('span').forEach(x=>x.classList.toggle('actif',x===b));
-  document.getElementById('t-monde').hidden = b.dataset.vue!=='monde';
-  document.getElementById('t-france').hidden = b.dataset.vue!=='france';
+  ['monde','france','posts'].forEach(v=>{document.getElementById('v-'+v).hidden = b.dataset.vue!==v;});
 });
 
 /* ---- mode reglage : T pour entrer et sortir, glisser pour deplacer,
