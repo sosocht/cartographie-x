@@ -126,7 +126,8 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 /* slide 3 : le cadre garde sa place, l'image grandit dedans par --gr */
 #s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
 #s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
-#s12 .rangee .badge{padding:.35em .68em;letter-spacing:.055em}
+#s12 .rangee{display:grid;grid-template-columns:auto auto;justify-content:start;align-content:start;gap:.4em}
+#s12 .rangee .badge{padding:.35em .68em;letter-spacing:.055em;justify-self:start}
 /* slide 14 : chaque cadre garde son vrai ratio, hauteur commune par rangee, legende dessous */
 #s13 .frang{display:flex;align-items:flex-end;gap:1.5vw;margin-top:1.6vh;flex-wrap:nowrap}
 #s13 .fmt{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:none;max-width:100%}
@@ -208,7 +209,8 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 /* slide 3 : le cadre garde sa place, l'image grandit dedans par --gr */
 #s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
 #s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
-#s12 .rangee .badge{padding:.35em .68em;letter-spacing:.055em}
+#s12 .rangee{display:grid;grid-template-columns:auto auto;justify-content:start;align-content:start;gap:.4em}
+#s12 .rangee .badge{padding:.35em .68em;letter-spacing:.055em;justify-self:start}
 /* slide 14 : chaque cadre garde son vrai ratio, hauteur commune par rangee, legende dessous */
 #s13 .frang{display:flex;align-items:flex-end;gap:1.5vw;margin-top:1.6vh;flex-wrap:nowrap}
 #s13 .fmt{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:none;max-width:100%}
@@ -892,17 +894,17 @@ body.notesvues section.ici .notes{display:block}
       <div class="col">
         <img class="shot twr hh" data-tw="compte-openai" style="--dx:0%;--dy:0%;--l:52vh;margin-top:0;border-radius:var(--r)" src="img/openai.png" alt="Compte @OpenAI sur X">
         <p class="lg">@OpenAI <span class="detail">5,2 M d'abonnés</span></p>
-        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Salle de presse</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Annonce en texte brut</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Sans communiqué</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Le lancement est un post</span></div>
+        <div class="rangee" style="padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Salle de presse</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Annonce en texte brut</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Sans communiqué</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Le lancement est un post</span></div>
       </div>
       <div class="col">
         <img class="shot twr hh" data-tw="compte-grok" style="--dx:0%;--dy:0%;--l:52vh;margin-top:0;border-radius:var(--r)" src="img/grok.png" alt="Compte @grok sur X">
         <p class="lg">@grok <span class="detail">9,0 M d'abonnés</span></p>
-        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">IA native du réseau</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Répond dans le fil</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">39 M de publications</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Vit dans le flux</span></div>
+        <div class="rangee" style="padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">IA native du réseau</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Répond dans le fil</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">39 M de publications</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Vit dans le flux</span></div>
       </div>
       <div class="col">
         <img class="shot twr hh" data-tw="compte-burgerking" style="--dx:0%;--dy:0%;--l:52vh;margin-top:0;border-radius:var(--r)" src="img/burgerking.png" alt="Compte @BurgerKingFR sur X">
         <p class="lg">@BurgerKingFR <span class="detail">188,7 K d'abonnés</span></p>
-        <div class="rangee" style="display:flex;flex-wrap:wrap;gap:.4em;padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Zéro abonnement</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Ton de personne</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Même voix depuis 2013</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Discipline</span></div>
+        <div class="rangee" style="padding:0 .9em .9em"><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Zéro abonnement</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Ton de personne</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Même voix depuis 2013</span><span class="badge" data-edit style="background:rgba(29,155,240,.1);color:var(--bleu)">Discipline</span></div>
       </div>
     </div>
     <div class="pied">
