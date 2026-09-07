@@ -127,6 +127,14 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 #s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
 #s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
 #s12 .rangee .badge{padding:.35em .68em;letter-spacing:.055em}
+/* slide 14 : chaque cadre garde son vrai ratio, hauteur commune par rangee, legende dessous */
+#s13 .frang{display:flex;align-items:flex-end;gap:1.5vw;margin-top:1.6vh;flex-wrap:nowrap}
+#s13 .fmt{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:none;max-width:100%}
+#s13 .cadre{height:var(--h,13vh);width:auto;border:2px solid var(--bleu);border-radius:12px;
+  background:rgba(29,155,240,.07)}
+#s13 .dim{margin:.5em 0 0;font-size:var(--fs-md);font-weight:600;color:var(--encre);white-space:nowrap}
+#s13 .lg-fmt{margin:.1em 0 0;font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);
+  text-align:center;line-height:1.25;max-width:15vw}
 #s6 .secteurs{position:relative;left:var(--sec-dx,0);top:var(--sec-dy,0)}
 #s6 .sect-t{font-size:var(--sct,var(--fs-md))}
 #s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
@@ -201,6 +209,14 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 #s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
 #s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
 #s12 .rangee .badge{padding:.35em .68em;letter-spacing:.055em}
+/* slide 14 : chaque cadre garde son vrai ratio, hauteur commune par rangee, legende dessous */
+#s13 .frang{display:flex;align-items:flex-end;gap:1.5vw;margin-top:1.6vh;flex-wrap:nowrap}
+#s13 .fmt{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;flex:none;max-width:100%}
+#s13 .cadre{height:var(--h,13vh);width:auto;border:2px solid var(--bleu);border-radius:12px;
+  background:rgba(29,155,240,.07)}
+#s13 .dim{margin:.5em 0 0;font-size:var(--fs-md);font-weight:600;color:var(--encre);white-space:nowrap}
+#s13 .lg-fmt{margin:.1em 0 0;font-size:var(--fs-sm);font-weight:300;color:var(--sourdine);
+  text-align:center;line-height:1.25;max-width:15vw}
 #s6 .secteurs{position:relative;left:var(--sec-dx,0);top:var(--sec-dy,0)}
 #s6 .sect-t{font-size:var(--sct,var(--fs-md))}
 #s6 .sect-p .tag{font-size:var(--scp,var(--fs-sm))}
@@ -757,7 +773,7 @@ body.notesvues section.ici .notes{display:block}
       <div class="bulle d fin"><h3><span style="color:var(--bleu)">06</span>  Measure bookmarks and replies</h3><p class="corps">A like = polite, a bookmark = useful, a reply = alive.</p></div>
     </div>
     <div class="carte" style="margin-top:1.6vh">
-      <span class="badge badge-bleu">What the algorithm&rsquo;s own code confirms</span>
+      <span class="badge badge-bleu">Why these tips work: what the code says</span>
       <div class="grille g3" style="gap:1.4vw;margin-top:.7em">
         <div><span class="chiffre">48 h</span><span class="unite">lifespan</span><p class="corps" style="margin:.4em 0 0">Beyond that, the age filter removes the post from the feed.</p></div>
         <div><span class="chiffre">2 feeds</span><span class="unite">For you and Following</span></div>
@@ -904,25 +920,25 @@ body.notesvues section.ici .notes{display:block}
     <div class="grille g2" style="align-items:start;gap:3vw">
       <div>
         <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Images</span>
-        <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:1em">
-          <div class="forme twr" data-tw="profil" style="--dx:3.9%;--dy:130.4%;aspect-ratio:1/1"><b>400 × 400</b><span>profile picture</span></div>
-          <div class="forme twr" data-tw="banniere" style="--dx:-104.3%;--dy:185.9%;aspect-ratio:3/1"><b>1500 × 500</b><span>header</span></div>
-          <div class="forme twr" data-tw="post-carre" style="--dx:-93.4%;--dy:129.5%;aspect-ratio:1/1"><b>1200 × 1200</b><span>square post</span></div>
-          <div class="forme twr" data-tw="post-paysage" style="--dx:-200.6%;--dy:194.8%;aspect-ratio:1.91/1"><b>1200 × 628</b><span>landscape post</span></div>
+        <div class="frang" style="--h:12.5vh">
+          <div class="fmt"><div class="cadre" style="aspect-ratio:1/1"></div><p class="dim">400 × 400</p><p class="lg-fmt">profile picture</p></div>
+          <div class="fmt"><div class="cadre" style="aspect-ratio:1/1"></div><p class="dim">1200 × 1200</p><p class="lg-fmt">square post</p></div>
+          <div class="fmt"><div class="cadre" style="aspect-ratio:1.91/1"></div><p class="dim">1200 × 628</p><p class="lg-fmt">landscape post</p></div>
         </div>
-        <div class="formes" style="grid-template-columns:repeat(4,1fr);margin-top:14px">
-          <div class="forme twr" data-tw="pub-image" style="--dx:3.4%;--dy:-94.5%;aspect-ratio:16/9;grid-column:span 2"><b>1200 × 675</b><span>ad · 600 × 335 minimum</span></div>
+        <div class="frang" style="--h:12.5vh">
+          <div class="fmt"><div class="cadre" style="aspect-ratio:16/9"></div><p class="dim">1200 × 675</p><p class="lg-fmt">ad · 600 × 335 minimum</p></div>
+          <div class="fmt"><div class="cadre" style="aspect-ratio:3/1"></div><p class="dim">1500 × 500</p><p class="lg-fmt">profile header</p></div>
         </div>
       </div>
       <div>
         <span class="badge" style="background:rgba(10,10,10,.06);color:var(--sourdine)">Video</span>
-        <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:1em">
-          <div class="forme twr" data-tw="video" style="--dx:53.1%;--dy:93.6%;aspect-ratio:16/10"><b>1920 × 1200</b><span>post · 512 MB · 2 min 20 max</span></div>
-          <div class="forme twr" data-tw="carrousel-carre" style="--dx:101.9%;--dy:14.8%;aspect-ratio:1/1"><b>800 × 800</b><span>square carousel · 2 to 6 videos</span></div>
-          <div class="forme twr" data-tw="carrousel-paysage" style="--dx:-33.1%;--dy:88.0%;aspect-ratio:16/9"><b>800 × 450</b><span>landscape carousel · 2 to 6 videos</span></div>
+        <div class="frang" style="--h:12.5vh">
+          <div class="fmt"><div class="cadre" style="aspect-ratio:1/1"></div><p class="dim">800 × 800</p><p class="lg-fmt">square carousel<br>2 to 6 videos</p></div>
+          <div class="fmt"><div class="cadre" style="aspect-ratio:16/9"></div><p class="dim">800 × 450</p><p class="lg-fmt">landscape carousel<br>2 to 6 videos</p></div>
         </div>
-        <div class="formes" style="grid-template-columns:repeat(3,1fr);margin-top:14px">
-          <div class="forme twr" data-tw="pub-video" style="--dx:-8.0%;--dy:-89.6%;aspect-ratio:16/9;grid-column:span 2"><b>Ad</b><span>1:1 or 16:9 · 1 GB · MP4 or MOV</span></div>
+        <div class="frang" style="--h:12.5vh">
+          <div class="fmt"><div class="cadre" style="aspect-ratio:1.6/1"></div><p class="dim">1920 × 1200</p><p class="lg-fmt">post · 512 MB<br>2 min 20 max</p></div>
+          <div class="fmt"><div class="cadre" style="aspect-ratio:16/9"></div><p class="dim">Ad</p><p class="lg-fmt">1:1 or 16:9 · 1 GB<br>MP4 or MOV</p></div>
         </div>
       </div>
     </div>
