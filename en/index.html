@@ -124,6 +124,9 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 #s6 .usg{position:relative;left:var(--usg-dx,0);top:var(--usg-dy,0)}
 #s6 .gen{position:relative;left:var(--gen-dx,0);top:var(--gen-dy,0)}
 /* slide 3 : le cadre garde sa place, l'image grandit dedans par --gr */
+#s3 .col3{display:flex;flex-direction:column;align-items:flex-end;gap:7.2vh;position:relative;left:var(--c3-dx,0);top:var(--c3-dy,0)}
+#s3 .tw3{width:var(--ltw,21vw);flex:none}
+#s3 .tw3 img{width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
 #s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
 #s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
 #s12 .rangee{display:grid;grid-template-columns:auto auto;justify-content:start;align-content:start;gap:.4em}
@@ -207,6 +210,9 @@ section .pied{position:relative;left:var(--src-dx,0);top:var(--src-dy,0)}
 #s6 .usg{position:relative;left:var(--usg-dx,0);top:var(--usg-dy,0)}
 #s6 .gen{position:relative;left:var(--gen-dx,0);top:var(--gen-dy,0)}
 /* slide 3 : le cadre garde sa place, l'image grandit dedans par --gr */
+#s3 .col3{display:flex;flex-direction:column;align-items:flex-end;gap:7.2vh;position:relative;left:var(--c3-dx,0);top:var(--c3-dy,0)}
+#s3 .tw3{width:var(--ltw,21vw);flex:none}
+#s3 .tw3 img{width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
 #s3 .ph3{position:relative;width:var(--l,40.5vw);height:var(--h,15.4vh);flex:none}
 #s3 .ph3 img{position:absolute;right:0;top:50%;transform:translateY(-50%);width:100%;height:auto;border-radius:var(--r);border:1px solid var(--filet);display:block}
 #s12 .rangee{display:grid;grid-template-columns:auto auto;justify-content:start;align-content:start;gap:.4em}
@@ -455,7 +461,10 @@ body.notesvues section.ici .notes{display:block}
     <h2 style="margin-bottom:.3em">Twenty years in ten dates</h2>
     <div class="grille g2" style="grid-template-columns:1fr auto;align-items:start;gap:2.4vw;margin-bottom:4vh">
       <p class="corps" style="margin:0;white-space:nowrap"><strong>Jack Dorsey, Biz Stone, Evan Williams and Dick Costolo</strong> at the 2013 stock market listing.</p>
-      <div class="ph3 twr" data-tw="photo" style="--dx:0%;--dy:-29.6%;--l:40.5vw"><img src="../img/fondateurs.png" alt="The founders of Twitter at the stock market listing"></div>
+      <div class="col3" style="--c3-dy:-5.9vh">
+        <div class="tw3" style="--ltw:19vw"><img src="../img/premier-tweet.png" alt="The first message ever posted on Twitter, by Jack Dorsey, on 21 March 2006"></div>
+        <div class="ph3" style="--l:40.5vw"><img src="../img/fondateurs.png" alt="The founders of Twitter at the stock market listing"></div>
+      </div>
     </div>
     <div class="grille g5" style="grid-auto-rows:17vh">
       <div class="carte"><span class="chiffre">2006</span><p class="corps"><strong>Launched</strong> on 15 July. First message on 21 March: <em>just setting up my twttr</em>.</p></div>
