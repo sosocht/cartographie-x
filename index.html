@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="assets/logo-x.svg">
+<title>Cartographie de X · Romane Da-Silva &amp; Sofian Chtioui</title>
+<meta name="description" content="Cartographie de X : du réseau social au terminal d’information temps réel. R5.MDEE.13, IUT de Roubaix.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200..800&display=swap" rel="stylesheet">
+<style>
+/* Design System : .claude/skills/slides-design/ds.html, copie locale dans ds.html */
+:root{
+  --encre:#0a0a0a; --fond:#f5f5f5; --carte:#fff; --filet:#e4e4e2;
+  --bleu:#1d9bf0; --sourdine:rgba(10,10,10,.55); --tenu:rgba(10,10,10,.38);
+  --sans:"Plus Jakarta Sans",system-ui,sans-serif; --r:20px;
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;
+  font-family:var(--sans);font-size:clamp(14px,1.09vw,1.05rem);line-height:1.5;
+  color:var(--encre);background:var(--fond);padding:6vh 5vw}
+main{width:min(880px,100%)}
+.ressource{font-size:clamp(11px,.94vw,.84rem);font-weight:500;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--bleu);margin:0 0 1.2rem}
+h1{font-size:clamp(1.9rem,3.9vw,3.3rem);font-weight:600;line-height:1.08;margin:0 0 .8rem}
+.chapeau{color:var(--sourdine);margin:0 0 3rem;max-width:56ch}
+.liens{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.1rem}
+a.carte{display:flex;flex-direction:column;justify-content:space-between;gap:1.6rem;
+  background:var(--carte);border:1px solid var(--filet);border-radius:var(--r);
+  padding:1.5rem 1.6rem;text-decoration:none;color:inherit;transition:border-color .18s,transform .18s}
+a.carte:hover{border-color:var(--bleu);transform:translateY(-2px)}
+a.carte .nom{font-size:clamp(22px,2.34vw,2.1rem);font-weight:500;line-height:1.15}
+a.carte .quoi{font-size:clamp(11px,.94vw,.84rem);color:var(--sourdine)}
+a.carte.mise-en-avant{border-color:var(--bleu)}
+a.carte.mise-en-avant .nom{color:var(--bleu)}
+.pdf{margin-top:2.4rem;display:flex;flex-wrap:wrap;gap:1.4rem;
+  font-size:clamp(11px,.94vw,.84rem)}
+.pdf a{color:var(--sourdine);text-decoration:none;border-bottom:1px solid var(--filet);padding-bottom:2px}
+.pdf a:hover{color:var(--bleu);border-color:var(--bleu)}
+.signature{margin-top:3.2rem;font-size:clamp(11px,.94vw,.84rem);color:var(--tenu)}
+</style>
+</head>
+<body>
+<main>
+  <p class="ressource">R5.MDEE.13 · Stratégie social media · M. Perez</p>
+  <h1>Cartographie de X</h1>
+  <p class="chapeau">Du réseau social au terminal d’information en temps réel : histoire, modèle économique, audience, fonctionnalités et personas.</p>
+
+  <div class="liens">
+    <a class="carte mise-en-avant" href="en/">
+      <span class="nom">English</span>
+      <span class="quoi">Version présentée et déposée · 17 slides · touche N pour les notes</span>
+    </a>
+    <a class="carte" href="fr/">
+      <span class="nom">Français</span>
+      <span class="quoi">Version de travail · 17 slides · touche N pour les notes</span>
+    </a>
+  </div>
+
+  <p class="signature">Romane Da-Silva &amp; Sofian Chtioui · BUT 3 TC MDEE · IUT de Roubaix · 08/09/2026</p>
+</main>
+</body>
+</html>
